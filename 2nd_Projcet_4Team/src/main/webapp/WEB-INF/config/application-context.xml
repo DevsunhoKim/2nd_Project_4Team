@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!-- AOP : 모든 컨트롤러가 공통으로 사용되는 내용 -->
+    <aop:aspectj-autoproxy/> <!-- 어노테이션 사용 -->
+    <!-- 사용자 클래스 등록 -->
+    <!-- @Component => AOP,일반클래스 (Manager => 분석 => R) , 크롤링
+    	 @Repository => DAO
+    	 @Service => BI (DAO여러개 연결)
+    	 @Controller => 화면 변경 => Model
+    	 @RestController => 다른 언어와 연결 => RestFul(JSON)
+    	 @ControllerAdvice => Controller공통 예외처리 
+    	 @Configuration => 자바로 스프링 설정
+    	 => 선택적 메모리 할당
+    	 => ~VO, interface를 제외한 모든 클래스는 스프링에 관리 요청
+    	  -->
+    <context:component-scan base-package="com.sist.*"/>
+    <!-- ViewResolver -->
+    <!-- InternalResourceViewResolver / MultipartResolver / TilesView
+    	 => chat
+     -->
+    <!-- Tiles설정 -->
+    <bean id="tilesConfigurer"
+      class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
+      p:definitions="/WEB-INF/tiles.xml"
+    />    
+    <bean id="tilesResolver"
+       class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+       p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"
+       p:order="0" 
+    />
+    <!-- p:order="0" 순서를 tiles를 먼저 찾고 없으면 viewResolver에서 찾아라 -->
+    <bean id="viewResolver"
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+      p:prefix="/"
+      p:suffix=".jsp"
+      p:order="1"
+    />    
+</beans>
+
+
+
+
+
+
+
+
