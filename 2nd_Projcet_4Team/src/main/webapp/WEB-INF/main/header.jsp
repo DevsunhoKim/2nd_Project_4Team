@@ -29,7 +29,7 @@
                 </a>
               </li>
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../studyRoom/room_main.do">
                   <span>Study Room</span>
                 </a>
               </li>
