@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-<!-- <tiles-definitions>
+ <tiles-definitions>
 
-	메인페이지(header,footer 연결)
+	<!-- 메인페이지(header,footer 연결) -->
 	<definition name="main" template="/WEB-INF/main/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
 		<put-attribute name="home" value="/WEB-INF/main/home.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
 	</definition>
 	
-	마이페이지
+	<!-- 마이페이지 -->
 	<definition name="mypage" template="/WEB-INF/mypage/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
 		<put-attribute name="menu" value="/WEB-INF/mypage/menu.jsp"/>
@@ -22,7 +22,7 @@
 		<put-attribute name="home" value="/WEB-INF/mypage/{1}.jsp"/>
 	</definition>
 	
-	관리자페이지
+	<!-- 관리자페이지 -->
 	<definition name="adminpage" template="/WEB-INF/adminpage/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
 		<put-attribute name="menu" value="/WEB-INF/adminpage/menu.jsp"/>
@@ -34,22 +34,22 @@
 		<put-attribute name="home" value="/WEB-INF/adminpage/{1}.jsp"/>
 	</definition>
 	
-	동적페이지 연결
+	<!-- 동적페이지 연결 -->
 	<definition name="*/*" extends="main">
 		<put-attribute name="home" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 
-</tiles-definitions> -->
-<tiles-definitions>
+</tiles-definitions> 
+<!-- <tiles-definitions>
 
-	<!-- 메인페이지 -->
+	메인페이지
 	<definition name="main" template="/WEB-INF/main/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
 		
 		<put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
 	</definition>
 	
-	<!-- 마이페이지 -->
+	마이페이지
 	<definition name="mypage" template="/WEB-INF/mypage/main.jsp" extends="main">
 		<put-attribute name="menu" value="/WEB-INF/mypage/menu.jsp"/>
 	</definition>	
@@ -58,7 +58,7 @@
 		<put-attribute name="content" value="/WEB-INF/mypage/{1}.jsp"/>
 	</definition>
 	
-	<!-- 관리자페이지 -->
+	관리자페이지
 	<definition name="adminpage" template="/WEB-INF/adminpage/main.jsp" extends="main">
 		<put-attribute name="menu" value="/WEB-INF/adminpage/menu.jsp"/>
 	</definition>
@@ -67,9 +67,9 @@
 		<put-attribute name="content" value="/WEB-INF/adminpage/{1}.jsp"/>
 	</definition>
 	
-	<!-- 동적페이지 연결 -->
+	동적페이지 연결
 	<definition name="*/*" extends="main">
 		<put-attribute name="home" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 
-</tiles-definitions>
+</tiles-definitions> -->
