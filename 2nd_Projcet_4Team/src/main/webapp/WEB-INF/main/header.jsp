@@ -59,7 +59,7 @@
             <button class="header-btn btn-seach">
               <img src="../images/icons/ico_seach_black.svg" alt="검색 아이콘">
             </button>
-            <a href="javascipt:void(0);" class="header-btn btn-user">
+            <a href="../member/login.do" class="header-btn btn-user">
               <img src="../images/icons/ico_user_black.svg" alt="유저 아이콘">
             </a>
             <button class="header-btn btn-cart badgeset badgeset-circle badgeset-position badgeset-bottom-right">
