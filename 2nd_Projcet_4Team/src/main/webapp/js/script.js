@@ -57,19 +57,6 @@
 })();
 
 
-// header 스크롤 시 스타일 변경
-const header=document.querySelector("header");
-const headerHeight=header.getBoundingClientRect().height; // 해당 DOM의 높이를 변수로 지정
-
-window.addEventListener("scroll", () => { // window에 scroll 이벤트를 더한 후
-  if (window.scrollY > headerHeight) { // window의 scroll 위치가 DOM의 높이를 넘어설 경우 => window.scrollY
-    header.setAttribute("style", "background: #fff;"); // 해당 요소의 스타일 속성을 변경
-  } else {
-    header.setAttribute("style", "background: transparent;");
-  }
-});
-
-
 // basic-N39 [SnLsb2H56a]
 (function() {
   $(function() {
@@ -357,3 +344,21 @@ window.addEventListener("scroll", () => { // window에 scroll 이벤트를 더�
     });
   });
 })();
+
+
+// header 스크롤 시 스타일 변경
+const header=document.querySelector("header");
+
+if(header) {
+  const headerHeight=header.getBoundingClientRect().height;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > headerHeight) {
+      header.setAttribute("style", "background: #fff;");
+    } else {
+      header.setAttribute("style", "background: transparent;");
+    }
+  });
+} else {
+  console.error("Header element not found."); // 에러를 콘솔에 출력
+};

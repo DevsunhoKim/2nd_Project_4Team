@@ -220,7 +220,7 @@
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="textset">
-            <h2 class="textset-tit">Book</h2>
+            <h2 class="textset-tit">Bookstore</h2>
             <p class="textset-desc">베스트 상품을 지금 바로 만나보세요!</p>
           </div>
           <div class="swiper contents-swiper">
@@ -287,31 +287,30 @@
     </div>
     <!-- [E]basic-N42 -->
 
-    <!-- [S]glamping-N33 -->
-    <div class="glamping-N33" data-bid="wiLsbidq4n">
+    <!-- [S]recruitment -->
+    <div class="recruitment">
       <div class="contents-inner">
-        <div class="contents-container container-md">
-          <div class="contents-top">
-            <!-- <div class="contents-date"></div> -->
-            <div class="job-list">
-              <ul>
-                <li>
-                  <a href="#">
-                    <figure class="company-logo">
-                      <img class="" src="" alt="기업 로고">
-                    </figure>
-                    <h5>기업명</h5>
-                  </a>
-                  <h4>채용 공고 제목</h4>
-                  <p></p>
-                </li>
-              </ul>
-            </div>
+        <div class="content-container container-md">
+          <div class="textset">
+            <h2 class="textset-tit">Recruitment</h2>
+            <p class="textset-desc">오늘 마감하는 기업의 공고를 확인해 보세요!</p>
           </div>
+          <ul class="recruit-list">
+            <li>
+              <a href="#" class="company-info">
+                <figure class="company-logo">
+                  <img class="" src="" alt="기업 로고">
+                </figure>
+                <h5 class="company-name">기업명</h5>
+              </a>
+              <h4>채용 공고 제목</h4>
+              <p></p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <!-- [E]glamping-N33 -->
+    <!-- [E]recruitment -->
   </main>
 </body>
 </html>
