@@ -57,6 +57,19 @@
 })();
 
 
+// header 스크롤 시 스타일 변경
+const header=document.querySelector("header");
+const headerHeight=header.getBoundingClientRect().height; // 해당 DOM의 높이를 변수로 지정
+
+window.addEventListener("scroll", () => { // window에 scroll 이벤트를 더한 후
+  if (window.scrollY > headerHeight) { // window의 scroll 위치가 DOM의 높이를 넘어설 경우 => window.scrollY
+    header.setAttribute("style", "background: #fff;"); // 해당 요소의 스타일 속성을 변경
+  } else {
+    header.setAttribute("style", "background: transparent;");
+  }
+});
+
+
 // basic-N39 [SnLsb2H56a]
 (function() {
   $(function() {
@@ -175,6 +188,46 @@
 })();
 
 
+// glamping-N33 [wiLsbidq4n]
+(function() {
+  $(function() {
+    $(".glamping-N33").each(function() {
+      const $block = $(this);
+      const $calendar = $block.find(".contents-date")
+      // Date Range Picker
+      $calendar.dateRangePicker({
+        container: '.glamping-N33 .contents-top',
+        // language:'ko',
+        language: 'custom',
+        inline: true,
+        alwaysOpen: true,
+      }).bind('datepicker-first-date-selected', function(event, obj) {
+        console.log(obj);
+      }).bind('datepicker-change', function(event, obj) {
+        console.log(obj);
+      });
+      // Amount Count Button Click Event
+      $block.find(".contents-amount").each(function() {
+        const $this = $(this);
+        const $amountNumElement = $this.find(".contents-amount-num span");
+        $this.on("click", ".btn-minus", function() {
+          let amountNum = parseInt($amountNumElement.text());
+          if (amountNum > 1) {
+            amountNum--;
+          }
+          $amountNumElement.text(amountNum);
+        });
+        $this.on("click", ".btn-plus", function() {
+          let amountNum = parseInt($amountNumElement.text());
+          amountNum++;
+          $amountNumElement.text(amountNum);
+        });
+      });
+    });
+  });
+})();
+
+
 // basic-N1 [DYLSb2ddDK]
 (function() {
   $(function() {
@@ -236,6 +289,8 @@
     });
   });
 })();
+
+
 // basic-N5 [BIlSB2dDjn]
 (function() {
   $(function() {
@@ -281,6 +336,8 @@
     });
   });
 })();
+
+
 // basic-N9 [cClsB2dE94]
 (function() {
   $(function() {
@@ -299,4 +356,4 @@
       });
     });
   });
-});
+})();

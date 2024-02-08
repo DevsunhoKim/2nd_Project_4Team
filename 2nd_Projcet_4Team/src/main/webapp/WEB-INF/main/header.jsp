@@ -35,12 +35,12 @@
               </li>
               <li class="header-gnbitem">
                 <a class="header-gnblink" href="javascript:void(0)">
-                  <span>Book Shop</span>
+                  <span>Bookstore</span>
                 </a>
               </li>
               <li class="header-gnbitem">
                 <a class="header-gnblink" href="javascript:void(0)">
-                  <span>Job Posting</span>
+                  <span>Recruitment</span>
                 </a>
               </li>
               <li class="header-gnbitem">
