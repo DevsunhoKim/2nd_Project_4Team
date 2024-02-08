@@ -30,6 +30,7 @@
 <!-- script -->
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="../js/setting.js"></script>
+<!-- <script src="../js/plugin.js"></script> -->
 <script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/script.js"></script>

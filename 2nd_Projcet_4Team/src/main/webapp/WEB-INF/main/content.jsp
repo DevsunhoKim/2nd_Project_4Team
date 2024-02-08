@@ -21,14 +21,14 @@
           <!-- <div class="contents-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img class="contents-backimg img-pc" src="../resources/images/img_mainvisual_03.png" alt="PC 비주얼 이미지">
-                <img class="contents-backimg img-mobile" src="../resources/images/img_mainvisual_mobile_03.png" alt="모바일 비주얼 이미지">
+                <img class="contents-backimg img-pc" src="../images/img_mainvisual_03.png" alt="PC 비주얼 이미지">
+                <img class="contents-backimg img-mobile" src="../images/img_mainvisual_mobile_03.png" alt="모바일 비주얼 이미지">
                 <div class="contents-slide-group">
                 </div>
               </div>
               <div class="swiper-slide">
-                <img class="contents-backimg img-pc" src="../resources/images/img_mainvisual_03.png" alt="PC 비주얼 이미지">
-                <img class="contents-backimg img-mobile" src="../resources/images/img_mainvisual_mobile_03.png" alt="모바일 비주얼 이미지">
+                <img class="contents-backimg img-pc" src="../images/img_mainvisual_03.png" alt="PC 비주얼 이미지">
+                <img class="contents-backimg img-mobile" src="../images/img_mainvisual_mobile_03.png" alt="모바일 비주얼 이미지">
                 <div class="contents-slide-group">
                   <div class="textset textset-visual">
                     <h2 class="textset-tit"> Temha Mall <br> Home Essentials </h2>
@@ -38,8 +38,8 @@
                 </div>
               </div>
               <div class="swiper-slide">
-                <img class="contents-backimg img-pc" src="../resources/images/img_mainvisual_03.png" alt="PC 비주얼 이미지">
-                <img class="contents-backimg img-mobile" src="../resources/images/img_mainvisual_mobile_03.png" alt="모바일 비주얼 이미지">
+                <img class="contents-backimg img-pc" src="../images/img_mainvisual_03.png" alt="PC 비주얼 이미지">
+                <img class="contents-backimg img-mobile" src="../images/img_mainvisual_mobile_03.png" alt="모바일 비주얼 이미지">
                 <div class="contents-slide-group">
                   <div class="textset textset-visual">
                     <h2 class="textset-tit"> Temha Mall <br> Home Essentials </h2>
@@ -54,10 +54,10 @@
               <div class="swiper-pagination"></div>
               <div class="swiper-button-next"></div>
               <div class="swiper-button-pause">
-                <img src="../resources/icons/ico_pause_white.svg" alt="스와이퍼 멈춤버튼">
+                <img src="../icons/ico_pause_white.svg" alt="스와이퍼 멈춤버튼">
               </div>
               <div class="swiper-button-play">
-                <img src="../resources/icons/ico_play_white.svg" alt="스와이퍼 재생버튼">
+                <img src="../icons/ico_play_white.svg" alt="스와이퍼 재생버튼">
               </div>
             </div>
           </div> -->
@@ -295,18 +295,64 @@
             <h2 class="textset-tit">Recruitment</h2>
             <p class="textset-desc">오늘 마감하는 기업의 공고를 확인해 보세요!</p>
           </div>
-          <ul class="recruit-list">
-            <li>
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="" src="" alt="기업 로고">
-                </figure>
-                <h5 class="company-name">기업명</h5>
-              </a>
-              <h4>채용 공고 제목</h4>
-              <p></p>
-            </li>
-          </ul>
+          <div class="contents-group">
+            <div class="calendar"> 
+              <table>달력</table>
+            </div>
+            <ul class="recruit-list">
+              <li>
+                <a href="#" class="company-info">
+                  <figure class="company-logo">
+                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
+                  </figure>
+                  <h5 class="company-name">㈜우아한형제들</h5>
+                </a>
+                <div class="recruit-info">
+                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
+                  <span class="recruit-career">신입·경력</span>
+                </div>
+              </li>
+
+              <li>
+                <a href="#" class="company-info">
+                  <figure class="company-logo">
+                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
+                  </figure>
+                  <h5 class="company-name">㈜우아한형제들</h5>
+                </a>
+                <div class="recruit-info">
+                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
+                  <span class="recruit-career">신입·경력</span>
+                </div>
+              </li>
+
+              <li>
+                <a href="#" class="company-info">
+                  <figure class="company-logo">
+                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
+                  </figure>
+                  <h5 class="company-name">㈜우아한형제들</h5>
+                </a>
+                <div class="recruit-info">
+                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
+                  <span class="recruit-career">신입·경력</span>
+                </div>
+              </li>
+              
+              <li>
+                <a href="#" class="company-info">
+                  <figure class="company-logo">
+                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
+                  </figure>
+                  <h5 class="company-name">㈜우아한형제들</h5>
+                </a>
+                <div class="recruit-info">
+                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
+                  <span class="recruit-career">신입·경력</span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
