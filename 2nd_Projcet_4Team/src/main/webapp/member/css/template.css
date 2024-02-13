@@ -111,7 +111,6 @@ html { font-size: 62.5%; /* 16px * 0.625 = 10px */ }
 body { margin: 0; font-family: var(--ff); font-weight: 400; font-size: var(--fs-p3); line-height: var(--lh-p3); letter-spacing: var(--letter-spacing); color: var(--body-color); background-color: var(--body-bg); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 hr { margin: 1rem 0; color: inherit; border: 0; border-top: 1px solid; opacity: 0.25; }
 abbr[title] { -webkit-text-decoration: underline dotted; text-decoration: underline dotted; cursor: help; -webkit-text-decoration-skip-ink: none; text-decoration-skip-ink: none; }
-address { font-style: normal; line-height: inherit; }
 ol,
 ul,
 dl { list-style: none; }

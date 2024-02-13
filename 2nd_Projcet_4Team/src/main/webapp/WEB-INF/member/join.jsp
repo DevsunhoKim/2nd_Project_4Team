@@ -7,7 +7,7 @@
 <title>Insert title here</title>
   <link rel="stylesheet" href="../member/css/setting.css">
   <link rel="stylesheet" href="../member/css/plugin.css">
-  <link rel="stylesheet" href="../member/css/template.css"> 
+  <link rel="stylesheet" href="../member/css/template.css">  
   <link rel="stylesheet" href="../member/css/style.css">
   <link rel="stylesheet" href="../css/template.css">
   <style type="text/css">
@@ -35,6 +35,26 @@
     margin-top: 20px;
     text-align: center;
   }
+.contents-form-group {
+    display: flex;
+    align-items: center; 
+    width: 100%;
+}
+
+.inputset {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.btnset {
+    flex: 0; 
+}
+.contents-mail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
 </style>
 </head>
 <body>
@@ -42,8 +62,8 @@
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="contents-top">
-            <h2 class="contents-tit">정보입력</h2>
-            <span>* 표시는 반드시 입력하셔야 하는 항목입니다</span>
+            <h1 class="contents-tit">정보입력</h1>
+            <span><span style="color: var(--danger)">*</span> 표시는 반드시 입력하셔야 하는 항목입니다</span>
           </div>
           <div class="contents-group">
             <div class="form-wrap">
@@ -136,7 +156,7 @@
           </div>
           <div class="contents-btn-group">
             <a href="javascript:void(0);" class="btnset btnset-line btnset-round">이전단계</a>
-            <a href="join03.html" class="btnset btnset-round">다음단계</a>
+            <a href="../member/join_ok.do" class="btnset btnset-round">다음단계</a>
           </div>
         </div>
       </div>
