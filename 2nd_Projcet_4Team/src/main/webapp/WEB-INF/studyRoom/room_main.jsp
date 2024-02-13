@@ -18,10 +18,16 @@
   <title>place_main | 공간</title>
   <link rel="stylesheet" href="../studyRoom/css/setting.css">
   <link rel="stylesheet" href="../studyRoom/css/plugin.css">
-  <!-- <link rel="stylesheet" href="../studyRoom/css/template.css"> -->
+<!--  <link rel="stylesheet" href="../studyRoom/css/template.css"> -->
   <link rel="stylesheet" href="../studyRoom/css/style.css">
   <link rel="stylesheet" href="../css/template.css">
-<title>Insert title here</title>
+  <title>Insert title here</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../studyRoom/js/setting.js"></script>
+  <script src="../studyRoom/js/template.js"></script>
+  <script src="../studyRoom/js/common.js"></script>
+  <script src="../studyRoom/js/script.js"></script>
 </head>
 <body id="studyRoom">
   <!-- [E]hooms-N54 -->
@@ -117,81 +123,38 @@
             <h2 class="textset-tit">RESERVATION</h2>
           </div>
           <div class="contents-cardgroup">
-            <div class="cardset">
+          
+            <div class="cardset" v-for="vo in room_list">
               <figure class="cardset-figure room-list">
-                <img class="cardset-img" src="https://images.pexels.com/photos/273671/pexels-photo-273671.jpeg" alt="">
+                <img class="cardset-img" :src="vo.poster" alt="">
               </figure>
               
               <div class="cardset-body">
                 <div class="room-info-top">
-                	<h3 class="cardset-tit">포커스룸</h3>
+                	<h3 class="cardset-tit">{{vo.name}}</h3>
                 	<div class="room-jjimCount">
                 		<figure class="room-info-icon">
                 			<img src="../studyRoom/icons/icon-heart.png" style="width: 12px;">
                 		</figure>
-                		<span>15</span>
+                		<span>{{vo.jjim}}</span>
                 	</div>
                 </div>
                 <div class="room-info-bottom">
-                	<h5>4인실</h5>
-                	<h4 class="cardset-desc"><span class="bold">￦50,000</span>/시간</h4>
+                	<h5>{{vo.inwon}}인실</h5>
+                	<h4 class="cardset-desc"><span class="bold">￦{{vo.price}}</span>/시간</h4>
                 </div>
                 <!-- <p class="cardset-desc"> HOOMS 매장을 방문하셔서 재료를 시험해보세요. 당신은 친절한 오프라인 직원에게 맞는 가구를 찾을 수 있도록 상담받을 수 있습니다. </p> -->
               </div>
               <div class="textset contents-link container-md">
-                <a class="textset-link btnset btnset-mono" href="../studyRoom/detail.do">View more</a>
+                <a class="textset-link btnset btnset-mono" :href="'../studyRoom/room_detail.do?no='+vo.no">View more</a>
              </div>
-            </div>
-            
-            
-            
-            
-            <div class="cardset">
-              <figure class="cardset-figure room-list">
-                <img class="cardset-img" src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg" alt="">
-              </figure>
-              <div class="cardset-body">
-                <h5 class="cardset-tit">Eco-friendly</h5>
-                <p class="cardset-desc"> 사람과 자연을 생각합니다. 자연을 통해 공간을 창조하고 다시 자연으로 되돌립니다. </p>
-              </div>
-            </div>
-            <div class="cardset">
-              <figure class="cardset-figure room-list">
-                <img class="cardset-img" src="https://images.pexels.com/photos/260928/pexels-photo-260928.jpeg" alt="">
-              </figure>
-              <div class="cardset-body">
-                <h5 class="cardset-tit">Handmade</h5>
-                <p class="cardset-desc"> 품질의 기본 원칙을 지킵니다. 원칙을 지켜온 정신과 기술력으로 품질력을 자랑합니다. </p>
-              </div>
-            </div>
-            <div class="cardset">
-              <figure class="cardset-figure room-list">
-                <img class="cardset-img" src="https://images.pexels.com/photos/6044830/pexels-photo-6044830.jpeg" alt="">
-              </figure>
-              <div class="cardset-body">
-                <h5 class="cardset-tit">Life</h5>
-                <p class="cardset-desc"> 침대를 넘어 인생을 만듭니다. 편안하게 쉴 수 있는 공간으로, 당신의 일상이 달라집니다. </p>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- [E]hooms-N8 -->
-    <!-- [S]hooms-N25 -->
-    <div class="hooms-N25" data-bid="jjlSBjMI71" id="">
     </div>
-    <!-- [E]hooms-N25 -->
   </main>
-
-  <!-- [E]hooms-N57 -->
-  <script src="https://unpkg.com/vue@3"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="../studyRoom/js/setting.js"></script>
-  <script src="../studyRoom/js/template.js"></script>
-  <script src="../studyRoom/js/common.js"></script>
-  <script src="../studyRoom/js/script.js"></script>
   <script>
    let RoomApp=Vue.createApp({
 	   data(){
@@ -202,6 +165,11 @@
 	   mounted(){
 		   axios.get("../studyRoom/list_vue.do").then(response=>{
 			   console.log(response.data)
+			   response.data.forEach(room => {
+                // 숫자를 특정 형식으로 형식화 (000,000,000 형식)
+                room.price = room.price.toLocaleString();
+            });
+			   this.room_list=response.data
 		   })
 	   }
    }).mount('#studyRoom')
