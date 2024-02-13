@@ -6,10 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <link rel="stylesheet" href="../books/css/setting.css">
-  <link rel="stylesheet" href="../books/css/plugin.css">
-  <link rel="stylesheet" href="../books/css/template.css">
+ <link rel="stylesheet" href="../books/css/plugin.css">
+<!--   <link rel="stylesheet" href="../books/css/template.css"> -->
   <link rel="stylesheet" href="../books/css/style.css">
   <link rel="stylesheet" href="../css/template.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
  <div class="contents-inner">

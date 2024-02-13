@@ -13,11 +13,11 @@ import com.sist.vo.StudyRoomVO;
 public class StudyRoomDAO {
 	@Autowired
 	private StudyRoomMapper mapper;
-	
+
 	public List<StudyRoomVO> studyRoomListData(){
 		return mapper.studyRoomListData();
 	}
-	
+
 	public StudyRoomVO studyRoomDetailData(int no)
 	{
 		StudyRoomVO vo=mapper.studyRoomDetailData(no);
@@ -25,7 +25,7 @@ public class StudyRoomDAO {
 		String[] arr=new String[4];
 		while(st.hasMoreTokens())
 		{
-			
+
 			for(int i=0;i<arr.length;i++)
 			{
 				arr[i]=st.nextToken();

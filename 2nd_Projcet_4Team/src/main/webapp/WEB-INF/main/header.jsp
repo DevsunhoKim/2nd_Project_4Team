@@ -34,7 +34,7 @@
                 </a>
               </li>
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../books/list.do">
                   <span>Bookstore</span>
                 </a>
               </li>
