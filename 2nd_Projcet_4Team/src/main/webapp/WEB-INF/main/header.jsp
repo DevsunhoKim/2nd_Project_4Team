@@ -13,7 +13,7 @@
       <div class="header-container container-md">
         <div class="header-left">
           <h1 class="header-title">
-            <a href="javascript:void(0)">
+            <a href="../main/main.do">
               CODEV
             </a>
           </h1>
@@ -24,7 +24,7 @@
             </div>
             <ul class="header-gnblist">
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../mentoring/list.do">
                   <span>Mentoring</span>
                 </a>
               </li>
