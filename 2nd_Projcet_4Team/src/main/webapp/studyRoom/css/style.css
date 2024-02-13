@@ -360,3 +360,65 @@
 #studyRoom .hooms-N11 .contents-container{
 	margin-bottom: 15.375rem;
 }
+#studyRoom .room-jjimCount{
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+	
+}
+#studyRoom .room-info-icon{
+	margin: 0px;
+}
+#studyRoom .room-info-top{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#studyRoom .room-info-bottom{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+}
+#studyRoom .room-info-bottom h4.cardset-desc{
+	margin-top: 0;
+	color: black;
+    font-weight: bold;
+}
+#studyRoom .cardset .cardset-body{
+	margin-top: 3rem;
+}
+#studyRoom .bold{
+	color: #6713d2;
+    font-size: 2rem;
+    font-weight: bold;
+}
+#studyRoom .room-btn{
+	width: 100%;
+    height: 4rem;
+    margin-top: 4rem;
+    background-color: white;
+    border-radius: 3rem;
+    color: #878787;
+}
+#studyRoom .btnset{
+	width: 100%;
+    height: 4rem;
+    background-color: white;
+    color: black;
+}
+#studyRoom .hooms-N11 .contents-link a {
+    border-radius: 2rem;
+    margin-top: 3rem;
+}
+#studyRoom .hooms-N11 .textset {
+    width: 100%;
+}
+#studyRoom .btnset:hover{
+	background-color: black;
+	color: white;
+}
+#studyRoom .title{
+	font-size: 5rem;
+}

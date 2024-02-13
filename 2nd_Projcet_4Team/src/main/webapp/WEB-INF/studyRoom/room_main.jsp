@@ -42,7 +42,7 @@
     <div class="hooms-N26" data-bid="SeLsbjMhzv" id="">
       <div class="contents-container container-md">
         <div class="textset textset-h2">
-          <h2 class="textset-tit">CODEV STUDY ROOM</h2>
+          <h2 class="textset-tit title">CODEV STUDY ROOM</h2>
         </div>
         <div class="cardset">
           <div class="cardset-body">
@@ -121,11 +121,31 @@
               <figure class="cardset-figure room-list">
                 <img class="cardset-img" src="https://images.pexels.com/photos/273671/pexels-photo-273671.jpeg" alt="">
               </figure>
+              
               <div class="cardset-body">
-                <h5 class="cardset-tit">VISIT US</h5>
-                <p class="cardset-desc"> HOOMS 매장을 방문하셔서 재료를 시험해보세요. 당신은 친절한 오프라인 직원에게 맞는 가구를 찾을 수 있도록 상담받을 수 있습니다. </p>
+                <div class="room-info-top">
+                	<h3 class="cardset-tit">포커스룸</h3>
+                	<div class="room-jjimCount">
+                		<figure class="room-info-icon">
+                			<img src="../studyRoom/icons/icon-heart.png" style="width: 12px;">
+                		</figure>
+                		<span>15</span>
+                	</div>
+                </div>
+                <div class="room-info-bottom">
+                	<h5>4인실</h5>
+                	<h4 class="cardset-desc"><span class="bold">￦50,000</span>/시간</h4>
+                </div>
+                <!-- <p class="cardset-desc"> HOOMS 매장을 방문하셔서 재료를 시험해보세요. 당신은 친절한 오프라인 직원에게 맞는 가구를 찾을 수 있도록 상담받을 수 있습니다. </p> -->
               </div>
+              <div class="textset contents-link container-md">
+                <a class="textset-link btnset btnset-mono" href="../studyRoom/detail.do">View more</a>
+             </div>
             </div>
+            
+            
+            
+            
             <div class="cardset">
               <figure class="cardset-figure room-list">
                 <img class="cardset-img" src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg" alt="">
@@ -166,9 +186,25 @@
   </main>
 
   <!-- [E]hooms-N57 -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="../studyRoom/js/setting.js"></script>
   <script src="../studyRoom/js/template.js"></script>
   <script src="../studyRoom/js/common.js"></script>
   <script src="../studyRoom/js/script.js"></script>
+  <script>
+   let RoomApp=Vue.createApp({
+	   data(){
+		   return {
+			   room_list:{}
+		   }
+	   },
+	   mounted(){
+		   axios.get("../studyRoom/list_vue.do").then(response=>{
+			   console.log(response.data)
+		   })
+	   }
+   }).mount('#studyRoom')
+  </script>
 </body>
 </html>
