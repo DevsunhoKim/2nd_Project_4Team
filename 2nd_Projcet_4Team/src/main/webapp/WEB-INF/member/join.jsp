@@ -80,14 +80,14 @@
               <h6 class="form-tit">비밀번호 <span>*</span>
               </h6>
               <div class="inputset inputset-round">
-                <input type="text" class="inputset-input form-control" aria-label="내용" required="">
+                <input type="password" class="inputset-input form-control" aria-label="내용" required="">
               </div>
             </div>
             <div class="form-wrap">
               <h6 class="form-tit">비밀번호 확인 <span>*</span>
               </h6>
               <div class="inputset inputset-round">
-                <input type="text" class="inputset-input form-control" aria-label="내용" required="">
+                <input type="password" class="inputset-input form-control" aria-label="내용" required="">
               </div>
             </div>
             <div class="form-wrap">
@@ -132,6 +132,22 @@
                 </ul>
               </div>
             </div>
+      <div class="form-wrap">
+        <h6 class="form-tit">성별 <span>*</span>
+        </h6>
+        <div class="radioset-wrap">
+          <div class="radioset">
+            <input id="radioset-a-1" name="radioset-a" class="radioset-input input-line" type="radio" value="m" checked="">
+            <label class="radioset-label" for="radioset-a-1"></label>
+            <span class="radioset-text">남자</span>
+          </div>
+          <div class="radioset">
+            <input id="radioset-a-2" name="radioset-a" class="radioset-input input-line" type="radio" value="w">
+            <label class="radioset-label" for="radioset-a-2"></label>
+            <span class="radioset-text">여자</span>
+          </div>
+        </div>
+      </div>            
             <div class="form-wrap">
               <h6 class="form-tit">연락처 <span>*</span>
               </h6>
@@ -153,9 +169,56 @@
                 </div>
               </div>
             </div>
+            <div class="form-wrap">
+              <h6 class="form-tit">희망직군</h6>
+              <div class="contents-form-group">
+                <div class="inputset inputset-round">
+                  <div class="contents-mail">
+                    <input type="text" class="inputset-input form-control" aria-label="내용" required="">
+                  </div>
+                </div>
+              </div>
+              <div class="selectset selectset-round selectset-md">
+                <button class="selectset-toggle btn" type="button">
+                  <span>선택해주세요</span>
+                </button>
+                <ul class="selectset-list">
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="직접입력" selected="">
+                      <span>직접입력</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="Backend">
+                      <span>Backend</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="Frontend">
+                      <span>Frontend</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="Android">
+                      <span>Android</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="iOS">
+                      <span>iOS</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="Data Engineering">
+                      <span>Data Engineering</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>            
           </div>
           <div class="contents-btn-group">
-            <a href="javascript:void(0);" class="btnset btnset-line btnset-round">이전단계</a>
+            <a href="javascript:history.back();" class="btnset btnset-line btnset-round">이전단계</a>
             <a href="../member/join_ok.do" class="btnset btnset-round">다음단계</a>
           </div>
         </div>
