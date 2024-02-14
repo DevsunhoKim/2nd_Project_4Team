@@ -13,9 +13,9 @@ public interface BooksMapper {
 			+"WHERE rownum >= 10")
 	public List<BooksVO> mainBooks();
 
-	  @Select("SELECT no,title,poster,num "
-				 +"FROM (SELECT no,title,poster,rownum as num "
-				 +"FROM (SELECT no,title,poster "
+	  @Select("SELECT no,title,poster,author,num "
+				 +"FROM (SELECT no,title,poster,author,rownum as num "
+				 +"FROM (SELECT no,title,poster,author "
 				 +"FROM books ORDER BY no ASC)) "
 				 +"WHERE num BETWEEN #{start} AND #{end}")
 	  public List<BooksVO> booksListData(@Param("start") int start,
@@ -24,4 +24,8 @@ public interface BooksMapper {
 
 	  @Select("SELECT CEIL(COUNT(*)/12.0) FROM books")
 	  public int booksTotalPage();
+	  
+	  @Select("SELECT no,title,poster,publ,author,content,price,score,buy_cnt,heart,jjim,keyword,genre,b_date "
+			  +"FROM books WHERE no=#{no}")
+	  public BooksVO booksDetailData(int no);
 }

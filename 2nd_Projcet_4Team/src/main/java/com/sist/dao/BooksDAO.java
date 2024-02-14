@@ -1,6 +1,7 @@
 package com.sist.dao;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +26,10 @@ public class BooksDAO {
 	public int booksTotalPage()
 	{
 		return mapper.booksTotalPage();
+	}
+	
+	public BooksVO booksDetailData(int no)
+	{
+		return mapper.booksDetailData(no);
 	}
 }

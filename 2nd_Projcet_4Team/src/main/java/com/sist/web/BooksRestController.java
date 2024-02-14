@@ -1,4 +1,5 @@
 package com.sist.web;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,6 @@ public class BooksRestController {
 		 int start=(rowSize*page)-(rowSize-1);
 		   int end=rowSize*page;
 		   List<BooksVO> list=service.booksListData(start, end);
-		   //JSONº¯°æ
 		   ObjectMapper mapper=new ObjectMapper();
 		   String json=mapper.writeValueAsString(list);
 		   return json;
@@ -35,12 +35,21 @@ public class BooksRestController {
 	public String books_page_vue(int page) throws Exception
 	{
 		 int totalpage=service.booksTotalPage();
-		   Map map=new HashedMap();
+		   Map map=new HashMap();
 		   map.put("curpage", page);
 		   map.put("totalpage", totalpage);
 
 		   ObjectMapper mapper=new ObjectMapper();
 		   String json=mapper.writeValueAsString(map);
 		   return json;
+	}
+	
+	@GetMapping(value="detail_vue.do",produces = "text/plain;charset=UTF-8")
+	public String books_detail_vue(int no) throws Exception
+	{
+		BooksVO vo=service.booksDetailData(no);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(vo);
+		return json;
 	}
 }

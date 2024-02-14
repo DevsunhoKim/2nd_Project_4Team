@@ -142,8 +142,9 @@ a>code { color: inherit; }
 kbd { padding: 0.1875rem 0.576rem; font-size: 0.875em; color: var(--body-bg); background-color: var(--body-color); border-radius: 0.25rem; }
 kbd kbd { padding: 0; font-size: 1em; }
 figure { margin: 0 0 1rem; }
-img,
-svg { vertical-align: middle; }
+/*  img,
+svg { vertical-align: middle; 
+         max-width: 1220px;} */ 
 table { caption-side: bottom; border-collapse: collapse; }
 caption { padding-top: 0.5rem; padding-bottom: 0.5rem; color: #6c757d; text-align: left; }
 th { text-align: inherit; text-align: -webkit-match-parent; }

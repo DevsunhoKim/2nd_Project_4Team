@@ -31,4 +31,10 @@ public class BooksServiceImpl  implements BookService{
 		return dao.booksTotalPage();
 	}
 
+	@Override
+	public BooksVO booksDetailData(int no) {
+		// TODO Auto-generated method stub
+		return dao.booksDetailData(no);
+	}
+
 }
