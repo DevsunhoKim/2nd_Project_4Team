@@ -32,9 +32,6 @@ public class StudyRoomDAO {
 			}
 		}
 		vo.setDimage(arr);
-		for(String img:vo.getDimage()) {
-			System.out.println(img);
-		}
 		return vo;
 	}
 }

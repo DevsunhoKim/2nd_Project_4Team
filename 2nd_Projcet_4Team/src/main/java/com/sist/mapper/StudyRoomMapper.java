@@ -13,7 +13,7 @@ public interface StudyRoomMapper {
 			+ "WHERE rownum BETWEEN 1 AND 4")
 	public List<StudyRoomVO> studyRoomListData();
 
-	@Select("SELECT no,jjim,name,poster,price,inwon,area,lobby,conve,deimage "
+	@Select("SELECT no,jjim,name,poster,price,inwon,area,lobby,conve,deimage,ename "
 			+ "FROM studyRoom WHERE no=#{no}")
 	public StudyRoomVO studyRoomDetailData(int no);
 }

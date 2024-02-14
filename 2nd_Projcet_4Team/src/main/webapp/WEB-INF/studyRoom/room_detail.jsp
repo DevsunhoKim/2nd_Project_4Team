@@ -40,6 +40,9 @@
               <img :src="detail_list.poster" alt="썸네일이미지">
             </div>
             <ul class="contents-thumblist">
+              <li class="contents-thumbitem">
+                <img :src="detail_list.poster" alt="썸네일이미지">
+              </li>
               <li class="contents-thumbitem" v-for="images in detail_list.dimage">
                 <img :src="images" alt="썸네일이미지">
               </li>
@@ -48,43 +51,18 @@
           </div>
           <div class="contents-right">
             <div class="textset textset-h2">
-              <span class="textset-name">Beautyrest Collection</span>
-              <h2 class="textset-tit"> Zalmon &amp; Derfel </h2>
+              <span class="textset-name">{{detail_list.ename}}</span>
+              <h2 class="textset-tit">{{detail_list.name}}</h2>
             </div>
-            <p class="contents-desc"> 개성 있는 텍스처감의 패브릭과 헤드보드 양 사이드에 배치된 원목의 조화가 돋보이는 침구 세트 </p>
-            <div class="selectset selectset-lg">
-              <button class="selectset-toggle btn" type="button">
-                <span>[필수] 사이즈를 선택해주세요.</span>
-              </button>
-              <ul class="selectset-list">
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="슈퍼싱글">
-                    <span>슈퍼싱글</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="퀸">
-                    <span>퀸</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="라지킹">
-                    <span>라지킹</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="킹오브킹">
-                    <span>킹오브킹</span>
-                  </button>
-                </li>
-              </ul>
+            <!-- <p class="contents-desc"> 개성 있는 텍스처감의 패브릭과 헤드보드 양 사이드에 배치된 원목의 조화가 돋보이는 침구 세트 </p> -->
+            
+            <div class="contents-sum">공간 면적<span>{{detail_list.area}}</span>
             </div>
-            <div class="contents-sum"> 총 구매가 <span>0 원</span>
+            <div class="contents-sum">이용 요금<span class="price">￦{{price}}<span>/시간</span></span>
             </div>
-            <div class="contents-btn">
+            
+            <div class="contents-btn buy_jjim">
               <button class="btnset" href="javascript:void(0)">담아두기</button>
-            </div>
-            <div class="contents-btn">
               <a class="btnset" href="javascript:void(0)">구매하기</a>
             </div>
           </div>
@@ -99,7 +77,7 @@
           <ul class="tabset-list tabset-sm">
             <li class="tabset-item">
               <a class="tabset-link active" href="javascript:void(0)">
-                <span>INTRO</span>
+                <span>INFO</span>
               </a>
             </li>
             <li class="tabset-item">
@@ -112,52 +90,46 @@
                 <span>OUR PHILOSOPHY</span>
               </a>
             </li>
-            <li class="tabset-item">
+            <!-- <li class="tabset-item">
               <a class="tabset-link" href="javascript:void(0)">
                 <span>HERITAGE</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
     </div>
     <!-- [E]hooms-N58 -->
     <!-- [S]hooms-N42 -->
-    <div class="hooms-N42" data-bid="MRLSkcE9m6">
-      <div class="contents-inner">
-        <div class="contents-container container-md">
-          <ul class="contents-list">
-            <li class="contents-item">
-              <h3 class="contents-tit">잠깐! 구매 전 꼭 읽어주세요</h3>
-              <p class="contents-desc"> 고객님의 연락처가 정확하지 않을 경우 배송이 지연될 수 있습니다. </p>
-              <p class="contents-desc"> 주문순서에 따라 배송일정 안내를 진행해드리며, 그 이후부터 배송 절차가 시작됩니다. </p>
-            </li>
-            <li class="contents-item">
-              <h3 class="contents-tit">주의사항</h3>
-              <p class="contents-desc"> 침대 프레임과 매트리스, 가구류를 제외한 나머지 제품은 연출된 이미지입니다. </p>
-              <p class="contents-desc"> 제품 색상은 모니터 사양에 따라 실제 색상과 다를 수 있습니다. </p>
-            </li>
-            <li class="contents-item">
-              <h3 class="contents-tit">배송방법</h3>
-              <p class="contents-desc"> 매트리스, 프레임, 룸세트 : 직접 설치배송 </p>
-            </li>
-            <li class="contents-item">
-              <h3 class="contents-tit">교환 및 반품 안내</h3>
-              <p class="contents-desc"> 비닐 포장을 제거하거나, 조립 설치한 후에는 교환 및 반품이 불가합니다. </p>
-              <p class="contents-desc"> 제품을 설치할 공간을 미리 확보해두지 않아 설치가 불가능할 경우 고객이 반품비용을 부담해야 합니다. </p>
-              <p class="contents-desc"> 단순 변심으로 인해 교환 및 반품할 경우 고객이 반품비용을 부담해야 합니다. </p>
-            </li>
-            <li class="contents-item">
-              <h3 class="contents-tit">기타 문의</h3>
-              <p class="contents-desc"> 비닐 포장을 제거하거나, 조립 설치한 후에는 교환 및 반품이 불가합니다. </p>
-              <p class="contents-desc"> 문의사항 : 02-123-4567 / <span>openfield@openfield.co.kr</span>
-              </p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- [E]hooms-N42 -->
+		<div class="hooms-N42" data-bid="MRLSkcE9m6">
+			<div class="contents-inner">
+				<div class="contents-container container-md">
+				<div class="detail-info">
+							<!-- 상세 이미지 -->
+							
+					<!-- 테이블 -->
+					<h2 class="info-title">이용 가능 장비/시설</h2>
+					<div class="detail-table">
+					   <div class="detail-infodata">
+						  <h1 class="info-th">로비(공용)</h1>
+						  <p class="info-td">{{detail_list.lobby}}</p>
+					   </div>
+					   <div class="detail-infodata"> 
+						  <h1 class="info-th">세미나룸</h1>
+						  <p class="info-td">{{detail_list.conve}}</p>
+					   </div>
+					</div>
+					<h2 class="info-title">PREVIEW</h2>
+					<div class="deimage-wrapper">
+								<figure v-for="dimg in detail_list.dimage" class="dimage-fig">
+										<img class="deimage" :src="dimg" alt="상세 이미지">
+								</figure>
+					</div>
+				</div>
+			</div>
+		 </div>
+		</div>
+		<!-- [E]hooms-N42 -->
     <!-- [S]hooms-N36 -->
     <div class="hooms-N36" data-bid="rxlskcGXa1">
       <div class="contents-inner">
@@ -474,7 +446,8 @@
 	  data(){
 		  return {
 			  detail_list:{},
-			  no:${no}
+			  no:${no},
+			  price:0
 		  }
 	  },
 	  mounted(){
@@ -489,6 +462,7 @@
 			  }).then(response=>{
 				  console.log(response.data)
 				  this.detail_list=response.data
+				  this.price=response.data.price.toLocaleString()
 			  })
 		  }
 	  }

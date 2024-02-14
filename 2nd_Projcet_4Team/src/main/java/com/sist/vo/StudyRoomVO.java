@@ -1,5 +1,7 @@
 package com.sist.vo;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
@@ -23,14 +25,13 @@ import lombok.Data;
 @Data
 public class StudyRoomVO {
 	private int no,jjim,price,inwon;
-	private String name,poster,area,lobby,conve,deimage;
+	private String name,poster,area,lobby,conve,deimage,ename;
 	private String[] dimage;
-
 	@Override
 	public String toString() {
 		return "StudyRoomVO [no=" + no + ", jjim=" + jjim + ", price=" + price + ", inwon=" + inwon + ", name=" + name
 				+ ", poster=" + poster + ", area=" + area + ", lobby=" + lobby + ", conve=" + conve + ", deimage="
-				+ deimage + "]";
+				+ deimage + ", ename=" + ename + "]";
 	}
 
 
