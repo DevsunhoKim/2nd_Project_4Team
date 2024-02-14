@@ -34,11 +34,20 @@ public class BooksRestController {
 	@GetMapping(value="page_vue.do",produces = "text/plain;charset=UTF-8")
 	public String books_page_vue(int page) throws Exception
 	{
-		 int totalpage=service.booksTotalPage();
+		final int BLOCK=10;
+		   int startPage=((page-1)/BLOCK*BLOCK)+1;
+		   int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
 		   Map map=new HashMap();
-		   map.put("curpage", page);
+		   int totalpage=service.booksTotalPage();
+		   if(endPage>totalpage)
+			   endPage=totalpage;
+		   
+		   map=new HashMap();
+		   map.put("curpage",page);
 		   map.put("totalpage", totalpage);
-
+		   map.put("startPage", startPage);
+		   map.put("endPage", endPage);
+		   
 		   ObjectMapper mapper=new ObjectMapper();
 		   String json=mapper.writeValueAsString(map);
 		   return json;

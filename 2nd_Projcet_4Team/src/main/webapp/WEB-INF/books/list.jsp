@@ -35,9 +35,19 @@
 .hooms-N31 .contents-result span { color: var(--secondary); }
 .hooms-N31 .contents-cardlist { display: none; }
 .hooms-N31 .contents-cardlist.contents-cardlist-active { display: flex; flex-wrap: wrap; }
-.hooms-N31 .cardset { width: calc(100% / 4); height: 400px; padding: 2rem; }
-.hooms-N31 .cardset:nth-child(4n) { padding-right: 0; }
-.hooms-N31 .cardset:nth-child(4n + 1) { padding-left: 0; }
+.hooms-N31 .cardset {
+  width: calc(25% - 1rem); /* 4개의 카드가 한 줄에 배치되도록 너비 조정 */
+  height: 400px;
+  padding: 2rem;
+  margin: 0.5rem 0.5rem 12rem 0.5rem; /* 카드 간의 좌우 간격을 유지하면서 상하 간격을 2rem으로 조정 */
+  box-sizing: border-box; /* 패딩이나 보더가 너비에 포함되도록 설정 */
+}
+.hooms-N31 .cardset:nth-child(4n) {
+  margin-right: 0; /* 마지막 카드의 오른쪽 여백 제거 */
+}
+.hooms-N31 .cardset:nth-child(4n+1) {
+  margin-left: 0; /* 첫 번째 카드의 왼쪽 여백 제거 */
+}
 .hooms-N31 .cardset .cardset-figure { width: 100%; height: 36rem; }
 .hooms-N31 .cardset .cardset-body { margin-top: 30px; }
 .hooms-N31 .cardset-tit-group { display: flex; align-items: center; }
@@ -82,17 +92,17 @@
           <ul class="tabset-list tabset-sm tabset-fill">
             <li class="tabset-item">
               <a class="tabset-link" href="javascript:void(0)">
-                <span>보도자료</span>
+                <span>많이 구매한</span>
               </a>
             </li>
             <li class="tabset-item">
               <a class="tabset-link" href="javascript:void(0)">
-                <span>인스타그램</span>
+                <span>리뷰가 많은</span>
               </a>
             </li>
             <li class="tabset-item">
               <a class="tabset-link" href="javascript:void(0)">
-                <span>홍보영상</span>
+                <span>최근 출간 순</span>
               </a>
             </li>
           </ul>
@@ -125,37 +135,41 @@
               </a>
           </div>
         </div>
-<nav class="pagiset pagiset-line">
+      </div>
+      
+    </div>
+    <nav class="pagiset pagiset-line">
   <div class="pagiset-ctrl">
+    <!-- 처음 페이지로 이동 -->
     <a class="pagiset-link pagiset-first" href="javascript:void(0)" @click="pageChange(1)">
       <span class="visually-hidden">처음</span>
     </a>
   </div>
   <div class="pagiset-ctrl">
+    <!-- 이전 페이지로 이동 (현재 페이지가 1보다 클 경우에만 표시) -->
     <a class="pagiset-link pagiset-prev" href="javascript:void(0)" v-if="curpage > 1" @click="pageChange(curpage - 1)">
       <span class="visually-hidden">이전</span>
     </a>
   </div>
   <div class="pagiset-list">
+    <!-- 페이지 번호 (startPage부터 endPage까지 반복하여 표시) -->
     <a class="pagiset-link" :class="{'active-fill': curpage === i}" href="javascript:void(0)" v-for="i in range(startPage, endPage)" :key="i" @click="pageChange(i)">
       {{ i }}
     </a>
   </div>
   <div class="pagiset-ctrl">
+    <!-- 다음 페이지로 이동 (현재 페이지가 totalpage보다 작을 경우에만 표시) -->
     <a class="pagiset-link pagiset-next" href="javascript:void(0)" v-if="curpage < totalpage" @click="pageChange(curpage + 1)">
       <span class="visually-hidden">다음</span>
     </a>
   </div>
   <div class="pagiset-ctrl">
+    <!-- 마지막 페이지로 이동 -->
     <a class="pagiset-link pagiset-last" href="javascript:void(0)" @click="pageChange(totalpage)">
       <span class="visually-hidden">마지막</span>
     </a>
   </div>
 </nav>
-
- 
-      </div>
-    </div>
   </div>
   <!-- [E]hooms-N31 -->
 </main>
@@ -167,7 +181,7 @@ let booksApp = Vue.createApp({
       curpage: 1,
       totalpage: 0,
       startPage: 1,
-      endPage: 0
+      endPage: 10
     }
   },
   mounted() {

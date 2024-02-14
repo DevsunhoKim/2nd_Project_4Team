@@ -108,9 +108,7 @@
           <div class="contents-group">
             <div class="contents-cardlist contents-cardlist-active">
               <a href="javascript:void(0)" class="cardset cardset-hor">
-                <figure class="cardset-figure">
-                  <img class="cardset-img" src="/api/t-a/56/1707868800/resources/images/img_review_01_1.png" alt="이미지">
-                </figure>
+               
                 <div class="cardset-body">
                   <div class="contents-info">
                     <ul class="contents-ico-list">
@@ -137,7 +135,22 @@
               </a>
             </div>
           </div>
+           <div class="inputset inputset-lg inputset-label">
+          <label>
+            <h6 class="inputset-tit">Label</h6>
+            <textarea class="inputset-textarea" placeholder="문의 내용을 입력해주세요." required=""></textarea>
+            <div class="inputset-langth">
+              <span class="inputset-count">0</span>
+              <span class="inputset-total">/4000</span>
+            </div>
+          </label>
+          
+           
         </div>
+       		
+       		 <img class="icon-sm" src="../resources/icons/ico_star.svg" alt="아이콘">
+        </div>
+         <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right">작성</a>
       </div>
     </div>
     <!-- [E]hooms-N41 -->
