@@ -1,10 +1,13 @@
 @charset "utf-8"; /* Temha V1.0.1 */
 /* ========== */
 /* Web Font */
-@import url('https://cdn.jsdelivr.net/gh/openfieldth/temha-icon/v1.0.1/Temha-Icon.css');
+@import url('https://cdn.jsdelivr.net/gh/openfieldth/temha-icon/v1.2.0/Temha-Icon.css');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* @import url('https://cdn.jsdelivr.net/gh/openfieldth/temha-icon/v1.0.1/Temha-Icon.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'); */
 /* ========== */
 /* Variable */
 :root {
@@ -109,7 +112,7 @@
 *::before,
 *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 62.5%; /* 16px * 0.625 = 10px */ }
-body { margin: 0; font-family: var(--ff); font-weight: 400; font-size: var(--fs-p1); line-height: var(--lh-p1); letter-spacing: var(--letter-spacing); color: var(--body-color); background-color: var(--body-bg); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-weight: 400; font-size: var(--fs-p1); line-height: var(--lh-p1); letter-spacing: var(--letter-spacing); color: var(--body-color); background-color: var(--body-bg); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 hr { margin: 1rem 0; color: inherit; border: 0; border-top: 1px solid; opacity: 0.25; }
 abbr[title] { -webkit-text-decoration: underline dotted; text-decoration: underline dotted; cursor: help; -webkit-text-decoration-skip-ink: none; text-decoration-skip-ink: none; }
 address { font-style: normal; line-height: inherit; }
@@ -134,7 +137,7 @@ a:not([href]):not([class]):hover { color: inherit; text-decoration: none; }
 pre,
 code,
 kbd,
-samp { font-family: var(--ff-mo); font-size: 1em; }
+samp { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: 1em; }
 pre { display: block; margin-top: 0; overflow: auto; font-size: 0.875em; }
 pre code { font-size: inherit; color: inherit; word-break: normal; }
 code { font-size: 0.875em; color: var(--code-color); word-wrap: break-word; }
@@ -160,7 +163,7 @@ input,
 button,
 select,
 optgroup,
-textarea { margin: 0; font-family: inherit; font-size: inherit; line-height: inherit; }
+textarea { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: inherit; line-height: inherit; }
 button,
 select { text-transform: none; }
 [role="button"] { cursor: pointer; }
@@ -228,10 +231,9 @@ progress { vertical-align: baseline; }
 .bd-line2 { border-color: var(--line-color2) !important; }
 .bd-line3 { border-color: var(--line-color3) !important; }
 /* Font Family */
-.ff-ko1 { font-family: var(--ff-ko1); letter-spacing: var(--letter-spacing); }
-.ff-ko2 { font-family: var(--ff-ko2); letter-spacing: var(--letter-spacing); }
-.ff-en { font-family: var(--ff-en); letter-spacing: 0; }
-.ff-ico::after { content: ''; font-family: var(--ff-ico); }
+.ff-ko { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; letter-spacing: var(--letter-spacing); } 
+.ff-en { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; letter-spacing: 0; } 
+.ff-ico::after { content: ''; font-family: var(--ff-ico); } 
 /* Font Weight */
 .fw-100 { font-weight: 100 !important; }
 .fw-300 { font-weight: 300 !important; }
@@ -334,7 +336,7 @@ progress { vertical-align: baseline; }
  .textset .textset-link { padding: 0 3.4rem; margin-top: 4rem; }
  }
 /* Textset : Textset-H2 */
-.textset.textset-h2 .textset-tit { margin-bottom: 0; font-family: var(--ff-ko2); line-height: var(--lh-h2); font-size: var(--fs-h2); font-weight: 400 }
+.textset.textset-h2 .textset-tit { margin-bottom: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; line-height: var(--lh-h2); font-size: var(--fs-h2); font-weight: 400 }
 .textset.textset-h2 .textset-name { margin-bottom: 0.5rem; font-family: var(--ff-ko2); font-size: 2.4rem; color: var(--secondary); font-weight: 400; }
 @media (max-width: 768px){
  .textset.textset-h2 .textset-name { font-size: 1.2rem; }
@@ -441,7 +443,7 @@ progress { vertical-align: baseline; }
 .inputset .inputset-input:disabled { border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color4); }
 .inputset .inputset-board { max-height: 20rem; overflow-y: auto; padding: 1.6rem; font-size: var(--fs-p1); color: var(--text-color3); border: 1px solid var(--border-color); }
 .inputset .inputset-icon { display: inline-block; position: absolute; top: 50%; width: 2.8rem; height: 2.8rem; transform: translateY(-50%); }
-.inputset .inputset-icon.icon-human::after { content: '\e90f'; display: inline-block; font-family: var(--ff-ico); font-size: var(--fs-h5); }
+.inputset .inputset-icon.icon-human::after { content: '\e90f'; display: inline-block; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var(--fs-h5); }
 .inputset .inputset-icon.icon-search::after { content: '\e910'; display: inline-block; font-family: var(--ff-ico); font-size: var(--fs-h5); }
 .inputset .inputset-icon.icon-left { left: 2rem; }
 .inputset .inputset-icon.icon-right { right: 2rem; }
@@ -528,17 +530,17 @@ progress { vertical-align: baseline; }
 .selectset { position: relative; width: 100%; }
 .selectset .btn { position: relative; width: 100%; height: var(--ht-md); padding: 0 2rem; color: var(--body-color); font-size: var(--fs-p1); text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 0; transition: none; }
 .selectset .selectset-toggle { border: 1px solid var(--border-color); padding-right: calc(1.6rem + 2rem + 1.6rem); }
-.selectset .selectset-toggle::after { content: '\e90c'; position: absolute; top: 50%; right: 2rem; transform: translateY(-50%); font-family: var(--ff-ico); font-size: var(--fs-h4); }
+.selectset .selectset-toggle::after { content: '\e90c'; position: absolute; top: 50%; right: 2rem; transform: translateY(-50%); font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var(--fs-h4); }
 .selectset .selectset-toggle:disabled { border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color4); opacity: 1; }
 .selectset .selectset-toggle:disabled::after { opacity: .5; }
 .selectset .selectset-list { display: none; position: absolute; left: 0; width: 100%; z-index: 9; overflow: hidden; background-color: #ffffff; border: 1px solid var(--primary); border-top: none; }
-.selectset .selectset-link::after { content: none; position: absolute; top: 50%; right: 1.8rem; transform: translateY(-50%); font-family: var(--ff-ico); font-size: var(--fs-h5); color: var(--primary); }
+.selectset .selectset-link::after { content: none; position: absolute; top: 50%; right: 1.8rem; transform: translateY(-50%); font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var(--fs-h5); color: var(--primary); }
 .selectset .selectset-link.on,
 .selectset .selectset-link:hover { background-color: #F1F1F5; }
 .selectset .selectset-link.on::after { content: '\e918'; }
 .selectset .selectset-select { position: relative; width: 100%; color: var(--text-color3); height: var(--ht-md); padding: 0 1.6rem; font-size: var(--fs-p1); text-align: left; border-radius: 0; border: 1px solid var(--border-color); padding-right: calc(1.6rem + 2rem + 1.6rem); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; background-image: none; -webkit-appearance: none; -moz-appearance: none; }
 .selectset .selectset-arrow { display: block; }
-.selectset .selectset-arrow::after { content: '\e90c'; position: absolute; top: 50%; right: 1.6rem; z-index: 1; transform: translateY(-50%); font-family: var(--ff-ico); font-size: var(--fs-h4); }
+.selectset .selectset-arrow::after { content: '\e90c'; position: absolute; top: 50%; right: 1.6rem; z-index: 1; transform: translateY(-50%); font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var(--fs-h4); }
 .selectset .selectset-select:disabled { border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color4); opacity: 1; }
 .selectset.selectset-lg .btn { height: var(--ht-lg); }
 .selectset .selectset-toggle span { color: var(--text-color2); }
@@ -592,7 +594,7 @@ progress { vertical-align: baseline; }
 .radioset + .radioset { margin-top: 1.2rem; }
 .radioset .radioset-input { display: none; }
 .radioset .radioset-input + .radioset-label { position: relative; appearance: none; margin: 0; width: var(--fs-h4); height: var(--fs-h4); line-height: 1; overflow: hidden; border: 1px solid var(--border-color); border-radius: 50%; }
-.radioset .radioset-input + .radioset-label::before { content: ''; display: inline-block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-family: var(--ff-ico); color: var(--border-color); font-size: var(--fs-h4); }
+.radioset .radioset-input + .radioset-label::before { content: ''; display: inline-block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; color: var(--border-color); font-size: var(--fs-h4); }
 .radioset .radioset-input:checked + .radioset-label { border: none; }
 .radioset .radioset-input:checked + .radioset-label::before { color: var(--primary); }
 .radioset .radioset-input:disabled + .radioset-label { background-color: var(--bg-color); }
@@ -622,7 +624,7 @@ progress { vertical-align: baseline; }
 .checkset + .checkset { margin-top: 1.2rem; }
 .checkset .checkset-input { display: none; }
 .checkset .checkset-input + .checkset-label { position: relative; appearance: none; margin: 0; width: var(--fs-h4); height: var(--fs-h4); line-height: 1; overflow: hidden; border: 1px solid var(--border-color); }
-.checkset .checkset-input + .checkset-label::before { content: ''; display: inline-block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-family: var(--ff-ico); color: var(--border-color); }
+.checkset .checkset-input + .checkset-label::before { content: ''; display: inline-block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; color: var(--border-color); }
 .checkset .checkset-input:checked + .checkset-label::before { color: var(--primary); }
 .checkset .checkset-input:disabled + .checkset-label { background-color: var(--bg-color); }
 .checkset .checkset-input:disabled + .checkset-label::before { color: var(--line-color2); }
@@ -647,7 +649,7 @@ progress { vertical-align: baseline; }
 .checkset-wrap .checkset .checkset-thumb.thumb-square { border-radius: .4rem; }
 .checkset-wrap .checkset input:disabled + .checkset-thumb { border: 1px solid var(--line-color2); background-color: var(--bg-color); color: var(--text-color4); }
 .checkset-wrap .checkset input:checked + .checkset-thumb { background-color: var(--primary); color: var(--body-bg); border-color: var(--primary); }
-.checkset-wrap .checkset input:checked + .checkset-thumb.thumb-chk::before { content: '\e918'; display: inline-block; font-family: var(--ff-ico); font-size: var(--fs-h6); margin-right: .4rem; }
+.checkset-wrap .checkset input:checked + .checkset-thumb.thumb-chk::before { content: '\e918'; display: inline-block; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var(--fs-h6); margin-right: .4rem; }
 .checkset.checkset-sm .checkset-input + .checkset-label { width: var(--fs-h6); height: var(--fs-h6); }
 .checkset.checkset-sm .checkset-input.input-line + .checkset-label::before { font-size: calc(var(--fs-h6) - .2rem); }
 .checkset.checkset-sm .checkset-input.input-fill + .checkset-label::before { font-size: var(--fs-h6); }
@@ -702,7 +704,7 @@ progress { vertical-align: baseline; }
 .btnset.btnset-lg.btnset-icon::before { width: 2rem; height: 2rem; margin-right: .4rem; }
 .btnset.btnset-sm.btnset-icon::before { width: 2rem; height: 2rem; margin-right: .2rem; }
 .btnset.btnset-xs.btnset-icon::before { width: 1.6rem; height: 1.6rem; margin-right: .2rem; }
-.btnset.btnset-icon.icon-like::before { content: '\e904'; font-family: var(--ff-ico); font-size: 1.6rem; }
+.btnset.btnset-icon.icon-like::before { content: '\e904'; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: 1.6rem; }
 @media (max-width: 768px){
  .btnset { min-width: 6.8rem; padding: 0 1.6rem; }
  .btnset.btnset-xl { min-width: 9rem; padding: 0 2.8rem; }
@@ -719,10 +721,10 @@ progress { vertical-align: baseline; }
 /* ========== */
 /* Pagination : Pagiset */
 .pagiset { position: relative; display: flex; justify-content: center; align-items: center; }
-.pagiset .pagiset-ctrl .pagiset-first::after { content: '\e911'; display: flex; align-items: center; font-family: var(--ff-ico); font-size: var( --fs-h6); }
-.pagiset .pagiset-ctrl .pagiset-prev::after { content: '\e915'; display: flex; align-items: center; font-family: var(--ff-ico); font-size: var( --fs-h6); }
-.pagiset .pagiset-ctrl .pagiset-next::after { content: '\e914'; display: flex; align-items: center; font-family: var(--ff-ico); font-size: var( --fs-h6); }
-.pagiset .pagiset-ctrl .pagiset-last::after { content: '\e912'; display: flex; align-items: center; font-family: var(--ff-ico); font-size: var( --fs-h6); }
+.pagiset .pagiset-ctrl .pagiset-first::after { content: '\e911'; display: flex; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var( --fs-h6); }
+.pagiset .pagiset-ctrl .pagiset-prev::after { content: '\e915'; display: flex; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var( --fs-h6); }
+.pagiset .pagiset-ctrl .pagiset-next::after { content: '\e914'; display: flex; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var( --fs-h6); }
+.pagiset .pagiset-ctrl .pagiset-last::after { content: '\e912'; display: flex; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: var( --fs-h6); }
 .pagiset .pagiset-ctrl + .pagiset-ctrl,
 .pagiset .pagiset-ctrl + .pagiset-list,
 .pagiset .pagiset-list + .pagiset-ctrl { margin-left: 1.2rem; }
@@ -751,8 +753,8 @@ progress { vertical-align: baseline; }
 .pagiset .pagiset-more { display: flex; justify-content: center; align-items: center; width: 100%; height: 5.6rem; padding: 0; font-size: var(--fs-p1); font-weight: 500; background-color: var(--body-bg); }
 .pagiset .pagiset-more span { display: inline-block; line-height: 1; margin-right: .4rem; }
 .pagiset .pagiset-more::after { content: ''; display: inline-block; font-size: var(--fs-h5); }
-.pagiset .pagiset-more.icon-plus::after { content: '\e913'; font-family: var(--ff-ico); }
-.pagiset .pagiset-more.icon-arrow::after { content: '\e900'; font-family: var(--ff-ico); }
+.pagiset .pagiset-more.icon-plus::after { content: '\e913'; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; }
+.pagiset .pagiset-more.icon-arrow::after { content: '\e900'; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; }
 @media (max-width: 768px){
  .pagiset .pagiset-ctrl + .pagiset-ctrl,
  .pagiset .pagiset-ctrl + .pagiset-list,
@@ -845,9 +847,9 @@ progress { vertical-align: baseline; }
 .accordset .accordset-body { display: none; border-top: 1px solid var(--border-color); }
 .accordset .accordset-content { display: flex; align-items: flex-start; padding: 1.6rem; word-break: keep-all; }
 .accordset .accordset-item.active .accordset-body { display: block; }
-.accordset.accordset-plus .accordset-header::after { content: '\e902'; font-family: var(--ff-ico); text-align: center; }
+.accordset.accordset-plus .accordset-header::after { content: '\e902'; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; text-align: center; }
 .accordset.accordset-plus .accordset-item.active .accordset-header::after { content: '\e901'; }
-.accordset.accordset-arrow .accordset-header::after { font-family: var(--ff-ico); text-align: center; }
+.accordset.accordset-arrow .accordset-header::after { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; text-align: center; }
 .accordset.accordset-arrow .accordset-item.active .accordset-header::after { transform: translateY(-50%) rotate(180deg); }
 .accordset.accordset-round { border: 1px solid var(--border-color); border-radius: .8rem; }
 .accordset.accent-header .accordset-item.active .accordset-header::after { color: var(--primary); }
@@ -922,15 +924,15 @@ progress { vertical-align: baseline; }
 .cardset.cardset-sns .cardset-info { margin-left: 1.2rem; }
 .cardset.cardset-sns .cardset-info strong { display: block; font-weight: 700; }
 .cardset.cardset-sns .cardset-info span { display: block; font-size: var(--fs-p2); color: var(--text-color4); margin-top: .4rem; }
-.cardset.cardset-sns .cardset-more::after { content: '\e906'; display: inline-block; font-family: var(--ff-ico); font-size: 2.8rem; }
+.cardset.cardset-sns .cardset-more::after { content: '\e906'; display: inline-block; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: 2.8rem; }
 .cardset.cardset-sns .cardset-body { margin-top: 2.4rem; padding-top: 2.4rem; padding-bottom: 0; border-top: 1px solid var(--line-color1); }
 .cardset.cardset-sns .cardset-footer { margin-top: 2.4rem; }
 .cardset.cardset-sns .cardset-footlist { display: flex; }
 .cardset.cardset-sns .cardset-footitem { display: flex; align-items: center; }
 .cardset.cardset-sns .cardset-footitem + .cardset-footitem { margin-left: 3rem; }
 .cardset.cardset-sns .cardset-footitem .btn { background-repeat: no-repeat; background-position: center; background-size: cover; }
-.cardset.cardset-sns .cardset-footitem span { display: inline-block; margin-left: .8rem; font-size: var(--fs-p2); font-family: var(--ff-en); }
-.cardset.cardset-sns .cardset-footitem .btn::after { content: ''; font-family: var(--ff-ico); font-size: 1.6rem; }
+.cardset.cardset-sns .cardset-footitem span { display: inline-block; margin-left: .8rem; font-size: var(--fs-p2); font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; }
+.cardset.cardset-sns .cardset-footitem .btn::after { content: ''; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-size: 1.6rem; }
 .cardset.cardset-sns .cardset-footitem .btn.btn-share::after { content: '\e907'; }
 .cardset.cardset-sns .cardset-footitem .btn.btn-favorite::after { content: '\e904'; color: #FF3332; }
 .cardset.cardset-sns .cardset-footitem .btn.btn-like::after { content: '\e905'; }

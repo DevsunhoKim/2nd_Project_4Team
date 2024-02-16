@@ -19,4 +19,10 @@ public class StudyRoomController {
 		model.addAttribute("no", no);
 		return "studyRoom/room_detail";
 	}
+	@GetMapping("ask.do")
+	public String room_ask(int no,Model model)
+	{
+		model.addAttribute("no", no);
+		return "studyRoom/room_ask";
+	}
 }

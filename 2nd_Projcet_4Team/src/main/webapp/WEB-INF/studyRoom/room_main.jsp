@@ -37,12 +37,12 @@
     </div>
     <!-- [E]hooms-N2 -->
     <!-- [S]hooms-N58 -->
-    <div class="hooms-N58" data-bid="OjLSBjmHxS" id="">
+    <!-- <div class="hooms-N58" data-bid="OjLSBjmHxS" id="">
       <div class="contents-container container-md">
         <div class="tabset tabset-solid">
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- [E]hooms-N58 -->
     <!-- [S]hooms-N26 -->
     <div class="hooms-N26" data-bid="SeLsbjMhzv" id="">
