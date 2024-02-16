@@ -17,4 +17,9 @@ public class MentoringController {
 	public String mentor_detail() {
 		return "mentoring/detail";
 	}
+	
+	@GetMapping("mentor_enrollment.do")
+	public String mentor_enrollment() {
+		return "mentoring/mentor_enrollment";
+	}
 }

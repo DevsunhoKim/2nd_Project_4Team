@@ -220,6 +220,11 @@
                       <span>Data Engineering</span>
                     </button>
                   </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" data-value="Data Engineering">
+                      <span>Devops</span>
+                    </button>
+                  </li>
                 </ul>
               </div>
             </div>            

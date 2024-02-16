@@ -82,15 +82,15 @@
 <div class="contents-inner">
   <div class="contents-container container-md">
     <div class="textset textset-sub">
-      <h2 class="textset-tit">캠프랜드 캠핑장</h2>
+      <h2 class="textset-tit">멘토 소개</h2>
     </div>
     <div class="contents-body">
       <div class="contents-left">
         <div class="imageset">
-          <img class="imageset-img" src="/api/t-a/64/1707998400/resources/images/img_campland_N10_2.png" alt="캠핑장 이미지" data-aos="fade-right">
+          <img class="imageset-img" src="../images/img_basic_mobile_N33_1.png" alt="캠핑장 이미지" data-aos="fade-right">
         </div>
         <div class="imageset">
-          <img class="imageset-img" src="/api/t-a/64/1707998400/resources/images/img_campland_N10_1.png" alt="캠핑장 이미지" data-aos="fade-left">
+          <img class="imageset-img" src="../images/img_basic_mobile_N33_1.png" alt="캠핑장 이미지" data-aos="fade-left">
         </div>
       </div>
       <div class="contents-right">
@@ -157,9 +157,9 @@
 <div class="contents-inner">
   <div class="contents-container container-md">
     <div class="textset">
-      <h2 class="textset-tit" data-aos="fade-up">공지사항</h2>
+      <h2 class="textset-tit" data-aos="fade-up">멘토링 리뷰</h2>
     </div>
-    <div class="contents-form" data-aos="fade-up">
+<!--     <div class="contents-form" data-aos="fade-up">
       <div class="selectset selectset-round selectset-lg">
         <button class="selectset-toggle btn" type="button">
           <span>전체</span>
@@ -181,7 +181,7 @@
         <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
         <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." aria-label="내용">
       </div>
-    </div>
+    </div> -->
     <div class="contents-group" data-aos="fade-up">
       <a href="javascript:void(0);" class="cardset cardset-inner cardset-hover cardset-border">
         <div class="cardset-cont">
