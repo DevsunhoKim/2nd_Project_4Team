@@ -32,4 +32,19 @@ public class BooksDAO {
 	{
 		return mapper.booksDetailData(no);
 	}
+	
+	public List<BooksVO> booksBuyListData(int start,int end)
+	{
+		return mapper.booksBuyListData(start, end);
+	}
+	
+	public List<BooksVO> booksRecListData(int start,int end)
+	{
+		return mapper.booksRecBuyListData(start, end);
+	}
+	
+	public List<BooksVO> booksScoListData(int start,int end)
+	{
+		return mapper.booksScoListData(start, end);
+	}
 }

@@ -97,7 +97,7 @@
             </li>
             <li class="tabset-item">
               <a class="tabset-link" href="javascript:void(0)">
-                <span>리뷰가 많은</span>
+                <span>평점이 높은</span>
               </a>
             </li>
             <li class="tabset-item">
@@ -196,6 +196,30 @@ let booksApp = Vue.createApp({
       }).then(response => {
         this.books_list = response.data;
       });
+      
+      axios.get('../books/buy_list_vue.do', {
+          params: {
+            page: this.curpage
+          }
+        }).then(response => {
+          this.books_list = response.data;
+        });
+      
+      axios.get('../books/rec_list_vue.do', {
+          params: {
+            page: this.curpage
+          }
+        }).then(response => {
+          this.books_list = response.data;
+        });
+      
+      axios.get('../sco_books/list_vue.do', {
+          params: {
+            page: this.curpage
+          }
+        }).then(response => {
+          this.books_list = response.data;
+        });
 
       axios.get('../books/page_vue.do', {
         params: {

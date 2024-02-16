@@ -37,4 +37,22 @@ public class BooksServiceImpl  implements BookService{
 		return dao.booksDetailData(no);
 	}
 
+	@Override
+	public List<BooksVO> booksBuyListData(int start, int end) {
+		// TODO Auto-generated method stub
+		return dao.booksBuyListData(start, end);
+	}
+
+	@Override
+	public List<BooksVO> booksRecListData(int start, int end) {
+		// TODO Auto-generated method stub
+		return dao.booksRecListData(start, end);
+	}
+
+	@Override
+	public List<BooksVO> booksScoListData(int start, int end) {
+		// TODO Auto-generated method stub
+		return dao.booksScoListData(start, end);
+	}
+
 }

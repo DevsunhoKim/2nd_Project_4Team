@@ -61,4 +61,47 @@ public class BooksRestController {
 		String json=mapper.writeValueAsString(vo);
 		return json;
 	}
+	
+	@GetMapping(value="buy_list_vue.do",produces = "text/plain;charset=UTF-8")
+	public String booksBuy_list_vue(int page) throws Exception
+	{
+		 int rowSize=12;
+		 int start=(rowSize*page)-(rowSize-1);
+		   int end=rowSize*page;
+		   List<BooksVO> list=service.booksBuyListData(start, end);
+		   ObjectMapper mapper=new ObjectMapper();
+		   String json=mapper.writeValueAsString(list);
+		   return json;
+
+	}
+	
+	@GetMapping(value="rec_list_vue.do",produces = "text/plain;charset=UTF-8")
+	public String booksRec_list_vue(int page) throws Exception
+	{
+		 int rowSize=12;
+		 int start=(rowSize*page)-(rowSize-1);
+		   int end=rowSize*page;
+		   List<BooksVO> list=service.booksRecListData(start, end);
+		   ObjectMapper mapper=new ObjectMapper();
+		   String json=mapper.writeValueAsString(list);
+		   return json;
+
+	}
+	
+	@GetMapping(value="sco_list_vue.do",produces = "text/plain;charset=UTF-8")
+	public String booksSco_list_vue(int page) throws Exception
+	{
+		 int rowSize=12;
+		 int start=(rowSize*page)-(rowSize-1);
+		   int end=rowSize*page;
+		   List<BooksVO> list=service.booksScoListData(start, end);
+		   ObjectMapper mapper=new ObjectMapper();
+		   String json=mapper.writeValueAsString(list);
+		   return json;
+
+	}
+	
+	
+	
+	
 }
