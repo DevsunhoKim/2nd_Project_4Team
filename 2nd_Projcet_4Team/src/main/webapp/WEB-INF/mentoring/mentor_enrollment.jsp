@@ -70,11 +70,17 @@
 		        <h6 class="form-tit">프로필이미지 <span>*</span>
 		        </h6>
 		        <div class="radioset-wrap">
-		          <div class="radioset">
-		            <input id="radioset-a-1" name="radioset-a" class="radioset-input input-line" type="radio" value="m1" checked="">
-		            <label class="radioset-label" for="radioset-a-1"></label>
-		            	<img alt="" src="../images/img_basic_mobile_N33_1.png" style="width: 80px;height: 80px">
-		          </div>
+		          <div>
+    <div class="radioset">
+        <input id="radioset-a-1" name="radioset-a" class="radioset-input input-line" type="radio" value="m1" checked="">
+        <label class="radioset-label" for="radioset-a-1"></label>
+    </div>
+</div>
+<div>
+    <img alt="" src="../images/img_basic_mobile_N33_1.png" style="width: 80px;height: 80px">
+</div>
+
+
 		          <div class="radioset">
 		            <input id="radioset-a-2" name="radioset-a" class="radioset-input input-line" type="radio" value="w1">
 		            <label class="radioset-label" for="radioset-a-2"></label>
@@ -136,7 +142,7 @@
 	            </div>
             
             <div class="form-wrap">
-              <h6 class="form-tit">경력(전/현직장) <span>*</span>
+              <h6 class="form-tit">주요경력 <span>*</span>
               </h6>
                 <div class="inputset inputset-round">
                   <input type="text" class="inputset-input form-control" aria-label="내용" required="">
