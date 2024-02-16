@@ -51,9 +51,21 @@ public interface BooksMapper {
 	  @Select("SELECT no, title, poster, author, num "
 		        + "FROM (SELECT no, title, poster, author, rownum as num "
 		        + "FROM (SELECT no, title, poster, author "
-		        + "FROM books ORDER BY TO_DATE(b_date, 'YYYY년 MM월 DD일') DESC)) "
+		        + "FROM books ORDER BY b_date DESC)) "
 		        + "WHERE num BETWEEN #{start} AND #{end}")
 		public List<BooksVO> booksRecBuyListData(@Param("start") int start,
 		                @Param("end") int end);
+
+	  
+	  // 리스트 검색
+	  @Select("SELECT * FROM books " +
+			  "WHERE title LIKE '%' || #{ss} || '%' " +
+			  "OR publ LIKE '%' || #{ss} || '%' " +
+			  "OR author LIKE '%' || #{ss} || '%' " +
+			  "OR genre LIKE '%' || #{ss} || '%' " +
+			  "OR keyword LIKE '%' || #{ss} || '%'")
+			  public List<BooksVO> searchBooks(@Param("ss") String ss);
+
+
 
 }

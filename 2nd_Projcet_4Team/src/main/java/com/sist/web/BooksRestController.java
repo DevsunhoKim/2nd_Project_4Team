@@ -101,6 +101,14 @@ public class BooksRestController {
 
 	}
 	
+	@GetMapping(value="search_vue.do", produces = "text/plain;charset=UTF-8")
+	public String booksSearch_vue(String ss) throws Exception {
+	    List<BooksVO> list = service.searchBooks(ss); // 검색어를 매개변수로 하는 서비스 계층의 검색 메소드 호출
+	    ObjectMapper mapper = new ObjectMapper();
+	    String json = mapper.writeValueAsString(list);
+	    return json;
+	}
+	
 	
 	
 	

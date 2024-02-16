@@ -111,10 +111,11 @@
           <p class="contents-result">
             전체<span> 1000</span>개
           </p>
-          <div class="inputset">
-            <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
-            <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." aria-label="내용">
-          </div>
+         <div class="inputset">
+			<input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." v-model="ss" aria-label="검색어" @keyup.enter="searchBooks">
+			<button class="inputset-icon icon-right icon-search btn" type="button" aria-label="검색" @click="searchBooks"></button>
+
+ 		 </div>
         </div>
         <div class="contents-group">
           <div class="contents-cardlist contents-cardlist-active">
@@ -179,9 +180,11 @@ let booksApp = Vue.createApp({
     return {
       books_list: [],
       curpage: 1,
-      totalpage: 0,
+      totalpages: 0,
       startPage: 1,
-      endPage: 10
+      endPage: 10,
+      totalBooks: 0,
+      ss: ''
     }
   },
   mounted() {
@@ -196,30 +199,30 @@ let booksApp = Vue.createApp({
       }).then(response => {
         this.books_list = response.data;
       });
-      
+
       axios.get('../books/buy_list_vue.do', {
-          params: {
-            page: this.curpage
-          }
-        }).then(response => {
-          this.books_list = response.data;
-        });
-      
+        params: {
+          page: this.curpage
+        }
+      }).then(response => {
+        this.books_list = response.data;
+      });
+
       axios.get('../books/rec_list_vue.do', {
-          params: {
-            page: this.curpage
-          }
-        }).then(response => {
-          this.books_list = response.data;
-        });
-      
+        params: {
+          page: this.curpage
+        }
+      }).then(response => {
+        this.books_list = response.data;
+      });
+
       axios.get('../sco_books/list_vue.do', {
-          params: {
-            page: this.curpage
-          }
-        }).then(response => {
-          this.books_list = response.data;
-        });
+        params: {
+          page: this.curpage
+        }
+      }).then(response => {
+        this.books_list = response.data;
+      });
 
       axios.get('../books/page_vue.do', {
         params: {
@@ -227,10 +230,21 @@ let booksApp = Vue.createApp({
         }
       }).then(response => {
         this.curpage = response.data.curpage;
-        this.totalpage = response.data.totalpage;
+        this.totalpages = response.data.totalpages;
         this.startPage = response.data.startPage;
         this.endPage = response.data.endPage;
-        this.range(this.startPage, this.endPage); // 페이지 범위를 콘솔에 출력
+      });
+    },
+    searchBooks() {
+      axios.get('../books/search_vue.do', {
+        params: {
+          ss: this.ss
+        }
+      }).then(response => {
+        this.books_list = response.data;
+        this.totalBooks = response.data.length;
+      }).catch(error => {
+        console.error("Updated port: ", error);
       });
     },
     range(start, end) {
@@ -238,7 +252,7 @@ let booksApp = Vue.createApp({
       for (let i = start; i <= end; i++) {
         arr.push(i);
       }
-      console.log('Page Range:', arr); // 콘솔에 페이지 범위를 출력합니다.
+      console.log('Page Range:', arr);
       return arr;
     },
     prev() {
@@ -248,7 +262,7 @@ let booksApp = Vue.createApp({
       }
     },
     next() {
-      if (this.curpage < this.totalpage) {
+      if (this.curpage < this.totalpages) {
         this.curpage++;
         this.dataRecv();
       }
@@ -256,17 +270,11 @@ let booksApp = Vue.createApp({
     pageChange(page) {
       this.curpage = page;
       this.dataRecv();
-    },
-    range(start, end) {
-        let arr = [];
-        for (let i = start; i <= end; i++) {
-          arr.push(i);
-        }
-        return arr;
-      },
+    }
   }
 }).mount("#books");
 </script>
+
 
 
   </body>

@@ -47,4 +47,9 @@ public class BooksDAO {
 	{
 		return mapper.booksScoListData(start, end);
 	}
+	
+	public List<BooksVO> searchBooks(String ss)
+	{
+		return mapper.searchBooks(ss);
+	}
 }

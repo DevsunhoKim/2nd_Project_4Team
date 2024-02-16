@@ -55,4 +55,10 @@ public class BooksServiceImpl  implements BookService{
 		return dao.booksScoListData(start, end);
 	}
 
+	@Override
+	public List<BooksVO> searchBooks(String ss) {
+		// TODO Auto-generated method stub
+		return dao.searchBooks(ss);
+	}
+
 }

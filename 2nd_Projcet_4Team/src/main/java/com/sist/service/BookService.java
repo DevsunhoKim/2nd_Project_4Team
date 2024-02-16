@@ -15,4 +15,5 @@ public interface BookService {
 	public List<BooksVO> booksBuyListData(int start,int end);
 	public List<BooksVO> booksRecListData(int start,int end);
 	public List<BooksVO> booksScoListData(int start,int end);
+	public List<BooksVO> searchBooks(String ss);
 }
