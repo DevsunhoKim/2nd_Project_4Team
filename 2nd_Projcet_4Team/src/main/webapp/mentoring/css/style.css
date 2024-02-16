@@ -289,3 +289,52 @@
  .campland-N2 .footer-txt { flex-direction: column; }
  .campland-N2 .footer-txt p+p { margin-left: 0; }
 }
+
+/* List */
+/* glamping-N9 [MlLSD4d7Fl] */
+.glamping-N9 { overflow: hidden; }
+.glamping-N9 .contents-inner { padding: 8rem 2.4rem; }
+.glamping-N9 .contents-container { position: relative; overflow: hidden; }
+.glamping-N9 .contents-top{display: flex; justify-content: space-between; align-items: flex-end;}
+.glamping-N9 .textset {width:100%; margin-bottom: 0;}
+.glamping-N9 .textset-tit+.textset-desc {margin-top: 1rem;}
+.glamping-N9 .inputset {display: flex; justify-content: center; align-items: center; width: 100%;}
+.glamping-N9 .inputset-input {width: 70%;}
+.inputset.inputset-lg .inputset-icon.icon-right + .inputset-input:placeholder{font-size: 1.4rem !important;}
+.glamping-N9 .inputset.inputset-lg .inputset-input{height: 4rem;}
+.glamping-N9 .selectset {width: 30%; margin-right: 10px;}
+.glamping-N9 .selectset.selectset-lg .btn{height: 4rem; font-size: 1.4rem; font-weight: 500;}
+.glamping-N9 .tabset-text {display: flex; justify-content: right; margin: 2rem 0;}
+.glamping-N9 .cardset-wrapper{position: relative; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; gap: 2rem;}
+.glamping-N9 .swiper-slide { width: 40rem; margin-right: 4rem; }
+.glamping-N9 .cardset{width: 23.8%; height: calc(100% - 6.8rem); padding: 2rem; border-radius: 1rem; border: 1px solid #eee; background-color: #f9f9f9;}
+.glamping-N9 .cardset .work-logo{position: absolute; top: 0; right: 2rem; max-width: 10rem; height: 4rem; padding: 1rem; border-radius:  0 0 1rem 1rem; background: #fff; display: flex; justify-content: center; align-items: center;}
+.glamping-N9 .cardset.cardset-user .cardset-figure{width: 10rem; height: 10rem; margin: 0 0 2rem 0;}
+.glamping-N9 .cardset.cardset-user::after{display:none}
+.glamping-N9 .cardset.cardset-user .cardset-profile{padding: 0; text-align: left;}
+.glamping-N9 .cardset .cardset-profile h3{color: #666; font-size: 1.6rem; font-weight: 400;}
+.glamping-N9 .cardset .cardset-profile h3 span{color: #222; font-size: 2rem; font-weight: 600;}
+.glamping-N9 .cardset .cardset-profile h4{font-size: 1.5rem; font-weight: 500;}
+.glamping-N9 .cardset.cardset-user .cardset-text{margin: 2rem 0; color: #444; font-size: 1.6rem; text-align: left;}
+.glamping-N9 .cardset .mentor-stack{margin: 2rem 0;}
+.glamping-N9 .cardset .mentor-stack li{display: inline-block; margin-right: 0.5rem; padding: 0 1rem; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
+.glamping-N9 .cardset .cardset-btn{display: block; width: 100%; margin: 0 auto; padding: 1rem; border-radius: 1rem; border: none; background-color: #7918F2; color: #fff; font-size: 1.5rem; font-weight: 500; text-align: center;}
+.glamping-N9 .cardset .cardset-btn:hover{background-color: #6713d2; transition: all 0.3s ease-in-out;}
+.glamping-N9 .contents-control { display: flex; align-items: center; justify-content: center; gap: 0.8rem; position: absolute; right: 0; bottom: 4rem; }
+.glamping-N9 .swiper-button-next,.glamping-N9 .swiper-button-prev { position: relative; left: 0; right: 0; width: 3.2rem; height: 3.2rem; background-color: var(--line-color4); border-radius: 50%;}
+.glamping-N9 .swiper-button-prev:after { content: ''; width: 2rem; height: 2rem; background-image: url("../../resources/icons/ico_arrow_left_withe.svg"); background-repeat: no-repeat; background-position: center; background-size: cover; opacity: 0.5; }
+.glamping-N9 .swiper-button-prev:hover::after,.glamping-N9 .swiper-button-next:hover::after { opacity: 1; }
+.glamping-N9 .swiper-button-next:after { content: ''; width: 2rem; height: 2rem; background-image: url("../../resources/icons/ico_arrow_right_withe.svg"); background-repeat: no-repeat; background-position: center; background-size: cover; opacity: 0.5; }
+.glamping-N9 .pagiset {position: relative; display:flex; justify-content: center; align-items: center; margin: 4rem 0;}
+.glamping-N9 .pagiset{margin: 4rem 0;}
+.glamping-N9 .pagiset.pagiset-circ .pagiset-link{border-radius: 1rem;}
+.glamping-N9 .pagiset .pagiset-link.active-fill{background-color: #7918F2;}
+@media (max-width: 992px) {
+ .glamping-N9 .contents-inner { padding: 5rem 2.4rem; }
+ .glamping-N9 .textset {margin-bottom: 0;}
+ .glamping-N9 .textset-tit+.textset-desc { margin-top: 0.5rem; }
+ .glamping-N9 .swiper-slide { width: 100%; }
+ .glamping-N9 .contents-control { top: 0.5rem; left: 50%; transform: translateX(-50%); }
+}
+
+

@@ -5,219 +5,290 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <link rel="stylesheet" href="../member/css/setting.css">
-  <link rel="stylesheet" href="../member/css/plugin.css">
-  <link rel="stylesheet" href="../member/css/template.css"> 
-  <link rel="stylesheet" href="../member/css/style.css">
-  <link rel="stylesheet" href="../css/template.css">
-  <style type="text/css">
-  .cardset {
+<link rel="stylesheet" href="../member/css/setting.css">
+<link rel="stylesheet" href="../member/css/plugin.css">
+<link rel="stylesheet" href="../member/css/template.css"> 
+<link rel="stylesheet" href="../mentoring/css/style.css">
+<link rel="stylesheet" href="../css/common.css">
+<style type="text/css">
+/* .cardset {
   display: inline-block;
   width: calc(33.33% - 23px); 
   margin-right: 20px; 
   margin-bottom: 20px; 
   vertical-align: top;
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .cardset {
     width: calc(50% - 20px);
   }
-}
-.col-md-4 {
+} */
+
+/* .col-md-4 {
   width: 70%;
   margin: 60px auto; 
 }
-
-.contents-container {
+ */
+/* .contents-container {
   width: 50%; 
   margin: 0 auto;
   text-align: center; 
-}
-
-.inputset {
-    max-width: 64rem;
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-}
-
-.selectset {
-  width: 30%; 
-  margin-right: 10px; 
-}
-
-.inputset-input {
-  width: 70%;
-}
-
-.glamping-N9 .contents-inner {
+} */
+/* .glamping-N9 .contents-inner {
     padding: 8rem 2.4rem 0rem 2.4rem;
-}
+} */
 
-.pagiset {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 35px;
-}
-.tabset .tabset-list {
-    width: 83.5%;
-    display: flex;
-    justify-content: right;
-}
   </style>
 </head>
 <body>
 <div class="glamping-N9" data-bid="AqLsk0m3p5">
   <div class="contents-inner">
     <div class="contents-container container-md">
-      <div class="textset">
-        <h2 class="textset-tit">CODEV만의 멘토진</h2>
-        <p class="textset-desc">실력과 경험을 모두 갖춘 CODEV의 멘토를 만나보세요.</p>
-      </div>
-    </div>
-      <div class="inputset inputset-lg">
-    <div class="selectset selectset-round selectset-lg">
-        <button class="selectset-toggle btn" type="button">
-          <span>선택해주세요</span>
-        </button>
-        <ul class="selectset-list">
-          <li class="selectset-item">
-            <button class="selectset-link btn" type="button" data-value="전체">
-              <span>멘토명</span>
-            </button>
-          </li>
-          <li class="selectset-item">
-            <button class="selectset-link btn" type="button" data-value="선택1">
-              <span>멘토링제목</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="icon"></button>
-    <input type="text" class="inputset-input form-control" placeholder="Please enter a search term." aria-label="Content">
-  </div> 
-  <!-- 정렬 버튼 -->
-  <div class="tabset tabset-text">
-    <ul class="tabset-list">
-      <li class="tabset-item">
-        <a class="tabset-link active" href="javascript:void(0)">
-          <span>예약많은순</span>
-        </a>
-      </li>
-      <li class="tabset-item">
-        <a class="tabset-link" href="javascript:void(0)">
-          <span>리뷰많은순</span>
-        </a>
-      </li>
-      <li class="tabset-item">
-        <a class="tabset-link" href="javascript:void(0)">
-          <span>팔로워순</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-        <div class="row">
-       	 <div class="col-md-4">
-          <div class="cardset cardset-user">
-            <figure class="cardset-figure">
-            <a href="../mentoring/detail.do">
-              <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="이미지">
-            </a>
-            </figure>
-            <a href="../mentoring/detail.do">
-            <div class="cardset-profile">
-              <p class="cardset-text">
-                템플릿하우스로 사용 으로 업무 시간과 생산성을
-                높일 수있습니다. 다양한 프로젝트 활용과
-                자주 쓰는 코딩을 미리 저장하고 빠르게 적용할 수
-                있어서 너무 편리하고 좋아요
-              </p>
-              <p class="cardset-info">글램핑 구매자</p>
-            </div>
-            </a>
-          </div>
+	    <div class="contents-top">
+	      <div class="textset">
+	        <h2 class="textset-tit">CODEV만의 멘토진</h2>
+	        <p class="textset-desc">실력과 경험을 모두 갖춘 CODEV의 멘토를 만나보세요.</p>
+	      </div>
+	
+		  <!-- 검색 -->
+		  <div class="inputset inputset-lg">
+		      <div class="selectset selectset-round selectset-lg">
+		        <button class="selectset-toggle btn" type="button">
+		          <span>전체</span>
+		        </button>
+		        <ul class="selectset-list">
+		          <li class="selectset-item">
+		            <button class="selectset-link btn" type="button" data-value="전체">
+		              <span>전체</span>
+		            </button>
+		          </li>
+		          <li class="selectset-item">
+		            <button class="selectset-link btn" type="button" data-value="멘토명">
+		              <span>멘토명</span>
+		            </button>
+		          </li>
+		          <li class="selectset-item">
+		            <button class="selectset-link btn" type="button" data-value="멘토링 제목">
+		              <span>멘토링 제목</span>
+		            </button>
+		          </li>
+		        </ul>
+		      </div>
+		    <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="icon"></button>
+		    <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해 주세요." aria-label="Content">
+		  </div>
+	  </div>
+	  
+	  <!-- 정렬 버튼 -->
+	  <div class="tabset tabset-text">
+	    <ul class="tabset-list">
+	      <li class="tabset-item">
+	        <a class="tabset-link active" href="javascript:void(0)">
+	          <span>예약많은순</span>
+	        </a>
+	      </li>
+	      <li class="tabset-item">
+	        <a class="tabset-link" href="javascript:void(0)">
+	          <span>리뷰많은순</span>
+	        </a>
+	      </li>
+	      <li class="tabset-item">
+	        <a class="tabset-link" href="javascript:void(0)">
+	          <span>팔로워순</span>
+	        </a>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	  <div class="cardset-wrapper">
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
+		
+		<div class="cardset cardset-user">
+			<a href="../mentoring/detail.do">
+		      <figure class="work-logo">
+		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		      </figure>
+		      <figure class="cardset-figure">
+		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		      </figure>
+		      <div class="cardset-profile">
+		      	<h3><span>홍길동</span> 멘토</h3>
+		        <h4>Back-End</h4>
+		      </div>
+		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <ul class="mentor-stack">
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      	<li>Java</li>
+		      </ul>
+		    </a>
+		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		</div>
 
-        <!-- 복제하여 3개씩 출력되도록 수정 -->
-          <div class="cardset cardset-user">
-            <figure class="cardset-figure">
-              <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="이미지">
-            </figure>
-            <div class="cardset-profile">
-              <p class="cardset-text">
-                템플릿하우스로 사용 으로 업무 시간과 생산성을
-                높일 수있습니다. 다양한 프로젝트 활용과
-                자주 쓰는 코딩을 미리 저장하고 빠르게 적용할 수
-                있어서 너무 편리하고 좋아요
-              </p>
-              <p class="cardset-info">글램핑 구매자</p>
-            </div>
-          </div>
-
-          <div class="cardset cardset-user">
-            <figure class="cardset-figure">
-              <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="이미지">
-            </figure>
-            <div class="cardset-profile">
-              <p class="cardset-text">
-                템플릿하우스로 사용 으로 업무 시간과 생산성을
-                높일 수있습니다. 다양한 프로젝트 활용과
-                자주 쓰는 코딩을 미리 저장하고 빠르게 적용할 수
-                있어서 너무 편리하고 좋아요
-              </p>
-              <p class="cardset-info">글램핑 구매자</p>
-            </div>
-          </div>
-        <!-- 복제하여 3개씩 출력되도록 수정 -->
-        <div class="cardset cardset-user">
-            <figure class="cardset-figure">
-              <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="이미지">
-            </figure>
-            <div class="cardset-profile">
-              <p class="cardset-text">
-                템플릿하우스로 사용 으로 업무 시간과 생산성을
-                높일 수있습니다. 다양한 프로젝트 활용과
-                자주 쓰는 코딩을 미리 저장하고 빠르게 적용할 수
-                있어서 너무 편리하고 좋아요
-              </p>
-              <p class="cardset-info">글램핑 구매자</p>
-            </div>
-          </div>
-          <div class="cardset cardset-user">
-            <figure class="cardset-figure">
-              <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="이미지">
-            </figure>
-            <div class="cardset-profile">
-              <p class="cardset-text">
-                템플릿하우스로 사용 으로 업무 시간과 생산성을
-                높일 수있습니다. 다양한 프로젝트 활용과
-                자주 쓰는 코딩을 미리 저장하고 빠르게 적용할 수
-                있어서 너무 편리하고 좋아요
-              </p>
-              <p class="cardset-info">글램핑 구매자</p>
-            </div>
-          </div>
-          <div class="cardset cardset-user">
-            <figure class="cardset-figure">
-              <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="이미지">
-            </figure>
-            <div class="cardset-profile">
-              <p class="cardset-text">
-                템플릿하우스로 사용 으로 업무 시간과 생산성을
-                높일 수있습니다. 다양한 프로젝트 활용과
-                자주 쓰는 코딩을 미리 저장하고 빠르게 적용할 수
-                있어서 너무 편리하고 좋아요
-              </p>
-              <p class="cardset-info">글램핑 구매자</p>
-            </div>
-          </div>
-
-      </div>
-    </div>
-  </div>
-  </div>
+	  </div>
+	</div>
+        
     <nav class="pagiset pagiset-circ">
       <div class="pagiset-ctrl">
         <a class="pagiset-link pagiset-first" href="javascript:void(0)">
@@ -244,6 +315,9 @@
           <span class="visually-hidden">마지막</span>
         </a>
       </div>
-    </nav> 
+    </nav>
+    
+  </div>
+</div>
 </body>
 </html>
