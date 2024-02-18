@@ -63,7 +63,7 @@
             
             <div class="contents-btn buy_jjim">
               <button class="btnset" href="javascript:void(0)">담아두기</button>
-              <a class="btnset" href="javascript:void(0)">구매하기</a>
+              <a class="btnset" :href="'../studyRoom/reserve.do?no='+detail_list.no">예약하기</a>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@
             <p class="contents-result"> 전체<span> 24</span>개 </p>
             <div class="askANDsearch">
              <div class="contents-btn askBtn">
-               <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">상담 문의</a>
+               <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
              </div>
              <div class="contents-form">
               <div class="inputset inputset-lg">

@@ -593,6 +593,89 @@
  .hooms-N39 .modal-footer .btnset { width: calc(100% / 2 - 0.4rem); height: 3.6rem; }
  .hooms-N39 .modal-footer .btnset+.btnset { margin-left: 0.4rem; }
 }
+* glamping-N33 [DSLSRExLY4] */
+.glamping-N33 .contents-inner { padding: 8rem 2.4rem; }
+.glamping-N33 .contents-top { width: 100%; margin-top: 2.4rem; }
+.glamping-N33 .date-picker-wrapper { width: 100%; padding: 2rem 0 4rem 0; background-color: transparent; border-left: none; border-right: none; border-top-color: var(--text-color2); border-bottom-color: var(--border-color); font-family: var(--ff); }
+.glamping-N33 .date-picker-wrapper .month-wrapper { position: relative; width: 100% !important; padding: 0; border: 0; background-color: transparent; }
+.glamping-N33 .date-picker-wrapper .drp_top-bar { padding: 0; margin-bottom: 4rem; }
+.glamping-N33 .date-picker-wrapper .drp_top-bar .default-top,.glamping-N33 .date-picker-wrapper .drp_top-bar.normal .normal-top { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 500; color: var(--text-color1); }
+.glamping-N33 .date-picker-wrapper b { color: var(--primary); }
+.glamping-N33 .month-wrapper table>thead .week-name th:first-child,.glamping-N33 .month-wrapper table>tbody tr td:first-child .day { color: #de3636 !important; }
+.glamping-N33 .date-picker-wrapper table .caption .prev,.glamping-N33 .date-picker-wrapper table .caption .next { display: inline-block; position: relative; text-indent: -9999px; }
+.glamping-N33 .date-picker-wrapper table .caption .prev::after,.glamping-N33 .date-picker-wrapper table .caption .next::after { content: ''; display: inline-block; position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 4.4rem; height: 4.4rem; background-repeat: no-repeat; background-position: center; background-size: contain; }
+.glamping-N33 .date-picker-wrapper table .caption .prev::after { background-image: url("../../studyRoom/icons/ico_arrow_left_black.svg"); }
+.glamping-N33 .date-picker-wrapper table .caption .next::after { background-image: url("../../studyRoom/icons/ico_arrow_right_black.svg"); }
+.glamping-N33 .date-picker-wrapper table .caption .prev:hover,.glamping-N33 .date-picker-wrapper table .caption .next:hover { background-color: transparent; }
+.glamping-N33 .date-picker-wrapper .month-wrapper table { width: calc(50% - 2rem); }
+/* .glamping-N33 .date-picker-wrapper .month-wrapper .month2 { float: right; } */
+.glamping-N33 .date-picker-wrapper .month-wrapper .month-name { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 500; color: var(--text-color1); }
+.glamping-N33 .date-picker-wrapper .month-wrapper table td,.glamping-N33 .date-picker-wrapper .month-wrapper table th { width: 8rem; height: 6.8rem; padding: 0.4rem 0; font-size: var(--fs-p2); font-weight: 500; }
+/* .glamping-N33 .date-picker-wrapper .month-wrapper table .day.real-today { background-color: var(--secondary); color: var(--text-color5); } */
+.glamping-N33 .date-picker-wrapper .month-wrapper table .day.toMonth.valid { display: flex; align-items: center; justify-content: center; width: 100%; height: 6rem; margin: 0 auto; padding: 0; font-size: 1.8rem; }
+/* .glamping-N33 .date-picker-wrapper .month-wrapper table .day.checked,.glamping-N33 .date-picker-wrapper .month-wrapper table .day.toMonth.hovering { background-color: var(--secondary); color: var(--text-color5); } */
+.glamping-N33 .date-picker-wrapper .first-date-selected,.glamping-N33 .date-picker-wrapper .last-date-selected { position: relative; width: 6rem !important; height: 6rem !important; border-radius: 50%; background-color: var(--primary) !important; color:white;}
+/*  .glamping-N33 .date-picker-wrapper .first-date-selected::before,.glamping-N33 .date-picker-wrapper .last-date-selected::before { content: ''; position: absolute; width: 100%; height: 100%; z-index: -1; background-color: var(--secondary) !important; }
+.glamping-N33 .date-picker-wrapper .first-date-selected::before { left: 3rem; }
+.glamping-N33 .date-picker-wrapper .last-date-selected::before { right: 3rem; } */
+.glamping-N33 .date-picker-wrapper .selected-days,.glamping-N33 .date-picker-wrapper .gap,.glamping-N33 .date-picker-wrapper .time,.glamping-N33 .date-picker-wrapper .date-range-length-tip { display: none !important; }
+.glamping-N33 .contents-bottom,  .glamping-N32 .contents-bottom{ padding: 4rem 0 6rem 0; border-bottom: 1px solid var(--border-color); }
+.glamping-N33 .contents-tit { font-size: var(--fs-h3); line-height: var(--fs-h3); font-weight: 500; }
+.glamping-N33 .contents-list { display: flex; align-items: center; margin-top: 2rem; }
+.glamping-N33 .contents-item { width: calc(100% / 5); }
+.glamping-N33 .contents-item+.contents-item { margin-left: 4rem; }
+.glamping-N33 .contents-amount { display: flex; justify-content: space-between; align-items: center; height: var(--ht-md); padding: 1.2rem 2rem; border: 2px solid var(--border-color); border-radius: 10rem; }
+.glamping-N33 .contents-amount-num { width: calc(100% - 4.8rem); font-size: var(--fs-p2); text-align: center; }
+.glamping-N33 .contents-btn { width: 2.4rem; height: 2.4rem; border: 0; background-color: transparent; }
+.glamping-N33 .contents-btn img { width: 100%; height: 100%; object-fit: contain; }
+.glamping-N33 .contents-label { margin-bottom: 1.2rem; font-size: var(--fs-p1); line-height: var(--lh-p1); font-weight: 500; }
+.glamping-N33 .contents-desc { display: inline-block; margin-top: 1.2rem; font-size: var(--fs-p2); line-height: var(--lh-p2); font-weight: 400; color: var(--text-color3); }
+.glamping-N33 .btnset { display: flex; margin: 4rem auto auto auto; }
+@media (max-width: 992px) {
+ .glamping-N33 .contents-inner { padding: 5rem 2.4rem; }
+ .glamping-N33 .date-picker-wrapper { padding: 0.8rem 0 2rem 0; }
+ .glamping-N33 .date-picker-wrapper table .caption .prev::after, .glamping-N33 .date-picker-wrapper table .caption .next::after { width: 2.4rem; height: 2.4rem; }
+ .glamping-N33 .date-picker-wrapper .month-wrapper table { width: 100%; }
+ .glamping-N33 .date-picker-wrapper .month-wrapper .month2 { margin-top: 2rem; }
+ .glamping-N33 .date-picker-wrapper .month-wrapper table td, .glamping-N33 .date-picker-wrapper .month-wrapper table th { height: 4.4rem; }
+ .glamping-N33 .date-picker-wrapper .month-wrapper table .day.toMonth.valid { height: 3.6rem; font-size: 1.2rem; }
+ .glamping-N33 .date-picker-wrapper .first-date-selected, .glamping-N33 .date-picker-wrapper .last-date-selected { width: 3.6rem !important; height: 3.6rem !important; color:white; }
+ .glamping-N33 .date-picker-wrapper .first-date-selected::before, .glamping-N33 .date-picker-wrapper .last-date-selected::before { width: calc(100% + 3.6rem); }
+ .glamping-N33 .date-picker-wrapper .first-date-selected::before { left: 1.8rem; }
+ .glamping-N33 .date-picker-wrapper .last-date-selected::before { right: 1.8rem; }
+ .glamping-N33 .contents-bottom { padding: 2rem 0; }
+ .glamping-N33 .contents-list { flex-direction: column; align-items: flex-start; }
+ .glamping-N33 .contents-item { width: 100%; }
+ .glamping-N33 .contents-item+.contents-item { margin-left: 0; margin-top: 1.6rem; }
+ .glamping-N33 .contents-label { margin-bottom: 0.8rem; }
+ .glamping-N33 .contents-amount { padding: 1rem 1.6rem; }
+ .glamping-N33 .contents-desc { margin-top: 0.8rem; }
+}
+@media (max-width: 576px) {
+ .glamping-N33 .date-picker-wrapper .first-date-selected::before, .glamping-N33 .date-picker-wrapper .last-date-selected::before { width: 100%; }
+}
+
+/* glamping-N32 [IilsRewk5H] */
+.glamping-N32 .contents-inner { padding: 4rem 2.4rem; }
+.glamping-N32 .contents-container { display: flex; justify-content: space-between; align-items: flex-end; }
+.glamping-N32 .textset { width: 50%; }
+.glamping-N32 .contents-list { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; width: 50%; }
+.glamping-N32 .contents-item { display: flex; align-items: center; justify-content: center; position: relative; width: 4.8rem; height: 4.8rem; font-size: var(--fs-h5); text-align: center; border: 1px solid var(--line-color1); border-radius: 50%; color: var(--text-color4); }
+.glamping-N32 .contents-item+.contents-item { margin-left: 7.6rem; }
+.glamping-N32 .contents-item+.contents-item::before { content: ''; position: absolute; top: 50%; right: calc(100% + 1.6rem); transform: translateY(-50%); width: 4rem; height: 0.1rem; background-color: var(--line-color1); }
+.glamping-N32 .contents-item.item-active { background-color: var(--line-color4); border-color: var(--line-color4); color: var(--text-color5); }
+.glamping-N32 .contents-item.item-check { background-color: var(--highlight-bg); border-color: var(--highlight-bg); }
+.glamping-N32 .contents-item.item-check::after { content: ''; display: inline-block; width: 2.8rem; height: 2.8rem; background: url("../../studyRoom/icons/ico_check_gray.svg") no-repeat center/contain; }
+.glamping-N32 .contents-item.item-check span { display: none; }
+@media (max-width: 992px) {
+ .glamping-N32 .contents-container { display: block; }
+ .glamping-N32 .textset { width: 100%; }
+ .glamping-N32 .contents-list { justify-content: flex-start; width: 100%; margin-top: 4rem; }
+ .glamping-N32 .contents-item { width: 3.2rem; height: 3.2rem; line-height: 3.2rem; }
+ .glamping-N32 .contents-item+.contents-item { margin-left: 3.6rem; }
+ .glamping-N32 .contents-item+.contents-item::before { content: ''; position: absolute; top: 50%; right: calc(100% + 0.8rem); width: 2rem; }
+ .glamping-N32 .contents-item.item-check::after { width: 2rem; height: 2rem; }
+}
 
 #studyRoom {
 	margin-top: 100px;
@@ -797,4 +880,42 @@
 }
 #studyRoom-ask .ask-title{
 	font-weight: 600;
+}
+#room_reserve .month2{
+	display: none;
+}
+#room_reserve .lastMonth, .nextMonth {
+	display: none;
+}
+#room_reserve .error-top, .normal-top{
+	display: none;
+}
+#room_reserve .week-name{
+    text-align: center;
+}
+
+#room_reserve .month1 tr.caption th:nth-child(1),#room_reserve .month1 tr.caption th:nth-child(2){
+	text-align: center;
+}
+#room_reserve .month-name div:nth-child(1){
+	display: inline;
+} 
+#room_reserve .month-name div:nth-child(2){
+	display: inline-block;
+} 
+#room_reserve .week-name th{
+	padding-top: 3rem;
+} 
+
+#room_reserve .glamping-N32 .contents-inner {
+    padding: 15rem 3.4rem 1rem;
+}
+#room_reserve .glamping-N32 .contents-bottom {
+    padding: 4rem 0 1rem 0;
+}
+#room_reserve .glamping-N32 .textset-tit{
+	font-size: 5rem;
+}
+.room_reserve{
+    margin-bottom: 15rem;
 }
