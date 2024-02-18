@@ -18,7 +18,6 @@
   <title>예약하기_기간선택 | 글램핑</title>
   <link rel="stylesheet" href="../studyRoom/css/setting.css">
   <link rel="stylesheet" href="../studyRoom/css/plugin.css">
-  <link rel="stylesheet" href="../studyRoom/css/template_1.css">
   <link rel="stylesheet" href="../studyRoom/css/common.css">
   <link rel="stylesheet" href="../studyRoom/css/style.css">
   <script src="https://code.jquery.com/jquery.js"></script>
