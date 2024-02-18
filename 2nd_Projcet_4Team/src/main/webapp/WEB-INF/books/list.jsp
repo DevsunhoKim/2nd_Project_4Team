@@ -109,7 +109,7 @@
         </div>
         <div class="contents-search">
           <p class="contents-result">
-            전체<span> 1000</span>개
+            전체<span> 1,000</span>개
           </p>
          <div class="inputset">
 			<input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." v-model="ss" aria-label="검색어" @keyup.enter="searchBooks">
@@ -200,7 +200,7 @@ let booksApp = Vue.createApp({
         this.books_list = response.data;
       });
 
-      axios.get('../books/buy_list_vue.do', {
+  /*     axios.get('../books/buy_list_vue.do', {
         params: {
           page: this.curpage
         }
@@ -222,7 +222,7 @@ let booksApp = Vue.createApp({
         }
       }).then(response => {
         this.books_list = response.data;
-      });
+      }); */
 
       axios.get('../books/page_vue.do', {
         params: {

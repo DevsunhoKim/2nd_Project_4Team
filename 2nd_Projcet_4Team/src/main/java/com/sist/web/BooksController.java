@@ -27,5 +27,11 @@ public class BooksController {
 		model.addAttribute("no",no);  
 		return "books/detail";
 	}
+	
+	@GetMapping("books/payment.do")
+	public String books_payment()
+	{
+		return "books/payment";
+	}
 }
 
