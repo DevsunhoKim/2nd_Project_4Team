@@ -33,5 +33,9 @@ public class BooksController {
 	{
 		return "books/payment";
 	}
+
+	// 메인화면에 출력할 데이터 public List<BooksVO> mainBooks() 구현 main-content.jsp 에 구현
+
+
 }
 
