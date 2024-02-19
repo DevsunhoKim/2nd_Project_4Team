@@ -9,19 +9,26 @@
 <link rel="stylesheet" href="../css/plugin.css">
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../recruitment/css/setting.css">
+<link rel="stylesheet" href="../recruitment/css/plugin.css">
+<link rel="stylesheet" href="../recruitment/css/template.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
 <script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>s
+<script src="../js/plugin.js"></script>
 <script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
-<script src="../recruitment/js/script.js"></script>
+<script src="../recruitment/js/setting.js"></script>
+<script src="../recruitment/js/plugin.js"></script>
 <script src="../recruitment/js/template.js"></script>
+<script src="../recruitment/js/script.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
   <section id="recruitmentList" class="th-layout-sub">
     <!-- [S]opilsol-N19 -->
     <div class="opilsol-N19" data-bid="ZbLsbkw4hY">
-      <div class="content-container">
+      <div class="content-container" id="recruitmentListApp">
         <div class="container-md">
           <div class="contents-top">
 
@@ -111,23 +118,23 @@
           </div>
 
           <div class="col-group">
-            <div class="item cardset cardset-border">
+            <div class="item cardset cardset-border" v-for="vo in recruit_list" :key="vo.no">
               <a href="#" class="company-info">
                 <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
+                  <img class="width-100" :src="vo.cvo.logo" alt="기업 로고">
                 </figure>
               </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
+              <h4 class="company-name">{{vo.cvo.name}}</h4>
               <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
+                <h3 class="recruit-tit">{{vo.title}}</h3>
                 <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
+                <span class="recruit-career">{{vo.career}}</span>
                 <ul class="recruit-stack">
                   <li>Java</li>
                   <li>Spring Boot</li>
                   <li>React</li>
                 </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
+                <span class="recruit-date">~ {{vo.end_date}}</span>
               </div>
               <button type="button" class="recruit-btn recruit-like-btn">
                 <figure class="recruit-icon">
@@ -136,7 +143,7 @@
               </button>
             </div>
 
-            <div class="item cardset cardset-border">
+<!--             <div class="item cardset cardset-border">
               <a href="#" class="company-info">
                 <figure class="company-logo">
                   <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
@@ -159,257 +166,7 @@
                   <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
                 </figure>
               </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
-
-            <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div>
+            </div> -->
           </div>
 
           <nav class="pagiset pagiset-circ">
@@ -418,20 +175,16 @@
                 <span class="visually-hidden">처음</span>
               </a>
             </div> -->
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
+            <div class="pagiset-ctrl" v-if="startPage>1">
+              <a class="pagiset-link pagiset-prev" @click="prev()">
                 <span class="visually-hidden">이전</span>
               </a>
             </div>
-            <div class="pagiset-list">
-              <a class="pagiset-link active-fill" href="javascript:void(0)">1</a>
-              <a class="pagiset-link" href="javascript:void(0)">2</a>
-              <a class="pagiset-link" href="javascript:void(0)">3</a>
-              <a class="pagiset-link" href="javascript:void(0)">4</a>
-              <a class="pagiset-link" href="javascript:void(0)">5</a>
+            <div class="pagiset-list" v-for="i in range(startPage, endPage)">
+              <a :class="'pagiset-link ' + (i==curpage?'active-fill':'')" @click="pageChange(i)">{{i}}</a>
             </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-next" href="javascript:void(0)">
+            <div class="pagiset-ctrl" v-if="endPage<totalpage">
+              <a class="pagiset-link pagiset-next" @click="next()">
                 <span class="visually-hidden">다음</span>
               </a>
             </div>
@@ -439,12 +192,85 @@
               <a class="pagiset-link pagiset-last" href="javascript:void(0)">
                 <span class="visually-hidden">마지막</span>
               </a>
-            </div> -->
+            </div>
           </nav>
         </div>
       </div>
     </div>
     <!-- [E]opilsol-N19 -->
   </section>
+  
+ <script>
+let recruitmentListApp=Vue.createApp({
+	// 멤버 변수
+	data(){
+		return{
+			recruit_list:[],
+			curpage:1,
+			totalpage:0,
+			startPage:0,
+			endPage:0
+		}
+	},
+	mounted(){
+		this.dataRecv()
+	},
+	updated(){
+		
+	},
+	methods:{
+		dataRecv(){
+			axios.get('../recruitment/recruit_list_vue.do', {
+				params:{
+					page:this.curpage
+				}
+			}).then(response=>{
+				console.log(response.data)
+				this.recruit_list=response.data
+			})
+			
+			// 페이지
+			axios.get('../recruitment/recruit_page_vue.do', {
+				params:{
+					page:this.curpage
+				}
+			}).then(response=>{
+				console.log(response.data)
+				this.curpage=response.data.curpage
+				this.totalpage=response.data.totalpage
+				this.startPage=response.data.startPage
+				this.endPage=response.data.endPage
+			})
+			
+			/* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
+				console.log(response.data)
+				this.cookie_list=response.data
+			}) */
+		},
+		range(start, end){
+			let arr=[]
+			let leng=end-start
+			for(let i=0; i<=leng; i++){
+				arr[i]=start
+				start++
+			}
+			return arr
+		},
+		prev(){
+			this.curpage=this.endPage-1
+			this.dataRecv()
+		},
+		next(){
+			this.curpage=this.endPage+1
+			this.dataRecv()
+		},
+		pageChange(page){
+			this.curpage=page
+			this.dataRecv()
+		}
+		
+	}
+}).mount('#recruitmentListApp')
+ </script>
 </body>
 </html>

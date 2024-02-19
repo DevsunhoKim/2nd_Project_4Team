@@ -109,6 +109,10 @@
 #recruitmentList .pagiset .pagiset-link.active-fill{
   background-color: #7918F2;
 }
+#recruitmentList .pagiset .pagiset-link.active-fill:hover{
+  background-color: #7918F2;
+  transition: all 0.3s ease-in-out;
+}
 
 
 
