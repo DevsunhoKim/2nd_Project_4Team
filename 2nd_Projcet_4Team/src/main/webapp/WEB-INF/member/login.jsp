@@ -31,7 +31,7 @@
         </div>
         <div class="contents-util" draggable="false">
           <div class="checkset" draggable="false">
-            <input id="checkset-a-1-1" class="checkset-input input-round" type="checkbox" value="" checked="" draggable="false" ref="ck" v-model="ck">
+            <input id="checkset-a-1-1" class="checkset-input input-round" type="checkbox" draggable="false" ref="ck" v-model="ck">
             <label class="checkset-label" for="checkset-a-1-1" draggable="false"></label>
             <span class="checkset-text" draggable="false">자동로그인</span>
           </div>
@@ -103,6 +103,9 @@
 				  this.$refs.pwd.focus()
 				  return
 			  }
+			  if (!this.ck) {
+			        this.ck = false;
+			    }
 			  axios.get('../member/login_ok_vue.do',{
 				  params:{
 					  userId:this.id,
