@@ -39,7 +39,7 @@
                 </a>
               </li>
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../recruitment/recruit_list.do">
                   <span>Recruitment</span>
                 </a>
               </li>
