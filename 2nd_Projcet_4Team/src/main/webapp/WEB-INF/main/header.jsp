@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,9 +60,19 @@
             <button class="header-btn btn-seach">
               <img src="../images/icons/ico_seach_black.svg" alt="검색 아이콘">
             </button>
+            <c:if test="${sessionScope.userId==null }">
             <a href="../member/login.do" class="header-btn btn-user">
-              <img src="../images/icons/ico_user_black.svg" alt="유저 아이콘">
+              <img src="../images/icons/loginout.png" alt="로그인 아이콘">
             </a>
+            </c:if>
+            <c:if test="${sessionScope.userId!=null }">
+            <a href="#" class="header-btn btn-user">
+              <img src="../images/icons/ico_user_black.svg" alt="마이페이지 아이콘">
+            </a>
+            <a href="../member/logout.do" class="header-btn btn-user">
+              <img src="../images/icons/loginout.png" alt="로그아웃 아이콘">
+            </a>
+            </c:if>
             <button class="header-btn btn-cart badgeset badgeset-circle badgeset-position badgeset-bottom-right">
               <img src="../images/icons/ico_cart_black.svg" alt="쇼핑백 아이콘">
               <span class="badgeset-text">1</span>
