@@ -607,7 +607,7 @@
 .glamping-N33 .date-picker-wrapper table .caption .prev::after { background-image: url("../../studyRoom/icons/ico_arrow_left_black.svg"); }
 .glamping-N33 .date-picker-wrapper table .caption .next::after { background-image: url("../../studyRoom/icons/ico_arrow_right_black.svg"); }
 .glamping-N33 .date-picker-wrapper table .caption .prev:hover,.glamping-N33 .date-picker-wrapper table .caption .next:hover { background-color: transparent; }
-.glamping-N33 .date-picker-wrapper .month-wrapper table { width: calc(50% - 2rem); }
+.glamping-N33 .date-picker-wrapper .month-wrapper table { /* width: calc(50% - 2rem);  */}
 /* .glamping-N33 .date-picker-wrapper .month-wrapper .month2 { float: right; } */
 .glamping-N33 .date-picker-wrapper .month-wrapper .month-name { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 500; color: var(--text-color1); }
 .glamping-N33 .date-picker-wrapper .month-wrapper table td,.glamping-N33 .date-picker-wrapper .month-wrapper table th { width: 8rem; height: 6.8rem; padding: 0.4rem 0; font-size: var(--fs-p2); font-weight: 500; }
@@ -622,7 +622,7 @@
 .glamping-N33 .contents-bottom,  .glamping-N32 .contents-bottom{ padding: 4rem 0 6rem 0; border-bottom: 1px solid var(--border-color); }
 .glamping-N33 .contents-tit { font-size: var(--fs-h3); line-height: var(--fs-h3); font-weight: 500; }
 .glamping-N33 .contents-list { display: flex; align-items: center; margin-top: 2rem; }
-.glamping-N33 .contents-item { width: calc(100% / 5); }
+.glamping-N33 .contents-item { width: calc(100% / 2); }
 .glamping-N33 .contents-item+.contents-item { margin-left: 4rem; }
 .glamping-N33 .contents-amount { display: flex; justify-content: space-between; align-items: center; height: var(--ht-md); padding: 1.2rem 2rem; border: 2px solid var(--border-color); border-radius: 10rem; }
 .glamping-N33 .contents-amount-num { width: calc(100% - 4.8rem); font-size: var(--fs-p2); text-align: center; }
@@ -918,4 +918,73 @@
 }
 .room_reserve{
     margin-bottom: 15rem;
+}
+.room_reserve .content-main{
+	display: flex;
+	justify-content: space-between;
+}
+.room_reserve .order-info{
+	width: 50%;
+}
+.room_reserve .glamping-N33 .contents-top{
+	width: 50%;
+}
+.room_reserve .order-info-title{
+	font-size: 3.4rem;
+    line-height: var(--lh-h3);
+    font-weight: 600;
+    color: var(--text-color1);
+    margin-bottom: 4rem;
+}
+.room_reserve .order-info{
+	 margin-top: 2.4rem;
+	 padding: 2rem 0 4rem 0;
+}       
+.room_reserve .contents-tit{
+	margin-bottom: 4rem;
+	font-size: 3.4rem;
+	font-weight: 600;
+}
+.room_reserve .glamping-N33 .date-picker-wrapper .drp_top-bar .default-top{
+	font-size: 3.4rem;
+	font-weight: 600;
+}
+
+.room_reserve .inwon{
+	width: 42%;
+	border-bottom: 0px;
+}
+.room_reserve .order{
+	 border-top: 1px solid var(--border-color);
+}
+.room_reserve .order-info .contents-item{
+	border: 1px solid lightgray;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+.room_reserve .order-info .contents-inner{
+	display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.room_reserve .order-info .reserve_poster{
+	width: 38rem;
+    height: 30rem;
+    border-radius: 2rem;
+    object-fit: cover;
+}
+.room_reserve .order-info .contents-group{
+	display: flex;
+}
+.room_reserve .glamping-N33 .info-list{
+	display: block;
+	/* margin-top: 2rem; */
+}
+.room_reserve .glamping-N33 .contents-item+.contents-item{
+	margin-left: 0px;
+}
+
+.room_reserve .glamping-N33 .info-list .contents-item{
+	width: 100%;
+	
 }

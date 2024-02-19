@@ -41,4 +41,12 @@ public class StudyRoomRestController {
 		   String json=mapper.writeValueAsString(vo);
 		   return json;
 	   }
+	@GetMapping(value="room_reserve_vue",produces = "text/plain;charset=UTF-8")
+	   public String room_reserve_vue(int no) throws Exception
+	   {
+		   StudyRoomVO vo=service.studyRoomDetailData(no);
+		   ObjectMapper mapper=new ObjectMapper();
+		   String json=mapper.writeValueAsString(vo);
+		   return json;
+	   }
 }
