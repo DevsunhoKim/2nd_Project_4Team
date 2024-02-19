@@ -244,25 +244,26 @@
         <div class="contents-inner">
           <div class="contents-container container-md">
             <div class="textset textset-h2">
-              <h2 class="textset-tit">CODEV Books</h2>
+              <h2 class="textset-tit" style="font: inherit;font-size:25px;font-weight: 500;">CODEV Books</h2>
             </div>
             <div class="tabset tabset-brick">
               <ul class="tabset-list tabset-sm tabset-fill">
                 <li class="tabset-item">
-                  <a class="tabset-link" href="javascript:void(0)">
-                    <span>많이 구매한</span>
-                  </a>
-                </li>
-                <li class="tabset-item">
-                  <a class="tabset-link" href="javascript:void(0)">
-                    <span>평점이 높은</span>
-                  </a>
-                </li>
-                <li class="tabset-item">
-                  <a class="tabset-link" href="javascript:void(0)">
-                    <span>최근 출간 순</span>
-                  </a>
-                </li>
+					  <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('bestSeller')">
+					    <span>많이 구매한</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('highRating')">
+					    <span>평점이 높은</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('recent')">
+					    <span>최근 출간 순</span>
+					  </a>
+					</li>
+
               </ul>
             </div>
             <div class="contents-search">
@@ -330,84 +331,58 @@
       </div>
       <!-- [E]hooms-N31 -->
     </main>
-    <script>
-
-      let booksApp = Vue.createApp({
-        data() {
-          return {
-            books_list: [],
-            curpage: 1,
-            totalpages: 0,
-            startPage: 1,
-            endPage: 10,
-            totalBooks: 0,
-            ss: ''
+ <script>
+  let booksApp = Vue.createApp({
+    data() {
+      return {
+        books_list: [], // 책 목록을 저장하는 배열
+        curpage: 1, // 현재 페이지 번호
+        totalpages: 0, // 전체 페이지 수
+        startPage: 1, // 표시되는 페이지네이션의 시작 페이지
+        endPage: 10, // 표시되는 페이지네이션의 끝 페이지
+        filter: null, // 현재 선택된 필터
+        ss: '' // 검색 키워드
+      }
+    },
+    mounted() {
+      this.searchBooks(); // 컴포넌트 마운트 시 책 목록 초기 로딩
+    },
+    methods: {
+      applyFilter(filter) {
+        this.filter = filter; // 선택된 필터 상태 업데이트
+        this.searchBooks(); // 변경된 필터로 책 목록 새로고침
+      },
+      searchBooks() {
+        // 서버로부터 책 목록을 가져오는 axios 요청
+        axios.get('../books/list_vue.do', {
+          params: {
+            page: this.curpage,
+            filter: this.filter, // 필터 파라미터 추가
+            keyword: this.ss // 검색 키워드 파라미터
           }
-        },
-        mounted() {
-          this.dataRecv();
-        },
-        methods: {
-          dataRecv() {
-            axios.get('../books/list_vue.do', {
-              params: {
-                page: this.curpage
-              }
-            }).then(response => {
-              this.books_list = response.data;
-            });
-
-            axios.get('../books/page_vue.do', {
-              params: {
-                page: this.curpage
-              }
-            }).then(response => {
-              this.curpage = response.data.curpage;
-              this.totalpages = response.data.totalpages;
-              this.startPage = response.data.startPage;
-              this.endPage = response.data.endPage;
-            });
-          },
-          searchBooks() {
-            axios.get('../books/search_vue.do', {
-              params: {
-                ss: this.ss
-              }
-            }).then(response => {
-              this.books_list = response.data;
-              this.totalBooks = response.data.length;
-            }).catch(error => {
-              console.error("Updated port: ", error);
-            });
-          },
-          range(start, end) {
-            let arr = [];
-            for (let i = start; i <= end; i++) {
-              arr.push(i);
-            }
-            console.log('Page Range:', arr);
-            return arr;
-          },
-          prev() {
-            if (this.curpage > 1) {
-              this.curpage--;
-              this.dataRecv();
-            }
-          },
-          next() {
-            if (this.curpage < this.totalpages) {
-              this.curpage++;
-              this.dataRecv();
-            }
-          },
-          pageChange(page) {
-            this.curpage = page;
-            this.dataRecv();
-          }
+        }).then(response => {
+          this.books_list = response.data; // 응답 데이터로 책 목록 업데이트
+          // 필요하다면, 전체 책의 개수 등 추가적인 정보를 업데이트
+        }).catch(error => {
+          console.error("Error: ", error);
+        });
+      },
+      pageChange(page) {
+        this.curpage = page; // 페이지 변경
+        this.searchBooks(); // 변경된 페이지로 책 목록 새로고침
+      },
+      // 페이지 범위를 계산하는 메소드
+      range(start, end) {
+        let arr = [];
+        for (let i = start; i <= end; i++) {
+          arr.push(i);
         }
-      }).mount("#books");
-
-    </script>
+        return arr;
+      }
+    }
+  }).mount("#books");
+</script>
+ 
   </body>
 
   </html>

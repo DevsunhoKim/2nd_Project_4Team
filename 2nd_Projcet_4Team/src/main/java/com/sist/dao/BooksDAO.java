@@ -18,9 +18,9 @@ public class BooksDAO {
 		return mapper.mainBooks();
 	}
 
-	public List<BooksVO> booksListData(int start,int end)
+	public List<BooksVO> booksListData(int start,int end,String filter,String keyword)
 	{
-		return mapper.booksListData(start, end);
+		return mapper.booksListData(start, end,filter,keyword);
 	}
 
 	public int booksTotalPage()
@@ -31,21 +31,6 @@ public class BooksDAO {
 	public BooksVO booksDetailData(int no)
 	{
 		return mapper.booksDetailData(no);
-	}
-	
-	public List<BooksVO> booksBuyListData(int start,int end)
-	{
-		return mapper.booksBuyListData(start, end);
-	}
-	
-	public List<BooksVO> booksRecListData(int start,int end)
-	{
-		return mapper.booksRecBuyListData(start, end);
-	}
-	
-	public List<BooksVO> booksScoListData(int start,int end)
-	{
-		return mapper.booksScoListData(start, end);
 	}
 	
 	public List<BooksVO> searchBooks(String ss)

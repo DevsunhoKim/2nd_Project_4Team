@@ -14,13 +14,33 @@ public interface BooksMapper {
 	 public List<BooksVO> mainBooks();
 	  
 	  // 메인 리스트
-	  @Select("SELECT no,title,poster,author,num "
-				 +"FROM (SELECT no,title,poster,author,rownum as num "
-				 +"FROM (SELECT no,title,poster,author "
-				 +"FROM books ORDER BY no ASC)) "
-				 +"WHERE num BETWEEN #{start} AND #{end}")
-	  public List<BooksVO> booksListData(@Param("start") int start,
-				  @Param("end") int end);
+	 @Select("<script>"
+			    + "SELECT no, title, poster, author, num "
+			    + "FROM ("
+			    + "  SELECT no, title, poster, author, rownum AS num "
+			    + "  FROM ("
+			    + "    SELECT no, title, poster, author "
+			    + "    FROM books "
+			    + "    <where>"
+			    + "      <if test='filter != null'>"
+			    + "        <!-- 필터 조건에 따른 SQL 조건을 여기에 추가합니다. -->"
+			    + "      </if>"
+			    + "      <if test='keyword != null'>"
+			    + "        AND (title LIKE '%' || #{keyword} || '%' OR author LIKE '%' || #{keyword} || '%')"
+			    + "      </if>"
+			    + "    </where>"
+			    + "    ORDER BY "
+			    + "      <choose>"
+			    + "        <when test='filter == \"bestSeller\"'> buy_cnt DESC </when>"
+			    + "        <when test='filter == \"highRating\"'> score </when>"
+			    + "        <when test='filter == \"recent\"'> b_date DESC </when>"
+			    + "        <otherwise> no ASC </otherwise>"
+			    + "      </choose>"
+			    + "  )"
+			    + ")"
+			    + "WHERE num BETWEEN #{start} AND #{end}"
+			    + "</script>")
+			public List<BooksVO> booksListData(@Param("start") int start, @Param("end") int end, @Param("filter") String filter, @Param("keyword") String keyword);
 
 	  // 메인 리스트 페이지 관련
 	  @Select("SELECT CEIL(COUNT(*)/12.0) FROM books")
@@ -30,32 +50,6 @@ public interface BooksMapper {
 	  @Select("SELECT no,title,poster,publ,author,content,price,score,buy_cnt,heart,jjim,keyword,genre,b_date "
 			  +"FROM books WHERE no=#{no}")
 	  public BooksVO booksDetailData(int no);
-	  
-	  //많이 구매한 리스트
-	  @Select("SELECT no,title,poster,author,num "
-				 +"FROM (SELECT no,title,poster,author,rownum as num "
-				 +"FROM (SELECT no,title,poster,author "
-				 +"FROM books ORDER BY buy_cnt DESC)) "
-				 +"WHERE num BETWEEN #{start} AND #{end}")
-	  public List<BooksVO> booksBuyListData(@Param("start") int start,
-				  @Param("end") int end);
-	  // 평점 높은 리스트
-	  @Select("SELECT no,title,poster,author,num "
-				 +"FROM (SELECT no,title,poster,author,rownum as num "
-				 +"FROM (SELECT no,title,poster,author "
-				 +"FROM books ORDER BY score DESC)) "
-				 +"WHERE num BETWEEN #{start} AND #{end}")
-	  public List<BooksVO> booksScoListData(@Param("start") int start,
-				  @Param("end") int end);
-	  // 최근 출간 순 
-	  @Select("SELECT no, title, poster, author, num "
-		        + "FROM (SELECT no, title, poster, author, rownum as num "
-		        + "FROM (SELECT no, title, poster, author "
-		        + "FROM books ORDER BY b_date DESC)) "
-		        + "WHERE num BETWEEN #{start} AND #{end}")
-		public List<BooksVO> booksRecBuyListData(@Param("start") int start,
-		                @Param("end") int end);
-
 	  
 	  // 리스트 검색
 	  @Select("SELECT * FROM books " +
