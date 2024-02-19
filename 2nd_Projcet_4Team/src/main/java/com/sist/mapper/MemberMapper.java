@@ -7,30 +7,41 @@ import org.apache.ibatis.annotations.Update;
 import com.sist.vo.MemberVO;
 
 public interface MemberMapper {
-    @Select("SELECT USER_ID, PASSWORD, USER_NAME, NICKNAME, GENDER, PHONE, EMAIL, BIRTHDAY, ADDRESS, DETAIL_ADDRESS, REGDATE " +
+    @Select("SELECT userId,userPwd,userName,nickname,birthday,gender,email,phone,post,addr,detail_addr,hope_job,regdate " +
             "FROM MEMBER " +
-            "WHERE USER_ID=#{id}")
-    public MemberVO getMemberByID(String id); // 아이디로 회원정보 조회
+            "WHERE userId=#{userId}")
+    public MemberVO getMemberByID(String userId); // 아이디로 회원정보 조회
 
-    @Select("SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{id}")
-    public int getIDCount(String id); // 아이디 중복 조회
+    @Select("SELECT COUNT(*) FROM MEMBER WHERE userId=#{userId}")
+    public int getIDCount(String userId); // 아이디 중복 조회
 
     @Select("SELECT COUNT(*) FROM MEMBER WHERE NICKNAME=#{nickname}")
     public int getNicknameCount(String nickname); // 닉네임 중복 조회
     // 회원 join
-    @Insert("INSERT INTO member VALUES (" +
-            "#{user_id}," +
-            "#{password}," +
-            "#{user_name}," +
+    @Insert("INSERT INTO member(userId,userPwd,userName,nickname,birthday,gender,email,phone,post,addr,detail_addr,hope_job,regdate) VALUES (" +
+    		"#{userId}," +
+    		"#{userPwd}," +
+    		"#{userName}," +
             "#{nickname}," +
-            "#{gender}," +
-            "#{phone}," +
-            "#{email}," +
             "#{birthday}," +
-            "#{address}," +
-            "#{detail_address}," +
+            "#{gender}," +
+            "#{email}," +
+            "#{phone}," +
+            "#{post}," +
+            "#{addr}," +
+            "#{detail_addr}," +
+            "#{hope_job}," +
             "SYSDATE)")
-    public int insertMember(MemberVO vo); // 회원가입
+    public int joinMember(MemberVO vo); // 회원가입
+    
+    @Insert("insert into authority values(#{userId},'ROLE_USER')")
+	public void memberAuthorityInsert(String userId); // 회원 권한부여
+	
+	@Select("SELECT m.userId,userName,userPwd,enabled,authority "
+			  +"FROM Member m,Authority a "
+			  +"WHERE m.userId=a.userId "
+			  +"AND m.userId=#{userId}")
+	   public MemberVO login(String userId); // 로그인
 
     @Update("UPDATE MEMBER SET " +
                 "USER_NAME=#{user_name}," +

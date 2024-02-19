@@ -17,10 +17,15 @@ package com.sist.vo;
  MENTOR                                    NOT NULL NUMBER
  */
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
 public class MemberVO {
-	private int age,enabled,mentor;
-	private String userId,userPwd,userName,nickname,sex,email,phone,postcode,addr,regdate,hope_job;
+	private int enabled,mentor;
+	private String userId,userPwd,userName,nickname,gender,email,phone,post,addr,detail_addr,hope_job,birthday,
+				   reg_dbday,mod_dbday,last_dbday;
+	private Date regdate,modifydate,lastLogin;
+	private String authority,msg;
 }
