@@ -74,4 +74,10 @@ public class MemberController {
     	}
     	return "redirect:../main/main.do";
     }
+    
+    @GetMapping("findId.do")
+	public String member_findId()
+	{
+		return "member/findId";
+	}
 }
