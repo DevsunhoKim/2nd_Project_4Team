@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.RecruitmentService;
+import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
 @RestController
@@ -29,6 +30,7 @@ public class RecruitmentRestController {
 		List<RecruitVO> list=service.recruitListData(start, end);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
+		
 		return json;
 	}
 	
@@ -38,19 +40,34 @@ public class RecruitmentRestController {
 		final int BLOCK=10;
 		int startPage=((page-1)/BLOCK*BLOCK)+1;
 		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		int totalpage=service.recruitTotalPage();
+		if(endPage>totalpage) {
+			endPage=totalpage;
+		}
+		Map map=new HashMap();   
+		map.put("curpage", page);
+		map.put("totalpage", totalpage);
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+   
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(map);
+		
+		return json;
+	}
+	
+	// 채용 공고 상세 페이지
+	@GetMapping(value="recruit_detail_vue.do", produces="text/plain;charset=UTF-8")
+	public String recruit_detail_vue(int no, int cno) throws Exception {
+		RecruitVO rvo=service.recuitDetailData(no);
+		CompanyVO cvo=service.companyDetailData(cno);
+		
 		Map map=new HashMap();
-		   int totalpage=service.recruitTotalPage();
-		   if(endPage>totalpage)
-			   endPage=totalpage;
-		   
-		   map=new HashMap();
-		   map.put("curpage",page);
-		   map.put("totalpage", totalpage);
-		   map.put("startPage", startPage);
-		   map.put("endPage", endPage);
-		   
-		   ObjectMapper mapper=new ObjectMapper();
-		   String json=mapper.writeValueAsString(map);
-		   return json;
+		map.put("rvo", rvo);
+		map.put("cvo", cvo);
+		ObjectMapper mapper=new ObjectMapper();
+	  String json=mapper.writeValueAsString(map);
+	   
+	  return json;
 	}
 }

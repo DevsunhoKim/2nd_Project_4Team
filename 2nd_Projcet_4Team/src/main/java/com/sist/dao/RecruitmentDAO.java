@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.RecruitmentMapper;
+import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
 @Repository
@@ -18,7 +19,19 @@ public class RecruitmentDAO {
 		return mapper.recruitListData(start, end);
 	}
 	
+	// 총 페이지
 	public int recruitTotalPage() {
 		return mapper.recruitTotalPage();
 	}
+	
+	// 1. 채용 공고 정보
+	public RecruitVO recuitDetailData(int no) {
+		return mapper.recuitDetailData(no);
+	}
+	
+	// 2. 기업 정보
+	public CompanyVO companyDetailData(int no) {
+		return mapper.companyDetailData(no);
+	}
+	
 }
