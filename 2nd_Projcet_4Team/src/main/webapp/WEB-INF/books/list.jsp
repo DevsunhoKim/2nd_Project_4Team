@@ -216,7 +216,7 @@
   }
   
   a.cardset:hover {
-  border: 2px solid #000; 
+  border: 2px solid #C0C0C0; 
   border-radius: 5px;
 }
   

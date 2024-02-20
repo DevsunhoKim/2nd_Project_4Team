@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -237,7 +238,7 @@
                   <div class="cardset-body">
                     <span class="cardset-name">${vo.genre }</span>
                     <h4 class="cardset-tit"> ${vo.title } </h4>
-                    <p class="cardset-desc"><small>${vo.price }원</small>
+                    <p class="cardset-desc"><small><fmt:formatNumber type="number" value="${vo.price}" pattern="#,###"/>원</small></p>
                     </p>
                   </div>
                 </a>               

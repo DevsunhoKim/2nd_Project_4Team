@@ -15,11 +15,13 @@ public interface BookService {
 	public BooksVO booksDetailData(int no);
 	public List<BooksVO> searchBooks(String ss);
 	
+	
 	// 도서 리뷰 관련
 	public void insertReview(B_ReviewVO vo);
 	public B_ReviewVO reviewDetaildata(int rno);
 	public List<B_ReviewVO> reviewListData();
 	public void reviewUpdate(B_ReviewVO vo);
 	public void reviewDelete(int rno);
+	
 	
 }

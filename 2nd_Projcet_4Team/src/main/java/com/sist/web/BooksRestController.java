@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.service.B_CartServiceImpl;
 import com.sist.service.BooksServiceImpl;
 import com.sist.vo.BooksVO;
 import com.sist.vo.*;
@@ -21,6 +24,9 @@ import com.sist.vo.*;
 public class BooksRestController {
 	@Autowired
 	private BooksServiceImpl service;
+	
+	@Autowired
+	private B_CartServiceImpl cService;
 
 	@GetMapping(value="list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String books_list_vue(@RequestParam("page") int page, 
@@ -100,7 +106,6 @@ public class BooksRestController {
 		   return json;
 	}
 	
-	
 	// 리뷰 목록 조회
 	@GetMapping("review_list.do")
 	public String reviewList() throws Exception {
@@ -139,6 +144,8 @@ public class BooksRestController {
 	    return "{\"result\":\"OK\"}";
 	}
 	
+	
+
 	
 	
 }

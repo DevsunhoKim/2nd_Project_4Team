@@ -28,11 +28,12 @@ public class BooksDAO {
 		return mapper.booksTotalPage();
 	}
 	
-	public BooksVO booksDetailData(int no)
-	{
-		return mapper.booksDetailData(no);
+	public BooksVO booksDetailData(int no) {
+	   
+	   
+	    return mapper.booksDetailData(no);
 	}
-	
+		
 	public List<BooksVO> searchBooks(String ss)
 	{
 		return mapper.searchBooks(ss);

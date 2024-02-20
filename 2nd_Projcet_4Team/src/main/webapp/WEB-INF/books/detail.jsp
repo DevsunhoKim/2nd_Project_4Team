@@ -171,7 +171,8 @@ body{ margin: 20px; }
        
     		</div>
             <div class="contents-btn">
-              <a class="btnset" href="../books/payment.do?no=1" >구매하기</a>
+              <a class="btnset" :href="'../books/payment.do?no=' + detail_data.no">구매하기</a>
+
             </div>
             <div class="contents-btn">
               <a class="btnset" href="javascript:void(0)">장바구니 담기</a>

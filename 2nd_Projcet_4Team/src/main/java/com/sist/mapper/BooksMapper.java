@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.BooksVO;
 
@@ -51,6 +52,8 @@ public interface BooksMapper {
 			  +"FROM books WHERE no=#{no}")
 	  public BooksVO booksDetailData(int no);
 	  
+	 
+
 	  // 리스트 검색
 	  @Select("SELECT * FROM books " +
 			  "WHERE title LIKE '%' || #{ss} || '%' " +
