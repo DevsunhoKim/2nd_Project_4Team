@@ -18,38 +18,38 @@
   .glamping-N47 {
     padding: 60px 20px 20px; /* 위쪽 패딩을 40px로 조정 */
   }
-  .contents-inner {
+  .glamping-N47 .contents-inner {
     margin: 0 auto;
     max-width: 800px; /* Adjust max-width as needed */
   }
-  .contents-top {
+  .glamping-N47 .contents-top {
     margin-bottom: 20px;
   }
-  .form-wrap {
+  .glamping-N47 .form-wrap {
     margin-bottom: 20px;
   }
-  .form-tit {
+  .glamping-N47 .form-tit {
     margin-bottom: 10px;
   }
-  .contents-btn-group {
+  .glamping-N47 .contents-btn-group {
     margin-top: 20px;
     text-align: center;
   }
-.contents-form-group {
+  .glamping-N47 .contents-form-group {
     display: flex;
     align-items: center; 
     width: 100%;
 }
 
-.inputset {
+  .glamping-N47 .inputset {
     flex: 1;
     margin-right: 10px;
 }
 
-.btnset {
+  .glamping-N47 .btnset {
     flex: 0; 
 }
-.contents-mail {
+  .glamping-N47 .contents-mail {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -59,8 +59,6 @@
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-
 </head>
 <body>
 <div class="glamping-N47" data-bid="iTlmG5UP9e" id="memberApp">

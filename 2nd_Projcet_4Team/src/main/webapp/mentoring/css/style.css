@@ -295,7 +295,7 @@
 .glamping-N9 { overflow: hidden; }
 .glamping-N9 .contents-inner { padding: 8rem 2.4rem; }
 .glamping-N9 .contents-container { position: relative; overflow: hidden; }
-.glamping-N9 .contents-top{display: flex; justify-content: space-between; align-items: flex-end;}
+.glamping-N9 .contents-top{position: relative;display: flex; justify-content: space-between; align-items: flex-end;}
 .glamping-N9 .textset {width:100%; margin-bottom: 0;}
 .glamping-N9 .textset-tit+.textset-desc {margin-top: 1rem;}
 .glamping-N9 .inputset {display: flex; justify-content: center; align-items: center; width: 100%;}

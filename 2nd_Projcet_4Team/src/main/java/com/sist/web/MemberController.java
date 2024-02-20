@@ -47,7 +47,6 @@ public class MemberController {
 	
 	@PostMapping("join_submit.do")
 	public String member_submit(MemberVO vo) {
-		System.out.println(vo.getGender());
 		String enPwd=encoder.encode(vo.getUserPwd());// 비밀번호 암호화
     	vo.setUserPwd(enPwd);
     	mService.joinMember(vo);

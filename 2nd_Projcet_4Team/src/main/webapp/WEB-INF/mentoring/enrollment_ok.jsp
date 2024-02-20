@@ -88,15 +88,15 @@
       <img src="../member/icons/ico_check_xl_white.svg" alt="체크 아이콘 이미지">
     </div>
     <div class="textset">
-      <h2 class="textset-tit">CODEV 회원가입이 완료되었습니다</h2>
+      <h2 class="textset-tit">멘토 등록이 완료되었습니다</h2>
       <p class="textset-desc">
-        로그인 후 안전하고 편리하게
+        CODEV의 멘토로서의 여정이 시작되었습니다. 
         <br>
-        CODEV 서비스를 이용하실 수 있습니다.
+        함께 성장하고 배우는 소중한 시간이 될 것입니다. 환영합니다!
       </p>
     </div>
     <div class="contents-btnset">
-      <a href="../member/login.do" class="btnset btnset-round">로그인</a>
+      <a href="../mentoring/list.do" class="btnset btnset-round">멘토목록 보러가기</a>
     </div>
   </div>
 </div>

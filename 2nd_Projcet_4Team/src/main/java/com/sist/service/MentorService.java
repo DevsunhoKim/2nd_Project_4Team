@@ -1,5 +1,8 @@
 package com.sist.service;
 
-public class MentorService {
+import com.sist.vo.MentorVO;
 
+public interface MentorService {
+    public MentorVO getMentorByID(String userId);
+    public void enrollMentor(MentorVO vo);
 }
