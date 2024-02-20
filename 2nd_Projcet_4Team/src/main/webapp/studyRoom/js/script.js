@@ -275,8 +275,10 @@
         });
         $this.on("click", ".btn-plus", function() {
           let amountNum = parseInt($amountNumElement.text());
-          amountNum++;
-          $amountNumElement.text(amountNum);
+          if (amountNum < 32) { // 32까지만 늘릴 수 있도록 제한
+             amountNum++;
+             $amountNumElement.text(amountNum);
+           }
         });
       });
     });

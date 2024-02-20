@@ -1,6 +1,8 @@
 package com.sist.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.dao.StudyRoomReserveDAO;
 import com.sist.service.StudyRoomServiceImpl;
+import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
 
 @RestController
@@ -45,8 +49,12 @@ public class StudyRoomRestController {
 	   public String room_reserve_vue(int no) throws Exception
 	   {
 		   StudyRoomVO vo=service.studyRoomDetailData(no);
+		   List<StudyRoomTimeVO> list=service.studyRoomTimeData(no);
+		   Map map=new HashMap();
+		   map.put("reserve_data", vo);
+		   map.put("list", list);
 		   ObjectMapper mapper=new ObjectMapper();
-		   String json=mapper.writeValueAsString(vo);
+		   String json=mapper.writeValueAsString(map);
 		   return json;
 	   }
 }

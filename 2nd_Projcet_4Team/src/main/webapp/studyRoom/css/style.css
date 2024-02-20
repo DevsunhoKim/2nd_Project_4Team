@@ -881,6 +881,10 @@
 #studyRoom-ask .ask-title{
 	font-weight: 600;
 }
+
+
+
+
 #room_reserve .month2{
 	display: none;
 }
@@ -914,7 +918,7 @@
     padding: 4rem 0 1rem 0;
 }
 #room_reserve .glamping-N32 .textset-tit{
-	font-size: 5rem;
+	font-size: 4.5rem;
 }
 .room_reserve{
     margin-bottom: 15rem;
@@ -930,7 +934,7 @@
 	width: 50%;
 }
 .room_reserve .order-info-title{
-	font-size: 3.4rem;
+	font-size: 3rem;
     line-height: var(--lh-h3);
     font-weight: 600;
     color: var(--text-color1);
@@ -940,13 +944,13 @@
 	 margin-top: 2.4rem;
 	 padding: 2rem 0 4rem 0;
 }       
-.room_reserve .contents-tit{
+.room_reserve .contents-tit, .room_reserve .range .contents-tit{
 	margin-bottom: 4rem;
-	font-size: 3.4rem;
+	font-size: 3rem;
 	font-weight: 600;
 }
 .room_reserve .glamping-N33 .date-picker-wrapper .drp_top-bar .default-top{
-	font-size: 3.4rem;
+	font-size: 3rem;
 	font-weight: 600;
 }
 
@@ -969,12 +973,14 @@
 }
 .room_reserve .order-info .reserve_poster{
 	width: 38rem;
-    height: 30rem;
+    height: 32.3rem;
     border-radius: 2rem;
     object-fit: cover;
 }
 .room_reserve .order-info .contents-group{
 	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .room_reserve .glamping-N33 .info-list{
 	display: block;
@@ -986,5 +992,142 @@
 
 .room_reserve .glamping-N33 .info-list .contents-item{
 	width: 100%;
+	margin-bottom: 1rem;
 	
+}
+.room_reserve .room-title{
+	font-weight: 600;
+	font-size: 3rem;
+}
+.room_reserve .glamping-N33 .contents-list { 
+	margin-top: 0; 
+}
+.room_reserve .contents-icon{
+	margin: 0px;
+}
+
+.room_reserve .glamping-N33 .contents-item p.content-text{
+	text-align: center;
+    margin-top: 0.5rem;
+}
+.room_reserve .info-subtitle{
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+.room_reserve .glamping-N33 .title{ 
+	padding: 4rem 0 2rem 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+.room_reserve .glamping-N33 .title .p{ 
+	font-weight: bold;
+	font-size: 3rem;
+	color: #6713d2;
+}
+.room_reserve .ye{ 
+	font-size: 4.5rem;
+	font-weight: 300;
+} 
+.room_reserve .contents-container .textset{
+	display: flex;
+    align-items: center;
+}
+.contents-box{
+	border: 1px solid;
+	border-radius: 1px;
+}
+
+
+
+
+
+
+.room_reserve section{
+    width: 100vmin;
+    /* height: 100vh; */
+    /* position: absolute; */
+    /* transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.room_reserve section .tile{
+    height: 60px;
+    width: 107px;
+    position: relative;
+    /* border: 1px solid #e5e5e5;
+    border-radius: 1rem; */
+}
+.room_reserve section input[type="checkbox"]{
+    -webkit-appearance: none;
+    /* position: relative; */
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid #e5e5e5;
+    outline: none;
+    /* box-shadow: 15px 15px 25px rgba(2,28,53,0.05); */
+}
+.room_reserve section input[type="checkbox"]:after{
+    position: absolute;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    /* content: "\f111"; */
+    font-size: 22px;
+    top: 10px;
+    left: 10px;
+    color: #e2e6f3;
+}
+.room_reserve section input[type="checkbox"]:hover{
+    transform: scale(1.08);
+}
+.room_reserve section input[type="checkbox"]:checked{
+    border: 3px solid #478bfb;
+}
+.room_reserve section input[type="checkbox"]:checked:after{
+    font-weight: 900;
+    /* content: "\f058"; */
+    color: #478bfb;
+}
+.room_reserve section label{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    /* gap: 20px; */
+    /* height: 80%; */
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* margin: 0 auto; */
+    cursor: pointer;
+}
+.room_reserve section label .fas{
+    font-size: 60px;
+    color: #2c2c51;
+}
+.room_reserve section input[type="checkbox"]:checked + label .fas{
+    animation: grow 0.5s;
+}
+@keyframes grow{
+    50%{
+        font-size: 80px;
+    }
+}
+.room_reserve section label h6{
+    font-family: "Poppins",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #7b7b93;
 }
