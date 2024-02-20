@@ -26,7 +26,130 @@
     font-weight: 500;
     text-align: center;
 }
+
+
+.SelectedLanguage_selectedWrapper__3dpZm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-gap: 30px;
+    gap: 30px
+}
+
+.SelectedLanguage_selectedLanguages__3r4F4 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-gap: 10px;
+    gap: 10px
+}
+
+.SelectedLanguage_languageName__3dwln {
+    color: #313131;
+    font-size: 13px;
+    font-weight: 500
+}
+
+.SelectedLanguage_selectedLanguage__pTAd8 {
+    display: flex;
+    grid-gap: 10px;
+    gap: 10px;
+    background: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .1s ease-in
+}
+
+.SelectedLanguage_initializeIcon__2Jhi6 {
+    display: block;
+    width: 12px;
+    height: 12px
+}
+
+.SelectedLanguage_selectedLanguage__pTAd8:hover {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02)
+}
+
+.SelectedLanguage_resetContainer__2LBQJ {
+    display: flex;
+    grid-gap: 5px;
+    gap: 5px;
+    align-items: center
+}
+
+.SelectedLanguage_resetFilter__2zzNa {
+    color: #777;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -.42px;
+    cursor: pointer
+}
+
+.LanguageBar_languages__243rH {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+    gap: 10px;
+    margin-bottom: 50px
+}
+
+.LanguageBar_languages__243rH .active {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    background-color: #7918F2;
+    border: 1px solid #7918F2;
+}
+
+.LanguageBar_languages__243rH .active span {
+    color: white;
+}
+
+
+.LanguageBar_languageIcon__2PTl1 {
+    display: flex;
+    grid-gap: 6px;
+    gap: 6px;
+    align-items: center;
+    border: 1px solid #d0d0d0;
+    border-radius: 100px;
+    padding: 6px 12px 6px 7px;
+    transition: all .1s ease-in;
+    cursor: pointer
+}
+
+.LanguageBar_logo__rGfFz {
+    width: 32px;
+    height: 32px
+}
+
+.LanguageBar_languageName__2dSeC {
+    color: #333;
+    font-size: 14px
+}
+
+.LanguageBar_languageIcon__2PTl1:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05)
+}
+
+.LanguageBar_full__2eorP {
+    opacity: 1;
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02)
+}
+
+.LanguageBar_transparent__1Texo {
+    opacity: .3
+}
 </style>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div class="glamping-N9" data-bid="AqLsk0m3p5" id="mentorList">
@@ -40,6 +163,7 @@
 		  <c:if test="${sessionScope.userId!=null }">
 		  	<a href="../mentoring/mentor_enrollment.do" class="cardset-btn">멘토등록하기</a>
 		  </c:if>
+		  
 		  <!-- 검색 -->
 		  <div class="inputset inputset-lg">
 		      <div class="selectset selectset-round selectset-lg">
@@ -64,7 +188,28 @@
 			  ref="fd" v-model="fd" @keyup.enter="dataRecv()">
 		  </div>
 	  </div>
-	  
+	  <div style="height: 30px"></div>
+	  <!-- 기술스택 -->
+	  <div class="row-study">
+            <div class="css-goiz5j" id="headlessui-popover-panel-3" tabindex="-1" data-headlessui-state="open">
+<!--                 <ul class="Category_categories__F4wF5">
+                    <li class="Category_categoryItem__CfZqy Category_selectedCategory__3zAia">기술 스택</li>
+                </ul> -->
+                <ul class="LanguageBar_languages__243rH">
+                    <li v-for="(tech, index) in tech_list"
+                        class="LanguageBar_languageIcon__2PTl1 LanguageBar_full__2eorP" :key="index"
+                        :class="{'active': index == selectedTech}" v-on:click="selectTech(index)">
+                        <img class="LanguageBar_logo__rGfFz"
+                             :src="'${pageContext.request.contextPath}/images/tech/'+ tech.toLowerCase() +'.svg'"
+                             alt="JavaScript">
+                        <span class="LanguageBar_languageName__2dSeC">{{tech}}</span>
+                    </li>
+                </ul>
+                <div class="SelectedLanguage_selectedWrapper__3dpZm">
+                    <ul class="SelectedLanguage_selectedLanguages__3r4F4"></ul>
+                </div>
+            </div>
+        </div>
 	  <!-- 정렬 버튼 -->
 	  <div class="tabset tabset-text">
 	    <ul class="tabset-list">
@@ -305,66 +450,78 @@
   </div>
 </div>
 </body>
-  <script>
-    let mentorList=Vue.createApp({
-    	data(){
-    		return {
-    			mentor_list:[],
-    			fd:'',
-    			ss:'',
-    			curpage:1,
-    			totalpage:0,
-    			startPage:0,
-    			endPage:0,
-    			page_list:{}
-    		}
-    	},
-    	mounted(){
-    		this.dataRecv()
-    	},
-    	components:{
-    		"pagination":pagination
-    	},
-    	methods:{
-    		dataRecv(){
-    			axios.get('../mentoring/find_vue.do',{
-  				  params:{
-  					  page:this.curpage,
-  					  ss:this.ss,
-  					  fd:this.fd
-  				  }
-  			  }).then(response=>{
-  				  console.log(response)
-  				  this.mentor_list=response.data
-  			  })
- 			   
- 			   axios.get('../mentoring/page_vue.do',{
- 				   params:{
- 					   page:this.curpage
- 				   }
- 			   }).then(response=>{
- 				   console.log(response.data)
- 				   this.page_list=response.data
- 				   this.curpage=response.data.curpage
- 				   this.totalpage=response.data.totalpage
- 				   this.startPage=response.data.startPage
- 				   this.endPage=response.data.endPage
- 			   })
-    		},
-    		prev(){
-    			this.curpage=this.startPage-1
-    			this.dataRecv()
-    		},
-    		next(){
-    			this.curpage=this.endPage+1
-    			this.dataRecv()
-    		},
-    		pageChange(page){
-    			this.curpage=page
-    			this.dataRecv()
-    		}
-    	}
-    })
-    app.mount("#mentorList")
-  </script>
+<script>
+let mentorListApp = Vue.createApp({
+    data() {
+        return {
+            tech_list: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 
+            	'Nextjs', 'Nodejs', 'C', 'Java', 'Spring', 'Go', 'Nestjs', 'Kotlin', 
+            	'Express', 'MySQL', 'MongoDB', 'Python', 'Django', 'php', 'GraphQL', 
+            	'Firebase', 'Flutter', 'Swift', 'ReactNative', 'Unity', 'AWS', 
+            	'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest'] ,
+            mentor_list: [],
+            selectedTech: -1,
+            fd: '',
+            ss: '',
+            curpage: 1,
+            totalpage: 0,
+            startPage: 0,
+            endPage: 0,
+            page_list: {}
+        };
+    },
+    mounted() {
+        this.dataRecv();
+    },
+    methods: {
+        dataRecv() {
+            axios.get('../mentoring/find_view.do', {
+                params: {
+                    page: this.curpage,
+                    ss: this.ss,
+                    fd: this.fd.trim(),
+                    tech: (this.selectedTech !== -1) ? this.tech_list[this.selectedTech].toLowerCase() : ''
+                }
+            }).then(response => {
+                console.log(response);
+                this.mentor_list = response.data;
+            });
+
+            axios.get('../mentoring/page_view.do', {
+                params: {
+                    page: this.curpage
+                }
+            }).then(response => {
+                console.log(response.data);
+                this.page_list = response.data;
+                this.curpage = response.data.curpage;
+                this.totalpage = response.data.totalpage;
+                this.startPage = response.data.startPage;
+                this.endPage = response.data.endPage;
+            });
+        },
+        prev() {
+            this.curpage = this.startPage - 1;
+            this.dataRecv();
+        },
+        next() {
+            this.curpage = this.endPage + 1;
+            this.dataRecv();
+        },
+        pageChange(page) {
+            this.curpage = page;
+            this.dataRecv();
+        },
+        selectTech: function (index) {
+            if (this.selectedTech === index) {
+                this.selectedTech = -1;
+            } else {
+                this.selectedTech = index;
+            }
+            this.curpage = 1;
+            this.dataRecv();
+        }
+    }
+}).mount("#mentorList");
+</script>
 </html>

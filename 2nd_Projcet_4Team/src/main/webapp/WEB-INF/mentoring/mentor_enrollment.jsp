@@ -95,16 +95,16 @@
 			    <div class="radioset-wrap">
 	              <div>
 	                <div class="radioset">
-	                  <input id="radioset-a-1" value="../images/mentor1.png" v-model="img" name="img" class="radioset-input input-line" type="radio" checked>
+	                  <input id="radioset-a-1" value="mentor1" v-model="img" name="img" class="radioset-input input-line" type="radio" checked>
 	                  <label class="radioset-label" for="radioset-a-1"></label>
-	               	   <img alt="" src="../images/mentor1.png">
+	               	   <img alt="" src="${pageContext.request.contextPath}/images/mentor1.png">
 	                </div>
 	              </div>
 	              <div>
 	                <div class="radioset">
-	                  <input id="radioset-a-2" value="../images/mentor2.png" v-model="img" name="img" class="radioset-input input-line" type="radio">
+	                  <input id="radioset-a-2" value=mentor2" v-model="img" name="img" class="radioset-input input-line" type="radio">
 	                  <label class="radioset-label" for="radioset-a-2"></label>
-	                  	<img alt="" src="../images/mentor2.png">
+	                  	<img alt="" src="${pageContext.request.contextPath}/images/mentor2.png">
 	                </div>
 	              </div>
 	              <div>
