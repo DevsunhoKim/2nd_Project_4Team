@@ -156,7 +156,7 @@
               </div>
             </div>
             <div class="form-wrap">
-              <h6 class="form-tit">주소</h6>
+              <h6 class="form-tit">주소 <span>*</span></h6> 
               <div class="contents-address">
                 <div class="contents-form-group">
                   <div class="inputset inputset-round">
