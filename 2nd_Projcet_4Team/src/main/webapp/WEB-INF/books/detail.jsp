@@ -78,7 +78,8 @@ body{ margin: 20px; }
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  width: 20px;
+  width: 30px;
+  height:33px;
   color: white;
   transition: background-color 0.3s;
   cursor: pointer;
@@ -95,16 +96,20 @@ body{ margin: 20px; }
 .number-quantity {
   padding: 0.25rem;
   border: 0;
-  width: 50px;
+  width: 100px;
   -moz-appearance: textfield;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  text-align: center;
 }
 
 .number-left:hover::before,
 .number-right:hover::after {
   background-color: #666666;
+  height: 33px;
 }
+
+.hooms-N40 .contents-thumbnail { width: 125%; height: 64rem; }
   </style>
 </head>
 <body>
@@ -113,9 +118,9 @@ body{ margin: 20px; }
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="contents-left">
-            <div class="contents-thumbnail">
+            <div style="margin-left: 3rem" class="contents-thumbnail">
             
-              <img :src="detail_data.poster" alt="썸네일이미지">
+              <img :src="detail_data.poster" alt="썸네일이미지" style="width:60rem;height: 80rem">
             </div>
            
           </div>
@@ -144,18 +149,27 @@ body{ margin: 20px; }
   				가격
            <span>{{ formattedPrice }} 원</span>
 			</div>
-			 <p class="contents-desc" style="display: inline">
-              수량 : 
-            </p>
+			
+			<br>
+			<br>
+			 <span class="contents-desc" style="display: flex">
+              수량
+            </span>
 			<div class="form-group">
        		
-            <div class="number-control">
-			  <div class="number-left"></div>
-			  <input type="number" name="number" class="number-quantity">
-			  <div class="number-right"></div>
-			</div>
+           <div class="number-control">
+			  <div class="number-left" @click="decreaseQuantity" data-content="-"></div>
+			  <input type="number" name="number" class="number-quantity" v-model.number="quantity">
+			  <div class="number-right" @click="increaseQuantity" data-content="+"></div>
+		   </div>
+		<div class="contents-sum">
+    				총 가격
+    	<span>{{ totalPrice.toLocaleString('ko-KR') }} 원</span>
+		</div>
+
+
        
-    </div>
+    		</div>
             <div class="contents-btn">
               <a class="btnset" href="../books/payment.do?no=1" >구매하기</a>
             </div>
@@ -258,97 +272,125 @@ body{ margin: 20px; }
               <span class="inputset-count">0</span>
               <span class="inputset-total">/4000</span>
             </div>
+            
           </label>
           
-           
+           	
         </div>
-       		
+       	
       
         </div>
          <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right">작성</a>
       </div>
     </div>
     <!-- [E]hooms-N41 -->
-    <script>
-let booksDapp = Vue.createApp({
-  data() {
-    return {
-      no: ${no}, // 서버 사이드에서 no 값을 주입해야 합니다.
-      detail_data: {},
-      reviews: [], // 리뷰 목록을 저장할 배열
-      newReview: { // 새로운 리뷰를 추가하기 위한 객체
-        id: '', // 사용자 ID
-        score: 0, // 리뷰 점수
-        cont: '' // 리뷰 내용
+<script>
+  let booksDapp = Vue.createApp({
+    data() {
+      return {
+        no: ${no}, // 서버 사이드에서 no 값을 주입해야 합니다.
+        detail_data: {},
+        reviews: [], // 리뷰 목록을 저장할 배열
+        newReview: { // 새로운 리뷰를 추가하기 위한 객체
+          id: '', // 사용자 ID
+          score: 0, // 리뷰 점수
+          cont: '' // 리뷰 내용
+        },
+        selectedReview: null, // 수정 또는 삭제할 리뷰를 선택하기 위한 객체
+        quantity: 1, // 수량을 저장하는 변수
+        totalPrice: 0 // 총 가격을 저장하는 변수
+      };
+    },
+    mounted() {
+    	 this.dataRecv();
+    	 this.loadReviews();
+    	 this.calculateTotalPrice(); // 페이지가 로드될 때 totalPrice 초기화
+    	 
+    },
+    methods: {
+      // 데이터 받아오는 메소드
+      dataRecv() {
+        axios.get('../books/detail_vue.do', {
+          params: {
+            no: this.no
+          }
+        }).then(response => {
+          console.log(response.data);
+          this.detail_data = response.data; // 응답 받은 데이터를 detail_data에 저장
+          this.totalPrice = this.detail_data.price; // 초기 totalPrice를 가격으로 설정
+        });
       },
-      selectedReview: null, // 수정 또는 삭제할 리뷰를 선택하기 위한 객체
-    };
-  },
-  mounted() {
-    this.dataRecv();
-    this.loadReviews();
-  },
-  methods: {
-    dataRecv() {
-      axios.get('../books/detail_vue.do', {
-        params: {
-          no: this.no
+      // 리뷰 목록을 불러오는 메소드
+      loadReviews() {
+        axios.get('../books/review_list.do')
+          .then(response => {
+            this.reviews = response.data; // 응답 받은 리뷰 목록을 reviews에 저장
+          })
+          .catch(error => {
+            console.error('리뷰 목록 불러오기 오류: ', error);
+          });
+      },
+      // 리뷰를 추가하는 메소드
+      addReview() {
+        axios.post('../books/review_insert.do', this.newReview)
+          .then(response => {
+            if (response.data.result === 'OK') {
+              this.loadReviews(); // 리뷰 목록 다시 불러오기
+            }
+          })
+          .catch(error => {
+            console.error('리뷰 추가 오류: ', error);
+          });
+      },
+      // 리뷰를 수정하는 메소드
+      updateReview() {
+        axios.post('../books/review_update.do', this.selectedReview)
+          .then(response => {
+            if (response.data.result === 'OK') {
+              this.loadReviews(); // 리뷰 목록 다시 불러오기
+            }
+          })
+          .catch(error => {
+            console.error('리뷰 수정 오류: ', error);
+          });
+      },
+      // 리뷰를 삭제하는 메소드
+      deleteReview(rno) {
+        axios.get('../books/review_delete.do', { params: { rno: rno } })
+          .then(response => {
+            if (response.data.result === 'OK') {
+              this.loadReviews(); // 리뷰 목록 다시 불러오기
+            }
+          })
+          .catch(error => {
+            console.error('리뷰 삭제 오류: ', error);
+          });
+      },
+      // 수량을 증가시키는 메소드
+      increaseQuantity() {
+        this.quantity++;
+        this.calculateTotalPrice();
+      },
+      // 수량을 감소시키는 메소드
+      decreaseQuantity() {
+        if (this.quantity > 1) {
+          this.quantity--;
+          this.calculateTotalPrice();
         }
-      }).then(response => {
-        console.log(response.data);
-        this.detail_data = response.data; // 응답 받은 데이터를 detail_data에 저장
-      });
+      },
+      // 총 가격을 계산하는 메소드
+      calculateTotalPrice() {
+        this.totalPrice = this.quantity * this.detail_data.price;
+      }
     },
-    loadReviews() {
-      axios.get('../books/review_list.do')
-      .then(response => {
-        this.reviews = response.data; // 응답 받은 리뷰 목록을 reviews에 저장
-      })
-      .catch(error => {
-        console.error('리뷰 목록 불러오기 오류: ', error);
-      });
-    },
-    addReview() {
-      axios.post('../books/review_insert.do', this.newReview)
-      .then(response => {
-        if(response.data.result === 'OK') {
-          this.loadReviews(); // 리뷰 목록 다시 불러오기
-        }
-      })
-      .catch(error => {
-        console.error('리뷰 추가 오류: ', error);
-      });
-    },
-    updateReview() {
-      axios.post('../books/review_update.do', this.selectedReview)
-      .then(response => {
-        if(response.data.result === 'OK') {
-          this.loadReviews(); // 리뷰 목록 다시 불러오기
-        }
-      })
-      .catch(error => {
-        console.error('리뷰 수정 오류: ', error);
-      });
-    },
-    deleteReview(rno) {
-      axios.get('../books/review_delete.do', { params: { rno: rno } })
-      .then(response => {
-        if(response.data.result === 'OK') {
-          this.loadReviews(); // 리뷰 목록 다시 불러오기
-        }
-      })
-      .catch(error => {
-        console.error('리뷰 삭제 오류: ', error);
-      });
+    computed: {
+      // 가격을 한국 통화 형식으로 포맷팅하는 computed 속성
+      formattedPrice() {
+        return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
+      }
     }
-  },
-  computed: {
-    formattedPrice() {
-      return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
-    }
-  }
-}).mount('#books_detail');
+  }).mount('#books_detail');
 </script>
-    
+
     </body>
 </html>

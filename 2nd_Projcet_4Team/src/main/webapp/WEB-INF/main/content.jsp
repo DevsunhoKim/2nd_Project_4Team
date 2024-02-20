@@ -227,58 +227,22 @@
           </div>
           <div class="swiper contents-swiper">
             <div class="swiper-wrapper">
+              <c:forEach var="vo" items="${booksList }" >
               <div class="swiper-slide">
-                <a href="javascript:void(0);" class="cardset cardset-shopping">
+                
+                <a href="../books/detail.do?no=${ vo.no}" class="cardset cardset-shopping">
                   <figure class="cardset-figure">
-                    <img class="cardset-img" src="../images/img_basic_N42_1.png" alt="스와이퍼 이미지">
+                    <img class="cardset-img" src="${vo.poster }" alt="스와이퍼 이미지">
                   </figure>
                   <div class="cardset-body">
-                    <span class="cardset-name">장르 또는 관련 언어</span>
-                    <h4 class="cardset-tit"> 책 제목 </h4>
-                    <p class="cardset-desc">32,000<small>원</small>
+                    <span class="cardset-name">${vo.genre }</span>
+                    <h4 class="cardset-tit"> ${vo.title } </h4>
+                    <p class="cardset-desc"><small>${vo.price }원</small>
                     </p>
                   </div>
-                </a>
+                </a>               
               </div>
-              <div class="swiper-slide">
-                <a href="javascript:void(0);" class="cardset cardset-shopping">
-                  <figure class="cardset-figure">
-                    <img class="cardset-img" src="../images/img_basic_N42_2.png" alt="스와이퍼 이미지">
-                  </figure>
-                  <div class="cardset-body">
-                    <span class="cardset-name">장르 또는 관련 언어</span>
-                    <h4 class="cardset-tit"> 책 제목 </h4>
-                    <p class="cardset-desc">32,000<small>원</small>
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div class="swiper-slide">
-                <a href="javascript:void(0);" class="cardset cardset-shopping">
-                  <figure class="cardset-figure">
-                    <img class="cardset-img" src="../images/img_basic_N42_3.png" alt="스와이퍼 이미지">
-                  </figure>
-                  <div class="cardset-body">
-                    <span class="cardset-name">장르 또는 관련 언어</span>
-                    <h4 class="cardset-tit"> 책 제목 </h4>
-                    <p class="cardset-desc">32,000<small>원</small>
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div class="swiper-slide">
-                <a href="javascript:void(0);" class="cardset cardset-shopping">
-                  <figure class="cardset-figure">
-                    <img class="cardset-img" src="../images/img_basic_N42_4.png" alt="스와이퍼 이미지">
-                  </figure>
-                  <div class="cardset-body">
-                    <span class="cardset-name">장르 또는 관련 언어</span>
-                    <h4 class="cardset-tit"> 책 제목 </h4>
-                    <p class="cardset-desc">32,000<small>원</small>
-                    </p>
-                  </div>
-                </a>
-              </div>
+               </c:forEach>
             </div>
           </div>
           <div class="swiper-button-prev"></div>

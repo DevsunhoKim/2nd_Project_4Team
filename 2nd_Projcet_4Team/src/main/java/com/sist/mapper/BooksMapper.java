@@ -8,10 +8,10 @@ import com.sist.vo.BooksVO;
 
 public interface BooksMapper {
       // 메인페이지 출력물
-	 @Select("SELECT no,title,poster,genre,price FROM books "
-			+"ORDER BY buy_cnt DESC "
-			+"WHERE rownum >= 10")
-	 public List<BooksVO> mainBooks();
+	@Select("SELECT no, title, poster, genre, price FROM books "
+			+"WHERE rownum <= 10 "
+			+"ORDER BY buy_cnt DESC")
+			public List<BooksVO> mainBooks();
 	  
 	  // 메인 리스트
 	 @Select("<script>"

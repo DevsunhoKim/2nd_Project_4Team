@@ -2,20 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="imagetoolbar" content="no">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="title" content="웹사이트">
-  <meta name="description" content="웹사이트입니다.">
-  <meta name="keywords" content="키워드,키워드,키워드">
-  <meta property="og:title" content="웹사이트">
-  <meta property="og:description" content="웹사이트입니다">
-  <!DOCTYPE html>
-  <html lang="en">
-
   <head>
     <meta charset="UTF-8">
    
@@ -169,6 +155,7 @@
     .hooms-N31 .cardset {
       width: 100%;
       padding: 0;
+      
     }
 
     .hooms-N31 .cardset+.cardset {
@@ -227,12 +214,19 @@
       height: 3.2rem;
     }
   }
+  
+  a.cardset:hover {
+  border: 2px solid #000; 
+  border-radius: 5px;
+}
+  
 
   @media (max-width: 768px) {
     .hooms-N31 .cardset .cardset-figure {
       height: 12rem;
     }
   }
+  
 
   /* END: Add your custom styles here */
   </style>
@@ -263,8 +257,8 @@
 					    <span>최근 출간 순</span>
 					  </a>
 					</li>
-
-              </ul>
+				  </ul>
+				  
             </div>
             <div class="contents-search">
               <p class="contents-result">
@@ -296,7 +290,7 @@
             </div>
           </div>
         </div>
-        <nav class="pagiset pagiset-line">
+        <nav class="pagiset pagiset-line" style="margin-bottom: 3rem">
           <div class="pagiset-ctrl">
             <!-- 처음 페이지로 이동 -->
             <a class="pagiset-link pagiset-first" href="javascript:void(0)" @click="pageChange(1)">
@@ -366,11 +360,24 @@
         }).catch(error => {
           console.error("Error: ", error);
         });
+        
+        axios.get('../books/page_vue.do',{
+			  params:{
+				  page:this.curpage
+			  }
+		  }).then(response=>{
+			  console.log(response.data)
+			  this.curpage=response.data.curpage
+			  this.totalpages=response.data.totalpage
+			  this.startPage=response.data.startPage
+			  this.endPage=response.data.endPage
+		  })
       },
       pageChange(page) {
         this.curpage = page; // 페이지 변경
         this.searchBooks(); // 변경된 페이지로 책 목록 새로고침
       },
+      
       // 페이지 범위를 계산하는 메소드
       range(start, end) {
         let arr = [];

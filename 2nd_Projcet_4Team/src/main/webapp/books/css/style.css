@@ -54,7 +54,7 @@
     position: relative;
 }
 .hooms-N40 .contents-left { align-self: flex-start; width: calc(50% + 9rem); }
-.hooms-N40 .contents-thumbnail { width: 100%; height: 60rem; }
+.hooms-N40 .contents-thumbnail { width: 125%; height: 60rem; }
 .hooms-N40 .contents-thumbnail img { width: 66%; height: 100%; object-fit: cover; }
 .hooms-N40 .contents-thumblist { display: flex; align-items: center; margin-top: 2.4rem; }
 .hooms-N40 .contents-thumbitem { width: calc(100% / 5); height: 13rem; }
@@ -104,8 +104,6 @@
 .hooms-N41 .cardset.cardset-hor .cardset-figure { width: 40rem; height: 20rem; }
 .hooms-N41 .contents-info { display: flex; align-items: center; justify-content: space-between; }
 .hooms-N41 .contents-ico-list { display: flex; align-items: center; }
-.hooms-N41 .contents-ico-item { width: 2.4rem; height: 2.4rem; background: var(--white) url("../../resources/icons/ico_star.svg") no-repeat center/cover; }
-.hooms-N41 .contents-ico-item.ico-item-active { background: var(--white) url("../../resources/icons/ico_star_full.svg") no-repeat center/cover; }
 .hooms-N41 .contents-ico-item+.contents-ico-item { margin-left: 0.2rem; }
 .hooms-N41 .contents-name { font-size: var(--fs-p1); font-weight: 400; color: var(--text-color3); }
 .hooms-N41 .contents-date { margin-left: 0.8rem; }
