@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,38 +12,24 @@
 <link rel="stylesheet" href="../mentoring/css/style.css">
 <link rel="stylesheet" href="../css/common.css">
 <style type="text/css">
-/* .cardset {
-  display: inline-block;
-  width: calc(33.33% - 23px); 
-  margin-right: 20px; 
-  margin-bottom: 20px; 
-  vertical-align: top;
-} */
-
-/* @media (max-width: 768px) {
-  .cardset {
-    width: calc(50% - 20px);
-  }
-} */
-
-/* .col-md-4 {
-  width: 70%;
-  margin: 60px auto; 
+.contents-top a{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #7918F2;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
 }
- */
-/* .contents-container {
-  width: 50%; 
-  margin: 0 auto;
-  text-align: center; 
-} */
-/* .glamping-N9 .contents-inner {
-    padding: 8rem 2.4rem 0rem 2.4rem;
-} */
-
-  </style>
+</style>
 </head>
 <body>
-<div class="glamping-N9" data-bid="AqLsk0m3p5">
+<div class="glamping-N9" data-bid="AqLsk0m3p5" id="mentorList">
   <div class="contents-inner">
     <div class="contents-container container-md">
 	    <div class="contents-top">
@@ -50,33 +37,31 @@
 	        <h2 class="textset-tit">CODEV만의 멘토진</h2>
 	        <p class="textset-desc">실력과 경험을 모두 갖춘 CODEV의 멘토를 만나보세요.</p>
 	      </div>
-	
+		  <c:if test="${sessionScope.userId!=null }">
+		  	<a href="../mentoring/mentor_enrollment.do" class="cardset-btn">멘토등록하기</a>
+		  </c:if>
 		  <!-- 검색 -->
 		  <div class="inputset inputset-lg">
 		      <div class="selectset selectset-round selectset-lg">
 		        <button class="selectset-toggle btn" type="button">
-		          <span>전체</span>
+		          <span style="color: gray">선택해주세요</span>
 		        </button>
 		        <ul class="selectset-list">
 		          <li class="selectset-item">
-		            <button class="selectset-link btn" type="button" data-value="전체">
-		              <span>전체</span>
-		            </button>
-		          </li>
-		          <li class="selectset-item">
-		            <button class="selectset-link btn" type="button" data-value="멘토명">
+		            <button class="selectset-link btn" type="button" data-value="멘토명" v-on:click="ss = 'nickname'">
 		              <span>멘토명</span>
 		            </button>
 		          </li>
 		          <li class="selectset-item">
-		            <button class="selectset-link btn" type="button" data-value="멘토링 제목">
+		            <button class="selectset-link btn" type="button" data-value="멘토링 제목" v-on:click="ss = 'title'">
 		              <span>멘토링 제목</span>
 		            </button>
 		          </li>
 		        </ul>
 		      </div>
 		    <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="icon"></button>
-		    <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해 주세요." aria-label="Content">
+		    <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해 주세요." 
+			  ref="fd" v-model="fd" @keyup.enter="dataRecv()">
 		  </div>
 	  </div>
 	  
@@ -320,4 +305,66 @@
   </div>
 </div>
 </body>
+  <script>
+    let mentorList=Vue.createApp({
+    	data(){
+    		return {
+    			mentor_list:[],
+    			fd:'',
+    			ss:'',
+    			curpage:1,
+    			totalpage:0,
+    			startPage:0,
+    			endPage:0,
+    			page_list:{}
+    		}
+    	},
+    	mounted(){
+    		this.dataRecv()
+    	},
+    	components:{
+    		"pagination":pagination
+    	},
+    	methods:{
+    		dataRecv(){
+    			axios.get('../mentoring/find_vue.do',{
+  				  params:{
+  					  page:this.curpage,
+  					  ss:this.ss,
+  					  fd:this.fd
+  				  }
+  			  }).then(response=>{
+  				  console.log(response)
+  				  this.mentor_list=response.data
+  			  })
+ 			   
+ 			   axios.get('../mentoring/page_vue.do',{
+ 				   params:{
+ 					   page:this.curpage
+ 				   }
+ 			   }).then(response=>{
+ 				   console.log(response.data)
+ 				   this.page_list=response.data
+ 				   this.curpage=response.data.curpage
+ 				   this.totalpage=response.data.totalpage
+ 				   this.startPage=response.data.startPage
+ 				   this.endPage=response.data.endPage
+ 			   })
+    		},
+    		prev(){
+    			this.curpage=this.startPage-1
+    			this.dataRecv()
+    		},
+    		next(){
+    			this.curpage=this.endPage+1
+    			this.dataRecv()
+    		},
+    		pageChange(page){
+    			this.curpage=page
+    			this.dataRecv()
+    		}
+    	}
+    })
+    app.mount("#mentorList")
+  </script>
 </html>
