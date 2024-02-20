@@ -93,13 +93,13 @@
 		  login(){
 			  if(this.id==='')
 			  {
-				  alert("ID를 입력하세요!!")
+				  alert("ID를 입력하세요.")
 				  this.$refs.id.focus()
 				  return
 			  }
 			  if(this.pwd==='')
 			  {
-				  alert("비밀번호를 입력하세요!!")
+				  alert("비밀번호를 입력하세요.")
 				  this.$refs.pwd.focus()
 				  return
 			  }
@@ -116,7 +116,7 @@
 				  // NOID , NOPWD , OK 
 				  if(response.data==='NOID')
 				  {
-					  alert("ID가 존재하지 않습니다")
+					  alert("ID가 존재하지 않습니다.")
 					  this.id=''
 					  this.pwd=''
 					  this.ck=false
@@ -124,7 +124,7 @@
 				  }
 				  else if(response.data==='NOPWD')
 				  {
-					  alert("비밀번호가 틀립니다!!")
+					  alert("비밀번호가 틀립니다. 다시 입력해주세요.")
 					  this.pwd=''
 					  this.$refs.pwd.focus()
 				  }
