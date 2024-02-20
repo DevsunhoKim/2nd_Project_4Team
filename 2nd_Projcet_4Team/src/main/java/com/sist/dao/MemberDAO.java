@@ -22,7 +22,7 @@ public class MemberDAO {
     public MemberVO getMemberByID(String userId){
         return mapper.getMemberByID(userId);
     }
-    
+
     public int getIDCount(String userId){
         return mapper.getIDCount(userId);
     }
@@ -38,7 +38,7 @@ public class MemberDAO {
     public void memberAuthorityInsert(String userId) {
     	mapper.memberAuthorityInsert(userId);
     }
-	
+
 	public MemberVO login(String userId,String userPwd) {
 		MemberVO dbVO=new MemberVO();
 		   int count=mapper.getIDCount(userId);
@@ -60,7 +60,7 @@ public class MemberDAO {
 		   }
 		   return dbVO;
 	}
-	   
+
     public int updateMember(MemberVO vo){
         return mapper.updateMember(vo);
     }

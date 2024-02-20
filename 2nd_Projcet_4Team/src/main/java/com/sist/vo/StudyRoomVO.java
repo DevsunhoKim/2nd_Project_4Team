@@ -1,7 +1,5 @@
 package com.sist.vo;
 
-import java.util.Arrays;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 

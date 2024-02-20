@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sist.dao.StudyRoomReserveDAO;
 import com.sist.service.StudyRoomServiceImpl;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;

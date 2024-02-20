@@ -19,21 +19,21 @@ import com.sist.vo.RecruitVO;
 public class RecruitmentRestController {
 	@Autowired
 	private RecruitmentService service;
-	
+
 	// 목록 출력
 	@GetMapping(value="recruit_list_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_list_vue(int page) throws Exception {
 		int rowSize=12;
 		int start=(rowSize*page)-(rowSize-1);
 		int end=rowSize*page;
-		
+
 		List<RecruitVO> list=service.recruitListData(start, end);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
-		
+
 		return json;
 	}
-	
+
 	// 페이지
 	@GetMapping(value="recruit_page_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_page_vue(int page) throws Exception {
@@ -44,30 +44,30 @@ public class RecruitmentRestController {
 		if(endPage>totalpage) {
 			endPage=totalpage;
 		}
-		Map map=new HashMap();   
+		Map map=new HashMap();
 		map.put("curpage", page);
 		map.put("totalpage", totalpage);
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
-   
+
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
-		
+
 		return json;
 	}
-	
+
 	// 채용 공고 상세 페이지
 	@GetMapping(value="recruit_detail_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_detail_vue(int no, int cno) throws Exception {
 		RecruitVO rvo=service.recuitDetailData(no);
 		CompanyVO cvo=service.companyDetailData(cno);
-		
+
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
 		ObjectMapper mapper=new ObjectMapper();
 	  String json=mapper.writeValueAsString(map);
-	   
+
 	  return json;
 	}
 }

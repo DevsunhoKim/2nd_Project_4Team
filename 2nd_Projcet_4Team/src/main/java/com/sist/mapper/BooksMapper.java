@@ -3,7 +3,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.BooksVO;
 
@@ -13,7 +12,7 @@ public interface BooksMapper {
 			+"WHERE rownum <= 10 "
 			+"ORDER BY buy_cnt DESC")
 			public List<BooksVO> mainBooks();
-	  
+
 	  // 메인 리스트
 	 @Select("<script>"
 			    + "SELECT no, title, poster, author, num "
@@ -46,13 +45,13 @@ public interface BooksMapper {
 	  // 메인 리스트 페이지 관련
 	  @Select("SELECT CEIL(COUNT(*)/12.0) FROM books")
 	  public int booksTotalPage();
-	  
+
 	  //상세보기
 	  @Select("SELECT no,title,poster,publ,author,content,price,score,buy_cnt,heart,jjim,keyword,genre,b_date "
 			  +"FROM books WHERE no=#{no}")
 	  public BooksVO booksDetailData(int no);
-	  
-	 
+
+
 
 	  // 리스트 검색
 	  @Select("SELECT * FROM books " +

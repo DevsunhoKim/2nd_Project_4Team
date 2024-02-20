@@ -17,19 +17,19 @@ import com.sist.vo.MemberVO;
 public class MemberRestController {
 	@Autowired
 	private MemberService mService;
-	
+
 	 @GetMapping(value="idcheck_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String member_idcheck(String userId) {
 		 int count = mService.getIDCount(userId);
 		 return String.valueOf(count);
 	 }
-	 
+
 	 @GetMapping(value="nicknamecheck_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String member_nicknamecheck(String nickname) {
 		 int count = mService.getNicknameCount(nickname);
 		 return String.valueOf(count);
 	 }
-	 
+
 	 @GetMapping(value="login_ok_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String member_login_ok(String userId,String userPwd,boolean ck,
 			 HttpSession session,HttpServletResponse response)
@@ -41,7 +41,7 @@ public class MemberRestController {
 			  session.setAttribute("enabled", vo.getEnabled());
 			  session.setAttribute("authority", vo.getAuthority());
 			  session.setAttribute("userName", vo.getUserName());
-			  if(ck==true)
+			  if(ck)
 			  {
 				  Cookie cookie=new Cookie("userId", vo.getUserId());
 				  cookie.setPath("/");

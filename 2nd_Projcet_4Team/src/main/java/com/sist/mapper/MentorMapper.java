@@ -29,12 +29,12 @@ public interface MentorMapper {
     		+ "#{title}, "
     		+ "#{intro})")
     public void enrollMentor(MentorVO vo); // 멘토 등록
-    
+
     @Update("UPDATE member "
     		+ "SET mentor = 1 "
     		+ "WHERE userId = #{userId}")
 	public void updateMentorById(String userId); // 회원에 멘토컬럼 활성화
-	
+
     @Update("UPDATE Mentor SET " +
                 "USER_NAME=#{user_name}," +
                 "NICKNAME=#{nickname}," +

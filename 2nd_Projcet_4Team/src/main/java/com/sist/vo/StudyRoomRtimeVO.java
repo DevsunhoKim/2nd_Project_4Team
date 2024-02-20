@@ -2,7 +2,7 @@ package com.sist.vo;
 
 import lombok.Data;
 /*
- * 
+ *
  *  no NUMBER,
     rno NUMBER,
     time VARCHAR2(50)

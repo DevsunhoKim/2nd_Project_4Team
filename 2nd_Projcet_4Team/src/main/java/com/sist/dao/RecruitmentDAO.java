@@ -13,25 +13,25 @@ import com.sist.vo.RecruitVO;
 public class RecruitmentDAO {
 	@Autowired
 	private RecruitmentMapper mapper;
-	
+
 	// 목록 출력
 	public List<RecruitVO> recruitListData(int start, int end) {
 		return mapper.recruitListData(start, end);
 	}
-	
+
 	// 총 페이지
 	public int recruitTotalPage() {
 		return mapper.recruitTotalPage();
 	}
-	
+
 	// 1. 채용 공고 정보
 	public RecruitVO recuitDetailData(int no) {
 		return mapper.recuitDetailData(no);
 	}
-	
+
 	// 2. 기업 정보
 	public CompanyVO companyDetailData(int no) {
 		return mapper.companyDetailData(no);
 	}
-	
+
 }

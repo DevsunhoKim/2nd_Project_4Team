@@ -33,10 +33,10 @@ public interface MemberMapper {
             "#{hope_job}," +
             "SYSDATE)")
     public int joinMember(MemberVO vo); // 회원가입
-    
+
     @Insert("insert into authority values(#{userId},'ROLE_USER')")
 	public void memberAuthorityInsert(String userId); // 회원 권한부여
-	
+
 	@Select("SELECT m.userId,userName,userPwd,enabled,authority "
 			  +"FROM Member m,Authority a "
 			  +"WHERE m.userId=a.userId "

@@ -15,12 +15,12 @@ import com.sist.vo.MentorVO;
 @RestController
 public class MentorRestController {
 	private MentorService mService;
-    
+
     @Autowired
     public MentorRestController(MentorService mService) {
     	this.mService = mService;
     }
-    
+
 	@GetMapping(value="find_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String food_find(int page,String fd) throws Exception
 	   {
@@ -37,7 +37,7 @@ public class MentorRestController {
 		   String json=mapper.writeValueAsString(list);
 		   return json;
 	   }
-	   
+
 	   @GetMapping(value="page_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String food_page(int page,String fd) throws Exception
 	   {
@@ -49,13 +49,13 @@ public class MentorRestController {
 		   int totalpage=mService.foodFindCount(map);
 		   if(endPage>totalpage)
 			   endPage=totalpage;
-		   
+
 		   map=new HashMap();
 		   map.put("curpage",page);
 		   map.put("totalpage", totalpage);
 		   map.put("startPage", startPage);
 		   map.put("endPage", endPage);
-		   
+
 		   ObjectMapper mapper=new ObjectMapper();
 		   String json=mapper.writeValueAsString(map);
 		   return json;

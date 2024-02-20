@@ -1,7 +1,6 @@
 package com.sist.dao;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,13 +26,13 @@ public class BooksDAO {
 	{
 		return mapper.booksTotalPage();
 	}
-	
+
 	public BooksVO booksDetailData(int no) {
-	   
-	   
+
+
 	    return mapper.booksDetailData(no);
 	}
-		
+
 	public List<BooksVO> searchBooks(String ss)
 	{
 		return mapper.searchBooks(ss);

@@ -290,21 +290,13 @@ body{ margin: 20px; }
     data() {
       return {
         no: ${no}, // 서버 사이드에서 no 값을 주입해야 합니다.
-        detail_data: {},
-        reviews: [], // 리뷰 목록을 저장할 배열
-        newReview: { // 새로운 리뷰를 추가하기 위한 객체
-          id: '', // 사용자 ID
-          score: 0, // 리뷰 점수
-          cont: '' // 리뷰 내용
-        },
-        selectedReview: null, // 수정 또는 삭제할 리뷰를 선택하기 위한 객체
+        detail_data: {}, // 리뷰 목록을 저장할 배열
         quantity: 1, // 수량을 저장하는 변수
         totalPrice: 0 // 총 가격을 저장하는 변수
       };
     },
     mounted() {
     	 this.dataRecv();
-    	 this.loadReviews();
     	 this.calculateTotalPrice(); // 페이지가 로드될 때 totalPrice 초기화
     	 
     },
@@ -320,52 +312,6 @@ body{ margin: 20px; }
           this.detail_data = response.data; // 응답 받은 데이터를 detail_data에 저장
           this.totalPrice = this.detail_data.price; // 초기 totalPrice를 가격으로 설정
         });
-      },
-      // 리뷰 목록을 불러오는 메소드
-      loadReviews() {
-        axios.get('../books/review_list.do')
-          .then(response => {
-            this.reviews = response.data; // 응답 받은 리뷰 목록을 reviews에 저장
-          })
-          .catch(error => {
-            console.error('리뷰 목록 불러오기 오류: ', error);
-          });
-      },
-      // 리뷰를 추가하는 메소드
-      addReview() {
-        axios.post('../books/review_insert.do', this.newReview)
-          .then(response => {
-            if (response.data.result === 'OK') {
-              this.loadReviews(); // 리뷰 목록 다시 불러오기
-            }
-          })
-          .catch(error => {
-            console.error('리뷰 추가 오류: ', error);
-          });
-      },
-      // 리뷰를 수정하는 메소드
-      updateReview() {
-        axios.post('../books/review_update.do', this.selectedReview)
-          .then(response => {
-            if (response.data.result === 'OK') {
-              this.loadReviews(); // 리뷰 목록 다시 불러오기
-            }
-          })
-          .catch(error => {
-            console.error('리뷰 수정 오류: ', error);
-          });
-      },
-      // 리뷰를 삭제하는 메소드
-      deleteReview(rno) {
-        axios.get('../books/review_delete.do', { params: { rno: rno } })
-          .then(response => {
-            if (response.data.result === 'OK') {
-              this.loadReviews(); // 리뷰 목록 다시 불러오기
-            }
-          })
-          .catch(error => {
-            console.error('리뷰 삭제 오류: ', error);
-          });
       },
       // 수량을 증가시키는 메소드
       increaseQuantity() {
