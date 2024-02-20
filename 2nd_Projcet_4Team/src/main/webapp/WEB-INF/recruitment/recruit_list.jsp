@@ -118,8 +118,8 @@
           </div>
 
           <div class="col-group">
-            <div class="item cardset cardset-border" v-for="vo in recruit_list" :key="vo.no">
-              <a href="#" class="company-info">
+            <div class="item cardset cardset-border" v-for="vo in recruit_list">
+              <a :href="'recruit_detail.do?no='+vo.no+'&cno='+vo.cno" class="company-info">
                 <figure class="company-logo">
                   <img class="width-100" :src="vo.cvo.logo" alt="기업 로고">
                 </figure>

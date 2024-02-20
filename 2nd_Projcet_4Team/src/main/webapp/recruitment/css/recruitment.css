@@ -224,7 +224,7 @@
   font-size: 1.4rem;
   white-space: nowrap;
 }
-#recruitmentDetail .recruit-stack-list li .recruit-stack-icon{display: inline-block; max-width: 1.6rem; margin-right: 1rem;}
+#recruitmentDetail .recruit-stack-list li .recruit-stack-icon{display: inline-block; max-width: 1.6rem; margin: 0 1rem 0 0;}
 #recruitmentDetail .recruit-detail-info{
   margin: 2rem 0;
   padding: 2rem 0;

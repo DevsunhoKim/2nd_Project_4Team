@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sist.dao.RecruitmentDAO;
+import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
 @Service
@@ -26,6 +27,18 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	public int recruitTotalPage() {
 		// TODO Auto-generated method stub
 		return rDao.recruitTotalPage();
+	}
+
+	@Override
+	public RecruitVO recuitDetailData(int no) {
+		// TODO Auto-generated method stub
+		return rDao.recuitDetailData(no);
+	}
+
+	@Override
+	public CompanyVO companyDetailData(int no) {
+		// TODO Auto-generated method stub
+		return rDao.companyDetailData(no);
 	}
 
 }

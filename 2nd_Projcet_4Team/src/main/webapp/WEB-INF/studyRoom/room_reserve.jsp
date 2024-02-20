@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="../studyRoom/css/plugin.css">
 <link rel="stylesheet" href="../studyRoom/css/common.css">
 <link rel="stylesheet" href="../studyRoom/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
 <script src="https://unpkg.com/vue@3"></script>
@@ -46,7 +47,7 @@ $(document).ready(function() {
 			<div class="contents-inner">
 				<div class="contents-container container-md contents-bottom">
 					<div class="textset">
-						<h2 class="textset-tit">Reservation</h2>
+						<h2 class="textset-tit">{{reserve_data.name}}</h2><span class="ye">&nbsp;예약</span>
 					</div>
 				</div>
 			</div>
@@ -76,9 +77,9 @@ $(document).ready(function() {
 															<img src="../studyRoom/icons/ico_calendar_black.svg"
 																alt="달력 아이콘">
 														</figure>
-														<span>예약 날짜</span>
+														<span class="info-subtitle">예약 날짜</span>
 													</div>
-													<p class="content-text">2023.01.09 월</p>
+													<p class="content-text">2023.01.09</p>
 												</div>
 												
 												<div class="contents-item content-mobile-group">
@@ -87,7 +88,7 @@ $(document).ready(function() {
 															<img src="../studyRoom/icons/ico_adult_black.svg"
 																alt="성인 아이콘">
 														</figure>
-														<span>예약 인원</span>
+														<span class="info-subtitle">예약 인원</span>
 													</div>
 													<p class="content-text">3명</p>
 												</div>
@@ -97,7 +98,7 @@ $(document).ready(function() {
 															<img src="../studyRoom/icons/ico_pet_black.svg"
 																alt="펫 아이콘">
 														</figure>
-														<span>예약 시간</span>
+														<span class="info-subtitle">예약 시간</span>
 													</div>
 													<p class="content-text">동행</p>
 												</div>
@@ -114,32 +115,17 @@ $(document).ready(function() {
 											</div>
 											
 										</div>
-										<div class="contents-bottom">
-											<span>글램핑 정보</span> <strong>템하, 반나절 글램핑</strong>
-										</div>
+										
 									</div>
 								</div>
 							</div>
-							<div class="contents-bottom">
-					            <h2 class="contents-tit">개인정보 수집 동의</h2>
-					            <div class="checkset checkset-sm">
-					              <input id="chk-1-1" class="checkset-input input-round" type="checkbox" value="">
-					              <label class="checkset-label" for="chk-1-1"></label>
-					              <span class="checkset-text">전체동의</span>
-					            </div>
-					            <div class="checkset checkset-sm">
-					              <input id="chk-1-2" class="checkset-input input-round" type="checkbox" value="">
-					              <label class="checkset-label" for="chk-1-2"></label>
-					              <span class="checkset-text">(필수) 개인정보 수집항목 및 이용 동의</span>
-					            </div>
-					            <div class="checkset checkset-sm">
-					              <input id="chk-1-3" class="checkset-input input-round" type="checkbox" value="">
-					              <label class="checkset-label" for="chk-1-3"></label>
-					              <span class="checkset-text">(필수) 예약변경 및 취소 규정 동의</span>
-					            </div>
-					          </div>
+							<div class="contents-bottom title">
+							        <span class="room-title">총 결제 금액</span>
+							        <span><span class="p">100,000</span><span style="font-size: 3rem;">원</span></span>
+							</div>
 						</div>
 			      </div>
+			      <div class="content-bottoms">
 					<div class="contents-bottom inwon">
 						<h2 class="contents-tit">인원선택</h2>
 						<ul class="contents-list">
@@ -158,30 +144,52 @@ $(document).ready(function() {
 									</button>
 								</div>
 							</li>
-
-							<li class="contents-item">
-								<p class="contents-label">시간 선택</p>
-								<div class="selectset selectset-round selectset-md">
-									<button class="selectset-toggle btn" type="button">
-										<span>동행</span>
-									</button>
-									<ul class="selectset-list">
-										<li class="selectset-item">
-											<button class="selectset-link btn" type="button"
-												data-value="동행">
-												<span>동행</span>
-											</button>
-										</li>
-										<li class="selectset-item">
-											<button class="selectset-link btn" type="button"
-												data-value="미동행">
-												<span>미동행</span>
-											</button>
-										</li>
-									</ul>
-								</div>
-							</li>
 						</ul>
+					</div>
+					<div class="contents-bottom range">
+						<h2 class="contents-tit">기간 선택</h2>
+						<section>
+					        <div class="tile">
+					            <input type="checkbox" name="sports" id="sport1">
+					            <label for="sport1">
+					                
+					                <h6>Basketball</h6>
+					            </label>
+					        </div>
+					        <div class="tile">
+					            <input type="checkbox" name="sports" id="sport2">
+					            <label for="sport2">
+					                
+					                <h6>Swimming</h6>
+					            </label>
+					        </div>
+					        <div class="tile">
+					            <input type="checkbox" name="sports" id="sport3">
+					            <label for="sport3">
+					                
+					                <h6>Quidditch</h6>
+					            </label>
+					        </div>
+					    </section>
+					</div>
+					<div class="contents-bottom">
+					            <h2 class="contents-tit">개인정보 수집 동의</h2>
+					            <div class="checkset checkset-sm">
+					              <input id="chk-1-1" class="checkset-input input-round" type="checkbox" value="">
+					              <label class="checkset-label" for="chk-1-1"></label>
+					              <span class="checkset-text">전체동의</span>
+					            </div>
+					            <div class="checkset checkset-sm">
+					              <input id="chk-1-2" class="checkset-input input-round" type="checkbox" value="">
+					              <label class="checkset-label" for="chk-1-2"></label>
+					              <span class="checkset-text">(필수) 개인정보 수집항목 및 이용 동의</span>
+					            </div>
+					            <div class="checkset checkset-sm">
+					              <input id="chk-1-3" class="checkset-input input-round" type="checkbox" value="">
+					              <label class="checkset-label" for="chk-1-3"></label>
+					              <span class="checkset-text">(필수) 예약변경 및 취소 규정 동의</span>
+					            </div>
+					          </div>
 					</div>
 					<div class="order">
 					<button class="btnset btnset-round" type="button"
@@ -196,7 +204,10 @@ $(document).ready(function() {
 	  data(){
 		  return {
 			  no:${no},
-			  reserve_data:{}
+			  reserve_data:{},
+			  time_data:{},
+			  month:2,
+			  day:0
 		  }
 	  },
 	  mounted(){
@@ -206,13 +217,16 @@ $(document).ready(function() {
 			  }
 		  }).then(response=>{
 			  console.log(response.data)
-			  this.reserve_data=response.data
+			  this.reserve_data=response.data.reserve_data
+			  this.time_data=response.data.list
+			  let date=$('.first-date-selected').text();
+			  this.day=date
 		  })
 	  },
 	  methods:{
 		  date_click(){
 			  let date=$('.first-date-selected').text();
-			  alert(date)
+			  alert(this.day)
 		  }
 	  }
   }).mount('.room_reserve')

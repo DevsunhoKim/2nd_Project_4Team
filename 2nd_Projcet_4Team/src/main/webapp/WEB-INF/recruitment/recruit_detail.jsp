@@ -11,26 +11,28 @@
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
 <script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>s
+<script src="../js/plugin.js"></script>
 <script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
 <script src="../recruitment/js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
   <section id="recruitmentDetail" class="th-layout-sub">
-    <div class="content-container">
+    <div class="content-container" id="recruitmentDetailApp">
       <div class="container-md">
         <div class="content-desc">
           <div class="recruit-top">
             <div class="recruit-info">
               <a href="#" class="company-info">
                 <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
+                  <img class="width-100" :src="company_detail.logo" alt="기업 로고">
                 </figure>
-                <h3 class="company-name">㈜우아한형제들</h3>
+                <h3 class="company-name">{{company_detail.name}}</h3>
               </a>
-              <h2 class="recruit-tit">각 부문별 경력/신입 인재영입</h2>
+              <h2 class="recruit-tit">{{recruit_detail.title}}</h2>
             </div>
             <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn">지원하기</button>
           </div>
@@ -39,7 +41,7 @@
         <div class="recruit-detail">
           <div class="recruit-btn-wrapper">
             <button type="button" id="recruitLikeBtn" class="recruit-btn">
-              <span class="recruit-like-count">1024</span>
+              <span class="recruit-like-count">{{recruit_detail.like_count}}</span>
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
               </figure>
@@ -63,14 +65,14 @@
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력 조건">
               </figure>
-              <span class="emph">경력 조건</span>
+              <span class="emph">{{recruit_detail.career}}</span>
             </li>
             <li>
               <h4>학력 조건</h4>
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/763/763279.png" alt="학력 조건">
               </figure>
-              <span class="emph">학력 조건</span>
+              <span class="emph">{{recruit_detail.education}}</span>
             </li>
           </ul>
           <div class="recruit-stack">
@@ -130,7 +132,7 @@
                 <span class="recruit-icon">
                   <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/8895/8895471.png" alt="마감일">
                 </span>
-                2024-02-29
+                {{recruit_detail.end_date}}
               </p>
             </div>
           </div>
@@ -141,7 +143,7 @@
               <figure class="company-logo">
                 <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
               </figure>
-              <h4 class="company-name">㈜우아한형제들</h4>
+              <h4 class="company-name"></h4>
             </a>
             <button type="button" id="companyLikeBtn" class="recruit-btn">
               <figure class="recruit-icon">
@@ -160,7 +162,7 @@
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/107/107778.png" alt="전화번호">
               </figure>
-              <span class="company-phone">02-1234-5678</span>
+              <span class="company-phone">{{recruit_detail.phone}}</span>
             </li>
             <li>
               <figure class="recruit-icon">
@@ -194,12 +196,41 @@
             <span class="recruit-icon">
               <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/2948/2948111.png" alt="기업 주소">
             </span>
-            서울 송파구 위례성대로 2 (방이동) 우아한형제들
+            {{company_detail.address}}
           </p>
         </div>
         <button type="button" id="recruitApplyBtnBottom" class="recruit-btn recruit-apply-btn">지원하기</button>
       </div>
     </div>
   </section>
+<script>
+let recruitmentDetailApp=Vue.createApp({
+	data(){
+		return{
+			recruit_detail:[],
+			company_detail:[],
+			no:${no},
+			cno:${cno}
+		}
+	},
+	mounted(){
+		axios.get('../recruitment/recruit_detail_vue.do', {
+			params:{
+				no:this.no,
+				cno:this.cno
+			}
+		}).then(response=>{
+			console.log(response.data)
+			this.recruit_detail=response.data.rvo
+			this.company_detail=response.data.cvo
+		})
+	},
+	methods:{
+		goback(){
+      location.href="../recruitment/reruit_list_vue.do"
+    }
+	}
+}).mount('#recruitmentDetailApp')
+</script>
 </body>
 </html>
