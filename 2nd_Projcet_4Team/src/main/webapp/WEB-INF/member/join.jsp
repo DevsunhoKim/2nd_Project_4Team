@@ -59,6 +59,8 @@
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
 </head>
 <body>
 <div class="glamping-N47" data-bid="iTlmG5UP9e" id="memberApp">
@@ -130,22 +132,22 @@
                 </div>
               </div>
             </div>
-      <div class="form-wrap">
-        <h6 class="form-tit">성별 <span>*</span>
-        </h6>
-        <div class="radioset-wrap">
-          <div class="radioset">
-            <input id="radioset-a-1" value="남자" v-model=gender name=gender class="radioset-input input-line" type="radio" checked="">
-            <label class="radioset-label" for="radioset-a-1"></label>
-            <span class="radioset-text">남자</span>
-          </div>
-          <div class="radioset">
-            <input id="radioset-a-2" value="여자" v-model=gender name=gender class="radioset-input input-line" type="radio">
-            <label class="radioset-label" for="radioset-a-2"></label>
-            <span class="radioset-text">여자</span>
-          </div>
-        </div>
-      </div>            
+		      <div class="form-wrap">
+		        <h6 class="form-tit">성별 <span>*</span>
+		        </h6>
+		        <div class="radioset-wrap">
+		          <div class="radioset">
+		            <input id="radioset-a-1" value="남자" v-model=gender name=gender class="radioset-input input-line" type="radio" checked="">
+		            <label class="radioset-label" for="radioset-a-1"></label>
+		            <span class="radioset-text">남자</span>
+		          </div>
+		          <div class="radioset">
+		            <input id="radioset-a-2" value="여자" v-model=gender name=gender class="radioset-input input-line" type="radio">
+		            <label class="radioset-label" for="radioset-a-2"></label>
+		            <span class="radioset-text">여자</span>
+		          </div>
+		        </div>
+		      </div>            
             <div class="form-wrap">
               <h6 class="form-tit">연락처 <span>*</span>
               </h6>
@@ -154,7 +156,7 @@
               </div>
             </div>
             <div class="form-wrap">
-              <h6 class="form-tit">주소</h6>
+              <h6 class="form-tit">주소 <span>*</span></h6> 
               <div class="contents-address">
                 <div class="contents-form-group">
                   <div class="inputset inputset-round">
@@ -170,62 +172,61 @@
                 </div>
               </div>
             </div>
-            <div class="form-wrap">
-              <h6 class="form-tit">희망직군</h6>
-              <div class="contents-form-group">
-                <div class="inputset inputset-round">
-                  <div class="contents-mail">
-                    <input type="text" class="inputset-input form-control" v-model="hope_job" name=hope_job required="">
-                  </div>
-                </div>
-              </div>
-              <div class="selectset selectset-round selectset-md">
-                <button class="selectset-toggle btn" type="button">
-                  <span>선택해주세요</span>
-                </button>
-                <ul class="selectset-list">
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="직접입력" selected="">
-                      <span>직접입력</span>
-                    </button>
-                  </li>
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="Backend">
-                      <span>Backend</span>
-                    </button>
-                  </li>
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="Frontend">
-                      <span>Frontend</span>
-                    </button>
-                  </li>
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="Android">
-                      <span>Android</span>
-                    </button>
-                  </li>
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="iOS">
-                      <span>iOS</span>
-                    </button>
-                  </li>
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="Data Engineering">
-                      <span>Data Engineering</span>
-                    </button>
-                  </li>
-                  <li class="selectset-item">
-                    <button class="selectset-link btn" type="button" data-value="Devops">
-                      <span>Devops</span>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>            
+			<div class="form-wrap">
+			    <h6 class="form-tit">희망직군</h6>
+			    <div class="contents-form-group">
+			        <div class="inputset inputset-round">
+			            <div class="contents-mail">
+			                <input type="text" class="inputset-input form-control" v-model="selectedJob" name="hope_job" required="">
+			            </div>
+			        </div>
+			    </div>
+			    <div class="selectset selectset-round selectset-md">
+			        <button class="selectset-toggle btn" type="button">
+			            <span>선택해주세요</span>
+			        </button>
+			        <ul class="selectset-list">
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('')">
+			                    <span>직접입력</span>
+			                </button>
+			            </li>
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('Backend')">
+			                    <span>Backend</span>
+			                </button>
+			            </li>
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('Frontend')">
+			                    <span>Frontend</span>
+			                </button>
+			            </li>
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('Android')">
+			                    <span>Android</span>
+			                </button>
+			            </li>
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('iOS')">
+			                    <span>iOS</span>
+			                </button>
+			            </li>
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('Data Engineering')">
+			                    <span>Data Engineering</span>
+			                </button>
+			            </li>
+			            <li class="selectset-item">
+			                <button class="selectset-link btn" type="button" @click="selectJob('Devops')">
+			                    <span>Devops</span>
+			                </button>
+			            </li>
+			        </ul>
+			    </div>
+			</div>
           </div>
           <div class="contents-btn-group">
             <a href="javascript:history.back();" class="btnset btnset-line btnset-round">이전단계</a>
-            <!-- <a href="../member/join_ok.do" class="btnset btnset-round">다음단계</a> -->
             <input type="submit" value="회원가입" class="btnset btnset-round">
           </div>
           </form>
@@ -249,7 +250,8 @@
 			  userId:'',
 			  Ok:'',
 			  isReadOnly:false,
-			  gender:''
+			  gender:'',
+			  selectedJob: ''
 		  }
 	  },
 	  methods:{
@@ -384,7 +386,10 @@
 			  {
 				  this.Ok=''
 			  }
-		  }
+		  },
+		  selectJob(job) {
+              this.selectedJob = job; 
+          }
 	  }
   }).mount("#memberApp")
 </script>
