@@ -66,8 +66,23 @@ public class RecruitmentRestController {
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
 		ObjectMapper mapper=new ObjectMapper();
-	  String json=mapper.writeValueAsString(map);
+		String json=mapper.writeValueAsString(map);
 	   
-	  return json;
+		return json;
+	}
+	
+	// 기업 정보 상세 페이지
+	@GetMapping(value="company_detail_vue.do", produces="text/plain;charset=UTF-8")
+	public String company_detail_vue(int no, int cno) throws Exception {
+		RecruitVO rvo=service.recuitDetailData(no);
+		CompanyVO cvo=service.companyDetailData(cno);
+		
+		Map map=new HashMap();
+		map.put("rvo", rvo);
+		map.put("cvo", cvo);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(map);
+	   
+		return json;
 	}
 }

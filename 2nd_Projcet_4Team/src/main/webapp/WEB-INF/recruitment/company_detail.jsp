@@ -11,22 +11,22 @@
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
 <script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>s
+<script src="../js/plugin.js"></script>
 <script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
 <script src="../recruitment/js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
 </head>
 <body>
-  <section id="recruitmentCompany" class="th-layout-sub">
-    <div class="content-container">
+  <section id="recruitmentCompany" class="sub">
+    <div class="content-container" id="companyDetailApp">
       <div class="container-md">
         <div class="company-top">
           <div class="company-info">
             <figure class="company-logo">
               <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
             </figure>
-            <h2 class="company-name">㈜우아한형제들</h2>
+            <h2 class="company-name">{{company_detail.name}}</h2>
             <p>응용 소프트웨어 개발 및 공급업</p>
           </div>
           <div class="company-btn-wrapper">
@@ -405,5 +405,75 @@
     </div>
     <!-- [E]glamping-N40 -->
   </section>
+<script>
+let companyDetailApp=Vue.createApp({
+	data(){
+		return{
+			recruit_detail:[],
+			company_detail:[],
+			no:${no},
+			cno:${cno}
+		}
+	},
+	mounted(){
+		axios.get('../recruitment/company_detail_vue.do', {
+			params:{
+				no:this.no,
+				cno:this.cno
+			}
+		}).then(response=>{
+			console.log(response.data)
+			this.recruit_detail=response.data.rvo
+			this.company_detail=response.data.cvo
+		})
+	},
+	methods:{
+		addScript(){
+			const script=document.createElement("script")
+			  
+			/*global kakao*/
+			script.onload=()=>kakao.maps.load(this.initMap)
+			script.src="http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=74c8ca8100e4e559f7de6e3bf17641b2&libraries=services"
+			document.head.appendChild(script)
+		},
+		initMap(){
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+  		    mapOption = {
+  		    	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+  		       	level: 3 // 지도의 확대 레벨
+  		    };  
+
+  			// 지도를 생성합니다    
+  			var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+  			// 주소-좌표 변환 객체를 생성합니다
+  			var geocoder = new kakao.maps.services.Geocoder();
+
+  			// 주소로 좌표를 검색합니다
+  			geocoder.addressSearch(this.company_detail.address, function(result, status) {
+	  		    // 정상적으로 검색이 완료됐으면 
+	  		    if (status === kakao.maps.services.Status.OK) {
+	  		    	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	  		        // 결과값으로 받은 위치를 마커로 표시합니다
+	  		        var marker = new kakao.maps.Marker({
+	  		        	map: map,
+	  		            position: coords
+	  		        });
+	
+	  		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	  		        var infowindow = new kakao.maps.InfoWindow({
+	  		            content: '<div style="width:150px; text-align:center; padding:6px 0;">'+$("#name").text()+'</div>'
+	  		        });
+	  		        infowindow.open(map, marker);
+	
+	  		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	  		        map.setCenter(coords);
+				} 
+			});    
+		}
+	}
+}).mount('#recruitmentDetailApp')
+</script>
 </body>
 </html>
