@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <!-- 접근 권한 설정  -->
+    <http auto-config="true" use-expressions="true">
+      <csrf disabled="true"/>
+      <!-- csrf : 사이트 간 요청 위조 -->
+      <intercept-url pattern="/member/**" access="permitAll"/><!-- ../member/join.do ../member/login.do -->
+      <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+      <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+      <!-- 모든 사용자 접근 -->
+      <intercept-url pattern="/**" access="permitAll"/>
+      <intercept-url pattern="/member/login.do" access="permitAll"/>
+      <!-- 로그인 처리  -->
+      <form-login login-page="/member/login.do"
+       login-processing-url="/member/login.do"
+       username-parameter="userId"
+       password-parameter="userPwd"
+       default-target-url="/main/main.do"
+       always-use-default-target="false"
+       authentication-failure-handler-ref="loginFailHandler"
+       authentication-success-handler-ref="loginSuccessHandler"
+      />
+      
+      <!-- 
+         @GetMapping("member/login.do")
+         public String member_login(String userId,String userPwd)
+         {
+             String username=userId
+             String password=userPwd
+             
+             => 처리 
+             return "redirect:main.do";
+         }
+       -->
+      <!-- 자동 로그인 처리 -->
+      <remember-me data-source-ref="ds" token-validity-seconds="86400"/>
+      <!-- 로그아웃 처리 -->
+      <logout logout-url="/member/logout.do"
+        invalidate-session="true"
+        logout-success-url="/main/main.do"
+        delete-cookies="remember-me,JSESSION_ID"
+      />
+      <!-- 
+         @GetMapping("member/logout.do")
+         public String member_logout(HttpSession session)
+         {
+            session.invalidate()   
+            return "redirect:main.do"
+         }
+       -->
+    </http>
+    <!-- DataBase연결 : username , Authority ,enabled -->
+    <jdbc-user-service data-source-ref="ds"
+      id="userService"
+      users-by-username-query="SELECT userId as username, userPwd as password,enabled FROM Member WHERE userId=?"
+      authorities-by-username-query="SELECT userId as username,authority FROM Authority WHERE userId=?"
+    />
+    <!-- id가 아니라 username(id) -->
+    <!-- 인증관리자 설정  -->
+    <authentication-manager>
+      <authentication-provider user-service-ref="userService">
+        <password-encoder ref="bcryptEncoder"/>
+      </authentication-provider>
+    </authentication-manager>
+    <!-- 로그인 성공/로그인 실패 -->
+    <beans:bean id="loginFailHandler" class="com.sist.security.LoginFailHandler">
+      <beans:property name="defaultFailureUrl" value="/member/login.do?login_error"></beans:property>
+    </beans:bean>
+    <beans:bean id="loginSuccessHandler" class="com.sist.security.LoginSuccessHandler">
+      <beans:property name="defaultUrl" value="/main/main.do"></beans:property>
+    </beans:bean>
+    <!-- 암호화 등록 -->
+    <beans:bean id="bcryptEncoder"
+      class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+    />
+</beans:beans>

@@ -1,5 +1,7 @@
 package com.sist.web;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sist.service.MemberService;
 import com.sist.service.MentorService;
 import com.sist.vo.MentorVO;
 
@@ -37,8 +40,9 @@ public class MentoringController {
 	}
 
 	@PostMapping("mentor_join_submit.do")
-	public String mentor_submit(MentorVO vo,HttpSession session) {
-		String userId = (String)session.getAttribute("userId");
+	public String mentor_submit(MentorVO vo,Principal p) {
+		String userId = p.getName();
+		// String userId = (String)session.getAttribute("userId");
 		/*
 		 * String sessionId = "";
 		 * if(userId==null) sessionId="";

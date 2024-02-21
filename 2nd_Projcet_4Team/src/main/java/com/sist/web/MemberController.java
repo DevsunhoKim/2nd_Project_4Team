@@ -1,9 +1,5 @@
 package com.sist.web;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,7 +23,7 @@ public class MemberController {
     	this.encoder = encoder;
     }
 
-	@GetMapping("login.do")
+	@RequestMapping("login.do")
 	public String member_login()
 	{
 		return "member/login";
@@ -53,7 +49,8 @@ public class MemberController {
     	mService.memberAuthorityInsert(vo.getUserId());
     	return "member/join_ok";
 	}
-
+	
+	/*
     @GetMapping("logout.do")
     public String member_logout(HttpSession session,HttpServletRequest request,HttpServletResponse response)
     {
@@ -73,6 +70,7 @@ public class MemberController {
     	}
     	return "redirect:../main/main.do";
     }
+    */
 
     @GetMapping("findId.do")
 	public String member_findId()

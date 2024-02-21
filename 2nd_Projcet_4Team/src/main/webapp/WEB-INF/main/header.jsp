@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<sec:authorize access="isAuthenticated()">
+  <sec:authentication property="principal" var="principal"/>
+</sec:authorize>
   <!-- [S]basic-N3 Header -->
   <header class="basic-N3" data-bid="uFLsb2Fh4v" id="">
     <div class="header-inner">
@@ -19,10 +23,10 @@
             </a>
           </h1>
           <div class="header-mobile-group">
-            <div class="header-mobile-top">
+<!--             <div class="header-mobile-top">
               <p>로그인이 필요합니다.</p>
               <a href="javascript:void(0)">로그인</a>
-            </div>
+            </div> -->
             <ul class="header-gnblist">
               <li class="header-gnbitem">
                 <a class="header-gnblink" href="../mentoring/list.do">
@@ -49,6 +53,20 @@
                   <span>Notice</span>
                 </a>
               </li>
+              <sec:authorize access="hasRole('ROLE_USER')">
+              <li class="header-gnbitem">
+                <a class="header-gnblink" href="javascript:void(0)">
+                  <span>MyPage</span>
+                </a>
+              </li>
+              </sec:authorize>
+              <sec:authorize access="hasRole('ROLE_ADMIN')">
+              <li class="header-gnbitem">
+                <a class="header-gnblink" href="javascript:void(0)">
+                  <span>AdminPage</span>
+                </a>
+              </li>
+              </sec:authorize>
             </ul>
             <button class="header-btn btn-close">
               <img src="../images/icons/ico_close_white.svg" alt="닫기 아이콘">
@@ -60,12 +78,12 @@
             <button class="header-btn btn-seach">
               <img src="../images/icons/ico_seach_black.svg" alt="검색 아이콘">
             </button>
-            <c:if test="${sessionScope.userId==null }">
+            <c:if test="${principal.username==null }">
             <a href="../member/login.do" class="header-btn btn-user">
               <img src="../images/icons/loginout.png" alt="로그인 아이콘">
             </a>
             </c:if>
-            <c:if test="${sessionScope.userId!=null }">
+            <c:if test="${principal.username!=null }">
             <a href="#" class="header-btn btn-user">
               <img src="../images/icons/ico_user_black.svg" alt="마이페이지 아이콘">
             </a>

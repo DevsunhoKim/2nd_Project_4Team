@@ -1,8 +1,5 @@
 package com.sist.web;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +27,7 @@ public class MemberRestController {
 		 return String.valueOf(count);
 	 }
 
+	 /*
 	 @GetMapping(value="login_ok_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String member_login_ok(String userId,String userPwd,boolean ck,
 			 HttpSession session,HttpServletResponse response)
@@ -51,4 +49,5 @@ public class MemberRestController {
 		  }
 		  return vo.getMsg();
 	  }
+	  */
 }

@@ -54,4 +54,10 @@ public interface MemberMapper {
                 "DETAIL_ADDRESS=#{detail_address} " +
             "WHERE USER_ID=#{user_id}")
     public int updateMember(MemberVO vo); // 회원정보 수정
+    
+    // 마지막 로그인 시점 => LoginSuccessHandler 메모리 할당 전 값을 채울 수 없어서 지금은 미사용
+    @Update("UPDATE Member SET "
+  		  +"lastlogin=SYSDATE "
+  		  +"WHERE userId=#{userId}")
+     public void lastLoginUpdate(String userId);
 }
