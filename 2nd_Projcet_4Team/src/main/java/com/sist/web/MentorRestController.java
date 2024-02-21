@@ -1,16 +1,9 @@
 package com.sist.web;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.MentorService;
-import com.sist.vo.MentorVO;
 
 @RestController
 public class MentorRestController {
