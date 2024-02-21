@@ -16,6 +16,8 @@
 <script src="../js/common.js"></script>
 <script src="../recruitment/js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
   <section id="recruitmentCompany" class="sub">
