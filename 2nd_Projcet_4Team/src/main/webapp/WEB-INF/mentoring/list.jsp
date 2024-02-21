@@ -12,143 +12,6 @@
 <link rel="stylesheet" href="../member/css/template.css"> 
 <link rel="stylesheet" href="../mentoring/css/style.css">
 <link rel="stylesheet" href="../css/common.css">
-<style type="text/css">
-.contents-top a{
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    margin: 0 auto;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: none;
-    background-color: #7918F2;
-    color: #fff;
-    font-weight: 500;
-    text-align: center;
-}
-
-
-.SelectedLanguage_selectedWrapper__3dpZm {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    grid-gap: 30px;
-    gap: 30px
-}
-
-.SelectedLanguage_selectedLanguages__3r4F4 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    grid-gap: 10px;
-    gap: 10px
-}
-
-.SelectedLanguage_languageName__3dwln {
-    color: #313131;
-    font-size: 13px;
-    font-weight: 500
-}
-
-.SelectedLanguage_selectedLanguage__pTAd8 {
-    display: flex;
-    grid-gap: 10px;
-    gap: 10px;
-    background: #f2f2f2;
-    padding: 5px 10px;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all .1s ease-in
-}
-
-.SelectedLanguage_initializeIcon__2Jhi6 {
-    display: block;
-    width: 12px;
-    height: 12px
-}
-
-.SelectedLanguage_selectedLanguage__pTAd8:hover {
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02)
-}
-
-.SelectedLanguage_resetContainer__2LBQJ {
-    display: flex;
-    grid-gap: 5px;
-    gap: 5px;
-    align-items: center
-}
-
-.SelectedLanguage_resetFilter__2zzNa {
-    color: #777;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -.42px;
-    cursor: pointer
-}
-
-.LanguageBar_languages__243rH {
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 10px;
-    gap: 10px;
-    margin-bottom: 50px
-}
-
-.LanguageBar_languages__243rH .active {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-    background-color: #7918F2;
-    border: 1px solid #7918F2;
-}
-
-.LanguageBar_languages__243rH .active span {
-    color: white;
-}
-
-
-.LanguageBar_languageIcon__2PTl1 {
-    display: flex;
-    grid-gap: 6px;
-    gap: 6px;
-    align-items: center;
-    border: 1px solid #d0d0d0;
-    border-radius: 100px;
-    padding: 6px 12px 6px 7px;
-    transition: all .1s ease-in;
-    cursor: pointer
-}
-
-.LanguageBar_logo__rGfFz {
-    width: 32px;
-    height: 32px
-}
-
-.LanguageBar_languageName__2dSeC {
-    color: #333;
-    font-size: 14px
-}
-
-.LanguageBar_languageIcon__2PTl1:hover {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05)
-}
-
-.LanguageBar_full__2eorP {
-    opacity: 1;
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02)
-}
-
-.LanguageBar_transparent__1Texo {
-    opacity: .3
-}
-</style>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -190,18 +53,15 @@
 	  </div>
 	  <div style="height: 30px"></div>
 	  <!-- 기술스택 -->
-	  <div class="row-study">
+	  <div class="row-tech">
             <div class="css-goiz5j" id="headlessui-popover-panel-3" tabindex="-1" data-headlessui-state="open">
-<!--                 <ul class="Category_categories__F4wF5">
-                    <li class="Category_categoryItem__CfZqy Category_selectedCategory__3zAia">기술 스택</li>
-                </ul> -->
                 <ul class="LanguageBar_languages__243rH">
                     <li v-for="(tech, index) in tech_list"
                         class="LanguageBar_languageIcon__2PTl1 LanguageBar_full__2eorP" :key="index"
                         :class="{'active': index == selectedTech}" v-on:click="selectTech(index)">
                         <img class="LanguageBar_logo__rGfFz"
                              :src="'${pageContext.request.contextPath}/images/tech/'+ tech.toLowerCase() +'.svg'"
-                             alt="JavaScript">
+                             alt="tech">
                         <span class="LanguageBar_languageName__2dSeC">{{tech}}</span>
                     </li>
                 </ul>

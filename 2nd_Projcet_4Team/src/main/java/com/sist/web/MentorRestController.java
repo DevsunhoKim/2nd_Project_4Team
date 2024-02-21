@@ -12,9 +12,9 @@ public class MentorRestController {
     public MentorRestController(MentorService mService) {
     	this.mService = mService;
     }
-
-/*	@GetMapping(value="find_vue.do",produces = "text/plain;charset=UTF-8")
-	   public String food_find(int page,String fd) throws Exception
+/*
+	@GetMapping(value="find_vue.do",produces = "text/plain;charset=UTF-8")
+	   public String food_find(int page,String fd,String ss,String tech) throws Exception
 	   {
 		   int rowSize=20;
 		   int start=(rowSize*page)-(rowSize-1);
