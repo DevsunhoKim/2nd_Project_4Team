@@ -355,8 +355,6 @@
             </div>
             <div class="pagiset-list">
               <a class="pagiset-link active-fill" href="javascript:void(0)">1</a>
-              <a class="pagiset-link" href="javascript:void(0)">2</a>
-              <a class="pagiset-link" href="javascript:void(0)">3</a>
             </div>
             <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-next" href="javascript:void(0)">
