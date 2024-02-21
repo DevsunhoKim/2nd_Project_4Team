@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채용 공고 제목</title>
+<title>채용 공고 상세</title>
 <link rel="stylesheet" href="../css/setting.css">
 <link rel="stylesheet" href="../css/plugin.css">
 <link rel="stylesheet" href="../css/common.css">
