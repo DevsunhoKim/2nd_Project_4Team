@@ -21,7 +21,7 @@ public class MentorRestController {
     	this.mService = mService;
     }
 
-	@GetMapping(value="find_vue.do",produces = "text/plain;charset=UTF-8")
+/*	@GetMapping(value="find_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String food_find(int page,String fd) throws Exception
 	   {
 		   int rowSize=20;
@@ -60,4 +60,5 @@ public class MentorRestController {
 		   String json=mapper.writeValueAsString(map);
 		   return json;
 	   }
+*/
 }

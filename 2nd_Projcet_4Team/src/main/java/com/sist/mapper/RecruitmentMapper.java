@@ -64,23 +64,47 @@ public interface RecruitmentMapper {
 	public int recruitTotalPage();
 
 	// 검색
+<<<<<<< HEAD
 
 
 	// 채용 공고 상세보기
 		//1. 채용 공고 정보
 		@Select("SELECT no, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date, like_count, cname "
+=======
+	
+	
+	// 상세보기
+//		// 1. 채용 공고 정보
+//		@Select("SELECT no, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date, like_count, cname "
+//				+ "FROM recruit "
+//				+ "WHERE no=#{no}")
+//		public RecruitVO recuitDetailData(int no);
+//		// 2. 기업 정보
+//		@Select("SELECT no, logo, name, address, homepage, phone, email, like_count "
+//				+ "FROM company "
+//				+ "WHERE no=#{no}")
+//		public CompanyVO companyDetailData(int no);
+		
+		// 1. 채용 공고 정보
+		@Select("SELECT * "
+>>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 				+ "FROM recruit "
 				+ "WHERE no=#{no}")
 		public RecruitVO recuitDetailData(int no);
 		// 2. 기업 정보
-		@Select("SELECT no, logo, name, address, homepage, phone, email, like_count "
+		@Select("SELECT * "
 				+ "FROM company "
 				+ "WHERE no=#{no}")
 		public CompanyVO companyDetailData(int no);
+<<<<<<< HEAD
 
 	// 기업 정보 상세보기
 
 
+=======
+	
+	
+>>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	// 면접 후기 작성
 
 }

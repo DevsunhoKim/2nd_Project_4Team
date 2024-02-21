@@ -25,7 +25,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
-  <section id="recruitmentList" class="th-layout-sub">
+  <section id="recruitmentList" class="sub">
     <!-- [S]opilsol-N19 -->
     <div class="opilsol-N19" data-bid="ZbLsbkw4hY">
       <div class="content-container" id="recruitmentListApp">
@@ -35,7 +35,7 @@
             <!-- [S]glamping-N40 -->
             <div class="inputset inputset-border-bottom">
               <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
-              <input type="text" class="inputset-input form-control" placeholder="내용을 입력하세요" aria-label="내용">
+              <input type="text" class="inputset-input form-control" placeholder="검색어를 입력하세요." aria-label="내용">
             </div>
 
           </div>
@@ -123,19 +123,19 @@
                 <figure class="company-logo">
                   <img class="width-100" :src="vo.cvo.logo" alt="기업 로고">
                 </figure>
+                <h4 class="company-name">{{vo.cvo.name}}</h4>
+                <div class="recruit-info">
+                  <h3 class="recruit-tit">{{vo.title}}</h3>
+                  <span class="recruit-area">서울시 송파구</span>
+                  <span class="recruit-career">{{vo.career}}</span>
+                  <ul class="recruit-stack">
+                    <li>Java</li>
+                    <li>Spring Boot</li>
+                    <li>React</li>
+                  </ul>
+                  <span class="recruit-date">~ {{vo.end_date}}</span>
+                </div>
               </a>
-              <h4 class="company-name">{{vo.cvo.name}}</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">{{vo.title}}</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">{{vo.career}}</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ {{vo.end_date}}</span>
-              </div>
               <button type="button" class="recruit-btn recruit-like-btn">
                 <figure class="recruit-icon">
                   <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">

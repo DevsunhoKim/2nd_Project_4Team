@@ -19,14 +19,14 @@ import com.sist.vo.RecruitVO;
 public class RecruitmentRestController {
 	@Autowired
 	private RecruitmentService service;
-
+	
 	// 목록 출력
 	@GetMapping(value="recruit_list_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_list_vue(int page) throws Exception {
 		int rowSize=12;
 		int start=(rowSize*page)-(rowSize-1);
 		int end=rowSize*page;
-
+		
 		List<RecruitVO> list=service.recruitListData(start, end);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);

@@ -20,7 +20,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
-  <section id="recruitmentDetail" class="th-layout-sub">
+  <section id="recruitmentDetail" class="sub">
     <div class="content-container" id="recruitmentDetailApp">
       <div class="container-md">
         <div class="content-desc">
@@ -58,7 +58,7 @@
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/5355/5355077.png" alt="근무 지역">
               </figure>
-              <span class="emph">근무 지역</span>
+              <span class="emph">{{company_detail.address}}</span>
             </li>
             <li>
             <h4>경력 조건</h4>
@@ -98,36 +98,27 @@
             </ul>
           </div>
           <div class="recruit-detail-info">
-            <h5>혜택 및 복지</h5>
-            <pre>
-              [이렇게 일해요]
-              • 자율과 책임의 문화: 토스는 Manager가 아닌 Maker들로 구성된 조직으로, 투명한 정보 공유와 수평적인 문화 속에서 구성원 업무에 대한 위임과 신뢰를 바탕으로 세상을 변화 시켜 나가고자 합니다.
-              • 효율적인 업무방식: 가장 중요하고, 큰 영향을 미칠 수 있는 일에 집중합니다. 획일적인 업무 프로세스보다는 데이터 기반의 사고로 적극적으로 토론하며, 가장 효율적인 문제 해결을 위해 협업하고 실행합니다.
-              • 훌륭한 팀과 동료: 각 분야 최고 수준의 역량을 갖춘 인재들이 자율과 책임의 원칙 아래 뛰어난 역량을 발휘하고 있습니다.
-
-              [이런 지원을 받아요]
-              1. 자율과 효율의 근무 환경을 제공합니다.
-              • 자율 출퇴근 제도
-              • 자율 휴가 / 재택근무
-              • Early Friday & OFF Week
-
-              2. 업무와 성장에 몰두할 수 있게끔 지원합니다.
-              • 비포괄임금제 운영
-              • 업무 관련 비용 100% 지원
-              • 최고급 장비 및 소프트웨어 제공
-              • 반기별 성과급 지급
-              • 매월 통신비 및 체력단련비 지원
-              • 명절 상여금 및 생일축하비
-              • 직장단체보험비(가족 포함) 및 경조사비
-              • 인재추천비 500만원
-
-              3. 먹고 마시는 것까지 회사가 책임집니다.
-              • 법인카드 전원 지급 (점심/저녁 식사비용, 야간교통비 등 100% 지원)
-              • 사내카페 커피 Silo 무료 이용
-              • 사내 편의점, 헤어살롱 등 복지시설 무료 이용
-            </pre>
+          	<ul>
+          		<li class="recruit_content_j">
+          			<h5>주요 업무</h5>
+          			<pre>{{recruit_detail.content_j}}</pre>
+          		</li>
+          		<li class="recruit_content_q">
+          			<h5>자격 요건</h5>
+          			<pre>{{recruit_detail.content_q}}</pre>
+          		</li>
+          		<li class="recruit_content_p">
+          			<h5>우대 사항</h5>
+          			<pre>{{recruit_detail.content_p}}</pre>
+          		</li>
+          		<li class="recruit_content_b">
+          			<h5>복지 및 혜택</h5>
+          			<pre>{{recruit_detail.content_b}}</pre>
+          		</li>
+          	</ul>
+            
             <div class="recruit-date">
-              <h5>마감일</h5>
+              <h6>마감일</h6>
               <p>
                 <span class="recruit-icon">
                   <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/8895/8895471.png" alt="마감일">
@@ -141,9 +132,9 @@
           <div class="company-detail-info">
             <a href="#" class="company-info">
               <figure class="company-logo">
-                <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
+                <img class="width-100" :src="company_detail.logo" alt="기업 로고">
               </figure>
-              <h4 class="company-name"></h4>
+              <h4 class="company-name">{{company_detail.name}}</h4>
             </a>
             <button type="button" id="companyLikeBtn" class="recruit-btn">
               <figure class="recruit-icon">
@@ -152,7 +143,13 @@
             </button>
           </div>
           <ul class="company-contact">
-            <li>
+          	<li>
+              <figure class="recruit-icon">
+                <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/107/107778.png" alt="전화번호">
+              </figure>
+              <span class="company-phone">{{company_detail.phone}}</span>
+            </li>
+            <!-- <li>
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/5410/5410449.png" alt="홈페이지">
               </figure>
@@ -160,38 +157,14 @@
             </li>
             <li>
               <figure class="recruit-icon">
-                <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/107/107778.png" alt="전화번호">
-              </figure>
-              <span class="company-phone">{{recruit_detail.phone}}</span>
-            </li>
-            <li>
-              <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/54/54290.png" alt="이메일">
               </figure>
               <span class="company-email">woowahan.com</span>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="company-map">
-          <!-- * 카카오맵 - 지도퍼가기 -->
-          <!-- 1. 지도 노드 -->
-          <div id="daumRoughmapContainer1707734014642" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-
-          <!--
-            2. 설치 스크립트
-            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
-          -->
-          <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-          <!-- 3. 실행 스크립트 -->
-          <script charset="UTF-8">
-            new daum.roughmap.Lander({
-              "timestamp" : "1707734014642",
-              "key" : "2i3th",
-              "mapWidth" : "640",
-              "mapHeight" : "360"
-            }).render();
-          </script>
+          <div id="map" style="width:100%; height:480px;"></div>
           <p class="company-address">
             <span class="recruit-icon">
               <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/2948/2948111.png" alt="기업 주소">
@@ -226,9 +199,53 @@ let recruitmentDetailApp=Vue.createApp({
 		})
 	},
 	methods:{
+		addScript(){
+			const script=document.createElement("script")
+			  
+			/*global kakao*/
+			script.onload=()=>kakao.maps.load(this.initMap)
+			script.src="http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=74c8ca8100e4e559f7de6e3bf17641b2&libraries=services"
+			document.head.appendChild(script)
+		},
+		initMap(){
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+  		    mapOption = {
+  		    	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+  		       	level: 3 // 지도의 확대 레벨
+  		    };  
+
+  			// 지도를 생성합니다    
+  			var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+  			// 주소-좌표 변환 객체를 생성합니다
+  			var geocoder = new kakao.maps.services.Geocoder();
+
+  			// 주소로 좌표를 검색합니다
+  			geocoder.addressSearch(this.company_detail.address, function(result, status) {
+	  		    // 정상적으로 검색이 완료됐으면 
+	  		    if (status === kakao.maps.services.Status.OK) {
+	  		    	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	  		        // 결과값으로 받은 위치를 마커로 표시합니다
+	  		        var marker = new kakao.maps.Marker({
+	  		        	map: map,
+	  		            position: coords
+	  		        });
+	
+	  		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	  		        var infowindow = new kakao.maps.InfoWindow({
+	  		            content: '<div style="width:150px; text-align:center; padding:6px 0;">'+$("#name").text()+'</div>'
+	  		        });
+	  		        infowindow.open(map, marker);
+	
+	  		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	  		        map.setCenter(coords);
+				} 
+			});    
+		},
 		goback(){
-      location.href="../recruitment/reruit_list_vue.do"
-    }
+        	location.href="../recruitment/reruit_list_vue.do"
+        }
 	}
 }).mount('#recruitmentDetailApp')
 </script>
