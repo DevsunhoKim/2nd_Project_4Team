@@ -9,9 +9,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-    <aop:aspectj-autoproxy/> 
+   <!-- AOP : 공통 모듈  -->
+    <aop:aspectj-autoproxy/>
+    
+    <mvc:annotation-driven/>
+    
+    <mvc:default-servlet-handler/>
+    
+    <!-- 사용자 정의 클래스 등록 -->
     <context:component-scan base-package="com.sist.*"/>
-   <mvc:annotation-driven/>
     <mvc:interceptors>
       <mvc:interceptor>
         <mvc:mapping path="/main/main.do"/>

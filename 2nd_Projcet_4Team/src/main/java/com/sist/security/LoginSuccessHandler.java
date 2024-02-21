@@ -5,7 +5,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -14,20 +16,20 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
+import com.sist.service.MemberService;
+import com.sist.vo.MemberVO;
+
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	private RequestCache requestCache=new HttpSessionRequestCache();
 	private RedirectStrategy redirectStrategy=new DefaultRedirectStrategy();
-	
     private String defaultUrl;
+    private MemberService mService;
     
-    // 이 클래스가 먼저 메모리 할당되기 때문에 MemberService는 메모리 할당 안됨 
-    // => session에 값 넣을 수 없다
-    // ==> 1. 세션값이 필요한 메소드마다 SessionInfo 값 채워서 사용..
-    // ==> 2. userdetailClass 활용
-    
-    //@Autowired
-    //private MemberService mService;
-    
+    @Autowired
+	public LoginSuccessHandler(MemberService mService) {
+		this.mService = mService;
+	}
+
 	public void setDefaultUrl(String defaultUrl) {
 		this.defaultUrl = defaultUrl;
 	}
@@ -35,22 +37,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		//HttpSession session=request.getSession();
+		HttpSession session=request.getSession();
+		mService.lastLoginUpdate(authentication.getName());
+		MemberVO vo=mService.getMemberByID(authentication.getName());
 		
-		//mService.lastLoginUpdate(authentication.getName());
-		
-		/*MemberVO vo=mService.memberSessionData(authentication.getName());
-		SessionInfo info=new SessionInfo();
-		info.setUserId(vo.getUserId());
-		info.setUserName(vo.getUserName());
-		info.setEmail(vo.getEmail());
-		info.setPhone(vo.getPhone());
-		info.setAddress(vo.getAddr1()+" "+vo.getAddr2());
-		info.setSex(vo.getSex());
-		session.setAttribute("member", info);*/
+		// ${sessionScope.member.변수명} 
+		session.setAttribute("member", vo);
 		resultRedirectStrategy(request, response, authentication);
-		
-		// response.sendRedirect("../main/main.do")
 	}
 	protected void resultRedirectStrategy(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException 

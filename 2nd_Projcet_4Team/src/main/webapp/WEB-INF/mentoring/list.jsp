@@ -161,10 +161,9 @@
 	        <h2 class="textset-tit">CODEV만의 멘토진</h2>
 	        <p class="textset-desc">실력과 경험을 모두 갖춘 CODEV의 멘토를 만나보세요.</p>
 	      </div>
-		  <sec:authorize access="hasRole('ROLE_USER')">
+		  <c:if test="${sessionScope.member.mentor == 0}">
 		  	<a href="../mentoring/mentor_enrollment.do" class="cardset-btn">멘토등록하기</a>
-		  </sec:authorize>
-		  
+		  </c:if>
 		  <!-- 검색 -->
 		  <div class="inputset inputset-lg">
 		      <div class="selectset selectset-round selectset-lg">
