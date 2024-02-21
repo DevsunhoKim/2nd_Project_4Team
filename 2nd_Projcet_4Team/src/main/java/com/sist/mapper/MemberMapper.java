@@ -19,7 +19,7 @@ public interface MemberMapper {
 
     @Select("SELECT COUNT(*) FROM MEMBER WHERE NICKNAME=#{nickname}")
     public int getNicknameCount(String nickname); // 닉네임 중복 조회
-    // 회원 join
+
     @Insert("INSERT INTO member(userId,userPwd,userName,nickname,birthday,gender,email,phone,post,addr,detail_addr,hope_job,regdate) VALUES (" +
     		"#{userId}," +
     		"#{userPwd}," +
@@ -57,9 +57,17 @@ public interface MemberMapper {
             "WHERE USER_ID=#{user_id}")
     public int updateMember(MemberVO vo); // 회원정보 수정
     
-    // 마지막 로그인 시점 => LoginSuccessHandler 메모리 할당 전 값을 채울 수 없어서 지금은 미사용
-    @Update("UPDATE Member SET "
+    @Update("UPDATE MEMBER SET "
   		  +"lastlogin=SYSDATE "
   		  +"WHERE userId=#{userId}")
-     public void lastLoginUpdate(String userId);
+     public void lastLoginUpdate(String userId); // 마지막 로그인 시점
+
+/*------ 비밀번호 찾기 ------*/    
+    @Select("SELECT COUNT(*) FROM MEMBER WHERE userId = #{userId} AND email = #{email}")
+    public int getEmailCount(String userId, String email); // 이메일 존재여부 확인
+    
+    @Update("UPDATE member SET userPwd=#{tempPwd} WHERE userId = #{userId}")
+    public void pwdFind(String userId,String tempPwd); // 비밀번호 임시비밀번호로 변경
+    
+    
 }

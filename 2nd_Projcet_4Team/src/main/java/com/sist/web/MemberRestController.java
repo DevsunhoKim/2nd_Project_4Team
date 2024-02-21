@@ -1,21 +1,26 @@
 package com.sist.web;
 
-
+import java.util.Random;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.sist.MailSender.MailSender;
 import com.sist.service.MemberService;
-import com.sist.vo.MemberVO;
 
 @RestController
 @RequestMapping("member/")
 public class MemberRestController {
-	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	 public MemberRestController(MemberService mService) {
+		this.mService = mService;
+	}
 
-	 @GetMapping(value="idcheck_vue.do",produces = "text/plain;charset=UTF-8")
+	@GetMapping(value="idcheck_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String member_idcheck(String userId) {
 		 int count = mService.getIDCount(userId);
 		 return String.valueOf(count);
@@ -27,27 +32,19 @@ public class MemberRestController {
 		 return String.valueOf(count);
 	 }
 
-	 /*
-	 @GetMapping(value="login_ok_vue.do",produces = "text/plain;charset=UTF-8")
-	  public String member_login_ok(String userId,String userPwd,boolean ck,
-			 HttpSession session,HttpServletResponse response)
-	  {
-		  MemberVO vo=mService.login(userId, userPwd);
-		  if(vo.getMsg().equals("OK"))
-		  {
-			  session.setAttribute("userId", vo.getUserId());
-			  session.setAttribute("enabled", vo.getEnabled());
-			  session.setAttribute("authority", vo.getAuthority());
-			  session.setAttribute("userName", vo.getUserName());
-			  if(ck)
-			  {
-				  Cookie cookie=new Cookie("userId", vo.getUserId());
-				  cookie.setPath("/");
-				  cookie.setMaxAge(60*60*24);
-				  response.addCookie(cookie);
-			  }
+	 @GetMapping(value="pwdfind_vue.do",produces = "text/plain;charset=UTF-8")
+	  public String member_pwdfindvue(String userId, String email) throws AddressException, MessagingException {
+		 Random rand=new Random();
+		  int random_ = rand.nextInt(9000) + 1000; // 임시비밀번호 4자리수 1000~9999
+		  String tempPwd=random_+"";
+		  System.out.println(userId);
+		  String res = mService.pwdFind(userId,email,tempPwd);
+		  // id, email 맞으면 임시비밀번호 변경 후 메일전송
+		  System.out.println(res);
+		  if(res.equals("CHANGE_PWD")) {
+			  MailSender smr=new MailSender();
+			  smr.gmailMailSend(email, tempPwd);
 		  }
-		  return vo.getMsg();
+		  return res;
 	  }
-	  */
 }

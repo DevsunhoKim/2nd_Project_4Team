@@ -50,31 +50,15 @@ public class MemberController {
     	return "member/join_ok";
 	}
 	
-	/*
-    @GetMapping("logout.do")
-    public String member_logout(HttpSession session,HttpServletRequest request,HttpServletResponse response)
-    {
-    	session.invalidate();
-    	Cookie[] cookies=request.getCookies();
-    	if(cookies!=null)
-    	{
-    	    for (Cookie element : cookies) {
-    	    	if(element.getName().equals("userId"))
-    	    	{
-    	    		element.setPath("/");
-    	    		element.setMaxAge(0);
-    	    		response.addCookie(element);
-    	    		break;
-    	    	}
-    	    }
-    	}
-    	return "redirect:../main/main.do";
-    }
-    */
-
     @GetMapping("findId.do")
 	public String member_findId()
 	{
 		return "member/findId";
+	}
+    
+    @GetMapping("findPwd.do")
+	public String member_findPwd()
+	{
+		return "member/findPwd";
 	}
 }

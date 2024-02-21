@@ -56,8 +56,8 @@ $(function(){
             <span class="checkset-text" draggable="false">자동로그인</span>
           </div>
           <div class="contents-find" draggable="false">
-            <a href="javascript:void(0);" draggable="false">아이디 찾기</a>
-            <a href="javascript:void(0);" draggable="false">비밀번호 찾기</a>
+            <a href="../member/findId.do" draggable="false">아이디 찾기</a>
+            <a href="../member/findPwd.do" draggable="false">비밀번호 찾기</a>
           </div>
         </div>
         <div class="contents-btnset" draggable="false">

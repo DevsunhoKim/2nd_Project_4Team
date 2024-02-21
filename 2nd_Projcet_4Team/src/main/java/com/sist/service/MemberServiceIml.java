@@ -68,4 +68,10 @@ public class MemberServiceIml implements MemberService{
 		
 	}
 
+	@Override
+	public String pwdFind(String userId, String email, String tempPwd) {
+		String res = dao.pwdFind(userId, email, tempPwd);
+		return res;
+	}
+
 }
