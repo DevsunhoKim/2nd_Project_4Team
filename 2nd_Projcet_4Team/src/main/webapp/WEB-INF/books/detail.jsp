@@ -191,7 +191,7 @@ body{ margin: 20px; }
     </div>
     <!-- [E]hooms-N40 -->
      <!-- [S]hooms-N41 -->
-<div class="hooms-N41" data-bid="IYlsL2pcgs">
+<div class="hooms-N41" data-bid="IYlsL2pcgs" style="margin-bottom: 6rem">
     <div class="contents-inner">
         <div class="contents-container container-md">
             <div class="contents-group">
@@ -219,73 +219,79 @@ body{ margin: 20px; }
 					  </div>
 					
 					</div>
+              </div>
             </div>
-            <div class="hooms-N41" data-bid="IYlsL2pcgs">
-           <div class="inputset inputset-lg inputset-label" style="width: 1280px;margin:0px auto;">
-          <label>
-            <h6 class="inputset-tit">리뷰 남기기</h6>
-         <fieldset class="rating" style="display: inline-flex;">
-    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-    <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
-    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-    <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-    <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
-    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-    <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
-    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-    <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-      </fieldset>
-
-            <textarea class="inputset-textarea" placeholder="문의 내용을 입력해주세요." required=""></textarea>
-            <div class="inputset-langth">
-              <span class="inputset-count">0</span>
-              <span class="inputset-total">/4000</span>
-            </div>
+             </div>
+              
             
-          </label>
-          
-           	
-        </div>
-       	  </div>
-      
-        </div>
-         <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right">작성</a>
-      </div>
+    <!-- [S]hooms-N41 -->
+<div class="hooms-N41" data-bid="IYlsL2pcgs">
+    <div class="inputset inputset-lg inputset-label" style="width: 1280px; margin: 0px auto;">
+        <label style="margin-bottom: 3rem">
+            <h6 class="inputset-tit">리뷰 남기기</h6>
+            <!-- 드롭다운 메뉴를 사용하여 점수 입력 -->
+            <select v-model="newReview.score" class="dropdown-menu" name="reviewScore" id="reviewScore" style="margin-bottom: 1rem;">
+                <option disabled value="">점수 선택</option>
+                <option value="1">1점</option>
+                <option value="2">2점</option>
+                <option value="3">3점</option>
+                <option value="4">4점</option>
+                <option value="5">5점</option>
+            </select>
+
+            <textarea class="inputset-textarea" v-model="newReview.cont" placeholder="리뷰 내용을 입력해 주세요." required="" name="reviewContent" id="reviewContent"></textarea>
+            <div class="inputset-langth">
+                <span class="inputset-count">{{ newReview.cont.length }}</span>
+                <span class="inputset-total">/4000</span>
+            </div>
+        </label>
     </div>
+
+   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;" @click="addReview">작성하기</a>
+</div>
+
+
+    
     <!-- [E]hooms-N41 -->
 <script>
 let booksDapp = Vue.createApp({
   data() {
     return {
-      no: ${no}, // 서버 측에서 주입되어야 하는 'no' 값
+      no: ${no}, // 서버 측에서 주입해야 하는 'no' 값
       detail_data: {}, // 책 상세 정보를 저장할 객체
       reviews: [], // 리뷰 목록을 저장할 배열
       quantity: 1, // 수량을 저장하는 변수
-      totalPrice: 0 // 총 가격을 저장하는 변수
+      totalPrice: 0, // 총 가격을 저장하는 변수
+      newReview: { // 새 리뷰를 위한 객체
+        userId: '',
+        cont: '',
+        score: 0,
+        cateno: 1
+        
+      }
     };
   },
   mounted() {
     this.fetchBookDetail();
   },
   methods: {
-    // 책 상세 정보와 리뷰 데이터를 가져오는 메소드
+    // 책 상세 정보 및 리뷰 데이터를 가져오는 메소드
     fetchBookDetail() {
-            axios.get('../books/detail_vue.do', {
-                params: {
-                    no: this.no
-                }
-            }).then(response => {
-                this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
-                this.reviews = response.data.reviews; // 리뷰 목록 데이터 저장
-                this.calculateTotalPrice();
-                
-                console.log("책 상세 정보:", this.detail_data);
-                console.log("리뷰 목록:", this.reviews);
-            }).catch(error => {
-                console.error("상세 정보 가져오기 실패:", error);
-            });
-        },
+      axios.get('../books/detail_vue.do', {
+        params: {
+          no: this.no
+        }
+      }).then(response => {
+        this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
+        this.reviews = response.data.reviews; // 리뷰 목록 데이터 저장
+        this.calculateTotalPrice();
+
+        console.log("Book details:", this.detail_data);
+        console.log("Review list:", this.reviews);
+      }).catch(error => {
+        console.error("리뷰 작성 실패:", error);
+      });
+    },
     // 수량 증가 메소드
     increaseQuantity() {
       this.quantity++;
@@ -301,16 +307,61 @@ let booksDapp = Vue.createApp({
     // 총 가격 계산 메소드
     calculateTotalPrice() {
       this.totalPrice = this.quantity * this.detail_data.price;
+    },
+    // 리뷰 추가 메소드
+	   addReview() {
+  axios.post('../books/review_insert_vue', null, {
+    params: {
+      rno: this.no,
+      cont: this.newReview.cont,
+      score: this.newReview.score,
+      userId: this.newReview.userId
+    }
+  })
+  .then(response => {
+    alert(response.data);
+    this.fetchBookDetail(); // 리뷰 추가 후 목록 새로고침
+  })
+  .catch(error => {
+    console.error("리뷰 추가 실패:", error);
+    alert("리뷰 추가 실패");
+  });
+},
+    // 리뷰 수정 메소드
+    updateReview(reviewToUpdate) {
+      axios.post('../books/review_update_vue', reviewToUpdate)
+        .then(response => {
+          alert(response.data);
+          this.fetchBookDetail(); // 리뷰 수정 후 목록 새로고침
+        })
+        .catch(error => {
+          console.error("Review update failed:", error);
+          alert("Review update failed");
+        });
+    },
+    // 리뷰 삭제 메소드
+    deleteReview(reviewNo) {
+      axios.post('../books/review_delete_vue', { no: reviewNo })
+        .then(response => {
+          alert(response.data);
+          this.fetchBookDetail(); // 리뷰 삭제 후 목록 새로
+
+        })
+        .catch(error => {
+          console.error("Review deletion failed:", error);
+          alert("Review deletion failed");
+        });
     }
   },
   computed: {
-    // 가격을 한국 원화 형식으로 포맷하는 계산된 속성
+    // 한국 원화 형식으로 가격 포맷하는 계산된 속성
     formattedPrice() {
       return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
     }
   }
 }).mount('#books_detail'); // Vue 인스턴스를 #books_detail에 마운트
 </script>
+
 
 	
 

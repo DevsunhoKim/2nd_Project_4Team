@@ -1,4 +1,6 @@
 package com.sist.web;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,16 @@ public class BooksController {
 	}
 
 	@GetMapping("books/detail.do")
-	public String books_detail(int no,Model model)
+	public String books_detail(int no,Model model,HttpSession session)
 	{
-		model.addAttribute("no",no);
+		String userId=(String)session.getAttribute("userId");
+		String sessionId="";
+		   if(userId==null)
+			   sessionId="";
+		   else
+			   sessionId=userId;
+		   	model.addAttribute("sessionId", sessionId);
+		   	model.addAttribute("no",no);
 		return "books/detail";
 	}
 
@@ -29,6 +38,8 @@ public class BooksController {
 		model.addAttribute("no",no);
 		return "books/payment";
 	}
+
+
 
 	// 메인화면에 출력할 데이터 public List<BooksVO> mainBooks() 구현 main-content.jsp 에 구현
 

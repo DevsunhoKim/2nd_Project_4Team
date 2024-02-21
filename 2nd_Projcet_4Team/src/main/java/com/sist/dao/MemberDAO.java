@@ -64,4 +64,8 @@ public class MemberDAO {
     public int updateMember(MemberVO vo){
         return mapper.updateMember(vo);
     }
+    
+    public void lastLoginUpdate(String name) {
+    	mapper.lastLoginUpdate(name);
+    }
 }

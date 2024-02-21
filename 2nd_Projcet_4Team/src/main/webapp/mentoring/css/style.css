@@ -337,4 +337,140 @@
  .glamping-N9 .contents-control { top: 0.5rem; left: 50%; transform: translateX(-50%); }
 }
 
+/* 사용자 정의 */
+#mentorList .contents-top a{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #7918F2;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+#mentorList .SelectedLanguage_selectedWrapper__3dpZm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-gap: 30px;
+    gap: 30px
+}
+
+#mentorList .SelectedLanguage_selectedLanguages__3r4F4 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-gap: 10px;
+    gap: 10px
+}
+
+#mentorList .SelectedLanguage_languageName__3dwln {
+    color: #313131;
+    font-size: 13px;
+    font-weight: 500
+}
+
+#mentorList .SelectedLanguage_selectedLanguage__pTAd8 {
+    display: flex;
+    grid-gap: 10px;
+    gap: 10px;
+    background: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .1s ease-in
+}
+
+#mentorList .SelectedLanguage_initializeIcon__2Jhi6 {
+    display: block;
+    width: 12px;
+    height: 12px
+}
+
+#mentorList .SelectedLanguage_selectedLanguage__pTAd8:hover {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02)
+}
+
+#mentorList .SelectedLanguage_resetContainer__2LBQJ {
+    display: flex;
+    grid-gap: 5px;
+    gap: 5px;
+    align-items: center
+}
+
+#mentorList .SelectedLanguage_resetFilter__2zzNa {
+    color: #777;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -.42px;
+    cursor: pointer
+}
+
+#mentorList .LanguageBar_languages__243rH {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+    gap: 10px;
+    margin-bottom: 50px
+}
+
+#mentorList .LanguageBar_languages__243rH .active {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    background-color: #7918F2;
+    border: 1px solid #7918F2;
+}
+
+#mentorList .LanguageBar_languages__243rH .active span {
+    color: white;
+}
+
+
+#mentorList .LanguageBar_languageIcon__2PTl1 {
+    display: flex;
+    grid-gap: 6px;
+    gap: 6px;
+    align-items: center;
+    border: 1px solid #d0d0d0;
+    border-radius: 100px;
+    padding: 6px 12px 6px 7px;
+    transition: all .1s ease-in;
+    cursor: pointer
+}
+
+#mentorList .LanguageBar_logo__rGfFz {
+    width: 32px;
+    height: 32px
+}
+
+#mentorList .LanguageBar_languageName__2dSeC {
+    color: #333;
+    font-size: 14px
+}
+
+#mentorList .LanguageBar_languageIcon__2PTl1:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05)
+}
+
+#mentorList .LanguageBar_full__2eorP {
+    opacity: 1;
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02)
+}
+
+#mentorList .LanguageBar_transparent__1Texo {
+    opacity: .3
+}
 

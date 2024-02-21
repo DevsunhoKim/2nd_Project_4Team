@@ -3,8 +3,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +26,7 @@ public class BooksRestController {
 
 	@Autowired
 	private B_CartServiceImpl cService;
-	
+
 	@Autowired
 	private ReviewServiceImpl reviewMapper;
 
@@ -111,6 +114,39 @@ public class BooksRestController {
 		   return json;
 	}
 
+	   public String commonsreviewData(int rno) throws Exception
+	   {
+		   ObjectMapper mapper=new ObjectMapper();
+		   List<ReviewVO> list=reviewMapper.reviewListData(rno);
+		   String json=mapper.writeValueAsString(list);
+		   return json;
+	   }
+
+	   @PostMapping(value="books/review_insert_vue.do",produces = "text/plain;charset=UTF-8")
+	   public String reply_insert(ReviewVO vo,HttpSession session) throws Exception
+	   {
+		   String userId=(String)session.getAttribute("userId");
+		   vo.setUserId(userId);
+		   
+		   // rno,msg
+		   reviewMapper.reviewInsert(vo);
+		   
+		   return commonsreviewData(vo.getRno());
+	   }
+	   // 수정
+	   @PostMapping(value="books/review_update_vue.do",produces = "text/plain;charset=UTF-8")
+	   public String review_update(ReviewVO vo) throws Exception
+	   {
+		   reviewMapper.reviewUpdate(vo);
+		   return commonsreviewData(vo.getRno());
+	   }
+	   // 삭제
+	   @GetMapping(value="books/review_delete_vue.do",produces = "text/plain;charset=UTF-8")
+	   public String review_delete(int no,int rno) throws Exception
+	   {
+		   reviewMapper.reviewDelete(no);
+		   return commonsreviewData(rno);
+	   }
 
 
 }

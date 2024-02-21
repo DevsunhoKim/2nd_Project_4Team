@@ -62,4 +62,10 @@ public class MemberServiceIml implements MemberService{
 		return dao.login(userId, userPwd);
 	}
 
+	@Override
+	public void lastLoginUpdate(String name) {
+		dao.lastLoginUpdate(name);
+		
+	}
+
 }

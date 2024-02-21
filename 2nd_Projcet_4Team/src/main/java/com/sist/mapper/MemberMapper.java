@@ -7,9 +7,11 @@ import org.apache.ibatis.annotations.Update;
 import com.sist.vo.MemberVO;
 
 public interface MemberMapper {
-    @Select("SELECT userId,userPwd,userName,nickname,birthday,gender,email,phone,post,addr,detail_addr,hope_job,regdate " +
-            "FROM MEMBER " +
-            "WHERE userId=#{userId}")
+    @Select("SELECT m.userId, m.userPwd, m.userName, m.nickname, m.birthday, m.gender, "
+    		+ "m.email, m.phone, m.post, m.addr, m.detail_addr, m.hope_job, m.regdate, m.mentor, "
+    		+ "a.authority "
+    		+ "FROM MEMBER m JOIN authority a ON m.userId = a.userId "
+    		+ "WHERE m.userId = #{userId}")
     public MemberVO getMemberByID(String userId); // 아이디로 회원정보 조회
 
     @Select("SELECT COUNT(*) FROM MEMBER WHERE userId=#{userId}")
