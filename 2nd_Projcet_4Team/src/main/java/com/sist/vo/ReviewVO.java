@@ -6,7 +6,7 @@ import lombok.Data;
 public class ReviewVO {
 
 	private int rno, score, cateno,no;
-	private String userid, cont, dbday ;
+	private String userId, cont, dbday ;
 	private Date regdate;
 
 	private MemberVO mvo=new MemberVO();

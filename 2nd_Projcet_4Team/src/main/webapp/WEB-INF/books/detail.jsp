@@ -113,8 +113,9 @@ body{ margin: 20px; }
   </style>
 </head>
 <body>
+  <div id="books_detail">
   <!-- [S]hooms-N40 -->
-    <div class="hooms-N40" data-bid="oylSl2orEZ" id="books_detail">
+    <div class="hooms-N40" data-bid="oylSl2orEZ">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="contents-left">
@@ -190,69 +191,37 @@ body{ margin: 20px; }
     </div>
     <!-- [E]hooms-N40 -->
      <!-- [S]hooms-N41 -->
-    <div class="hooms-N41" data-bid="IYlsL2pcgs">
-      <div class="contents-inner">
+<div class="hooms-N41" data-bid="IYlsL2pcgs">
+    <div class="contents-inner">
         <div class="contents-container container-md">
-          <div class="contents-search">
-            <p class="contents-result">
-              전체<span> 5</span>개
-            </p>
-            <div class="selectset selectset-lg">
-              <button class="selectset-toggle btn" type="button">
-                <span>최근 등록순</span>
-              </button>
-              <ul class="selectset-list">
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="최근 등록순">
-                    <span>최근 등록순</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="평점 높은 순">
-                    <span>평점 높은 순</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="평점 낮은 순">
-                    <span>평점 낮은 순</span>
-                  </button>
-                </li>
-              </ul>
+            <div class="contents-group">
+                <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.no">
+                    <div class="cardset cardset-hor">
+                        <!-- 수정 및 삭제 버튼, SessionScope 적용 예정 -->
+                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-left: 10px; margin-top: 15px;" @click="editReview(review.no)">수정</a>
+                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-top: 25px;" @click="deleteReview(review.no)">삭제</a>
+                        <div class="cardset-body">
+                            <div class="contents-info">
+                                <ul class="contents-ico-list">
+                                    <!-- 별점 표시, 'ico-item-active' 클래스는 활성화된 별을 의미함 -->
+                                    <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.rating }" :key="star"></li>
+                                </ul>
+                                <div class="contents-name" style="float: right">
+                                    {{ review.userId }}
+                                    <span class="contents-date">{{ review.dbday }}</span>
+                                </div>
+                            </div>
+                            <p class="cardset-desc">
+                                {{ review.cont }}
+                            </p>
+					      </div>
+					    </div>
+					  </div>
+					
+					</div>
             </div>
-          </div>
-          <div class="contents-group">
-            <div class="contents-cardlist contents-cardlist-active">
-              <a  href="javascript:void(0)" class="cardset cardset-hor">
-                 <!-- SessionScope 적용 예정 -->
-                 <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right;margin-left: 10px;margin-top: 15">수정</a>
-                 <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right;margin-top: 25">삭제</a>
-                <div class="cardset-body">
-                  <div class="contents-info">
-                    <ul class="contents-ico-list">
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                    </ul>
-                    <div class="contents-name" style="float: right">
-                      홍길동
-                      <span class="contents-date">2023.01.01</span>
-                    </div>
-                  </div>
-                  <div class="cardset-tit-group">
-                    <h5 class="cardset-tit">
-                      만족스러워요.
-                    </h5>
-                  </div>
-                  <p class="cardset-desc">
-                    아무래도 덩치가 커서 혹시나 불편하지 않을까 걱정도 했는데 책상뒤로 쭉밀어 고정시키면 일반 슈퍼싱글이랑 똑같기에 괜한 걱정이었고 공간활용면에서 이 제품만한 것이 없네요.
-                  </p>
-                </div>
-              </a>
-            </div>
-          </div>
-           <div class="inputset inputset-lg inputset-label">
+            <div class="hooms-N41" data-bid="IYlsL2pcgs">
+           <div class="inputset inputset-lg inputset-label" style="width: 1280px;margin:0px auto;">
           <label>
             <h6 class="inputset-tit">리뷰 남기기</h6>
          <fieldset class="rating" style="display: inline-flex;">
@@ -266,7 +235,7 @@ body{ margin: 20px; }
     <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
     <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
     <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-</fieldset>
+      </fieldset>
 
             <textarea class="inputset-textarea" placeholder="문의 내용을 입력해주세요." required=""></textarea>
             <div class="inputset-langth">
@@ -278,7 +247,7 @@ body{ margin: 20px; }
           
            	
         </div>
-       	
+       	  </div>
       
         </div>
          <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right">작성</a>
@@ -286,58 +255,65 @@ body{ margin: 20px; }
     </div>
     <!-- [E]hooms-N41 -->
 <script>
-  let booksDapp = Vue.createApp({
-    data() {
-      return {
-        no: ${no}, // 서버 사이드에서 no 값을 주입해야 합니다.
-        detail_data: {}, // 리뷰 목록을 저장할 배열
-        quantity: 1, // 수량을 저장하는 변수
-        totalPrice: 0 // 총 가격을 저장하는 변수
-      };
+let booksDapp = Vue.createApp({
+  data() {
+    return {
+      no: ${no}, // 서버 측에서 주입되어야 하는 'no' 값
+      detail_data: {}, // 책 상세 정보를 저장할 객체
+      reviews: [], // 리뷰 목록을 저장할 배열
+      quantity: 1, // 수량을 저장하는 변수
+      totalPrice: 0 // 총 가격을 저장하는 변수
+    };
+  },
+  mounted() {
+    this.fetchBookDetail();
+  },
+  methods: {
+    // 책 상세 정보와 리뷰 데이터를 가져오는 메소드
+    fetchBookDetail() {
+            axios.get('../books/detail_vue.do', {
+                params: {
+                    no: this.no
+                }
+            }).then(response => {
+                this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
+                this.reviews = response.data.reviews; // 리뷰 목록 데이터 저장
+                this.calculateTotalPrice();
+                
+                console.log("책 상세 정보:", this.detail_data);
+                console.log("리뷰 목록:", this.reviews);
+            }).catch(error => {
+                console.error("상세 정보 가져오기 실패:", error);
+            });
+        },
+    // 수량 증가 메소드
+    increaseQuantity() {
+      this.quantity++;
+      this.calculateTotalPrice();
     },
-    mounted() {
-    	 this.dataRecv();
-    	 this.calculateTotalPrice(); // 페이지가 로드될 때 totalPrice 초기화
-    	 
-    },
-    methods: {
-      // 데이터 받아오는 메소드
-      dataRecv() {
-        axios.get('../books/detail_vue.do', {
-          params: {
-            no: this.no
-          }
-        }).then(response => {
-          console.log(response.data);
-          this.detail_data = response.data; // 응답 받은 데이터를 detail_data에 저장
-          this.totalPrice = this.detail_data.price; // 초기 totalPrice를 가격으로 설정
-        });
-      },
-      // 수량을 증가시키는 메소드
-      increaseQuantity() {
-        this.quantity++;
+    // 수량 감소 메소드
+    decreaseQuantity() {
+      if (this.quantity > 1) {
+        this.quantity--;
         this.calculateTotalPrice();
-      },
-      // 수량을 감소시키는 메소드
-      decreaseQuantity() {
-        if (this.quantity > 1) {
-          this.quantity--;
-          this.calculateTotalPrice();
-        }
-      },
-      // 총 가격을 계산하는 메소드
-      calculateTotalPrice() {
-        this.totalPrice = this.quantity * this.detail_data.price;
       }
     },
-    computed: {
-      // 가격을 한국 통화 형식으로 포맷팅하는 computed 속성
-      formattedPrice() {
-        return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
-      }
+    // 총 가격 계산 메소드
+    calculateTotalPrice() {
+      this.totalPrice = this.quantity * this.detail_data.price;
     }
-  }).mount('#books_detail');
+  },
+  computed: {
+    // 가격을 한국 원화 형식으로 포맷하는 계산된 속성
+    formattedPrice() {
+      return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
+    }
+  }
+}).mount('#books_detail'); // Vue 인스턴스를 #books_detail에 마운트
 </script>
+
+	
+
 
     </body>
 </html>
