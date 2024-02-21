@@ -113,8 +113,9 @@ body{ margin: 20px; }
   </style>
 </head>
 <body>
+  <div id="books_detail">
   <!-- [S]hooms-N40 -->
-    <div class="hooms-N40" data-bid="oylSl2orEZ" id="books_detail">
+    <div class="hooms-N40" data-bid="oylSl2orEZ">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="contents-left">
@@ -190,208 +191,180 @@ body{ margin: 20px; }
     </div>
     <!-- [E]hooms-N40 -->
      <!-- [S]hooms-N41 -->
-    <div class="hooms-N41" data-bid="IYlsL2pcgs">
-      <div class="contents-inner">
+<div class="hooms-N41" data-bid="IYlsL2pcgs" style="margin-bottom: 6rem">
+    <div class="contents-inner">
         <div class="contents-container container-md">
-          <div class="contents-search">
-            <p class="contents-result">
-              전체<span> 5</span>개
-            </p>
-            <div class="selectset selectset-lg">
-              <button class="selectset-toggle btn" type="button">
-                <span>최근 등록순</span>
-              </button>
-              <ul class="selectset-list">
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="최근 등록순">
-                    <span>최근 등록순</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="평점 높은 순">
-                    <span>평점 높은 순</span>
-                  </button>
-                </li>
-                <li class="selectset-item">
-                  <button class="selectset-link btn" type="button" data-value="평점 낮은 순">
-                    <span>평점 낮은 순</span>
-                  </button>
-                </li>
-              </ul>
+            <div class="contents-group">
+                <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.no">
+                    <div class="cardset cardset-hor">
+                        <!-- 수정 및 삭제 버튼, SessionScope 적용 예정 -->
+                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-left: 10px; margin-top: 15px;" @click="editReview(review.no)">수정</a>
+                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-top: 25px;" @click="deleteReview(review.no)">삭제</a>
+                        <div class="cardset-body">
+                            <div class="contents-info">
+                                <ul class="contents-ico-list">
+                                    <!-- 별점 표시, 'ico-item-active' 클래스는 활성화된 별을 의미함 -->
+                                    <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.rating }" :key="star"></li>
+                                </ul>
+                                <div class="contents-name" style="float: right">
+                                    {{ review.userId }}
+                                    <span class="contents-date">{{ review.dbday }}</span>
+                                </div>
+                            </div>
+                            <p class="cardset-desc">
+                                {{ review.cont }}
+                            </p>
+					      </div>
+					    </div>
+					  </div>
+					
+					</div>
+              </div>
             </div>
-          </div>
-          <div class="contents-group">
-            <div class="contents-cardlist contents-cardlist-active">
-              <a  href="javascript:void(0)" class="cardset cardset-hor">
-                 <!-- SessionScope 적용 예정 -->
-                 <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right;margin-left: 10px;margin-top: 15">수정</a>
-                 <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right;margin-top: 25">삭제</a>
-                <div class="cardset-body">
-                  <div class="contents-info">
-                    <ul class="contents-ico-list">
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                      <li class="contents-ico-item ico-item-active"></li>
-                    </ul>
-                    <div class="contents-name" style="float: right">
-                      홍길동
-                      <span class="contents-date">2023.01.01</span>
-                    </div>
-                  </div>
-                  <div class="cardset-tit-group">
-                    <h5 class="cardset-tit">
-                      만족스러워요.
-                    </h5>
-                  </div>
-                  <p class="cardset-desc">
-                    아무래도 덩치가 커서 혹시나 불편하지 않을까 걱정도 했는데 책상뒤로 쭉밀어 고정시키면 일반 슈퍼싱글이랑 똑같기에 괜한 걱정이었고 공간활용면에서 이 제품만한 것이 없네요.
-                  </p>
-                </div>
-              </a>
-            </div>
-          </div>
-           <div class="inputset inputset-lg inputset-label">
-          <label>
-            <h6 class="inputset-tit">리뷰 남기기</h6>
-         <fieldset class="rating" style="display: inline-flex;">
-    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-    <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
-    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-    <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-    <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
-    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-    <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
-    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-    <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-</fieldset>
-
-            <textarea class="inputset-textarea" placeholder="문의 내용을 입력해주세요." required=""></textarea>
-            <div class="inputset-langth">
-              <span class="inputset-count">0</span>
-              <span class="inputset-total">/4000</span>
-            </div>
+             </div>
+              
             
-          </label>
-          
-           	
-        </div>
-       	
-      
-        </div>
-         <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right">작성</a>
-      </div>
+    <!-- [S]hooms-N41 -->
+<div class="hooms-N41" data-bid="IYlsL2pcgs">
+    <div class="inputset inputset-lg inputset-label" style="width: 1280px; margin: 0px auto;">
+        <label style="margin-bottom: 3rem">
+            <h6 class="inputset-tit">리뷰 남기기</h6>
+            <!-- 드롭다운 메뉴를 사용하여 점수 입력 -->
+            <select v-model="newReview.score" class="dropdown-menu" name="reviewScore" id="reviewScore" style="margin-bottom: 1rem;">
+                <option disabled value="">점수 선택</option>
+                <option value="1">1점</option>
+                <option value="2">2점</option>
+                <option value="3">3점</option>
+                <option value="4">4점</option>
+                <option value="5">5점</option>
+            </select>
+
+            <textarea class="inputset-textarea" v-model="newReview.cont" placeholder="리뷰 내용을 입력해 주세요." required="" name="reviewContent" id="reviewContent"></textarea>
+            <div class="inputset-langth">
+                <span class="inputset-count">{{ newReview.cont.length }}</span>
+                <span class="inputset-total">/4000</span>
+            </div>
+        </label>
     </div>
+
+   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;" @click="addReview">작성하기</a>
+</div>
+
+
+    
     <!-- [E]hooms-N41 -->
 <script>
-  let booksDapp = Vue.createApp({
-    data() {
-      return {
-        no: ${no}, // 서버 사이드에서 no 값을 주입해야 합니다.
-        detail_data: {},
-        reviews: [], // 리뷰 목록을 저장할 배열
-        newReview: { // 새로운 리뷰를 추가하기 위한 객체
-          id: '', // 사용자 ID
-          score: 0, // 리뷰 점수
-          cont: '' // 리뷰 내용
-        },
-        selectedReview: null, // 수정 또는 삭제할 리뷰를 선택하기 위한 객체
-        quantity: 1, // 수량을 저장하는 변수
-        totalPrice: 0 // 총 가격을 저장하는 변수
-      };
-    },
-    mounted() {
-    	 this.dataRecv();
-    	 this.loadReviews();
-    	 this.calculateTotalPrice(); // 페이지가 로드될 때 totalPrice 초기화
-    	 
-    },
-    methods: {
-      // 데이터 받아오는 메소드
-      dataRecv() {
-        axios.get('../books/detail_vue.do', {
-          params: {
-            no: this.no
-          }
-        }).then(response => {
-          console.log(response.data);
-          this.detail_data = response.data; // 응답 받은 데이터를 detail_data에 저장
-          this.totalPrice = this.detail_data.price; // 초기 totalPrice를 가격으로 설정
-        });
-      },
-      // 리뷰 목록을 불러오는 메소드
-      loadReviews() {
-        axios.get('../books/review_list.do')
-          .then(response => {
-            this.reviews = response.data; // 응답 받은 리뷰 목록을 reviews에 저장
-          })
-          .catch(error => {
-            console.error('리뷰 목록 불러오기 오류: ', error);
-          });
-      },
-      // 리뷰를 추가하는 메소드
-      addReview() {
-        axios.post('../books/review_insert.do', this.newReview)
-          .then(response => {
-            if (response.data.result === 'OK') {
-              this.loadReviews(); // 리뷰 목록 다시 불러오기
-            }
-          })
-          .catch(error => {
-            console.error('리뷰 추가 오류: ', error);
-          });
-      },
-      // 리뷰를 수정하는 메소드
-      updateReview() {
-        axios.post('../books/review_update.do', this.selectedReview)
-          .then(response => {
-            if (response.data.result === 'OK') {
-              this.loadReviews(); // 리뷰 목록 다시 불러오기
-            }
-          })
-          .catch(error => {
-            console.error('리뷰 수정 오류: ', error);
-          });
-      },
-      // 리뷰를 삭제하는 메소드
-      deleteReview(rno) {
-        axios.get('../books/review_delete.do', { params: { rno: rno } })
-          .then(response => {
-            if (response.data.result === 'OK') {
-              this.loadReviews(); // 리뷰 목록 다시 불러오기
-            }
-          })
-          .catch(error => {
-            console.error('리뷰 삭제 오류: ', error);
-          });
-      },
-      // 수량을 증가시키는 메소드
-      increaseQuantity() {
-        this.quantity++;
-        this.calculateTotalPrice();
-      },
-      // 수량을 감소시키는 메소드
-      decreaseQuantity() {
-        if (this.quantity > 1) {
-          this.quantity--;
-          this.calculateTotalPrice();
+let booksDapp = Vue.createApp({
+  data() {
+    return {
+      no: ${no}, // 서버 측에서 주입해야 하는 'no' 값
+      detail_data: {}, // 책 상세 정보를 저장할 객체
+      reviews: [], // 리뷰 목록을 저장할 배열
+      quantity: 1, // 수량을 저장하는 변수
+      totalPrice: 0, // 총 가격을 저장하는 변수
+      newReview: { // 새 리뷰를 위한 객체
+        userId: '',
+        cont: '',
+        score: 0,
+        cateno: 1
+        
+      }
+    };
+  },
+  mounted() {
+    this.fetchBookDetail();
+  },
+  methods: {
+    // 책 상세 정보 및 리뷰 데이터를 가져오는 메소드
+    fetchBookDetail() {
+      axios.get('../books/detail_vue.do', {
+        params: {
+          no: this.no
         }
-      },
-      // 총 가격을 계산하는 메소드
-      calculateTotalPrice() {
-        this.totalPrice = this.quantity * this.detail_data.price;
+      }).then(response => {
+        this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
+        this.reviews = response.data.reviews; // 리뷰 목록 데이터 저장
+        this.calculateTotalPrice();
+
+        console.log("Book details:", this.detail_data);
+        console.log("Review list:", this.reviews);
+      }).catch(error => {
+        console.error("리뷰 작성 실패:", error);
+      });
+    },
+    // 수량 증가 메소드
+    increaseQuantity() {
+      this.quantity++;
+      this.calculateTotalPrice();
+    },
+    // 수량 감소 메소드
+    decreaseQuantity() {
+      if (this.quantity > 1) {
+        this.quantity--;
+        this.calculateTotalPrice();
       }
     },
-    computed: {
-      // 가격을 한국 통화 형식으로 포맷팅하는 computed 속성
-      formattedPrice() {
-        return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
-      }
+    // 총 가격 계산 메소드
+    calculateTotalPrice() {
+      this.totalPrice = this.quantity * this.detail_data.price;
+    },
+    // 리뷰 추가 메소드
+	   addReview() {
+  axios.post('../books/review_insert_vue', null, {
+    params: {
+      rno: this.no,
+      cont: this.newReview.cont,
+      score: this.newReview.score,
+      userId: this.newReview.userId
     }
-  }).mount('#books_detail');
+  })
+  .then(response => {
+    alert(response.data);
+    this.fetchBookDetail(); // 리뷰 추가 후 목록 새로고침
+  })
+  .catch(error => {
+    console.error("리뷰 추가 실패:", error);
+    alert("리뷰 추가 실패");
+  });
+},
+    // 리뷰 수정 메소드
+    updateReview(reviewToUpdate) {
+      axios.post('../books/review_update_vue', reviewToUpdate)
+        .then(response => {
+          alert(response.data);
+          this.fetchBookDetail(); // 리뷰 수정 후 목록 새로고침
+        })
+        .catch(error => {
+          console.error("Review update failed:", error);
+          alert("Review update failed");
+        });
+    },
+    // 리뷰 삭제 메소드
+    deleteReview(reviewNo) {
+      axios.post('../books/review_delete_vue', { no: reviewNo })
+        .then(response => {
+          alert(response.data);
+          this.fetchBookDetail(); // 리뷰 삭제 후 목록 새로
+
+        })
+        .catch(error => {
+          console.error("Review deletion failed:", error);
+          alert("Review deletion failed");
+        });
+    }
+  },
+  computed: {
+    // 한국 원화 형식으로 가격 포맷하는 계산된 속성
+    formattedPrice() {
+      return this.detail_data.price ? this.detail_data.price.toLocaleString('ko-KR') : '';
+    }
+  }
+}).mount('#books_detail'); // Vue 인스턴스를 #books_detail에 마운트
 </script>
+
+
+	
+
 
     </body>
 </html>

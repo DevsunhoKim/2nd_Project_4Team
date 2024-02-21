@@ -2,7 +2,26 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!-- 
+         Filter / Interceptor => DispatcherServlet안에 작동 
+         ======  ============
+           |
+         DispatcherServlet전에 인가 => 인증 
+     -->
+    <!-- Security 등록  -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		   /WEB-INF/database/application-datasource.xml
+		   /WEB-INF/security/application-security.xml
+		</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
+<!-- Processes application requests -->
 <servlet>
      <servlet-name>dispatcher</servlet-name>
      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -10,15 +29,8 @@
          <param-name>contextConfigLocation</param-name>
          <param-value>/WEB-INF/config/application-*.xml</param-value>
      </init-param>
-     <!-- <init-param>
-       <param-name>contextClass</param-name>
-       <param-value>org.springframework.web.context.support.AnnotationConfigApplicationContext</param-value>
-     </init-param>
-     <init-param>
-       <param-name>contextConfigLocation</param-name>
-       <param-value>com.sist.config.DataBoardConfig</param-value>
-     </init-param>-->
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.do</url-pattern>
@@ -45,4 +57,45 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+	 <!-- 보안  -->
+	 <!-- 
+	                          | 403(접근거부)
+	     사용자 ==========  FilterChain(보안=인증,인가) =====> DispatcherServlet
+	            request                             request    | => HandlerMapping
+	                                                         Controller
+	                                                             => 요청기능을 수행 
+	                                                             => 구분 => @GetMapping...
+	                                                           | => ViewResolver => 화면에 출력할 데이터를 전송          
+	          =============================================== JSP
+	             response
+	      1) DelegatingFilterProxy
+	         =>  DispatcherServlet / WebApplicationContext를 연결 
+	                  |                     |
+	                요청받는 클래스          클래스 관리자 : XML,Annotation에 등록된 모든 클래스
+	                응답을 하는 역할 
+	      2) 인증 => 사용자의 신원을 확인 => 접근가능
+	      3) 권한 => 사용자마다 권한 => ROLE_USER , ROLE_ADMIN 
+	                                    ====        =====
+	      4) 세션관리 => HttpSession=> 자체 처리 (UserDetails)
+	      5) 암호화,복호화 
+	         => PasswordEncoder encode() , decode()
+	      6) 로그인 처리 / 로그아웃 처리 / 자동 로그인
+	         => 로그인 처리 / 로그 아웃 ==> 
+	         
+	      장점 : 강력한 보안 기능 (자동로그인 , 카카오 로그인...) , 재사용 
+	      단점 : 설정이 복잡하다 
+	            => 기본 설정을 미리 만들어 준다 (Spring-Boot)
+	      사용자 => DelegatingFilterProxy => FilterChain => DispatcherServlet
+	                                          |                | Interceptor (X)
+	                                        권한 여부
+	                                          | 403화면 
+	  -->
+	 <filter>
+	   <filter-name>springSecurityFilterChain</filter-name>
+	   <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	 </filter>
+	 <filter-mapping>
+	   <filter-name>springSecurityFilterChain</filter-name>
+	   <url-pattern>/*</url-pattern>
+	 </filter-mapping>
 </web-app>

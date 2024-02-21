@@ -12,11 +12,18 @@ public class RecruitmentController {
 	public String recruit_list() {
 		return "recruitment/recruit_list";
 	}
-	
+
 	@GetMapping("recruit_detail.do")
 	public String recruit_detail(int no, int cno, Model model) {
 		model.addAttribute("no", no);
 		model.addAttribute("cno", cno);
 		return "recruitment/recruit_detail";
+	}
+
+	@GetMapping("company_detail.do")
+	public String company_detail(int no, int cno, Model model) {
+		model.addAttribute("no", no);
+		model.addAttribute("cno", cno);
+		return "recruitment/company_detail";
 	}
 }

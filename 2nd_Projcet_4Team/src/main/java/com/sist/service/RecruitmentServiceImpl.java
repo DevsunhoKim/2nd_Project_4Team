@@ -14,7 +14,7 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 
 	@Autowired
 	private RecruitmentDAO rDao;
-	
+
 	// 목록 출력
 	@Override
 	public List<RecruitVO> recruitListData(int start, int end) {

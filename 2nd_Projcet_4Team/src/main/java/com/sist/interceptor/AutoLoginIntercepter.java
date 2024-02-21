@@ -22,12 +22,11 @@ public class AutoLoginIntercepter extends HandlerInterceptorAdapter{
 		HttpSession session=request.getSession();
 		if(cookies!=null)
 		{
-			for(int i=0;i<cookies.length;i++)
-			{
-			    String key=cookies[i].getName();
+			for (Cookie element : cookies) {
+			    String key=element.getName();
 			    if(key.equals("userId"))
 			    {
-			    	String id=cookies[i].getValue();
+			    	String id=element.getValue();
 			    	MemberVO vo=mService.getMemberByID(id);
 			    	session.setAttribute("userId", vo.getUserId());
 					session.setAttribute("enabled", vo.getEnabled());
@@ -37,7 +36,7 @@ public class AutoLoginIntercepter extends HandlerInterceptorAdapter{
 			    }
 			}
 		}
-		
+
 		return super.preHandle(request, response, handler);
 	}
 
@@ -52,5 +51,5 @@ public class AutoLoginIntercepter extends HandlerInterceptorAdapter{
 			throws Exception {
 		super.afterCompletion(request, response, handler, ex);
 	}
-    
+
 }

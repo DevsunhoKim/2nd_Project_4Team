@@ -7,8 +7,13 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/webapp/WEB-INF/database/application-datasource.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/config/application-task.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application-webchat.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application-context.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application-security.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

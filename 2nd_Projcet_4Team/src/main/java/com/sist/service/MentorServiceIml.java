@@ -14,12 +14,14 @@ public class MentorServiceIml implements MentorService{
     MentorServiceIml(MentorDAO mDao){
         this.mDao = mDao;
     }
-    
-    public MentorVO getMentorByID(String userId) {
+
+    @Override
+	public MentorVO getMentorByID(String userId) {
     	return mDao.getMentorByID(userId);
     }
-    
-    public void enrollMentor(MentorVO vo) {
+
+    @Override
+	public void enrollMentor(MentorVO vo) {
     	mDao.enrollMentor(vo);
     }
 }

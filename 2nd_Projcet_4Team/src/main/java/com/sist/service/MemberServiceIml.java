@@ -26,7 +26,7 @@ public class MemberServiceIml implements MemberService{
 		 * // 성별 전환 if(member.getGender().equals("m")){
 		 * member.setGender("남자"); } else{
 		 * member.setGender("여자"); }
-		 * 
+		 *
 		 * return member;
 		 */
     }
@@ -54,12 +54,24 @@ public class MemberServiceIml implements MemberService{
 	@Override
 	public void memberAuthorityInsert(String userId) {
 		dao.memberAuthorityInsert(userId);
-		
+
 	}
 
 	@Override
 	public MemberVO login(String userId, String userPwd) {
 		return dao.login(userId, userPwd);
+	}
+
+	@Override
+	public void lastLoginUpdate(String name) {
+		dao.lastLoginUpdate(name);
+		
+	}
+
+	@Override
+	public String pwdFind(String userId, String email, String tempPwd) {
+		String res = dao.pwdFind(userId, email, tempPwd);
+		return res;
 	}
 
 }

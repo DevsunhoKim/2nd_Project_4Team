@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +12,8 @@
 <link rel="stylesheet" href="../member/css/template.css"> 
 <link rel="stylesheet" href="../mentoring/css/style.css">
 <link rel="stylesheet" href="../css/common.css">
-<style type="text/css">
-.contents-top a{
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    margin: 0 auto;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: none;
-    background-color: #7918F2;
-    color: #fff;
-    font-weight: 500;
-    text-align: center;
-}
-</style>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div class="glamping-N9" data-bid="AqLsk0m3p5" id="mentorList">
@@ -37,7 +24,7 @@
 	        <h2 class="textset-tit">CODEV만의 멘토진</h2>
 	        <p class="textset-desc">실력과 경험을 모두 갖춘 CODEV의 멘토를 만나보세요.</p>
 	      </div>
-		  <c:if test="${sessionScope.userId!=null }">
+		  <c:if test="${sessionScope.member.mentor == 0}">
 		  	<a href="../mentoring/mentor_enrollment.do" class="cardset-btn">멘토등록하기</a>
 		  </c:if>
 		  <!-- 검색 -->
@@ -64,7 +51,25 @@
 			  ref="fd" v-model="fd" @keyup.enter="dataRecv()">
 		  </div>
 	  </div>
-	  
+	  <div style="height: 30px"></div>
+	  <!-- 기술스택 -->
+	  <div class="row-tech">
+            <div class="css-goiz5j" id="headlessui-popover-panel-3" tabindex="-1" data-headlessui-state="open">
+                <ul class="LanguageBar_languages__243rH">
+                    <li v-for="(tech, index) in tech_list"
+                        class="LanguageBar_languageIcon__2PTl1 LanguageBar_full__2eorP" :key="index"
+                        :class="{'active': index == selectedTech}" v-on:click="selectTech(index)">
+                        <img class="LanguageBar_logo__rGfFz"
+                             :src="'${pageContext.request.contextPath}/images/tech/'+ tech.toLowerCase() +'.svg'"
+                             alt="tech">
+                        <span class="LanguageBar_languageName__2dSeC">{{tech}}</span>
+                    </li>
+                </ul>
+                <div class="SelectedLanguage_selectedWrapper__3dpZm">
+                    <ul class="SelectedLanguage_selectedLanguages__3r4F4"></ul>
+                </div>
+            </div>
+        </div>
 	  <!-- 정렬 버튼 -->
 	  <div class="tabset tabset-text">
 	    <ul class="tabset-list">
@@ -305,66 +310,78 @@
   </div>
 </div>
 </body>
-  <script>
-    let mentorList=Vue.createApp({
-    	data(){
-    		return {
-    			mentor_list:[],
-    			fd:'',
-    			ss:'',
-    			curpage:1,
-    			totalpage:0,
-    			startPage:0,
-    			endPage:0,
-    			page_list:{}
-    		}
-    	},
-    	mounted(){
-    		this.dataRecv()
-    	},
-    	components:{
-    		"pagination":pagination
-    	},
-    	methods:{
-    		dataRecv(){
-    			axios.get('../mentoring/find_vue.do',{
-  				  params:{
-  					  page:this.curpage,
-  					  ss:this.ss,
-  					  fd:this.fd
-  				  }
-  			  }).then(response=>{
-  				  console.log(response)
-  				  this.mentor_list=response.data
-  			  })
- 			   
- 			   axios.get('../mentoring/page_vue.do',{
- 				   params:{
- 					   page:this.curpage
- 				   }
- 			   }).then(response=>{
- 				   console.log(response.data)
- 				   this.page_list=response.data
- 				   this.curpage=response.data.curpage
- 				   this.totalpage=response.data.totalpage
- 				   this.startPage=response.data.startPage
- 				   this.endPage=response.data.endPage
- 			   })
-    		},
-    		prev(){
-    			this.curpage=this.startPage-1
-    			this.dataRecv()
-    		},
-    		next(){
-    			this.curpage=this.endPage+1
-    			this.dataRecv()
-    		},
-    		pageChange(page){
-    			this.curpage=page
-    			this.dataRecv()
-    		}
-    	}
-    })
-    app.mount("#mentorList")
-  </script>
+<script>
+let mentorListApp = Vue.createApp({
+    data() {
+        return {
+            tech_list: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 
+            	'Nextjs', 'Nodejs', 'C', 'Java', 'Spring', 'Go', 'Nestjs', 'Kotlin', 
+            	'Express', 'MySQL', 'MongoDB', 'Python', 'Django', 'php', 'GraphQL', 
+            	'Firebase', 'Flutter', 'Swift', 'ReactNative', 'Unity', 'AWS', 
+            	'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest'] ,
+            mentor_list: [],
+            selectedTech: -1,
+            fd: '',
+            ss: '',
+            curpage: 1,
+            totalpage: 0,
+            startPage: 0,
+            endPage: 0,
+            page_list: {}
+        };
+    },
+    mounted() {
+        this.dataRecv();
+    },
+    methods: {
+        dataRecv() {
+            axios.get('../mentoring/find_view.do', {
+                params: {
+                    page: this.curpage,
+                    ss: this.ss,
+                    fd: this.fd.trim(),
+                    tech: (this.selectedTech !== -1) ? this.tech_list[this.selectedTech].toLowerCase() : ''
+                }
+            }).then(response => {
+                console.log(response);
+                this.mentor_list = response.data;
+            });
+
+            axios.get('../mentoring/page_view.do', {
+                params: {
+                    page: this.curpage
+                }
+            }).then(response => {
+                console.log(response.data);
+                this.page_list = response.data;
+                this.curpage = response.data.curpage;
+                this.totalpage = response.data.totalpage;
+                this.startPage = response.data.startPage;
+                this.endPage = response.data.endPage;
+            });
+        },
+        prev() {
+            this.curpage = this.startPage - 1;
+            this.dataRecv();
+        },
+        next() {
+            this.curpage = this.endPage + 1;
+            this.dataRecv();
+        },
+        pageChange(page) {
+            this.curpage = page;
+            this.dataRecv();
+        },
+        selectTech: function (index) {
+            if (this.selectedTech === index) {
+                this.selectedTech = -1;
+            } else {
+                this.selectedTech = index;
+            }
+            this.curpage = 1;
+            this.dataRecv();
+        }
+    }
+}).mount("#mentorList");
+</script>
 </html>

@@ -1,9 +1,17 @@
 @charset "utf-8"; 
+/* commons */
+.sub{
+	margin-top: 10rem;
+}
+.basic-N3 .header-inner{
+	border-bottom: 1px solid #eee;
+}
+
 
 /* list */
 /* opilsol-N19 [ZbLsbkw4hY] */
 .opilsol-N19 .col-group {display: flex; justify-content: flex-start; align-items: flex-start; flex-wrap: wrap; gap: 2rem; width: 100%; }
-.opilsol-N19 .col-group .item {position: relative; width: 23.7%; margin: 0; padding: 2rem; border: 2px solid #eee; cursor: pointer;}
+.opilsol-N19 .col-group .item {position: relative; width: 23.7%; max-height: 25.6rem; margin: 0; padding: 2rem; border: 2px solid #eee; cursor: pointer;}
 .opilsol-N19 .col-group .item:hover{border: 2px solid #7918F2; background-color: #f9f9f9; transition: all 0.3s ease-in-out;}
 
 @media (max-width: 1366px) {
@@ -66,15 +74,31 @@
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
+#recruitmentList .company-info{width: 100%;}
 #recruitmentList .company-logo{
-  max-width: 8rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 1px solid #f9f9f9;
+  overflow: hidden;
+}
+#recruitmentList .company-logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#recruitmentList .company-name{
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500
 }
 #recruitmentList .recruit-info{
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #eee;
 }
-#recruitmentList .recruit-tit{text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+#recruitmentList .recruit-tit{margin-bottom: 1rem; font-size: 2rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
 #recruitmentList .recruit-area,
 #recruitmentList .recruit-career{
   color: #444;
@@ -95,7 +119,7 @@
   font-size: 1.4rem;
   text-align: right;
 }
-.opilsol-N19 .recruit-like-btn{position: absolute; top: 2rem; right: 2rem; width: 4rem; height: 4rem; line-height: normal; border-radius: 50%; border: 1px solid #eee; background-color: #F9F9F9;}
+.opilsol-N19 .recruit-like-btn{position: absolute; top: 2rem; right: 2rem; z-index: 99; width: 4rem; height: 4rem; line-height: normal; border-radius: 50%; border: 1px solid #eee; background-color: #F9F9F9;}
 .opilsol-N19 .recruit-like-btn .recruit-icon{max-width: 2rem; margin: 0 auto;}
 .opilsol-N19 .recruit-like-btn img{filter: invert(17%) sepia(83%) saturate(6431%) hue-rotate(267deg) brightness(92%) contrast(107%);}
 .opilsol-N19 .recruit-like-btn:hover{background-color: #7918F2; transition: all 0.3s ease-in-out;}
@@ -127,10 +151,25 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 #recruitmentDetail .company-logo{
-  max-width: 10rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+#recruitmentDetail .company-logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#recruitmentDetail .company-name{
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 #recruitmentDetail .recruit-btn{
   background: transparent;
@@ -157,6 +196,8 @@
 }
 #recruitmentDetail .recruit-tit{
   margin-top: 1rem;
+  font-size: 2.4rem;
+  font-weight: 700;
 }
 #recruitmentDetail .recruit-btn-wrapper{
   display: flex;
@@ -195,6 +236,7 @@
 }
 #recruitmentDetail .recruit-detail-card li{
   width: 100%;
+  max-height: 8.5rem;
   padding: 1.5rem;
   border-radius: 1rem;
   border: 1px solid #eee;
@@ -224,14 +266,22 @@
   font-size: 1.4rem;
   white-space: nowrap;
 }
-#recruitmentDetail .recruit-stack-list li .recruit-stack-icon{display: inline-block; max-width: 1.6rem; margin: 0 1rem 0 0;}
+#recruitmentDetail .recruit-stack-list li .recruit-stack-icon{display: inline-block; max-width: 1.6rem; margin-right: 1rem}
 #recruitmentDetail .recruit-detail-info{
   margin: 2rem 0;
   padding: 2rem 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
-#recruitmentDetail .recruit-detail-info pre{
+#recruitmentDetail .recruit-detail-info li{
+  margin-bottom: 4rem;
+}
+#recruitmentDetail .recruit-detail-info li h5{
+	font-size: 1.8rem;
+	font-weight: 500
+}
+#recruitmentDetail .recruit-detail-info li pre{
+  color: #444;
   white-space: pre-wrap;
   word-break: keep-all;
 }
@@ -472,8 +522,19 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+#recruitmentCompany .company-info{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
 #recruitmentCompany .company-logo{
-  max-width: 12rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 1rem;
+  border: 1px solid #f9f9f9;
+  background-color: #fff;
+  overflow: hidden;
 }
 #recruitmentCompany .company-name{
   margin: 1rem 0;
@@ -565,8 +626,20 @@
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
+#recruitmentCompany .company-detail-intro > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-top;
+  gap: 4rem;
+}
+#recruitmentCompany .company-img{
+  width: 100%;
+  max-width: 64rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
 #recruitmentCompany .company-detail-intro p{
-  margin-top: 2rem;
+  width: 100%;
   color: #444;
   word-break: keep-all;
 }
