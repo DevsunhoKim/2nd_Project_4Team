@@ -26,10 +26,17 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		// TODO Auto-generated method stub
 		return sdao.studyRoomDetailData(no);
 	}
+	
+	//스터디룸 예약가능 시간 리스트
 	@Override
 	public List<StudyRoomTimeVO> studyRoomTimeData(int sno) {
 		// TODO Auto-generated method stub
 		return srdao.studyRoomTimeData(sno);
+	}
+	@Override
+	public List<String> studyRoomTimeList(StudyRoomTimeVO vo) {
+		// TODO Auto-generated method stub
+		return srdao.studyRoomTimeList(vo);
 	}
 
 }

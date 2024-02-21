@@ -944,6 +944,9 @@
 	 margin-top: 2.4rem;
 	 padding: 2rem 0 4rem 0;
 }       
+.room_reserve .inwon, .room_reserve .range{
+	padding: 0rem 0 6rem 0;
+}
 .room_reserve .contents-tit, .room_reserve .range .contents-tit{
 	margin-bottom: 4rem;
 	font-size: 3rem;
@@ -1045,7 +1048,7 @@
 
 
 .room_reserve section{
-    width: 100vmin;
+    /* width: 100vmin; */
     /* height: 100vh; */
     /* position: absolute; */
     /* transform: translate(-50%,-50%);
@@ -1058,8 +1061,8 @@
     gap: 20px;
 }
 .room_reserve section .tile{
-    height: 60px;
-    width: 107px;
+    height: 48px;
+    width: 88px;
     position: relative;
     /* border: 1px solid #e5e5e5;
     border-radius: 1rem; */
@@ -1090,7 +1093,7 @@
     transform: scale(1.08);
 }
 .room_reserve section input[type="checkbox"]:checked{
-    border: 3px solid #478bfb;
+    border: 3px solid #6713d2;
 }
 .room_reserve section input[type="checkbox"]:checked:after{
     font-weight: 900;
@@ -1126,8 +1129,43 @@
     }
 }
 .room_reserve section label h6{
-    font-family: "Poppins",sans-serif;
+    /* font-family: "Poppins",sans-serif; */
     font-size: 15px;
-    font-weight: 400;
-    color: #7b7b93;
+    font-weight: 500;
+    /* color: #7b7b93; */
+}
+.room_reserve .time_checkbox{
+	display: none;
+}
+.room_reserve .select_time{
+	display: flex;
+	
+}
+.room_reserve .time_check{
+	border: 2px solid #e5e5e5;
+    border-radius: 1rem;
+    padding: 0.3rem 1rem;
+    margin-right: 0.5rem;
+}
+.room_reserve .time_check:hover{
+	border: 2px solid #6713d2;
+	background-color: #6713d2;
+	color:white;
+    border-radius: 1rem;
+    padding: 0.3rem 1rem;
+    margin-right: 0.5rem;
+}
+.room_reserve .selected {
+    /* 스타일을 적용할 내용을 여기에 작성하세요 */
+    border: 2px solid #6713d2;
+    background-color:  #6713d2;
+}
+
+.room_reserve .glamping-N33 .title .t{ 
+	font-weight: bold;
+	font-size: 2rem;
+	color: black;
+}
+.room_reserve .range{
+	width: 50%;
 }

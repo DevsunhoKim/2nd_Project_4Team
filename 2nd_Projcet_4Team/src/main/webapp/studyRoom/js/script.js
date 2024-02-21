@@ -250,6 +250,7 @@
     $(".glamping-N33").each(function() {
       const $block = $(this);
       const $calendar = $block.find(".contents-date")
+      
       // Date Range Picker
       $calendar.dateRangePicker({
         container: '.glamping-N33 .contents-top',
@@ -266,21 +267,37 @@
       $block.find(".contents-amount").each(function() {
         const $this = $(this);
         const $amountNumElement = $this.find(".contents-amount-num span");
-        $this.on("click", ".btn-minus", function() {
-          let amountNum = parseInt($amountNumElement.text());
-          if (amountNum > 1) {
-            amountNum--;
-          }
-          $amountNumElement.text(amountNum);
-        });
-        $this.on("click", ".btn-plus", function() {
-          let amountNum = parseInt($amountNumElement.text());
-          if (amountNum < 32) { // 32까지만 늘릴 수 있도록 제한
-             amountNum++;
-             $amountNumElement.text(amountNum);
-           }
-        });
+/*        $this.on("click", ".btn-minus", function() {
+//          let amountNum = parseInt($amountNumElement.text());
+//          if (amountNum > 1) {
+//            amountNum--;
+//          }
+//          $amountNumElement.text(amountNum);
+        	rapp.minus();
+        });*/
+//        $this.on("click", ".btn-plus", function() {
+//          let amountNum = parseInt($amountNumElement.text());
+//          if (amountNum < 32) { // 32까지만 늘릴 수 있도록 제한
+//             amountNum++;
+//             $amountNumElement.text(amountNum);
+//           }
+//        });
       });
     });
   });
 })();
+//(function() {
+//	  document.addEventListener('DOMContentLoaded', function() {
+//	    const checkboxes = document.querySelectorAll('.time_checkbox');
+//
+//	    checkboxes.forEach(function(checkbox) {
+//	      checkbox.addEventListener('change', function() {
+//	        if (this.checked) {
+//	          this.parentNode.style.border = '2px solid #6713d2'; // 체크되었을 때 테두리 색상 변경
+//	        } else {
+//	          this.parentNode.style.border = '2px solid #e5e5e5'; // 체크가 해제되었을 때 테두리 색상 원래대로 변경
+//	        }
+//	      });
+//	    });
+//	  });
+//	})();

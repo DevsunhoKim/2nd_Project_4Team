@@ -11429,36 +11429,32 @@
 
 
 
-
-     // Find the rendering part for month2 and fix it to January 2025
         function O(e, t) {
-            // Fixing month2 to January 2025
-            if (t === "month2") {
-                // Set the month to January and the year to 2025
-                e = new Date(2025, 0, 1); // January is 0-indexed in JavaScript dates
-            }
-
+        	// Fixing month2 to January 2025
+          if (t === "month2") {
+              // Set the month to January and the year to 2025
+              e = new Date(2025, 0, 1); // January is 0-indexed in JavaScript dates
+          }
             var a = function(e, t) {
-                var a = (e = Q(e)).get("month"),
-                    n = '<div class="month-element">' + A(a) + "</div>";
-                if (!f.monthSelect) return n;
-                var r = !!f.startDate && Q(f.startDate).add(f.singleMonth || "month2" !== t ? 0 : 1, "month"),
-                    s = !!f.endDate && Q(f.endDate).add(f.singleMonth || "month1" !== t ? 0 : -1, "month"),
-                    o = r && e.isSame(r, "year") ? r.get("month") : 0,
-                    i = s && e.isSame(s, "year") ? s.get("month") : 11,
-                    d = Math.min(o, a),
-                    l = Math.max(i, a);
-                if (d === l) return n;
-                return P("month", V({
-                    minSelectable: o,
-                    maxSelectable: i,
-                    minVisible: d,
-                    maxVisible: l
-                }, a, function(e) {
-                    return A(e)
-                }))
-            }(e = Q(e).toDate(), t),
-            // Other code continues...
+                    var a = (e = Q(e)).get("month"),
+                        n = '<div class="month-element">' + A(a) + "</div>";
+                    if (!f.monthSelect) return n;
+                    var r = !!f.startDate && Q(f.startDate).add(f.singleMonth || "month2" !== t ? 0 : 1, "month"),
+                        s = !!f.endDate && Q(f.endDate).add(f.singleMonth || "month1" !== t ? 0 : -1, "month"),
+                        o = r && e.isSame(r, "year") ? r.get("month") : 0,
+                        i = s && e.isSame(s, "year") ? s.get("month") : 11,
+                        d = Math.min(o, a),
+                        l = Math.max(i, a);
+                    if (d === l) return n;
+                    return P("month", V({
+                        minSelectable: o,
+                        maxSelectable: i,
+                        minVisible: d,
+                        maxVisible: l
+                    }, a, function(e) {
+                        return A(e)
+                    }))
+                }(e = Q(e).toDate(), t),
                 n = function(e, t) {
                     var a = (e = Q(e)).get("year"),
                         n = '<div class="month-element">' + a + "</div>";
@@ -11517,10 +11513,11 @@
                         var p = {
                             time: a.time,
                             "data-tooltip": a.tooltip,
-                            class: "day " + a.type + " " + a.extraClass + " " + (a.valid ? "valid" : "invalid") + " " + (h ? "real-today" : "")
+                            class: "day " + a.type + " " + a.extraClass + " " + (a.valid ? "valid" : "invalid") + " " + (h ? "real-today" : "") // day_td 클래스 추가
                         };
-                        0 === i && f.showWeekNumbers && l.push('<td><div class="week-number" data-start-time="' + a.time + '">' + f.getWeekNumber(a.date) + "</div></td>"), l.push("<td " + $({}, f.dayTdAttrs, a) + "><div " + $(p, f.dayDivAttrs, a) + ">" + J(a.time, a.day) + "</div></td>")
+                        0 === i && f.showWeekNumbers && l.push('<td><div class="week-number" data-start-time="' + a.time + '">' + f.getWeekNumber(a.date) + "</div></td>"), l.push("<td class='day_td' " + $({}, f.dayTdAttrs, a) + "><div " + $(p, f.dayDivAttrs, a) + ">" + J(a.time, a.day) + "</div></td>")
                     }
+
                     l.push("</tr>")
                 }
                 return l.join("")
@@ -11537,8 +11534,121 @@
                 D(U(this))
             }), m.find(".year").off("change").on("change", function(e) {
                 D(U(this))
-            })
+            }),m.find(".day_td").off("click").on("click", function(e) {
+                // 클릭된 날짜에 대한 처리를 수행합니다.
+                console.log("날짜가 클릭되었습니다.");
+                rapp.date_click();
+            });
         }
+     // Find the rendering part for month2 and fix it to January 2025
+//        function O(e, t) {
+//            // Fixing month2 to January 2025
+//            if (t === "month2") {
+//                // Set the month to January and the year to 2025
+//                e = new Date(2025, 0, 1); // January is 0-indexed in JavaScript dates
+//            }
+//
+//            var a = function(e, t) {
+//                var a = (e = Q(e)).get("month"),
+//                    n = '<div class="month-element">' + A(a) + "</div>";
+//                if (!f.monthSelect) return n;
+//                var r = !!f.startDate && Q(f.startDate).add(f.singleMonth || "month2" !== t ? 0 : 1, "month"),
+//                    s = !!f.endDate && Q(f.endDate).add(f.singleMonth || "month1" !== t ? 0 : -1, "month"),
+//                    o = r && e.isSame(r, "year") ? r.get("month") : 0,
+//                    i = s && e.isSame(s, "year") ? s.get("month") : 11,
+//                    d = Math.min(o, a),
+//                    l = Math.max(i, a);
+//                if (d === l) return n;
+//                return P("month", V({
+//                    minSelectable: o,
+//                    maxSelectable: i,
+//                    minVisible: d,
+//                    maxVisible: l
+//                }, a, function(e) {
+//                    return A(e)
+//                }))
+//            }(e = Q(e).toDate(), t),
+//            // Other code continues...
+//                n = function(e, t) {
+//                    var a = (e = Q(e)).get("year"),
+//                        n = '<div class="month-element">' + a + "</div>";
+//                    if (!f.yearSelect) return n;
+//                    var r = f.yearSelect && "function" == typeof f.yearSelect,
+//                        s = !!f.startDate && Q(f.startDate).add(f.singleMonth || "month2" !== t ? 0 : 1, "month"),
+//                        o = !!f.endDate && Q(f.endDate).add(f.singleMonth || "month1" !== t ? 0 : -1, "month"),
+//                        i = r ? f.yearSelect(a) : f.yearSelect.slice(),
+//                        d = s ? Math.max(i[0], s.get("year")) : Math.min(i[0], a),
+//                        l = o ? Math.min(i[1], o.get("year")) : Math.max(i[1], a),
+//                        u = Math.min(d, a),
+//                        m = Math.max(l, a);
+//                    if (u === m) return n;
+//                    return P("year", V({
+//                        minSelectable: d,
+//                        maxSelectable: l,
+//                        minVisible: u,
+//                        maxVisible: m
+//                    }, a))
+//                }(e, t);
+//            m.find("." + t + " .month-name").html(a + " " + n), m.find("." + t + " tbody").html(function(e) {
+//                var t = [];
+//                e.setDate(1);
+//                new Date(e.getTime() - 864e5);
+//                var a, n, r = new Date,
+//                    s = e.getDay();
+//                0 === s && "monday" === f.startOfWeek && (s = 7);
+//                if (0 < s)
+//                    for (var o = s; 0 < o; o--) {
+//                        var i = new Date(e.getTime() - 864e5 * o);
+//                        n = g(i.getTime()), f.startDate && H(i, f.startDate) < 0 && (n = !1), f.endDate && 0 < H(i, f.endDate) && (n = !1), t.push({
+//                            date: i,
+//                            type: "lastMonth",
+//                            day: i.getDate(),
+//                            time: i.getTime(),
+//                            valid: n
+//                        })
+//                    }
+//                for (var d = e.getMonth(), o = 0; o < 40; o++) a = Q(e).add(o, "days").toDate(), n = g(a.getTime()), f.startDate && H(a, f.startDate) < 0 && (n = !1), f.endDate && 0 < H(a, f.endDate) && (n = !1), t.push({
+//                    date: a,
+//                    type: a.getMonth() == d ? "toMonth" : "nextMonth",
+//                    day: a.getDate(),
+//                    time: a.getTime(),
+//                    valid: n
+//                });
+//                for (var l = [], u = 0; u < 6 && "nextMonth" != t[7 * u].type; u++) {
+//                    l.push("<tr>");
+//                    for (var i = 0; i < 7; i++) {
+//                        var m = "monday" == f.startOfWeek ? i + 1 : i;
+//                        a = t[7 * u + m];
+//                        var h = Q(a.time).format("L") == Q(r).format("L");
+//                        if (a.extraClass = "", a.tooltip = "", a.valid && f.beforeShowDay && "function" == typeof f.beforeShowDay) {
+//                            var c = f.beforeShowDay(Q(a.time).toDate());
+//                            a.valid = c[0], a.extraClass = c[1] || "", a.tooltip = c[2] || "", "" !== a.tooltip && (a.extraClass += " has-tooltip ")
+//                        }
+//                        var p = {
+//                            time: a.time,
+//                            "data-tooltip": a.tooltip,
+//                            class: "day " + a.type + " " + a.extraClass + " " + (a.valid ? "valid" : "invalid") + " " + (h ? "real-today" : "")
+//                        };
+//                        0 === i && f.showWeekNumbers && l.push('<td><div class="week-number" data-start-time="' + a.time + '">' + f.getWeekNumber(a.date) + "</div></td>"), l.push("<td " + $({}, f.dayTdAttrs, a) + "><div " + $(p, f.dayDivAttrs, a) + ">" + J(a.time, a.day) + "</div></td>")
+//                    }
+//                    l.push("</tr>")
+//                }
+//                return l.join("")
+//            }(e)), f[t] = e, w(), m.find(".day").off("click").on("click", function(e) {
+//                k(U(this))
+//            }), m.find(".day").off("mouseenter").on("mouseenter", function(e) {
+//                y(U(this))
+//            }), m.find(".day").off("mouseleave").on("mouseleave", function(e) {
+//                m.find(".date-range-length-tip").hide(), f.singleDate && b()
+//            }), m.find(".week-number").off("click").on("click", function(e) {
+//                var t, a, n, r;
+//                t = U(this), r = parseInt(t.attr("data-start-time"), 10), f.startWeek ? (m.find(".week-number-selected").removeClass("week-number-selected"), a = new Date(r < f.startWeek ? r : f.startWeek), n = new Date(r < f.startWeek ? f.startWeek : r), f.startWeek = !1, f.start = Q(a).day("monday" == f.startOfWeek ? 1 : 0).valueOf(), f.end = Q(n).day("monday" == f.startOfWeek ? 7 : 6).valueOf()) : (f.startWeek = r, t.addClass("week-number-selected"), a = new Date(r), f.start = Q(a).day("monday" == f.startOfWeek ? 1 : 0).valueOf(), f.end = Q(a).day("monday" == f.startOfWeek ? 7 : 6).valueOf()), w(), M(), S(), C(), x()
+//            }), m.find(".month").off("change").on("change", function(e) {
+//                D(U(this))
+//            }), m.find(".year").off("change").on("change", function(e) {
+//                D(U(this))
+//            })
+//        }
 
         function V(e, t, a) {
             var n = [];
