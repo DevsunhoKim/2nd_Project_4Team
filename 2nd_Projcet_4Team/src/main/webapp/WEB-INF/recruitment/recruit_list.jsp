@@ -118,22 +118,22 @@
           </div>
 
           <div class="col-group">
-            <div class="item cardset cardset-border" v-for="vo in recruit_list">
-              <a :href="'recruit_detail.do?no='+vo.no+'&cno='+vo.cno" class="company-info">
+            <div class="item cardset cardset-border" v-for="rvo in recruit_list">
+              <a :href="'recruit_detail.do?no='+rvo.no+'&cno='+rvo.cno" class="company-info">
                 <figure class="company-logo">
-                  <img class="width-100" :src="vo.cvo.logo" alt="기업 로고">
+                  <img class="width-100" :src="rvo.cvo.logo" alt="기업 로고">
                 </figure>
-                <h4 class="company-name">{{vo.cvo.name}}</h4>
+                <h4 class="company-name">{{rvo.cvo.name}}</h4>
                 <div class="recruit-info">
-                  <h3 class="recruit-tit">{{vo.title}}</h3>
-                  <span class="recruit-area">서울시 송파구</span>
-                  <span class="recruit-career">{{vo.career}}</span>
+                  <h3 class="recruit-tit">{{rvo.title}}</h3>
+                  <span class="recruit-area">{{rvo.cvo.address}}</span>
+                  <span class="recruit-career">{{rvo.career}}</span>
                   <ul class="recruit-stack">
                     <li>Java</li>
                     <li>Spring Boot</li>
                     <li>React</li>
                   </ul>
-                  <span class="recruit-date">~ {{vo.end_date}}</span>
+                  <span class="recruit-date">~ {{rvo.end_date}}</span>
                 </div>
               </a>
               <button type="button" class="recruit-btn recruit-like-btn">

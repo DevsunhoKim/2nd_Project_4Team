@@ -26,7 +26,7 @@
         <div class="content-desc">
           <div class="recruit-top">
             <div class="recruit-info">
-              <a :href="'company_detail.do?no='+ no" class="company-info">
+              <a :href="'company_detail.do?no='+ no+'&cno='+ cno" class="company-info">
                 <figure class="company-logo">
                   <img class="width-100" :src="company_detail.logo" alt="기업 로고">
                 </figure>
@@ -130,7 +130,7 @@
         </div>
         <div class="company-detail">
           <div class="company-detail-info">
-            <a href="#" class="company-info">
+            <a :href="'company_detail.do?no='+ no+'&cno='+ cno" class="company-info">
               <figure class="company-logo">
                 <img class="width-100" :src="company_detail.logo" alt="기업 로고">
               </figure>

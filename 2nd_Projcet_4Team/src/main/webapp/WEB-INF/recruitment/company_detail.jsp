@@ -20,20 +20,20 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
-  <section id="recruitmentCompany" class="sub">
-    <div class="content-container" id="companyDetailApp">
+  <section id="recruitmentCompany" class="sub companyDetailApp">
+    <div class="content-container" id="">
       <div class="container-md">
         <div class="company-top">
           <div class="company-info">
             <figure class="company-logo">
-              <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
+              <img class="width-100" :src="company_detail.logo" alt="기업 로고">
             </figure>
             <h2 class="company-name">{{company_detail.name}}</h2>
-            <p>응용 소프트웨어 개발 및 공급업</p>
+            <p>{{company_detail.type}}</p>
           </div>
           <div class="company-btn-wrapper">
             <button type="button" id="companyLikeBtn" class="company-btn">
-              <span class="company-like-count">2,400</span>
+              <span class="company-like-count">{{company_detail.like_count}}</span>
               <figure class="company-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/7794/7794674.png" alt="관심 기업 추가">
               </figure>
@@ -51,59 +51,55 @@
               <figure class="company-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/468/468634.png" alt="업력">
               </figure>
-              <span>업력 </span><span class="emph">30년차</span>
+              <span>업력 </span><span class="emph">{{company_detail.year}}년차</span>
             </li>
             <li>
               <figure class="company-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/5956/5956860.png" alt="기업 형태">
               </figure>
-              <span class="emph">대기업</span>
+              <span class="emph">{{company_detail.scale}}</span>
             </li>
             <li>
               <figure class="company-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/5957/5957004.png" alt="사원 수">
               </figure>
-              <span>사원 </span><span class="emph">2,000명</span>
+              <span>사원 </span><span class="emph">{{company_detail.worker}}명</span>
             </li>
             <li>
               <figure class="company-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4549/4549418.png" alt="매출액">
               </figure>
-              <span>매출 </span><span class="emph">2,400억</span>
+              <span>매출 </span><span class="emph">{{company_detail.sales}}억</span>
             </li>
           </ul>
           <ul class="company-detail-info">
             <li>
               <span>주소</span>
-              <span class="emph">서울 송파구 위례성대로 2 (방이동) 우아한형제들</span>
+              <span class="emph">{{company_detail.address}}</span>
             </li>
-            <li>
+            <!-- <li>
               <span>홈페이지</span>
               <span class="emph">http://www.woowahan.com</span>
-            </li>
+            </li> -->
             <li>
               <span>전화번호</span>
-              <span class="emph">02-1234-5678</span>
+              <span class="emph">{{company_detail.phone}}</span>
             </li>
-            <li>
+            <!-- <li>
               <span>이메일</span>
               <span class="emph">woowahan.com</span>
-            </li>
+            </li> -->
           </ul>
           <div class="company-detail-intro">
             <h3>기업 소개</h3>
             <figure class="company-img">
-              <img class="width-100" src="" alt="기업 이미지">
+              <img class="width-100" src="company_detail.img" alt="기업 이미지">
             </figure>
-            <p class="company-content">우아한형제들은 1등 배달앱 배달의민족으로 음식 문화를 선도하고 있습니다. ‘배민1’으로 한 번에 한 집만 더 빠르게, ‘B마트‘로 온라인 장보기도 즉시 배달하고, '배민스토어'를 통해 세상 모든 상품을 문 앞으로 바로 배달할 날을 꿈꿉니다.
-            우리는 ‘문 앞으로 배달되는 일상의 행복을’ 비전으로 삼고있습니다. 사장님, 라이더와 함께 성장하는 외식산업을 만들기 위해 제도적, 체계적으로 지원하며, 환경과 사회를 생각하는 지속가능한 성장을 추구하는 다양한 노력을 기울이고 있습니다.
-            규율위의 자율ㆍ스타보다 팀웍ㆍ진지함과 위트ㆍ열심만큼 성과를 4대 핵심가치로 삼고 있는 우아한형제들은 ‘구성원을 행복하게 만들면 행복한 구성원이 더 좋은 서비스를 만든다’라는 믿음으로 모두가 즐겁게 일하는 회사를 만들어 가기 위해 오늘도 노력합니다.</p>
+            <p class="company-content">{{company_detail.content}}</p>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- [S]opilsol-N24 -->
+      <!-- [S]opilsol-N24 -->
     <div class="opilsol-N24" data-bid="UzLsBKVg3P">
       <div class="content-container">
         <div class="container-md">
@@ -127,73 +123,44 @@
                   </tr>
                 </thead> -->
                 <tbody>
-                  <tr>
+                  <tr v-for="rvo in recruit_list">
                     <td class="recruit-tit">
-                      <a href="javascript:void(0)">각 부문별 경력/신입 인재영입</a>
+                      <a :href="'recruit_detail.do?no='+rvo.no+'&cno='+rvo.cno">{{rvo.title}}</a>
                     </td>
-                    <td class="recruit-area">서울시 송파구</td>
-                    <td class="recruit-career">경력 무관</td>
-                    <td class="recruit-academic">학력 무관</td>
-                    <td class="recruit-date">~ 2024.02.29</td>
-                  </tr>
-                  <tr>
-                    <td class="recruit-tit">
-                      <a href="javascript:void(0)">우아한형제들 개발자 모집(3년이상)</a>
-                    </td>
-                    <td class="recruit-area">서울시 송파구</td>
-                    <td class="recruit-career">경력 3년 이상</td>
-                    <td class="recruit-academic">학력 무관</td>
-                    <td class="recruit-date">~ 2024.02.29</td>
-                  </tr>
-                  <tr>
-                    <td class="recruit-tit">
-                      <a href="javascript:void(0)">각 부문별 경력/신입 인재영입</a>
-                    </td>
-                    <td class="recruit-area">서울시 송파구</td>
-                    <td class="recruit-career">경력 무관</td>
-                    <td class="recruit-academic">학력 무관</td>
-                    <td class="recruit-date">~ 2024.02.29</td>
-                  </tr>
-                  <tr>
-                    <td class="recruit-tit">
-                      <a href="javascript:void(0)">우아한형제들 개발 담당자 모집(10년이상)</a>
-                    </td>
-                    <td class="recruit-area">서울시 송파구</td>
-                    <td class="recruit-career">경력 10년 이상</td>
-                    <td class="recruit-academic">학력 무관</td>
-                    <td class="recruit-date">~ 2024.02.29</td>
+                    <td class="recruit-area">{{rvo.address}}</td>
+                    <td class="recruit-career">{{rvo.career}}</td>
+                    <td class="recruit-academic">{{rvo.education}}</td>
+                    <td class="recruit-date">~ {{rvo.end_date}}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <nav class="pagiset pagiset-circ">
-            <!-- <div class="pagiset-ctrl">
+          <!-- <nav class="pagiset pagiset-circ">
+            <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-first" href="javascript:void(0)">
                 <span class="visually-hidden">처음</span>
               </a>
-            </div> -->
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
+            </div>
+            <div class="pagiset-ctrl" v-if="startPage>1">
+              <a class="pagiset-link pagiset-prev" @click="prev()">
                 <span class="visually-hidden">이전</span>
               </a>
             </div>
-            <div class="pagiset-list">
-              <a class="pagiset-link active-fill" href="javascript:void(0)">1</a>
-              <a class="pagiset-link" href="javascript:void(0)">2</a>
-              <a class="pagiset-link" href="javascript:void(0)">3</a>
+            <div class="pagiset-list" v-for="i in range(startPage, endPage)">
+              <a :class="'pagiset-link ' + (i==curpage?'active-fill':'')" @click="pageChange(i)">{{i}}</a>
             </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-next" href="javascript:void(0)">
+            <div class="pagiset-ctrl" v-if="endPage<totalpage">
+              <a class="pagiset-link pagiset-next" @click="next()">
                 <span class="visually-hidden">다음</span>
               </a>
             </div>
-            <!-- <div class="pagiset-ctrl">
+            <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-last" href="javascript:void(0)">
                 <span class="visually-hidden">마지막</span>
               </a>
-            </div> -->
-          </nav>
+            </div>
+          </nav> -->
         </div>
       </div>
     </div>
@@ -406,18 +373,26 @@
       </div>
     </div>
     <!-- [E]glamping-N40 -->
+    </div>
   </section>
 <script>
 let companyDetailApp=Vue.createApp({
 	data(){
 		return{
+			recruit_list:[],
 			recruit_detail:[],
 			company_detail:[],
 			no:${no},
-			cno:${cno}
+			cno:${cno},
+			curpage:1,
+      totalpage:0,
+      startPage:0,
+      endPage:0
 		}
 	},
 	mounted(){
+		this.dataRecv()
+		
 		axios.get('../recruitment/company_detail_vue.do', {
 			params:{
 				no:this.no,
@@ -430,6 +405,59 @@ let companyDetailApp=Vue.createApp({
 		})
 	},
 	methods:{
+		dataRecv(){
+      axios.get('../recruitment/recruit_detail_vue.do', {
+        params:{
+        	no:this.no,
+          cno:this.cno,
+          page:this.curpage
+        }
+      }).then(response=>{
+        console.log(response.data)
+        this.recruit_list=response.data
+      })
+      
+      // 페이지
+      axios.get('../recruitment/recruit_page_vue.do', {
+        params:{
+          page:this.curpage
+        }
+      }).then(response=>{
+        console.log(response.data)
+        this.curpage=response.data.curpage
+        this.totalpage=response.data.totalpage
+        this.startPage=response.data.startPage
+        this.endPage=response.data.endPage
+      })
+      
+      /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
+        console.log(response.data)
+        this.cookie_list=response.data
+      }) */
+    },
+    
+    range(start, end){
+      let arr=[]
+      let leng=end-start
+      for(let i=0; i<=leng; i++){
+        arr[i]=start
+        start++
+      }
+      return arr
+    },
+    prev(){
+      this.curpage=this.endPage-1
+      this.dataRecv()
+    },
+    next(){
+      this.curpage=this.endPage+1
+      this.dataRecv()
+    },
+    pageChange(page){
+      this.curpage=page
+      this.dataRecv()
+    },		
+		
 		addScript(){
 			const script=document.createElement("script")
 			  
@@ -438,6 +466,7 @@ let companyDetailApp=Vue.createApp({
 			script.src="http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=74c8ca8100e4e559f7de6e3bf17641b2&libraries=services"
 			document.head.appendChild(script)
 		},
+		
 		initMap(){
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
   		    mapOption = {
@@ -475,7 +504,7 @@ let companyDetailApp=Vue.createApp({
 			});    
 		}
 	}
-}).mount('#recruitmentDetailApp')
+}).mount('.companyDetailApp')
 </script>
 </body>
 </html>
