@@ -424,7 +424,7 @@ let companyDetailApp=Vue.createApp({
       }) */
     },
     Insert(){
-    	location.href="../recruitment/recruit_insert.do?cno='+ cvo.cno'";
+    	location.href="../recruitment/recruit_insert.do?cno='+cvo.cno'";
     },
     range(start, end){
       let arr=[]
