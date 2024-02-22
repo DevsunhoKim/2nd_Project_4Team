@@ -40,9 +40,20 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		HttpSession session=request.getSession();
 		mService.lastLoginUpdate(authentication.getName());
 		MemberVO vo=mService.getMemberByID(authentication.getName());
-		
-		// ${sessionScope.member.변수명} 
-		session.setAttribute("member", vo);
+		session.setAttribute("userId", vo.getUserId());
+		session.setAttribute("userPwd", vo.getUserPwd());
+		session.setAttribute("nickname", vo.getNickname());
+		session.setAttribute("birthday", vo.getBirthday());
+		session.setAttribute("gender", vo.getGender());
+		session.setAttribute("email", vo.getEmail());
+		session.setAttribute("phone", vo.getPhone());
+		session.setAttribute("post", vo.getPost());
+		session.setAttribute("addr", vo.getAddr());
+		session.setAttribute("detail_addr", vo.getDetail_addr());
+		session.setAttribute("hope_job", vo.getHope_job());
+		session.setAttribute("regdate", vo.getRegdate());
+		session.setAttribute("mentor", vo.getMentor());
+		session.setAttribute("authority", vo.getAuthority());
 		resultRedirectStrategy(request, response, authentication);
 	}
 	protected void resultRedirectStrategy(HttpServletRequest request, HttpServletResponse response,
