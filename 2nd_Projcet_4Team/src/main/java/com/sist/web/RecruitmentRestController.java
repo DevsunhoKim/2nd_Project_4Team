@@ -77,15 +77,8 @@ public class RecruitmentRestController {
 	// 기업 정보 상세 페이지
 	@GetMapping(value="company_detail_vue.do", produces="text/plain;charset=UTF-8")
 	public String company_detail_vue(int no, int cno) throws Exception {
-<<<<<<< HEAD
 		RecruitVO rvo=rService.recuitDetailData(no);
 		CompanyVO cvo=rService.companyDetailData(cno);
-		
-=======
-		RecruitVO rvo=service.recuitDetailData(no);
-		CompanyVO cvo=service.companyDetailData(cno);
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 //		int rowSize=4;
 //		int start=(rowSize*page)-(rowSize-1);
 //		int end=rowSize*page;

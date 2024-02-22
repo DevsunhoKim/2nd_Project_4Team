@@ -5,11 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
-<<<<<<< HEAD
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-=======
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.CompanyVO;
@@ -63,34 +59,27 @@ public interface RecruitmentMapper {
 	        "WHERE r.no BETWEEN #{start} AND #{end} " +
 	        "ORDER BY r.no DESC")
 	public List<RecruitVO> recruitListData(@Param("start") int start, @Param("end") int end);
-<<<<<<< HEAD
-	
-	
-=======
 
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
+	
 	// 총 페이지 수
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM recruit")
 	public int recruitTotalPage();
 
-	// 검색
-<<<<<<< HEAD
 	
-=======
+	// 검색
 
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 
 	// 상세보기
-//		// 1. 채용 공고 정보
-//		@Select("SELECT no, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date, like_count "
-//				+ "FROM recruit "
-//				+ "WHERE no=#{no}")
-//		public RecruitVO recuitDetailData(int no);
-//		// 2. 기업 정보
-//		@Select("SELECT no, logo, name, address, homepage, phone, email, like_count "
-//				+ "FROM company "
-//				+ "WHERE no=#{no}")
-//		public CompanyVO companyDetailData(int no);
+  //		// 1. 채용 공고 정보
+  //		@Select("SELECT no, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date, like_count "
+  //				+ "FROM recruit "
+  //				+ "WHERE no=#{no}")
+  //		public RecruitVO recuitDetailData(int no);
+  //		// 2. 기업 정보
+  //		@Select("SELECT no, logo, name, address, homepage, phone, email, like_count "
+  //				+ "FROM company "
+  //				+ "WHERE no=#{no}")
+  //		public CompanyVO companyDetailData(int no);
 
 		// 1. 채용 공고 정보
 		@Select("SELECT * FROM recruit WHERE no=#{no}")
@@ -98,9 +87,7 @@ public interface RecruitmentMapper {
 		
 		// 2. 기업 정보
 		@Select("SELECT * FROM company WHERE no=#{no}")
-		public CompanyVO companyDetailData(int no);
-<<<<<<< HEAD
-	
+		public CompanyVO companyDetailData(int no);	
 
 		// 채용 공고 추가
 		@Results({
@@ -120,11 +107,7 @@ public interface RecruitmentMapper {
         + "FROM recruit r, company c "
         + "WHERE r.cno = c.no")
 		public void recruitInsert(RecruitVO vo);
-	
-=======
 
 
 	// 면접 후기 작성
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 }
