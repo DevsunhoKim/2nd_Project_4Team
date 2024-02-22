@@ -198,7 +198,7 @@ body{ margin: 20px; }
                 <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.no">
                     <div class="cardset cardset-hor">
                         <!-- 수정 및 삭제 버튼, SessionScope 적용 예정 -->
-                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-left: 10px; margin-top: 15px;" @click="editReview(review.no)">수정</a>
+                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-left: 10px; margin-top: 15px;" @click="() => updateReview()">수정</a>
                         <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-top: 25px;" @click="deleteReview(review.no)">삭제</a>
                         <div class="cardset-body">
                             <div class="contents-info">
@@ -263,12 +263,12 @@ let booksDapp = Vue.createApp({
       totalPrice: 0, // 총 가격을 저장하는 변수
       newReview: { // 새 리뷰를 위한 객체
         cont: '',
-        score: '' // 점수는 문자열에서 숫자로 변환될 예정
+        score: 0 // 점수는 문자열에서 숫자로 변환될 것임
       },
       editReview: { // 수정할 리뷰를 위한 객체
         no: null,
         cont: '',
-        score: ''
+        score: 0
       }
     };
   },
@@ -276,6 +276,7 @@ let booksDapp = Vue.createApp({
     this.fetchBookDetail();
   },
   methods: {
+    // 책 상세 정보 및 리뷰 데이터를 가져오는 메소드
     fetchBookDetail() {
       axios.get('../books/detail_vue.do', {
         params: {
@@ -283,77 +284,83 @@ let booksDapp = Vue.createApp({
           sessionId: this.sessionId
         }
       }).then(response => {
-        this.detail_data = response.data.bookDetail;
-        this.reviews = response.data.reviews;
-        this.sessionId = response.data.sessionId;
+        this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
+        this.reviews = response.data.reviews; // 리뷰 목록 데이터 저장
+        this.sessionId = response.data.sessionId; // 응답에서 sessionId 저장
         this.calculateTotalPrice();
       }).catch(error => {
-        console.error("Failed to retrieve book details and review list:", error);
+        console.error("책 상세 정보 및 리뷰 목록 가져오기 실패:", error);
       });
     },
+    // 수량 증가 메소드
     increaseQuantity() {
       this.quantity++;
       this.calculateTotalPrice();
     },
+    // 수량 감소 메소드
     decreaseQuantity() {
       if (this.quantity > 1) {
         this.quantity--;
         this.calculateTotalPrice();
       }
     },
+    // 총 가격 계산 메소드
     calculateTotalPrice() {
       this.totalPrice = this.quantity * this.detail_data.price;
     },
+    // 새 리뷰 추가 메소드
     addReview() {
       axios.post('../books/review_insert_vue.do', null, {
         params: {
           no: this.no,
-          userId: this.sessionId,
+          userId: this.sessionId, // 현재 로그인한 사용자 ID
           cont: this.newReview.cont,
-          score: parseInt(this.newReview.score)
+          score: parseInt(this.newReview.score) // 점수를 문자열에서 숫자로 변환
         }
       }).then(() => {
-        alert("리뷰가 성공적으로 작성되었습니다.");
-        this.fetchBookDetail();
-        this.newReview.cont = '';
-        this.newReview.score = '';
+        alert("리뷰가 성공적으로 추가되었습니다.");
+        this.fetchBookDetail(); // 리뷰 추가 후 목록 새로고침
+        this.newReview.cont = ''; // 입력 필드 초기화
+        this.newReview.score = 0; // 별점 초기화
       }).catch(error => {
-        console.error("Failed to add review:", error);
+        console.error("리뷰 추가 실패:", error);
       });
     },
-    // 리뷰 수정 메서드
+    // 리뷰 수정 메소드
     updateReview() {
       axios.post('../books/review_update_vue.do', null, {
         params: {
           no: this.editReview.no,
           cont: this.editReview.cont,
-          score: parseInt(this.editReview.score)
+          score: parseInt(this.editReview.score) // 점수를 문자열에서 숫자로 변환
         }
       }).then(() => {
         alert("리뷰가 성공적으로 수정되었습니다.");
-        this.fetchBookDetail();
-        this.editReview = { no: null, cont: '', score: '' }; // 수정 객체 초기화
+        this.fetchBookDetail(); // 리뷰 수정 후 목록 새로고침
+        this.editReview = { no: null, cont: '', score: 0 }; // editReview 객체 초기화
       }).catch(error => {
-        console.error("Failed to update review:", error);
+        console.error("리뷰 수정 실패:", error);
       });
     },
-    // 리뷰 삭제 메서드
+    // 리뷰 삭제 메소드
     deleteReview(no) {
-      axios.get('../books/review_delete_vue.do', null, {
-        params: { 
-        	  no:no,
-		      rno:this.no
-		      }
-      }).then(() => {
+      axios.get('../books/review_delete_vue.do', {
+        params: {
+          no: no,
+          rno: this.no
+        }
+      })
+      .then(response => {
         alert("리뷰가 성공적으로 삭제되었습니다.");
-        this.fetchBookDetail();
-      }).catch(error => {
-        console.error("Failed to delete review:", error);
+        this.fetchBookDetail(); // 리뷰 삭제 후 목록 새로고침
+      })
+      .catch(error => {
+        console.error("리뷰 삭제 실패:", error);
       });
     },
-    // 수정할 리뷰를 선택하는 메서드
+    // 수정할 리뷰를 선택하는 메소드
     selectForEdit(review) {
-      this.editReview = Object.assign({}, review); // 선택된 리뷰 객체를 복사하여 수정 객체에 할당
+      this.editReview = Object.assign({}, review); // 선택된 리뷰 객체를 복사하여 editReview 객체
     }
   },
   computed: {
