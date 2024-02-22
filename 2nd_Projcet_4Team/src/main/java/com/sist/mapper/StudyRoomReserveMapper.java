@@ -28,10 +28,10 @@ public interface StudyRoomReserveMapper {
     price NUMBER CONSTRAINT srr_price_nn NOT NULL,
     regdate
     */
-   @Insert("INSERT INTO studyRoom_reserve VALUES(srr_no_seq.next.val,#{userId},#{sno},#{amount},#{price},SYSDATE)")
+   @Insert("INSERT INTO studyRoom_reserve VALUES(srr_no_seq.nextval,#{userId},#{sno},#{amount},#{price},SYSDATE)")
    public void studyRoomReserveInsert(StudyRoomReserveVO vo);
    
-   @Insert("INSERT INTO studyRoom_rtime VALUES(srt_no_seq.nextval,SELECT MAX(no) FROM studyRoom_reserve),#{time}")
+   @Insert("INSERT INTO studyRoom_rtime VALUES(srt_no_seq.nextval, (SELECT MAX(no) FROM studyRoom_reserve), #{time})")
    public void StudyRoomReserveTimeInsert(String time);
    
    @Update("UPDATE studyRoom_time SET ischeck=1 WHERE time=#{time} AND month=#{month} AND day=#{day}")

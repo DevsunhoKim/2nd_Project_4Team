@@ -1,5 +1,9 @@
 package com.sist.web;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +18,15 @@ public class StudyRoomController {
 		return "studyRoom/room_main";
 	}
 	@GetMapping("room_detail.do")
-	public String room_detail(int no,Model model)
+	public String room_detail(int no,Model model,Principal p)
 	{
+		String userId="";
+		if(p!=null)
+		{
+			userId=(String)p.getName();
+		}
 		model.addAttribute("no", no);
+		model.addAttribute("userId", userId);
 		return "studyRoom/room_detail";
 	}
 	@GetMapping("ask.do")
