@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sist.dao.StudyRoomDAO;
 import com.sist.dao.StudyRoomReserveDAO;
+import com.sist.vo.StudyRoomReserveVO;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
 
@@ -38,5 +39,21 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		// TODO Auto-generated method stub
 		return srdao.studyRoomTimeList(vo);
 	}
+	@Override
+	public void studyRoomReserveInsert(StudyRoomReserveVO vo) {
+		// TODO Auto-generated method stub
+		srdao.studyRoomReserveInsert(vo);
+	}
+	@Override
+	public void StudyRoomReserveTimeInsert(String time) {
+		// TODO Auto-generated method stub
+		srdao.StudyRoomReserveTimeInsert(time);
+	}
+	@Override
+	public void StudyRoomTimeUpdate(StudyRoomTimeVO vo) {
+		// TODO Auto-generated method stub
+		srdao.StudyRoomTimeUpdate(vo);
+	}
+	
 
 }

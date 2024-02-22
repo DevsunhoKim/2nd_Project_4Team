@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -94,6 +98,20 @@ public class StudyRoomRestController {
        ObjectMapper mapper = new ObjectMapper();
        String json = mapper.writeValueAsString(list);
        return json;
+   }
+   @PostMapping(value="reserve_ok_vue.do", produces = "text/plain;charset=UTF-8")
+   public String room_reserve_ok(StudyRoomTimeVO vo, String[] times,HttpSession session)
+   {
+	   String userId=(String) session.getAttribute("userId");
+	   for(String t:times)
+	   {
+		   System.out.println(t);
+	   }
+	   System.out.println("ok");
+	   System.out.println(userId);
+	   System.out.println(vo.getDay());
+	   System.out.println(vo.getSno());
+	   return "OK";
    }
 
 }
