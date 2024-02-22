@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 public class LoginFailHandler implements AuthenticationFailureHandler{
     private String defaultFailureUrl;
-    
+
 	public void setDefaultFailureUrl(String defaultFailureUrl) {
 		this.defaultFailureUrl = defaultFailureUrl;
 	}
@@ -34,7 +34,7 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 				errorMsg="아이디 또는 비밀번호가 일치하지 않습니다.";
 			}
 			else if(exception instanceof DisabledException)
-			{	
+			{
 				// enabled = 0
 				errorMsg="휴먼 계정입니다.";
 			}

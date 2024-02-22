@@ -1,8 +1,10 @@
 package com.sist.web;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -20,6 +22,7 @@ import com.sist.service.ReviewServiceImpl;
 import com.sist.vo.BooksVO;
 import com.sist.vo.ReviewVO;
 @RestController
+
 @RequestMapping("books/")
 public class BooksRestController {
 	@Autowired
@@ -70,14 +73,16 @@ public class BooksRestController {
 	}
 
 	@GetMapping(value="detail_vue.do", produces = "text/plain;charset=UTF-8")
-	public String booksDetailVue(@RequestParam("no") int no) throws Exception {
+	public String booksDetailVue(int no, HttpSession session) throws Exception {
 	    BooksVO vo = service.booksDetailData(no); // 책의 상세 정보 가져오기
 	    List<ReviewVO> reviews = reviewMapper.reviewListData(no); // 해당 책에 대한 리뷰 목록 가져오기
 
+	    String sessionId = (String) session.getAttribute("userId"); // 세션에서 userId 가져오기
 	    ObjectMapper mapper = new ObjectMapper();
 	    Map<String, Object> resultMap = new HashMap<>();
 	    resultMap.put("bookDetail", vo); // 책의 상세 정보를 Map에 추가
 	    resultMap.put("reviews", reviews); // 리뷰 목록을 Map에 추가
+	    resultMap.put("sessionId", sessionId); // 세션 ID를 Map에 추가
 
 	    String json = mapper.writeValueAsString(resultMap); // Map을 JSON 문자열로 변환
 	    return json;
@@ -115,37 +120,41 @@ public class BooksRestController {
 		   return json;
 	}
 
-	   public String commonsreviewData(int rno) throws Exception
+	   public String commonsreviewData(int no) throws Exception
 	   {
 		   ObjectMapper mapper=new ObjectMapper();
-		   List<ReviewVO> list=reviewMapper.reviewListData(rno);
+		   List<ReviewVO> list=reviewMapper.reviewListData(no);
 		   String json=mapper.writeValueAsString(list);
 		   return json;
 	   }
 
-	   @PostMapping(value="books/review_insert_vue.do", produces = "text/plain;charset=UTF-8")
-	   public String reply_insert(@Param("rno") int rno, @Param("no") int no, @Param("userId") String userId, @Param("cont") String cont, @Param("score") int score, @Param("dbday") String dbday, HttpSession session) throws Exception {
+	   @PostMapping(value="review_insert_vue.do", produces = "text/plain;charset=UTF-8")
+	   public String review_insert(ReviewVO vo, Principal p) throws Exception {
+		   String userId=(String)p.getName(); // 세션에서 userId 가져오기
+	       System.out.println(userId); // 콘솔에 userId 출력하여 확인
+	       vo.setUserId(userId); // ReviewVO 객체에 userId 설정
 
-	       ReviewVO vo = new ReviewVO();
+	       reviewMapper.reviewInsert(vo); // DB에 리뷰 삽입
+	       
 
-	       reviewMapper.reviewInsert(vo);
-
-	       return commonsreviewData(vo.getRno());
+	       return commonsreviewData(vo.getNo()); // 삽입된 리뷰의 데이터를 가져오는 메소드 호출
 	   }
 	   // 수정
-	   @PostMapping(value="books/review_update_vue.do",produces = "text/plain;charset=UTF-8")
+	   @PostMapping(value="review_update_vue.do",produces = "text/plain;charset=UTF-8")
 	   public String review_update(ReviewVO vo) throws Exception
 	   {
 		   reviewMapper.reviewUpdate(vo);
-		   return commonsreviewData(vo.getRno());
+		   return commonsreviewData(vo.getNo());
 	   }
 	   // 삭제
-	   @GetMapping(value="books/review_delete_vue.do",produces = "text/plain;charset=UTF-8")
-	   public String review_delete(int no,int rno) throws Exception
+	   // 삭제
+	   @GetMapping(value="review_delete_vue.do",produces = "text/plain;charset=UTF-8")
+	   public String reply_delete(int no,int rno) throws Exception
 	   {
 		   reviewMapper.reviewDelete(no);
 		   return commonsreviewData(rno);
 	   }
+	
 
 
 }

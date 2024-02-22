@@ -9,5 +9,5 @@ public class ReviewVO {
 	private String userId, cont, dbday ;
 	private Date regdate;
 
-	private MemberVO mvo=new MemberVO();
+	
 }

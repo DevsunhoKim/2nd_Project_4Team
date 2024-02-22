@@ -1,5 +1,5 @@
 package com.sist.MailSender;
-import java.util.*;
+import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -11,10 +11,10 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.messaging.MessagingException;
 public class MailSender {
-	
+
 	public void naverMailSend(String toEmail, String tempPwd) throws AddressException, javax.mail.MessagingException {
 		// 수신이메일, 임시비번
-		String host="smtp.naver.com"; 
+		String host="smtp.naver.com";
 		String user="ariluv1009@naver.com";
 		String password="ariari1009";
 		Properties props=new Properties();
@@ -22,11 +22,12 @@ public class MailSender {
 		props.put("mail.smtp.port", 587);
 		props.put("mail.smtp.auth", true);
 		Session session=Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			@Override
 			protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(user, password);
 			}
 		});
-		
+
 		try {
 			MimeMessage message=new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
@@ -40,8 +41,8 @@ public class MailSender {
        		     +"<h3>로그인 후 비밀번호를 변경해주세요.</h3>"
        		     +"</body>"
        		     +"</html>";
-			
-			message.setContent(html,"text/html;charset=UTF-8"); 
+
+			message.setContent(html,"text/html;charset=UTF-8");
 			Transport.send(message);
 			System.out.println("Message Send Success!");
 		}catch(MessagingException e) {
