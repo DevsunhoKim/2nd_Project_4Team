@@ -78,6 +78,11 @@
             <button class="header-btn btn-seach">
               <img src="../images/icons/ico_seach_black.svg" alt="검색 아이콘">
             </button>
+            <c:if test="${principal.username!=null }">
+            <a href="#" class="header-btn btn-user">
+              <img src="../images/icons/icon-chat1.png" alt="채팅 아이콘">
+            </a>
+            </c:if>
             <c:if test="${principal.username==null }">
             <a href="../member/login.do" class="header-btn btn-user">
               <img src="../images/icons/loginout.png" alt="로그인 아이콘">

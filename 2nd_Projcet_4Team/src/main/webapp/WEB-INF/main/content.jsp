@@ -183,35 +183,22 @@
         <div class="contents-container container-md">
           <div class="textset">
             <h2 class="textset-tit">Study Room</h2>
-            <p class="textset-desc"> 창의적인 아이디어와 탁월한 실행력을 바탕으로 혁신을 이끌어 내며 <br> 지속적인 학습과 개발을 통해 최신 기술과 트렌드를 적용하여 혁신적인 결과물을 제시했습니다. <br> 고객의 요구사항을 이해하고 적극적으로 반영하여 만족스러운 결과물을 제공했습니다. <a class="btnset btnset-ghost btnset-icon ico-arrow icon-right" href="javascript:void(0);">자세히보기</a>
+            <p class="textset-desc studyRoomMain-info" style="margin-top:0;">열정적인 개발자들을 위한 자유로운 학습 공간으로서<br>커뮤니티와 연결된 특별한 공간으로 개발자 여정의 시작 및 성장과 협업을 지원합니다.<a class="btnset btnset-ghost btnset-icon ico-arrow icon-right" href="../studyRoom/room_main.do">자세히보기</a>
             </p>
           </div>
           <div class="contents-group">
+          <c:forEach var="rvo" items="${roomList }" >
             <div class="cardset cardset-inner">
               <figure class="cardset-figure">
-                <img class="cardset-img" src="../images/img_basic_N26_1.png" alt="카드 이미지">
+                <img class="cardset-img" src="${rvo.poster }" alt="카드 이미지">
               </figure>
               <div class="cardset-body cardset-arrow">
-                <h4 class="cardset-tit">템하 비즈니스</h4>
-                <p class="cardset-desc"> 비즈니스의 온라인 존재감을 나타내는 중요한 수단이며, 비즈니스가 <br> 웹사이트를 보유하면 전 세계 어디에서든 제품과 서비스에 대한 정보를 제공 <a class="btnset btnset-icon ico-arrow" href="javascript:void(0);"></a>
+                <h4 class="cardset-tit">${rvo.name }</h4>
+                <p class="cardset-desc" style="margin-top: 0px;">최대 ${rvo.inwon}명까지 수용이 가능하며, 예약 후 이용 가능합니다.<a class="btnset btnset-icon ico-arrow" href="../studyRoom/room_detail.do?no=${rvo.no }"></a>
                 </p>
               </div>
             </div>
-            <div class="cardset cardset-inner">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../images/img_basic_N26_2.png" alt="카드 이미지">
-              </figure>
-            </div>
-            <div class="cardset cardset-inner">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../images/img_basic_N26_3.png" alt="카드 이미지">
-              </figure>
-            </div>
-            <div class="cardset cardset-inner">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../images/img_basic_N26_4.png" alt="카드 이미지">
-              </figure>
-            </div>
+           </c:forEach>
           </div>
         </div>
       </div>
