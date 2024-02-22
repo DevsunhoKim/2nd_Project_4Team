@@ -1,10 +1,6 @@
 package com.sist.web;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sist.dao.StudyRoomReserveDAO;
 import com.sist.service.StudyRoomServiceImpl;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
@@ -59,10 +54,10 @@ public class StudyRoomRestController {
          String json=mapper.writeValueAsString(vo);
          return json;
       }
-   
+
    @GetMapping(value="date_vue.do", produces = "text/plain;charset=UTF-8")
    public String room_reserve_vue(String month,String day,int sno) throws Exception {
-       
+
 //       System.out.println("달="+month);
 //       System.out.println("일="+day);
 //       System.out.println("sno="+sno);

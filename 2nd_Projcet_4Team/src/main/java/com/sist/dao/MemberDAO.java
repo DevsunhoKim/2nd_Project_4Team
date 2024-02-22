@@ -1,6 +1,5 @@
 package com.sist.dao;
 
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -60,11 +59,11 @@ public class MemberDAO {
     public int updateMember(MemberVO vo){
         return mapper.updateMember(vo);
     }
-    
+
     public void lastLoginUpdate(String name) {
     	mapper.lastLoginUpdate(name);
     }
-    
+
     public String pwdFind(String userId,String email, String tempPwd) {
     	String msg = "";
 		   int count=mapper.getIDCount(userId);
@@ -83,7 +82,7 @@ public class MemberDAO {
 			   }else {
 				   mapper.pwdFind(userId,tempPwd);
 				   System.out.println(msg);
-				   msg = "CHANGE_PWD"; 
+				   msg = "CHANGE_PWD";
 			   }
 		   }
 		return msg;

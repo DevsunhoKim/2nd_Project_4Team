@@ -56,18 +56,18 @@ public interface MemberMapper {
                 "DETAIL_ADDRESS=#{detail_address} " +
             "WHERE USER_ID=#{user_id}")
     public int updateMember(MemberVO vo); // 회원정보 수정
-    
+
     @Update("UPDATE MEMBER SET "
   		  +"lastlogin=SYSDATE "
   		  +"WHERE userId=#{userId}")
      public void lastLoginUpdate(String userId); // 마지막 로그인 시점
 
-/*------ 비밀번호 찾기 ------*/    
+/*------ 비밀번호 찾기 ------*/
     @Select("SELECT COUNT(*) FROM MEMBER WHERE userId = #{userId} AND email = #{email}")
     public int getEmailCount(String userId, String email); // 이메일 존재여부 확인
-    
+
     @Update("UPDATE member SET userPwd=#{tempPwd} WHERE userId = #{userId}")
     public void pwdFind(String userId,String tempPwd); // 비밀번호 임시비밀번호로 변경
-    
-    
+
+
 }
