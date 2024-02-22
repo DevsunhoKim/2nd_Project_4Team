@@ -1,4 +1,6 @@
 package com.sist.web;
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sist.service.BooksServiceImpl;
-
+import com.sist.service.MemberService;
+import com.sist.security.*;
 @Controller
 public class BooksController {
 	@Autowired
 	private BooksServiceImpl service;
+	
+	
+	
 	@GetMapping("books/list.do")
 	public String books_list()
 	{
@@ -19,16 +25,14 @@ public class BooksController {
 	}
 
 	@GetMapping("books/detail.do")
-	public String books_detail(int no,Model model,HttpSession session)
+	public String books_detail(int no,Model model,Principal p)
 	{
-		String userId=(String)session.getAttribute("userId");
-		String sessionId="";
-		   if(userId==null)
-			   sessionId="";
-		   else
-			   sessionId=userId;
-		   	model.addAttribute("sessionId", sessionId);
+		
+		String userId=(String)p.getName();
+		
 		   	model.addAttribute("no",no);
+		   	System.out.println(userId);
+		   	
 		return "books/detail";
 	}
 

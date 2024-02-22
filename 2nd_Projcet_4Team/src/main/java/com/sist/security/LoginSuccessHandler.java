@@ -24,7 +24,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	private RedirectStrategy redirectStrategy=new DefaultRedirectStrategy();
     private String defaultUrl;
     private MemberService mService;
-    
+
     @Autowired
 	public LoginSuccessHandler(MemberService mService) {
 		this.mService = mService;
@@ -57,7 +57,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		resultRedirectStrategy(request, response, authentication);
 	}
 	protected void resultRedirectStrategy(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException 
+			Authentication authentication) throws IOException, ServletException
 	{
 		SavedRequest savedRequest=requestCache.getRequest(request, response);
 		if(savedRequest!=null)

@@ -53,7 +53,7 @@
   </div>
 </div>
  <script>
-  let loginApp=Vue.createApp({
+  let findPwdApp=Vue.createApp({
 	  data(){
 		  return {
 			  id:'',
@@ -70,7 +70,7 @@
 			  }
 			  if(this.email==='')
 			  {
-				  alert("이메일 입력하세요.")
+				  alert("이메일을 입력하세요.")
 				  this.$refs.email.focus()
 				  return
 			  }
@@ -80,7 +80,7 @@
 					  email:this.email
 				  }
 			  }).then(response=>{
-				  // NOID, NOEMAIL , CHANGE_PWD
+				  // NOID, NOEMAIL,CHANGE_PWD
 				  if(response.data==='NOID'){
 					  alert("입력하신 아이디를 찾을 수 없습니다.")
 					  this.id=''
@@ -95,7 +95,7 @@
 				  }
 				  else
 			      {
-					  alret("입력하신 이메일로 임시비밀번호를 전송했습니다.")
+					  alert("입력하신 이메일로 임시비밀번호를 전송했습니다.")
 					  location.href='../member/login.do'
 			      }
 			  })

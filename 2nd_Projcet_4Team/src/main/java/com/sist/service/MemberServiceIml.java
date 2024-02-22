@@ -9,26 +9,16 @@ import com.sist.dao.MemberDAO;
 import com.sist.vo.MemberVO;
 @Service
 public class MemberServiceIml implements MemberService{
-
     private MemberDAO dao;
-    private BCryptPasswordEncoder pwdEncoder;
 
     @Autowired
-    MemberServiceIml(MemberDAO dao, BCryptPasswordEncoder encoder){
+    MemberServiceIml(MemberDAO dao){
         this.dao = dao;
-        this.pwdEncoder = encoder;
     }
 
     @Override
     public MemberVO getMemberByID(String id){
         return dao.getMemberByID(id);
-		/*
-		 * // 성별 전환 if(member.getGender().equals("m")){
-		 * member.setGender("남자"); } else{
-		 * member.setGender("여자"); }
-		 *
-		 * return member;
-		 */
     }
 
     @Override
@@ -65,13 +55,24 @@ public class MemberServiceIml implements MemberService{
 	@Override
 	public void lastLoginUpdate(String name) {
 		dao.lastLoginUpdate(name);
-
 	}
 
 	@Override
-	public String pwdFind(String userId, String email, String tempPwd) {
+	public String sendCode(String email, int code) {
+		String res = dao.sendCode(email, code);
+		return res;
+	}
+	
+	@Override
+	public String idFind(String email, int code) {
+		String res = dao.idFind(email, code);
+		return res;
+	}
+	
+	@Override
+	public String pwdFind(String userId, String email, String enTempPwd) {
+		String tempPwd = enTempPwd;
 		String res = dao.pwdFind(userId, email, tempPwd);
 		return res;
 	}
-
 }

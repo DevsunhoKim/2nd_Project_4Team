@@ -63,7 +63,7 @@
             
             <div class="contents-btn buy_jjim">
               <button class="btnset" href="javascript:void(0)">담아두기</button>
-              <a class="btnset" :href="'../studyRoom/reserve.do?no='+detail_list.no">예약하기</a>
+              <a class="btnset" @click="reserve()">예약하기</a>
             </div>
           </div>
         </div>
@@ -404,6 +404,8 @@
         return {
            detail_list:{},
            no:${no},
+           userId:'${userId}',
+          /*  userId:'${sessionScope.userId}', */
            price:0,
            lobby:[],
            conve:[],
@@ -495,7 +497,19 @@
            info(){
         	   this.infoShow=true
         	   this.askShow=false
-           }
+           },
+           reserve(){
+        	    if(this.userId==null || this.userId=='')
+        	    {
+        	        alert("로그인 후 예약 가능합니다.");  
+        	        location.href="../member/login.do"
+        	    }
+        	    else{
+        	    	location.href="../studyRoom/reserve.do?no="+this.no
+        	    }
+        	}
+
+
      }
   }).mount('#studyRoom_detail')
   </script>
