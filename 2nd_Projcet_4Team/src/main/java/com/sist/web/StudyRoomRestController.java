@@ -1,14 +1,20 @@
 package com.sist.web;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.StudyRoomServiceImpl;
+import com.sist.vo.StudyRoomReserveVO;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
 
@@ -89,6 +95,40 @@ public class StudyRoomRestController {
        ObjectMapper mapper = new ObjectMapper();
        String json = mapper.writeValueAsString(list);
        return json;
+   }
+   @PostMapping(value="reserve_ok_vue.do", produces = "text/plain;charset=UTF-8")
+   public String room_reserve_ok(int sno,int price,int month,int day, String[] times,HttpSession session,Principal p)
+   {
+	  
+	   String userId=(String) p.getName();
+	   for(String t:times)
+	   {
+		   System.out.println(t);
+	   }
+	   System.out.println("ok");
+	   System.out.println(userId);
+	   System.out.println(sno);
+	   System.out.println(price);
+	   System.out.println(month);
+	   System.out.println(day);
+	   int amount=times.length;
+	   StudyRoomReserveVO srrvo=new StudyRoomReserveVO();
+	   srrvo.setSno(sno);
+	   srrvo.setAmount(amount);
+	   srrvo.setPrice(price);
+	   srrvo.setUserId(userId);
+	   service.studyRoomReserveInsert(srrvo);
+	   
+	   StudyRoomTimeVO srtvo=new StudyRoomTimeVO();
+	   srtvo.setMonth(month);
+	   srtvo.setDay(day);
+	   for(String t:times)
+	   {
+		   service.StudyRoomReserveTimeInsert(t);
+		   srtvo.setTime(t);
+		   service.StudyRoomTimeUpdate(srtvo);
+	   }
+	   return "OK";
    }
 
 }
