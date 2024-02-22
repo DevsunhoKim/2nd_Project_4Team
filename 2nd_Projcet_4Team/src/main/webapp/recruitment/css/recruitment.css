@@ -496,19 +496,19 @@
 .glamping-N40 .contents-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
 .glamping-N40 .contents-text {color: #444; font-size: 1.5rem;}
 .glamping-N40 .contents-text .emph {color: #7918F2; font-size: 1.6rem; font-weight: 600;}
-.glamping-N40 #reviewInsertBtn{padding: 0.2rem 1rem; background-color: transparent; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
-.glamping-N40 #reviewInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
+.glamping-N40 #interviewInsertBtn{padding: 0.2rem 1rem; background-color: transparent; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
+.glamping-N40 #interviewInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
 .glamping-N40 .accordset{border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
 .glamping-N40 .accordset .accordset-header:hover{background-color: #f9f9f9; transition: all 03.s ease-in-out;}
 .glamping-N40 .accordset-button{padding: 1rem 0; cursor: pointer;}
-.glamping-N40 .review-tit{font-weight: 500;}
-.glamping-N40 .review-tit .review-date{color: #888; font-size: 1.4rem; font-weight: 400;}
+.glamping-N40 .interview-tit{font-weight: 500;}
+.glamping-N40 .interview-tit .interview-date{color: #888; font-size: 1.4rem; font-weight: 400;}
 .glamping-N40 .accordset-content{padding: 2rem; background-color: #f9f9f9;}
-.glamping-N40 .review-icon-wrapper{display: flex; justify-content: flex-start; align-items: center; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #eee;}
-.glamping-N40 .review-icon-wrapper li span{font-size: 1.4rem;}
-.glamping-N40 .review-icon-wrapper li .emph{color: #7918F2;font-weight: 500;}
-.glamping-N40 .review-icon{max-width: 3rem; margin: 0 auto 0.5rem auto;}
-.glamping-N40 .review-content{color: #444; word-break: keep-all;}
+.glamping-N40 .interview-icon-wrapper{display: flex; justify-content: flex-start; align-items: center; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #eee;}
+.glamping-N40 .interview-icon-wrapper li span{font-size: 1.4rem;}
+.glamping-N40 .interview-icon-wrapper li .emph{color: #7918F2;font-weight: 500;}
+.glamping-N40 .interview-icon{max-width: 3rem; margin: 0 auto 0.5rem auto;}
+.glamping-N40 .interview-content{color: #444; word-break: keep-all;}
 .glamping-N40 .inputset { width: 100%; max-width: 40rem; }
 .glamping-N40 .pagiset {margin: 2rem 0;}
 @media (max-width: 992px) {

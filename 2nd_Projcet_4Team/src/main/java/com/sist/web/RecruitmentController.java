@@ -16,21 +16,28 @@ public class RecruitmentController {
 	}
 
 	@GetMapping("recruit_detail.do")
-	public String recruit_detail(int no, int cno, Model model) {
-		model.addAttribute("no", no);
+	public String recruit_detail(int rno, int cno, Model model) {
+		model.addAttribute("rno", rno);
 		model.addAttribute("cno", cno);
 		return "recruitment/recruit_detail";
 	}
 
 	@GetMapping("company_detail.do")
-	public String company_detail(int no, int cno, Model model) {
-		model.addAttribute("no", no);
+	public String company_detail(int rno, int cno, Model model) {
+		model.addAttribute("rno", rno);
 		model.addAttribute("cno", cno);
 		return "recruitment/company_detail";
 	}
 	
 	@GetMapping("recruit_insert.do")
-	public String recruit_insert(RecruitVO vo) {
-		return "recruit/insert";
+	public String recruit_insert(RecruitVO vo, int cno, Model model) {
+		return "recruitment/recruit_insert";
+	}
+	
+	@GetMapping("recruit_update.do")
+	public String recruit_update(int rno, int cno, Model model) {
+		model.addAttribute("rno", rno);
+		model.addAttribute("cno", cno);
+		return "recruitment/recruit_update";
 	}
 }

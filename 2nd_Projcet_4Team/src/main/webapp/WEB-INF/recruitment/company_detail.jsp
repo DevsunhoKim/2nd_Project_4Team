@@ -107,6 +107,7 @@
         <div class="container-md">
           <div class="contents-top">
             <h3 class="contents-tit">채용 공고</h3>
+            <button type="button" id="recruitInsertBtn" class="review-btn" value="작성하기" @click="Insert()">작성하기</button>
             <!-- <p class="contents-text">총 <span class="emph">11</span>건</p> -->
           </div>
           <div class="tableset">
@@ -127,7 +128,7 @@
                 <tbody>
                   <tr v-for="rvo in recruit_list">
                     <td class="recruit-tit">
-                      <a :href="'recruit_detail.do?no='+rvo.no+'&cno='+rvo.cno">{{rvo.title}}</a>
+                      <a :href="'recruit_detail.do?rno='+rvo.rno+'&cno='+rvo.cno">{{rvo.title}}</a>
                     </td>
                     <!-- <td class="recruit-area">{{rvo.address}}</td> -->
                     <td class="recruit-career">{{rvo.career}}</td>
@@ -174,7 +175,7 @@
         <div class="contents-container container-md">
           <div class="contents-top">
             <h3 class="contents-tit">면접 후기</h3>
-            <button type="button" id="reviewInsertBtn" class="review-btn" value="작성하기">작성하기</button>
+            <button type="button" id="interviewInsertBtn" class="interview-btn" value="작성하기">작성하기</button>
             <!-- <p class="contents-text">총 <span class="emph">13</span>건</p> -->
           </div>
           <!-- <div class="contents-top">
@@ -187,39 +188,39 @@
             <div class="accordset-item">
               <div class="accordset-header">
                 <div class="accordset-button btn">
-                  <h4 class="review-tit">면접 후기 제목1<br>
-                    <span class="review-date">2024-02-14</span></h4>
+                  <h4 class="interview-tit">면접 후기 제목1<br>
+                    <span class="interview-date">2024-02-14</span></h4>
                 </div>
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <ul class="review-icon-wrapper">
+                  <ul class="interview-icon-wrapper">
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
                       </figure>
                       <span>경력 </span><span class="emph">신입</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
                       </figure>
                       <span>만족도 </span><span class="emph">긍정적</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
                       </figure>
                       <span>난이도 </span><span class="emph">보통</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
                       </figure>
                       <span>결과 </span><span class="emph">합격</span>
                     </li>
                   </ul>
-                  <p class="review-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
+                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
                 </div>
               </div>
             </div>
@@ -227,39 +228,39 @@
             <div class="accordset-item">
               <div class="accordset-header">
                 <div class="accordset-button btn">
-                  <h4 class="review-tit">면접 후기 제목1<br>
-                    <span class="review-date">2024-02-14</span></h4>
+                  <h4 class="interview-tit">면접 후기 제목1<br>
+                    <span class="interview-date">2024-02-14</span></h4>
                 </div>
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <ul class="review-icon-wrapper">
+                  <ul class="interview-icon-wrapper">
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
                       </figure>
                       <span>경력 </span><span class="emph">신입</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
                       </figure>
                       <span>만족도 </span><span class="emph">긍정적</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
                       </figure>
                       <span>난이도 </span><span class="emph">보통</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
                       </figure>
                       <span>결과 </span><span class="emph">합격</span>
                     </li>
                   </ul>
-                  <p class="review-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
+                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
                 </div>
               </div>
             </div>
@@ -267,39 +268,39 @@
             <div class="accordset-item">
               <div class="accordset-header">
                 <div class="accordset-button btn">
-                  <h4 class="review-tit">면접 후기 제목1<br>
-                    <span class="review-date">2024-02-14</span></h4>
+                  <h4 class="interview-tit">면접 후기 제목1<br>
+                    <span class="interview-date">2024-02-14</span></h4>
                 </div>
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <ul class="review-icon-wrapper">
+                  <ul class="interview-icon-wrapper">
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
                       </figure>
                       <span>경력 </span><span class="emph">신입</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
                       </figure>
                       <span>만족도 </span><span class="emph">긍정적</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
                       </figure>
                       <span>난이도 </span><span class="emph">보통</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
                       </figure>
                       <span>결과 </span><span class="emph">합격</span>
                     </li>
                   </ul>
-                  <p class="review-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
+                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
                 </div>
               </div>
             </div>
@@ -307,39 +308,39 @@
             <div class="accordset-item">
               <div class="accordset-header">
                 <div class="accordset-button btn">
-                  <h4 class="review-tit">면접 후기 제목1<br>
-                    <span class="review-date">2024-02-14</span></h4>
+                  <h4 class="interview-tit">면접 후기 제목1<br>
+                    <span class="interview-date">2024-02-14</span></h4>
                 </div>
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <ul class="review-icon-wrapper">
+                  <ul class="interview-icon-wrapper">
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
                       </figure>
                       <span>경력 </span><span class="emph">신입</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
                       </figure>
                       <span>만족도 </span><span class="emph">긍정적</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
                       </figure>
                       <span>난이도 </span><span class="emph">보통</span>
                     </li>
                     <li>
-                      <figure class="review-icon">
+                      <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
                       </figure>
                       <span>결과 </span><span class="emph">합격</span>
                     </li>
                   </ul>
-                  <p class="review-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
+                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
                 </div>
               </div>
             </div>
@@ -382,12 +383,12 @@ let companyDetailApp=Vue.createApp({
 			recruit_list:[],
 			recruit_detail:[],
 			company_detail:[],
-			no:${no},
+			rno:${rno},
 			cno:${cno},
 			curpage:1,
-		      totalpage:0,
-		      startPage:0,
-		      endPage:0
+      totalpage:0,
+      startPage:0,
+      endPage:0
 		}
 	},
 	mounted(){
@@ -395,7 +396,7 @@ let companyDetailApp=Vue.createApp({
 		
 		axios.get('../recruitment/company_detail_vue.do', {
 			params:{
-				no:this.no,
+				rno:this.rno,
 				cno:this.cno
 			}
 		}).then(response=>{
@@ -406,44 +407,46 @@ let companyDetailApp=Vue.createApp({
 	},
 	methods:{
 		dataRecv(){
-	      axios.get('../recruitment/recruit_detail_vue.do', {
-	        params:{
-	        	no:this.no,
-	          cno:this.cno,
-	          page:this.curpage
-	        }
-	      }).then(response=>{
-	        console.log(response.data)
-	        this.recruit_list=response.data
-	      })
-	      
-	      /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
-	        console.log(response.data)
-	        this.cookie_list=response.data
-	      }) */
-	    },
-	    
-	    range(start, end){
-	      let arr=[]
-	      let leng=end-start
-	      for(let i=0; i<=leng; i++){
-	        arr[i]=start
-	        start++
-	      }
-	      return arr
-	    },
-	    prev(){
-	      this.curpage=this.endPage-1
-	      this.dataRecv()
-	    },
-	    next(){
-	      this.curpage=this.endPage+1
-	      this.dataRecv()
-	    },
-	    pageChange(page){
-	      this.curpage=page
-	      this.dataRecv()
-	    },		
+      axios.get('../recruitment/recruit_detail_vue.do', {
+        params:{
+        	rno:this.rno,
+          cno:this.cno,
+          page:this.curpage
+        }
+      }).then(response=>{
+        console.log(response.data)
+        this.recruit_list=response.data
+      })
+      
+      /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
+        console.log(response.data)
+        this.cookie_list=response.data
+      }) */
+    },
+    Insert(){
+    	location.href="../recruitment/recruit_insert.do?cno='+ cvo.cno'";
+    },
+    range(start, end){
+      let arr=[]
+      let leng=end-start
+      for(let i=0; i<=leng; i++){
+        arr[i]=start
+        start++
+      }
+      return arr
+    },
+    prev(){
+      this.curpage=this.endPage-1
+      this.dataRecv()
+    },
+    next(){
+      this.curpage=this.endPage+1
+      this.dataRecv()
+    },
+    pageChange(page){
+      this.curpage=page
+      this.dataRecv()
+    },		
 	}
 }).mount('#companyDetailApp')
 </script>

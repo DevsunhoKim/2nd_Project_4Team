@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.sist.dao.RecruitmentDAO;
 import com.sist.vo.CompanyVO;
@@ -31,23 +32,29 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	
 	// 채용 공고 상세 페이지
 	@Override
-	public RecruitVO recuitDetailData(int no) {
+	public RecruitVO recuitDetailData(int rno) {
 		// TODO Auto-generated method stub
-		return rDao.recuitDetailData(no);
+		return rDao.recuitDetailData(rno);
 	}
 
 	// 기업 정보 상세 페이지
 	@Override
-	public CompanyVO companyDetailData(int no) {
+	public CompanyVO companyDetailData(int cno) {
 		// TODO Auto-generated method stub
-		return rDao.companyDetailData(no);
+		return rDao.companyDetailData(cno);
 	}
 
 	// 채용 공고 추가
 	@Override
-	public void recruitInsert(RecruitVO vo) {
+	public void recruitInsert(RecruitVO vo, int cno) {
 		// TODO Auto-generated method stub
-		rDao.recruitInsert(vo);
+		rDao.recruitInsert(vo, cno);
+	}
+
+	@Override
+	public void recruitUpdate(RecruitVO vo) {
+		// TODO Auto-generated method stub
+		rDao.recruitUpdate(vo);
 	}
 
 }

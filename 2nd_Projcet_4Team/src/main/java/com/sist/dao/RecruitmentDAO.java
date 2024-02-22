@@ -25,17 +25,22 @@ public class RecruitmentDAO {
 	}
 
 	// 1. 채용 공고 정보
-	public RecruitVO recuitDetailData(int no) {
-		return mapper.recuitDetailData(no);
+	public RecruitVO recuitDetailData(int rno) {
+		return mapper.recuitDetailData(rno);
 	}
 
 	// 2. 기업 정보
-	public CompanyVO companyDetailData(int no) {
-		return mapper.companyDetailData(no);
+	public CompanyVO companyDetailData(int cno) {
+		return mapper.companyDetailData(cno);
 	}
 	
 	// 채용 공고 추가
-	public void recruitInsert(RecruitVO vo) {
-		mapper.recruitInsert(vo);
+	public void recruitInsert(RecruitVO vo, int cno) {
+		mapper.recruitInsert(vo, cno);
+	}
+	
+	// 채용 공고 수정
+	public void recruitUpdate(RecruitVO vo) {
+		mapper.recruitUpdate(vo);
 	}
 }

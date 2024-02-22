@@ -22,6 +22,6 @@ LIKE_COUNT          NUMBER
 @Data
 public class CompanyVO {
 	private RecruitVO rvo;
-	private int no, worker, like_count;
+	private int cno, worker, like_count;
 	private String logo, name, year, scale, sales, type, content, img, address, hompage, phone, email;
 }

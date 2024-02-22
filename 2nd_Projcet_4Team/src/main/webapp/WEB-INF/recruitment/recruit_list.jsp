@@ -119,7 +119,7 @@
 
           <div class="col-group">
             <div class="item cardset cardset-border" v-for="rvo in recruit_list">
-              <a :href="'recruit_detail.do?no='+rvo.no+'&cno='+rvo.cno" class="company-info">
+              <a :href="'recruit_detail.do?rno='+rvo.rno+'&cno='+rvo.cno" class="company-info">
                 <figure class="company-logo">
                   <img class="width-100" :src="rvo.cvo.logo" alt="기업 로고">
                 </figure>
@@ -142,31 +142,6 @@
                 </figure>
               </button>
             </div>
-
-<!--             <div class="item cardset cardset-border">
-              <a href="#" class="company-info">
-                <figure class="company-logo">
-                  <img class="width-100" src="../resources/images/company_logo_1.png" alt="기업 로고">
-                </figure>
-              </a>
-              <h4 class="company-name">㈜우아한형제들</h4>
-              <div class="recruit-info">
-                <h3 class="recruit-tit">각 부문별 경력/신입 인재영입</h3>
-                <span class="recruit-area">서울시 송파구</span>
-                <span class="recruit-career">신입·경력</span>
-                <ul class="recruit-stack">
-                  <li>Java</li>
-                  <li>Spring Boot</li>
-                  <li>React</li>
-                </ul>
-                <span class="recruit-date">~ 2024-02-29</span>
-              </div>
-              <button type="button" class="recruit-btn recruit-like-btn">
-                <figure class="recruit-icon">
-                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
-                </figure>
-              </button>
-            </div> -->
           </div>
 
           <nav class="pagiset pagiset-circ">
@@ -192,7 +167,7 @@
               <a class="pagiset-link pagiset-last" href="javascript:void(0)">
                 <span class="visually-hidden">마지막</span>
               </a>
-            </div>
+            </div> -->
           </nav>
         </div>
       </div>
@@ -241,7 +216,6 @@ let recruitmentListApp=Vue.createApp({
 				this.startPage=response.data.startPage
 				this.endPage=response.data.endPage
 			})
-			
 			/* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
 				console.log(response.data)
 				this.cookie_list=response.data
@@ -268,7 +242,6 @@ let recruitmentListApp=Vue.createApp({
 			this.curpage=page
 			this.dataRecv()
 		}
-		
 	}
 }).mount('#recruitmentListApp')
  </script>

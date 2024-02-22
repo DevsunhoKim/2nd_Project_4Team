@@ -15,8 +15,6 @@ import com.sist.service.RecruitmentService;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
-import oracle.jdbc.proxy.annotation.Post;
-
 @RestController
 @RequestMapping("recruitment/") // recruitment를 밖으로 빼냄
 public class RecruitmentRestController {
@@ -61,13 +59,14 @@ public class RecruitmentRestController {
 
 	// 채용 공고 상세 페이지
 	@GetMapping(value="recruit_detail_vue.do", produces="text/plain;charset=UTF-8")
-	public String recruit_detail_vue(int no, int cno) throws Exception {
-		RecruitVO rvo=rService.recuitDetailData(no);
+	public String recruit_detail_vue(int rno, int cno) throws Exception {
+		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
 
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
+		
 		ObjectMapper mapper=new ObjectMapper();
 	  String json=mapper.writeValueAsString(map);
 
@@ -76,45 +75,38 @@ public class RecruitmentRestController {
 
 	// 기업 정보 상세 페이지
 	@GetMapping(value="company_detail_vue.do", produces="text/plain;charset=UTF-8")
-	public String company_detail_vue(int no, int cno) throws Exception {
-		RecruitVO rvo=rService.recuitDetailData(no);
+	public String company_detail_vue(int rno, int cno) throws Exception {
+		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
-//		int rowSize=4;
-//		int start=(rowSize*page)-(rowSize-1);
-//		int end=rowSize*page;
-//		List<RecruitVO> list=service.recruitListData(start, end);
-//
-//		final int BLOCK=5;
-//		int startPage=((page-1)/BLOCK*BLOCK)+1;
-//		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
-//		int totalpage=service.recruitTotalPage();
-//		if(endPage>totalpage) {
-//			endPage=totalpage;
-//		}
+
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
-//		map.put("curpage", page);
-//		map.put("totalpage", totalpage);
-//		map.put("startPage", startPage);
-//		map.put("endPage", endPage);
-
+		
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
 
 		return json;
-
 	}
 	
 	@PostMapping(value="recruit_insert_vue.do", produces="text/plain;charset=UTF-8")
-	public String recruit_insert_vue(RecruitVO vo) {
+	public String recruit_insert_vue(RecruitVO vo, int cno) {
 		String result="";
 		try {
-			rService.recruitInsert(vo);
+			rService.recruitInsert(vo, cno);
 			result="yes";
 		} catch(Exception ex) {
 			result=ex.getMessage();
 		}
 		return result;
 	}
+	
+	/*
+	 * @GetMapping(value="recruit_update_vue.do",
+	 * produces="text/plain;charset=UTF-8") public String recruit_update(int no)
+	 * throws Exception { RecruitVO vo=rService.recruitUpdate(no); ObjectMapper
+	 * mapper=new ObjectMapper(); String json=mapper.writeValueAsString(vo);
+	 * 
+	 * return json; }
+	 */
 }

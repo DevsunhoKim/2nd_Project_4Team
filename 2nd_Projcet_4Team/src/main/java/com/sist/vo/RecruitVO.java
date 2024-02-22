@@ -22,6 +22,6 @@ CNAME               VARCHAR2(500)
 @Data
 public class RecruitVO {
 	private CompanyVO cvo;
-	private int no, cno, like_count;
+	private int rno, cno, like_count;
 	private String title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date, cname;
 }

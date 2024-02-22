@@ -4,34 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채용 공고 작성</title>
-<link rel="stylesheet" href="../css/setting.css">
-<link rel="stylesheet" href="../css/plugin.css">
-<link rel="stylesheet" href="../css/common.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../recruitment/css/recruitment.css">
-<script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>
-<script src="../js/template.js"></script>
-<script src="../js/common.js"></script>
-<script src="../recruitment/js/script.js"></script>
-<script src="../recruitment/js/template.js"></script>
-<script src="https://unpkg.com/vue@3"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
+<title>채용 공고 수정</title>
 </head>
 <body>
-  <section id="recruitmentDetail" class="sub insert">
-    <div class="content-container" id="recruitmentInsertApp">
+  <section id="recruitmentDetail" class="sub insert update">
+    <div class="content-container" id="recruitmentUpdateApp">
       <div class="container-md">
         <form method="" action="">
           <div class="content-desc">
             <div class="recruit-top">
               <ul class="recruit-info">
-                <li class="company-info">
-	                <figure class="company-logo">
-	                  <img class="width-100" :src="cvo.logo" alt="기업 로고">
-	                </figure>
-	                <h3 class="company-name">{{cvo.name}}</h3>
+                <li>
+                  <label for="company-logo">기업 로고</label>
+                  <input type="file" name="company-logo" id="company-logo" v-model="cvo.logo" class="recruit-input">
+                </li>
+                <li>
+                  <label for="company-name">기업명</label>
+                  <input type="text" name="company-name" id="company-name" v-model="cvo.name" class="recruit-input"  placeholder="기업명을 입력해 주세요.">
                 </li>
                 <li>
                   <label for="recruit-tit">채용 공고 제목</label>
@@ -122,13 +111,13 @@
               <label for="recruit-content_j">주요 업무</label>
               <textarea id="recruit-content_j" class="recruit-textarea" v-model="content_j" placeholder="주요 업무를 작성해 주세요."></textarea>
               
-              <label for="recruit-content_q">자격 요건</label>
+              <label for="recruit-content_j">자격 요건</label>
               <textarea id="recruit-content_q" class="recruit-textarea" v-model="content_q" placeholder="자격 요건을 작성해 주세요."></textarea>
               
-              <label for="recruit-content_p">우대 사항</label>
+              <label for="recruit-content_j">우대 사항</label>
               <textarea id="recruit-content_p" class="recruit-textarea" v-model="content_p" placeholder="우대 사항을 작성해 주세요."></textarea>
               
-              <label for="recruit-content_b">복지 및 혜택</label>
+              <label for="recruit-content_j">복지 및 혜택</label>
               <textarea id="recruit-content_b" class="recruit-textarea" v-model="content_b" placeholder="복지 및 혜택을 작성해 주세요."></textarea>
               <!-- <pre>
               </pre> -->
@@ -174,17 +163,17 @@
               <input type="text" name="company-address" id="company-address" v-model="cvo.address" class="recruit-input" placeholder="주소를 입력해 주세요.">
             </div>
           </div>
-          <button type="submit" id="recruitInsertBtn" class="recruit-btn">작성하기</button>
+          <button type="submit" id="recruitInsertBtn" class="recruit-btn">수정하기</button>
           <button type="submit" id="recruitCancelBtn" class="recruit-btn">취소</button>
         </form>
       </div>
     </div>
   </section>
 <script>
-let recruitmentInsertApp=Vue.createApp({
-  data(){
-    return {
-      rno:${rno},
+let recruitmentUpdateApp=Vue.createApp({
+	data(){
+		return{
+			rno:${rno},
       cno:${cno},
       title:'',
       stack_txt:'',
@@ -196,85 +185,50 @@ let recruitmentInsertApp=Vue.createApp({
       content_p:'', 
       content_b:'', 
       end_date:'',
+      cvo.cno:${cvo.cno},
+      cvo.logo:'',
+      cvo.name:'',
+      cvo.address:'', 
+      cvo.phone:'', 
+      cvo.homepage:'', 
+      cvo.email:''
+		}
+	},
+  mounted(){
+    axios.get('../recruitment/recruit_update_vue.do', {
+      params:{
+      	cno:this.cno
+        rno:this.rno
+      }
+    }).then(response=>{
+      console.log(response.data)
+      this.title:response.data.title,
+      this.stack_txt:response.data.stack_txt,
+      this.stack_img:response.data.stack_img, 
+      this.career:response.data.career, 
+      this.education:response.data.education, 
+      this.content_j:response.data.content_j, 
+      this.content_q:response.data.content_q, 
+      this.content_p:response.data.content_p, 
+      this.content_b:response.data.content_b, 
+      this.end_date:response.data.end_date,
       cvo: {
-        cno: ${cvo.cno},
-        logo: '',
-        name: '',
-        address: '',
-        phone: '',
-        homepage: '',
-        email: ''
+        this.cno: response.data.cvo.cno,
+        this.logo: response.data.cvo.logo,
+        this.name: response.data.cvo.name,
+        this.address: response.data.cvo.address,
+        this.phone: response.data.cvo.phone,
+        this.homepage: response.data.cvo.homepage,
+        this.email: response.data.cvo.email
       }
-    }
-  },
-  methods:{
-    write(){
-      if(this.title==="") {
-        this.$refs.title.focus()
-        return
-      } 
-      if(this.stack_txt==="") {
-        this.$refs.stack_txt.focus()
-        return
-      } 
-      if(this.stack_img==="") {
-        this.$refs.stack_img.focus()
-        return
-      } 
-      if(this.career==="") {
-        this.$refs.career.focus()
-        return
-      } 
-      if(this.education==="") {
-        this.$refs.education.focus()
-        return
-      } 
-      if(this.content_j==="") {
-        this.$refs.content_j.focus()
-        return
-      } 
-      if(this.content_q==="") {
-        this.$refs.content_q.focus()
-        return
-      } 
-      if(this.content_p==="") {
-        this.$refs.content_p.focus()
-        return
-      } 
-      if(this.content_b==="") {
-        this.$refs.content_b.focus()
-        return
-      } 
-      if(this.end_date==="") {
-        this.$refs.career.focus()
-        return
-      } 
-      /* if(this.cvo.logo==="") {
-        this.$refs.cvo.logo.focus()
-        return
-      } 
-      if(this.cvo.name==="") {
-        this.$refs.cvo.name.focus()
-        return
-      } */
-      if(this.cvo.address==="") {
-        this.$refs.cvo.address.focus()
-        return
-      }
-      if(this.cvo.phone==="") {
-        this.$refs.cvo.phone.focus()
-        return
-      }
-      if(this.cvo.homepage==="") {
-        this.$refs.cvo.homepage.focus()
-        return
-      }
-      if(this.cvo.email==="") {
-        this.$refs.cvo.email.focus()
-        return
-      }
-      
-      axios.post('../recruitment/recruit_insert_vue.do', null, {
+    })
+	},
+	methods:{
+		goback(){
+			window.history.back()
+		},
+		update(){
+			axios.post('../recruitment/recruit_update_ok_vue.do', null, {
         params:{
         	rno:this.rno,
           cno:this.cno,
@@ -289,26 +243,29 @@ let recruitmentInsertApp=Vue.createApp({
           content_b:this.content_b, 
           end_date:this.end_date,
           cvo: {
-          	cno: cvo.cno,
-            logo: cvo.logo,
-            name: cvo.name,
-            address: cvo.address,
-            phone: cvo.phone,
-            homepage: cvo.homepage,
-            email: cvo.email
+            cno: this.cvo.cno,
+            logo: this.cvo.logo,
+            name: this.cvo.name,
+            address: this.cvo.address,
+            phone: this.cvo.phone,
+            homepage: this.cvo.homepage,
+            email: this.cvo.email
           }
         }
       }).then(response=>{
         if(response.data==="yes") {
-           location.href="'../recruitment/recruit_insert.do?cno='+parseInt(cvo.cno)"
+          location.href="../recruitment/recruit_detail.do?rno="+this.rno+'&cno='+this.cno
         }
-        else {
-          alert(response.data)
-        }
+        /* else{
+          alert("비밀번호가 틀립니다!!")
+          this.pwd=""
+          this.$refs.pwd.focus()
+        } */
       })
-    }
-  }
-}).mount("#recruitmentInsertApp")
+		}
+		
+	}
+}).mount('#recruitmentUpdateApp')
 </script>
 </body>
 </html>
