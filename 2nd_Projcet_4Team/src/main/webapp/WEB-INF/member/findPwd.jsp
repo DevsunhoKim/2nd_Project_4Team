@@ -32,7 +32,7 @@
     <div class="contents-container" draggable="false">
       <div class="textset" draggable="false">
         <h2 class="textset-tit" draggable="false">비밀번호 찾기</h2>
-        <p class="textset-desc" draggable="false">가입시 입력하신 이메일을 통해 임시 비밀번호를 전송해드립니다.</p>
+        <p class="textset-desc" draggable="false">가입 시 입력하신 이메일을 통해 임시 비밀번호를 전송해드립니다.</p>
       </div>
       <div class="contents-form" draggable="false">
       	아이디 입력
