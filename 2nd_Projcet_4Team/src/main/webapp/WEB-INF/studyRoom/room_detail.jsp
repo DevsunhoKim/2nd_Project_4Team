@@ -62,7 +62,10 @@
             </div>
             
             <div class="contents-btn buy_jjim">
-              <button class="btnset" href="javascript:void(0)">담아두기</button>
+              <button class="btnset" @click="jjim()" id="jjimBtn">
+                <img :src="src" class="cart-icon" id="cart">
+                <span id="jjim">{{jjimText}}</span>
+              </button>
               <a class="btnset" @click="reserve()">예약하기</a>
             </div>
           </div>
@@ -411,7 +414,11 @@
            conve:[],
            address:'서울 마포구 월드컵북로 21 풍성빌딩 2~4층',
            askShow:false,
-           infoShow:true
+           infoShow:true,
+           cateno:2,
+           u:0,
+           src:'',
+           jjimText:''
            
         }
      },
@@ -444,6 +451,24 @@
                     this.addScript()
                   }
            })
+           axios.get('../jjim/jjim_vue.do',{
+        	    params:{
+        	        userId:this.userId,
+        	        no:this.no,
+        	        cateno:this.cateno
+        	    }
+        	}).then(response=>{
+        	    if(response.data > 0) {
+        	        this.u = 1;
+        	        this.jjimText = '담기취소';
+        	        this.src = '../studyRoom/icons/cart_minus.png';
+        	    } else {
+        	        this.u = 0;
+        	        this.jjimText = '담아두기';
+        	        this.src = '../studyRoom/icons/cart_plus.png';
+        	    }
+        	});
+
         },
         initMap(){
                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -507,6 +532,64 @@
         	    else{
         	    	location.href="../studyRoom/reserve.do?no="+this.no
         	    }
+        	},
+        	jjim(){
+        		 if(this.userId==null || this.userId=='')
+         	    {
+         	        alert("로그인 후 예약 가능합니다.");  
+         	        location.href="../member/login.do"
+         	    }
+         	    else{
+         	    	alert("담기")
+    		        if(this.u==0)
+    		        {
+		    		    this.u=1;
+		    		    axios.get('../jjim/jjim_ok.do',{
+		    		    	params:{
+		    		    		userId:this.userId,
+		    	    			no:this.no,
+		    	    			cateno:this.cateno
+		    		    	}
+		    		    }).then(response=>{
+		    		    	if(response.data>0)
+		    		    	{
+		    		    		$('#jjim').text('담기취소')
+				    		    this.src='../studyRoom/icons/cart_minus.png'
+		    		    	}
+		    		    })
+    		        }
+    		        else
+    		        {
+		    			this.u=0;
+		    			axios.get('../jjim/jjim_delete.do',{
+		    		    	params:{
+		    		    		userId:this.userId,
+		    	    			no:this.no,
+		    	    			cateno:this.cateno
+		    		    	}
+		    		    }).then(response=>{
+		    		    	if(response.data==0)
+		    		    	{
+		    		    		$('#jjim').text('담아두기')
+				    			this.src='../studyRoom/icons/cart_plus.png'
+		    		    	}
+		    		    })
+		    			
+    		         }
+         	    	/* axios.get('../jjim/jjim_vue.do',{
+         	    		params:{
+         	    			userId:this.userId,
+         	    			no:this.no,
+         	    			cateno:this.cateno
+         	    		}
+         	    	}).then(response=>{
+         	    		if(response.data=='ok')
+         	    		{
+         	    			
+         	    		}
+         	    	}) */
+         	    }
+        		 
         	}
 
 
