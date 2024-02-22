@@ -65,7 +65,7 @@ public class MemberServiceIml implements MemberService{
 	@Override
 	public void lastLoginUpdate(String name) {
 		dao.lastLoginUpdate(name);
-		
+
 	}
 
 	@Override

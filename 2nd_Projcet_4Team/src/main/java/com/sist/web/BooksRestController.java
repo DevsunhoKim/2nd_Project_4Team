@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -122,16 +123,14 @@ public class BooksRestController {
 		   return json;
 	   }
 
-	   @PostMapping(value="books/review_insert_vue.do",produces = "text/plain;charset=UTF-8")
-	   public String reply_insert(ReviewVO vo,HttpSession session) throws Exception
-	   {
-		   String userId=(String)session.getAttribute("userId");
-		   vo.setUserId(userId);
-		   
-		   // rno,msg
-		   reviewMapper.reviewInsert(vo);
-		   
-		   return commonsreviewData(vo.getRno());
+	   @PostMapping(value="books/review_insert_vue.do", produces = "text/plain;charset=UTF-8")
+	   public String reply_insert(@Param("rno") int rno, @Param("no") int no, @Param("userId") String userId, @Param("cont") String cont, @Param("score") int score, @Param("dbday") String dbday, HttpSession session) throws Exception {
+
+	       ReviewVO vo = new ReviewVO();
+
+	       reviewMapper.reviewInsert(vo);
+
+	       return commonsreviewData(vo.getRno());
 	   }
 	   // 수정
 	   @PostMapping(value="books/review_update_vue.do",produces = "text/plain;charset=UTF-8")

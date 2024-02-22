@@ -73,18 +73,24 @@ public class RecruitmentRestController {
 
 	  return json;
 	}
-	
+
 	// 기업 정보 상세 페이지
 	@GetMapping(value="company_detail_vue.do", produces="text/plain;charset=UTF-8")
 	public String company_detail_vue(int no, int cno) throws Exception {
+<<<<<<< HEAD
 		RecruitVO rvo=rService.recuitDetailData(no);
 		CompanyVO cvo=rService.companyDetailData(cno);
 		
+=======
+		RecruitVO rvo=service.recuitDetailData(no);
+		CompanyVO cvo=service.companyDetailData(cno);
+
+>>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 //		int rowSize=4;
 //		int start=(rowSize*page)-(rowSize-1);
 //		int end=rowSize*page;
 //		List<RecruitVO> list=service.recruitListData(start, end);
-//		
+//
 //		final int BLOCK=5;
 //		int startPage=((page-1)/BLOCK*BLOCK)+1;
 //		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
@@ -99,12 +105,12 @@ public class RecruitmentRestController {
 //		map.put("totalpage", totalpage);
 //		map.put("startPage", startPage);
 //		map.put("endPage", endPage);
-		
+
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
-		
+
 		return json;
-				
+
 	}
 	
 	@PostMapping(value="recruit_insert_vue.do", produces="text/plain;charset=UTF-8")

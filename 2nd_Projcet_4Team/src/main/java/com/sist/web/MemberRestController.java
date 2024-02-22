@@ -1,12 +1,15 @@
 package com.sist.web;
 
 import java.util.Random;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.sist.MailSender.MailSender;
 import com.sist.service.MemberService;
 
@@ -14,7 +17,7 @@ import com.sist.service.MemberService;
 @RequestMapping("member/")
 public class MemberRestController {
 	private MemberService mService;
-	
+
 	@Autowired
 	 public MemberRestController(MemberService mService) {
 		this.mService = mService;

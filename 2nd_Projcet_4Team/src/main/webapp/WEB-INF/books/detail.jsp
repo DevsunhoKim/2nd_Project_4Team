@@ -247,7 +247,7 @@ body{ margin: 20px; }
         </label>
     </div>
 
-   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;" @click="addReview">작성하기</a>
+   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;" @click="addReview(newReview.no)">작성하기</a>
 </div>
 
 
@@ -257,21 +257,20 @@ body{ margin: 20px; }
 let booksDapp = Vue.createApp({
   data() {
     return {
-      no: ${no}, // 서버 측에서 주입해야 하는 'no' 값
-      detail_data: {}, // 책 상세 정보를 저장할 객체
-      reviews: [], // 리뷰 목록을 저장할 배열
-      quantity: 1, // 수량을 저장하는 변수
-      totalPrice: 0, // 총 가격을 저장하는 변수
-      newReview: { // 새 리뷰를 위한 객체
-        userId: '',
+        userId:${sessionScope.userId},
+    	no: ${no}, // 서버 측에서 주입해야 하는 'no' 값
+        detail_data: {}, // 책 상세 정보를 저장할 객체
+        reviews: [], // 리뷰 목록을 저장할 배열
+        quantity: 1, // 수량을 저장하는 변수
+        totalPrice: 0, // 총 가격을 저장하는 변수
+        newReview: { // 새 리뷰를 위한 객체 
         cont: '',
-        score: 0,
-        cateno: 1
-        
+        score: 0,    
       }
     };
   },
   mounted() {
+	  
     this.fetchBookDetail();
   },
   methods: {
@@ -280,6 +279,7 @@ let booksDapp = Vue.createApp({
       axios.get('../books/detail_vue.do', {
         params: {
           no: this.no
+          useId:this.useId
         }
       }).then(response => {
         this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
@@ -289,7 +289,7 @@ let booksDapp = Vue.createApp({
         console.log("Book details:", this.detail_data);
         console.log("Review list:", this.reviews);
       }).catch(error => {
-        console.error("리뷰 작성 실패:", error);
+      
       });
     },
     // 수량 증가 메소드
@@ -308,25 +308,32 @@ let booksDapp = Vue.createApp({
     calculateTotalPrice() {
       this.totalPrice = this.quantity * this.detail_data.price;
     },
+    
+    
     // 리뷰 추가 메소드
-	   addReview() {
-  axios.post('../books/review_insert_vue', null, {
+	 addReview() {
+  // 입력된 리뷰 내용이 없는 경우
+  if(this.cont === "") {
+    this.$refs.cont.focus(); // cont 입력 필드에 포커스를 맞춤
+    return; // 함수 종료
+  }
+
+  // 입력된 리뷰 내용이 있는 경우, 서버로 데이터 전송
+  axios.post('../books/review_insert_vue.do', null, {
     params: {
-      rno: this.no,
-      cont: this.newReview.cont,
-      score: this.newReview.score,
-      userId: this.newReview.userId
+      userId:this.useId,
+      no: this.no, // 현재 페이지의 대상 번호
+      cont: this.cont // 사용자가 입력한 리뷰 내용
     }
-  })
-  .then(response => {
-    alert(response.data);
-    this.fetchBookDetail(); // 리뷰 추가 후 목록 새로고침
-  })
-  .catch(error => {
+  }).then(response => {
+    this.reviews = response.data; // 서버로부터 받은 새로운 리뷰 목록으로 업데이트
+    this.cont = ''; // 입력 필드 초기화
+  }).catch(error => {
     console.error("리뷰 추가 실패:", error);
-    alert("리뷰 추가 실패");
+    alert("리뷰 추가에 실패했습니다."); // 에러 처리
   });
-},
+}
+
     // 리뷰 수정 메소드
     updateReview(reviewToUpdate) {
       axios.post('../books/review_update_vue', reviewToUpdate)
@@ -361,10 +368,5 @@ let booksDapp = Vue.createApp({
   }
 }).mount('#books_detail'); // Vue 인스턴스를 #books_detail에 마운트
 </script>
-
-
-	
-
-
     </body>
 </html>
