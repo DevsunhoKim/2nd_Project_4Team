@@ -19,9 +19,12 @@ public class JjimDAO {
     public void jjimInsert(JjimVO vo)
     {
     	mapper.jjimInsert(vo);
+    	mapper.studyRoomJjimUpdate(vo.getNo());
     }
 	
 	public void jjimDelete(JjimVO vo) {
+		
 		mapper.jjimDelete(vo);
+		mapper.studyRoomJjimUpdateMinus(vo.getNo());
 	}
 }
