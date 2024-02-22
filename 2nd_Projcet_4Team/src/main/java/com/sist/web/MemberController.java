@@ -4,6 +4,7 @@ package com.sist.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,20 +25,17 @@ public class MemberController {
     }
 
 	@RequestMapping("login.do")
-	public String member_login()
-	{
+	public String member_login(){
 		return "member/login";
 	}
 
 	@GetMapping("join.do")
-	public String member_join()
-	{
+	public String member_join(){
 		return "member/join";
 	}
 
 	@GetMapping("join_ok.do")
-	public String member_join_ok()
-	{
+	public String member_join_ok(){
 		return "member/join_ok";
 	}
 
@@ -51,14 +49,13 @@ public class MemberController {
 	}
 	
     @GetMapping("findId.do")
-	public String member_findId()
-	{
+	public String member_findId(){
 		return "member/findId";
 	}
     
     @GetMapping("findId_ok.do")
-	public String member_findId_ok()
-	{
+	public String member_findId_ok(String userId,Model model){	
+    	model.addAttribute("userId", userId);
 		return "member/findId_ok";
 	}
     

@@ -1,6 +1,5 @@
 package com.sist.web;
 
-import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,8 @@ public class MemberRestController {
 
 	 @GetMapping(value="sendCode_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String member_sendCode(String email) throws AddressException, MessagingException {
-			/* Random rand=new Random(); */
 		  int code = (int)(Math.random() * 900000) + 100000; // 인증번호 6자리수 100000~999999
+		  System.out.println(code);
 		  String res = mService.sendCode(email,code);
 		  if(res.equals("SEND_CODE")) {
 			  MailSender smr=new MailSender();
@@ -47,15 +46,14 @@ public class MemberRestController {
 		  return res;
 	  }
 	 
-	 @GetMapping(value="idfind_vue.do",produces = "text/plain;charset=UTF-8")
+	 @GetMapping(value="findId_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String member_idfind(String email,int code) throws AddressException, MessagingException {
 		  String res = mService.idFind(email,code);
 		  return res;
 	  }
 	 
-	 @GetMapping(value="pwdfind_vue.do",produces = "text/plain;charset=UTF-8")
+	 @GetMapping(value="findpwd_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String member_pwdfindvue(String userId, String email) throws AddressException, MessagingException {
-			/* Random rand=new Random(); */
 		  int random_ = (int)(Math.random() * 900000) + 100000; // 임시비밀번호 6자리수 100000~999999
 		  String tempPwd=random_+"";
 		  String enTempPwd=encoder.encode(tempPwd);

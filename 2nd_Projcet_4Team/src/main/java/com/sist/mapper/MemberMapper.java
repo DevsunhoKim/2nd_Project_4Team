@@ -72,7 +72,7 @@ public interface MemberMapper {
     
     @Select("SELECT SUBSTR(userId, 1, LENGTH(userId) - 3) || '***' AS userId "
     		+ "FROM member WHERE code = #{code} AND email = #{email}")
-    public String idFind(int code,String email); // 아이디 찾기
+    public String idFind(@Param("code") int code,@Param("email") String email); // 아이디 찾기
     /*-----------------------*/
     
     /*------ 비밀번호 찾기 ------*/    

@@ -24,6 +24,9 @@
     flex: 1;
     margin-right: 10px; /* Adjust as needed */
 }
+.glamping-N44 .contents-inner {
+    padding: 10.5rem 2.4rem;
+}
 </style>
 </head>
 <body>
@@ -74,7 +77,7 @@
 				  this.$refs.email.focus()
 				  return
 			  }
-			  axios.get('../member/pwdfind_vue.do',{
+			  axios.get('../member/findpwd_vue.do',{
 				  params:{
 					  userId:this.id,
 					  email:this.email
