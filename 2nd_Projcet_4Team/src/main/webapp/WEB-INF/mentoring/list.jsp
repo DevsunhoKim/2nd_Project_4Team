@@ -48,7 +48,7 @@
 		      </div>
 		    <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="icon"></button>
 		    <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해 주세요." 
-			  ref="fd" v-model="fd" @keyup.enter="dataRecv()">
+			  ref="fd" v-model="fd" @keyup.enter="setupSearch()">
 		  </div>
 	  </div>
 	  <div style="height: 30px"></div>
@@ -331,11 +331,11 @@ let mentorListApp = Vue.createApp({
         };
     },
     mounted() {
-        this.dataRecv();
+        this.setupSearch();
     },
     methods: {
-        dataRecv() {
-            axios.get('../mentoring/find_view.do', {
+        setupSearch() {
+            axios.get('../mentoring/setupSearch_view.do', {
                 params: {
                     page: this.curpage,
                     ss: this.ss,
@@ -361,16 +361,25 @@ let mentorListApp = Vue.createApp({
             });
         },
         prev() {
+        	if (this.curpage === 1) {
+                return;
+            }
             this.curpage = this.startPage - 1;
-            this.dataRecv();
+            this.setupSearch();
         },
         next() {
+        	if (this.curpage === this.totalpage) {
+                return;
+            }
             this.curpage = this.endPage + 1;
-            this.dataRecv();
+            this.setupSearch();
         },
         pageChange(page) {
+        	if (page === this.curpage) {
+                return;
+            }
             this.curpage = page;
-            this.dataRecv();
+            this.setupSearch();
         },
         selectTech: function (index) {
             if (this.selectedTech === index) {
@@ -379,7 +388,7 @@ let mentorListApp = Vue.createApp({
                 this.selectedTech = index;
             }
             this.curpage = 1;
-            this.dataRecv();
+            this.setupSearch();
         }
     }
 }).mount("#mentorList");
