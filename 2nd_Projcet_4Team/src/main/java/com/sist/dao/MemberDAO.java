@@ -67,26 +67,40 @@ public class MemberDAO {
     public String pwdFind(String userId,String email, String tempPwd) {
     	String msg = "";
 		   int count=mapper.getIDCount(userId);
-		   System.out.println(userId);
-		   System.out.println(email);
-		   System.out.println(tempPwd);
 		   if(count==0){
 			   msg = "NOID";
 		   }
 		   else{
-			   System.out.println(count);
-			   System.out.println(userId);
-			   System.out.println(email);
-			   int count2 = mapper.getEmailCount(userId,email);
-			   System.out.println(count2);
+			   int count2 = mapper.getEmailCountbyUserId(userId,email);
 			   if(count2==0) {
 				   msg = "NOEMAIL";
 			   }else {
 				   mapper.pwdFind(userId,tempPwd);
-				   System.out.println(msg);
 				   msg = "CHANGE_PWD";
 			   }
 		   }
 		return msg;
     }
+    
+    public String sendCode(String email, int code) {
+    	String msg = "";
+		   int count=mapper.getEmailCount(email);
+		   if(count==0){
+			   msg = "NOEMAIL";
+		   }
+		   else{
+			   mapper.sendCode(code, email);
+			   msg = "SEND_CODE";
+		   }
+		return msg;
+    }
+    
+    public String idFind(String email, int code) {
+		   String userId = mapper.idFind(code,email);
+		   if(userId == null || userId.isEmpty()){
+			   userId = "WRONG_CODE";
+		   }
+		return userId;
+    }
+    
 }

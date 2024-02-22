@@ -27,7 +27,7 @@
 </style>
 </head>
 <body>
-<div class="glamping-N44" data-bid="oFlSD6Ca9n" th-id="lsd6ca9m" th-index="0" th-relative="true" id="loginApp">
+<div class="glamping-N44" data-bid="oFlSD6Ca9n" th-id="lsd6ca9m" th-index="0" th-relative="true" id="findIdApp">
   <div class="contents-inner" draggable="true" th-dragitem="true">
     <div class="contents-container" draggable="false">
       <div class="textset" draggable="false">
@@ -38,12 +38,12 @@
       	이메일 입력
         <div class="inputset inputset-round" draggable="false">
           <input type="text" class="inputset-input form-control" ref="email" v-model="email" placeholder="이메일를 입력해주세요" required="" draggable="false">
-          <button class="btnset btnset-round" type="button" @click="">인증번호전송</button>
+          <button class="btnset btnset-round" type="button" @click="sendCode()">인증번호전송</button>
         </div>
         인증번호 입력
         <div class="inputset inputset-round" draggable="false">
-          <input type="text" class="inputset-input form-control" ref="verification" v-model="verification" placeholder="인증번호를 입력해주세요" required="" draggable="false">
-          <button class="btnset btnset-round" type="button" @click="">확인</button>
+          <input type="text" class="inputset-input form-control" ref="code" v-model="code" placeholder="인증번호를 입력해주세요" required="" draggable="false">
+          <button class="btnset btnset-round" type="button" @click="findId()">확인</button>
         </div>
         <div class="contents-btnset" draggable="false">
           <!-- <a href="javascript:void(0);" class="btnset btnset-round" draggable="false">로그인</a> -->
@@ -54,61 +54,71 @@
   </div>
 </div>
  <script>
-  let loginApp=Vue.createApp({
+ let findIdApp=Vue.createApp({
 	  data(){
 		  return {
-			  id:'${userId}',
-			  pwd:'',
-			  ck:true  
+			  email:'',
+			  code:''
 		  }
 	  },
 	  methods:{
-		  login(){
-			  if(this.id==='')
+		  sendCode(){
+			  if(this.email==='')
 			  {
-				  alert("ID를 입력하세요!!")
-				  this.$refs.id.focus()
+				  alert("이메일을 입력하세요.")
+				  this.$refs.email.focus()
 				  return
 			  }
-			  if(this.pwd==='')
-			  {
-				  alert("비밀번호를 입력하세요!!")
-				  this.$refs.pwd.focus()
-				  return
-			  }
-			  if (!this.ck) {
-			        this.ck = false;
-			    }
-			  axios.get('../member/login_ok_vue.do',{
+			  axios.get('../member/sendCode_vue.do',{
 				  params:{
-					  userId:this.id,
-					  userPwd:this.pwd,
-					  ck:this.ck
+					  email:this.email,
+					  code:this.code
 				  }
 			  }).then(response=>{
-				  // NOID , NOPWD , OK 
-				  if(response.data==='NOID')
-				  {
-					  alert("ID가 존재하지 않습니다")
+				  // NOEMAIL,SEND_CODE
+				  if(response.data==='NOEMAIL'){
+					  alert("입력하신 이메일을 찾을 수 없습니다.")
 					  this.id=''
-					  this.pwd=''
-					  this.ck=false
-					  this.$refs.id.focus()
-				  }
-				  else if(response.data==='NOPWD')
-				  {
-					  alert("비밀번호가 틀립니다!!")
-					  this.pwd=''
-					  this.$refs.pwd.focus()
+					  this.email=''
+					  this.$refs.email.focus()
 				  }
 				  else
 			      {
-					  location.href='../main/main.do'
+					  alert("입력하신 이메일로 인증번호를 전송했습니다.")
+			      }
+			  })
+		  },
+		  findId(){
+			  if(this.code==='')
+			  {
+				  alert("인증번호를 입력하세요.")
+				  this.$refs.email.focus()
+				  return
+			  }
+			  axios.get('../member/sendCode_vue.do',{
+				  params:{
+					  email:this.email,
+					  code:this.code
+				  }
+			  }).then(response=>{
+				  // WRONG_CODE, userId
+				  if(response.data==='WRONG_CODE'){
+					  alert("잘못된 인증번호 입니다.")
+					  this.code=''
+					  this.$refs.code.focus()
+				  }
+				  else
+			      {
+					  axios.get('../member/.do',{
+						  params:{
+							  
+						  }
+					  }
 			      }
 			  })
 		  }
 	  }
-  }).mount("#loginApp")
+ }).mount("#findIdApp")
  </script>
 </body>
 </html>

@@ -53,7 +53,7 @@
   </div>
 </div>
  <script>
-  let loginApp=Vue.createApp({
+  let findPwdApp=Vue.createApp({
 	  data(){
 		  return {
 			  id:'',
@@ -70,7 +70,7 @@
 			  }
 			  if(this.email==='')
 			  {
-				  alert("이메일 입력하세요.")
+				  alert("이메일을 입력하세요.")
 				  this.$refs.email.focus()
 				  return
 			  }
