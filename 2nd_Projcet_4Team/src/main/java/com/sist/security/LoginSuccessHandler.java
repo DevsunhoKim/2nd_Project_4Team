@@ -70,5 +70,4 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 			redirectStrategy.sendRedirect(request, response, defaultUrl);
 		}
 	}
-
 }
