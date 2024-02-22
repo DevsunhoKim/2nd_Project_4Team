@@ -107,7 +107,7 @@
         <div class="container-md">
           <div class="contents-top">
             <h3 class="contents-tit">채용 공고</h3>
-            <button type="button" id="recruitInsertBtn" class="review-btn" value="작성하기" @click="Insert()">작성하기</button>
+            <button type="button" id="recruitInsertBtn" class="review-btn" value="작성하기" @click="insert()">작성하기</button>
             <!-- <p class="contents-text">총 <span class="emph">11</span>건</p> -->
           </div>
           <div class="tableset">
@@ -386,9 +386,9 @@ let companyDetailApp=Vue.createApp({
 			rno:${rno},
 			cno:${cno},
 			curpage:1,
-      totalpage:0,
-      startPage:0,
-      endPage:0
+			totalpage:0,
+			startPage:0,
+			endPage:0
 		}
 	},
 	mounted(){
@@ -407,46 +407,46 @@ let companyDetailApp=Vue.createApp({
 	},
 	methods:{
 		dataRecv(){
-      axios.get('../recruitment/recruit_detail_vue.do', {
-        params:{
-        	rno:this.rno,
-          cno:this.cno,
-          page:this.curpage
-        }
-      }).then(response=>{
-        console.log(response.data)
-        this.recruit_list=response.data
-      })
+      	axios.get('../recruitment/recruit_detail_vue.do', {
+        	params:{
+        		rno:this.rno,
+          		cno:this.cno,
+          		page:this.curpage
+        	}
+      	}).then(response=>{
+        	console.log(response.data)
+        	this.recruit_list=response.data
+      	})
       
-      /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
-        console.log(response.data)
-        this.cookie_list=response.data
-      }) */
-    },
-    Insert(){
-    	location.href="../recruitment/recruit_insert.do?cno="+this.cno;
-    },
-    range(start, end){
-      let arr=[]
-      let leng=end-start
-      for(let i=0; i<=leng; i++){
-        arr[i]=start
-        start++
-      }
-      return arr
-    },
-    prev(){
-      this.curpage=this.endPage-1
-      this.dataRecv()
-    },
-    next(){
-      this.curpage=this.endPage+1
-      this.dataRecv()
-    },
-    pageChange(page){
-      this.curpage=page
-      this.dataRecv()
-    },		
+		/* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
+			console.log(response.data)
+			this.cookie_list=response.data
+		}) */
+    	},
+	    insert(){
+	    	location.href="../recruitment/recruit_insert.do?cno="+this.cno;
+	    },
+	    range(start, end){
+	      let arr=[]
+	      let leng=end-start
+	      for(let i=0; i<=leng; i++){
+	        arr[i]=start
+	        start++
+	      }
+	      return arr
+	    },
+	    prev(){
+	      this.curpage=this.endPage-1
+	      this.dataRecv()
+	    },
+	    next(){
+	      this.curpage=this.endPage+1
+	      this.dataRecv()
+	    },
+	    pageChange(page){
+	      this.curpage=page
+	      this.dataRecv()
+	    }	
 	}
 }).mount('#companyDetailApp')
 </script>

@@ -30,14 +30,12 @@ public class RecruitmentController {
 	}
 	
 	@GetMapping("recruit_insert.do")
-	public String recruit_insert(RecruitVO vo, int cno, Model model) {
+	public String recruit_insert(RecruitVO vo) {
 		return "recruitment/recruit_insert";
 	}
 	
 	@GetMapping("recruit_update.do")
-	public String recruit_update(int rno, int cno, Model model) {
-		model.addAttribute("rno", rno);
-		model.addAttribute("cno", cno);
+	public String recruit_update(RecruitVO vo) {
 		return "recruitment/recruit_update";
 	}
 }

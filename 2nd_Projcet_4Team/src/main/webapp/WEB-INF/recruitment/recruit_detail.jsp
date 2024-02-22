@@ -35,6 +35,7 @@
               <h2 class="recruit-tit">{{recruit_detail.title}}</h2>
             </div>
             <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn">지원하기</button>
+            <button type="button" id="recruitUpdateBtn" class="irecruit-btn" value="수정하기" @click="update()">수정하기</button>
           </div>
         </div>
 
@@ -243,9 +244,12 @@ let recruitmentDetailApp=Vue.createApp({
   		    } 
 			});    
 		},
+		update(){
+	    	location.href="../recruitment/recruit_update.do?rno="+this.rno;
+	    },
 		goback(){
-    	location.href="../recruitment/reruit_list_vue.do"
-    }
+    		location.href="../recruitment/reruit_list_vue.do"
+    	}
 	}
 }).mount('#recruitmentDetailApp')
 </script>

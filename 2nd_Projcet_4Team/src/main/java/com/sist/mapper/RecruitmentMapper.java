@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -71,29 +72,29 @@ public interface RecruitmentMapper {
 
 
 	// 상세보기
-		// 1. 채용 공고 정보
-		@Select("SELECT * FROM recruit WHERE rno=#{rno}")
-		public RecruitVO recuitDetailData(int rno);
-		
-		// 2. 기업 정보
-		@Select("SELECT * FROM company WHERE cno=#{cno}")
-		public CompanyVO companyDetailData(int cno);
+	// 1. 채용 공고 정보
+	@Select("SELECT * FROM recruit WHERE rno=#{rno}")
+	public RecruitVO recuitDetailData(int rno);
+	
+	// 2. 기업 정보
+	@Select("SELECT * FROM company WHERE cno=#{cno}")
+	public CompanyVO companyDetailData(int cno);
 
-		// 채용 공고 추가
-		@Results({
-		  @Result(column="cno", property="cvo.cno"),
-		  @Result(column="logo", property="cvo.logo"),
-		  @Result(column="name", property="cvo.name"),
-		  @Result(column="address", property="cvo.address"),
-		  @Result(column="phone", property="cvo.phone"),
-		  @Result(column="homepage", property="cvo.homepage"),
-		  @Result(column="email", property="cvo.email")
-		 })
-		@Insert("INSERT INTO recruit (rno, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date) "
-        + "VALUES (#{rno}, #{cno}, #{title}, #{stack_txt}, #{stack_img}, #{career}, #{education}, #{content_j}, #{content_q}, #{content_p}, #{content_b}, #{end_date}) "
-        + "INSERT INTO company (cno, logo, name, address, phone, homepage, email) "
-        + "VALUES (#{cvo.cno}, #{cvo.logo}, #{cvo.name}, #{cvo.address}, #{cvo.phone}, #{cvo.homepage}, #{cvo.email})")
-		public void recruitInsert(RecruitVO vo, int cno);
+	// 채용 공고 추가
+	@Results({
+	  @Result(column="cno", property="cvo.cno"),
+	  @Result(column="logo", property="cvo.logo"),
+	  @Result(column="name", property="cvo.name"),
+	  @Result(column="address", property="cvo.address"),
+	  @Result(column="phone", property="cvo.phone"),
+	  @Result(column="homepage", property="cvo.homepage"),
+	  @Result(column="email", property="cvo.email")
+	 })
+	@Insert("INSERT INTO recruit (rno, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date) "
+		    + "VALUES (#{rno}, #{cno}, #{title}, #{stack_txt}, #{stack_img}, #{career}, #{education}, #{content_j}, #{content_q}, #{content_p}, #{content_b}, #{end_date}) "
+		    + "INSERT INTO company (cno, logo, name, address, phone, homepage, email) "
+		    + "VALUES (#{cvo.cno}, #{cvo.logo}, #{cvo.name}, #{cvo.address}, #{cvo.phone}, #{cvo.homepage}, #{cvo.email})")
+	public void recruitInsert(RecruitVO vo);
 		
 	// 채용 공고 수정
 	@Results({
@@ -107,10 +108,14 @@ public interface RecruitmentMapper {
 	 })
 	@Update("UPDATE recruit SET "
 			+ "no=#{rno}, cno=#{cno}, title=#{title}, stack_txt=#{stack_txt}, stack_img=#{stack_img}, career=#{career}, education=#{education}, content_j=#{content_j}, content_q=#{content_q}, content_p=#{content_p}, content_b=#{content_b}, end_date=#{end_date} "
-      + "UPDATE company SET "
-      + "no=#{cvo.cno}, logo=#{cvo.logo}, name=#{cvo.name}, address=#{cvo.address}, phone=#{cvo.phone}, homepage=#{cvo.homepage}, email=#{cvo.email} "
-      + "WHERE no=#{rno}")
+			+ "UPDATE company SET "
+			+ "no=#{cvo.cno}, logo=#{cvo.logo}, name=#{cvo.name}, address=#{cvo.address}, phone=#{cvo.phone}, homepage=#{cvo.homepage}, email=#{cvo.email} "
+			+ "WHERE no=#{rno}")
 	public void recruitUpdate(RecruitVO vo);
+	
+	// 채용 공고 삭제
+	@Delete("DELETE FROM recruit WHERE rno=#{rno}")
+	public void recruitDelete(int rno);
 		
 
 

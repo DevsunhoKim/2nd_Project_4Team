@@ -20,8 +20,11 @@ public interface RecruitmentService {
 	public CompanyVO companyDetailData(int cno);
 	
 	// 채용 공고 추가
-	public void recruitInsert(RecruitVO vo, int cno);
+	public void recruitInsert(RecruitVO vo);
 	
 	// 채용 공고 수정
 	public void recruitUpdate(RecruitVO vo);
+	
+	// 채용 공고 삭제
+	public void recruitDelete(int rno);
 }

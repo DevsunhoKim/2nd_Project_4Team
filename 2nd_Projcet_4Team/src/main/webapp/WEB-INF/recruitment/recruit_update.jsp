@@ -5,6 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>채용 공고 수정</title>
+<link rel="stylesheet" href="../css/setting.css">
+<link rel="stylesheet" href="../css/plugin.css">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../recruitment/css/recruitment.css">
+<script src="../js/setting.js"></script>
+<script src="../js/plugin.js"></script>
+<script src="../js/template.js"></script>
+<script src="../js/common.js"></script>
+<script src="../recruitment/js/script.js"></script>
+<script src="../recruitment/js/template.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
 <body>
   <section id="recruitmentDetail" class="sub insert update">
@@ -172,32 +185,34 @@
 <script>
 let recruitmentUpdateApp=Vue.createApp({
 	data(){
-		return{
-			rno:${rno},
-      cno:${cno},
-      title:'',
-      stack_txt:'',
-      stack_img:'', 
-      career:'', 
-      education:'', 
-      content_j:'', 
-      content_q:'', 
-      content_p:'', 
-      content_b:'', 
-      end_date:'',
-      cvo.cno:${cvo.cno},
-      cvo.logo:'',
-      cvo.name:'',
-      cvo.address:'', 
-      cvo.phone:'', 
-      cvo.homepage:'', 
-      cvo.email:''
-		}
+		return {
+	      rno:${rno},
+	      cno:${cno},
+	      title:'',
+	      stack_txt:'',
+	      stack_img:'', 
+	      career:'', 
+	      education:'', 
+	      content_j:'', 
+	      content_q:'', 
+	      content_p:'', 
+	      content_b:'', 
+	      end_date:'',
+	      cvo: {
+	        cno: ${cvo.cno},
+	        logo: '',
+	        name: '',
+	        address: '',
+	        phone: '',
+	        homepage: '',
+	        email: ''
+	      }
+	    }
 	},
   mounted(){
     axios.get('../recruitment/recruit_update_vue.do', {
       params:{
-      	cno:this.cno
+      	cno:this.cno,
         rno:this.rno
       }
     }).then(response=>{
@@ -213,13 +228,13 @@ let recruitmentUpdateApp=Vue.createApp({
       this.content_b:response.data.content_b, 
       this.end_date:response.data.end_date,
       cvo: {
-        this.cno: response.data.cvo.cno,
-        this.logo: response.data.cvo.logo,
-        this.name: response.data.cvo.name,
-        this.address: response.data.cvo.address,
-        this.phone: response.data.cvo.phone,
-        this.homepage: response.data.cvo.homepage,
-        this.email: response.data.cvo.email
+	   	  cno: response.data.cvo.cno,
+	   	  logo: response.data.cvo.logo,
+	   	  name: response.data.cvo.name,
+	   	  address: response.data.cvo.address,
+	   	  phone: response.data.cvo.phone,
+	   	  homepage: response.data.cvo.homepage,
+	   	  email: response.data.cvo.email
       }
     })
 	},
@@ -228,33 +243,98 @@ let recruitmentUpdateApp=Vue.createApp({
 			window.history.back()
 		},
 		update(){
-			axios.post('../recruitment/recruit_update_ok_vue.do', null, {
-        params:{
-        	rno:this.rno,
-          cno:this.cno,
-          title:this.title,
-          stack_txt:this.stack_txt,
-          stack_img:this.stack_img, 
-          career:this.career, 
-          education:this.education, 
-          content_j:this.content_j, 
-          content_q:this.content_q, 
-          content_p:this.content_p, 
-          content_b:this.content_b, 
-          end_date:this.end_date,
-          cvo: {
-            cno: this.cvo.cno,
-            logo: this.cvo.logo,
-            name: this.cvo.name,
-            address: this.cvo.address,
-            phone: this.cvo.phone,
-            homepage: this.cvo.homepage,
-            email: this.cvo.email
-          }
-        }
+		  if(this.title==="") {
+	        this.$refs.title.focus()
+	        return
+	      } 
+	      if(this.stack_txt==="") {
+	        this.$refs.stack_txt.focus()
+	        return
+	      } 
+	      if(this.stack_img==="") {
+	        this.$refs.stack_img.focus()
+	        return
+	      } 
+	      if(this.career==="") {
+	        this.$refs.career.focus()
+	        return
+	      } 
+	      if(this.education==="") {
+	        this.$refs.education.focus()
+	        return
+	      } 
+	      if(this.content_j==="") {
+	        this.$refs.content_j.focus()
+	        return
+	      } 
+	      if(this.content_q==="") {
+	        this.$refs.content_q.focus()
+	        return
+	      } 
+	      if(this.content_p==="") {
+	        this.$refs.content_p.focus()
+	        return
+	      } 
+	      if(this.content_b==="") {
+	        this.$refs.content_b.focus()
+	        return
+	      } 
+	      if(this.end_date==="") {
+	        this.$refs.career.focus()
+	        return
+	      } 
+	      /* if(this.cvo.logo==="") {
+	        this.$refs.cvo.logo.focus()
+	        return
+	      } 
+	      if(this.cvo.name==="") {
+	        this.$refs.cvo.name.focus()
+	        return
+	      } */
+	      if(this.cvo.address==="") {
+	        this.$refs.cvo.address.focus()
+	        return
+	      }
+	      if(this.cvo.phone==="") {
+	        this.$refs.cvo.phone.focus()
+	        return
+	      }
+	      if(this.cvo.homepage==="") {
+	        this.$refs.cvo.homepage.focus()
+	        return
+	      }
+	      if(this.cvo.email==="") {
+	        this.$refs.cvo.email.focus()
+	        return
+	      }
+			
+			axios.post('../recruitment/recruit_update_vue.do', null, {
+		        params:{
+		        	rno:this.rno,
+					cno:this.cno,
+					title:this.title,
+					stack_txt:this.stack_txt,
+					stack_img:this.stack_img, 
+					career:this.career, 
+					education:this.education, 
+					content_j:this.content_j, 
+					content_q:this.content_q, 
+					content_p:this.content_p, 
+					content_b:this.content_b, 
+					end_date:this.end_date,
+					cvo: {
+						cno: cvo.cno,
+					  	logo: cvo.logo,
+						name: cvo.name,
+						address: cvo.address,
+						phone: cvo.phone,
+						homepage: cvo.homepage,
+						email: cvo.email
+				}
+	        }
       }).then(response=>{
         if(response.data==="yes") {
-          location.href="../recruitment/recruit_detail.do?rno="+this.rno+'&cno='+this.cno
+        	location.href="../recruitment/recruit_detail.do?rno="+this.rno
         }
         /* else{
           alert("비밀번호가 틀립니다!!")

@@ -277,26 +277,26 @@ let recruitmentInsertApp=Vue.createApp({
       axios.post('../recruitment/recruit_insert_vue.do', null, {
         params:{
         	rno:this.rno,
-          cno:this.cno,
-          title:this.title,
-          stack_txt:this.stack_txt,
-          stack_img:this.stack_img, 
-          career:this.career, 
-          education:this.education, 
-          content_j:this.content_j, 
-          content_q:this.content_q, 
-          content_p:this.content_p, 
-          content_b:this.content_b, 
-          end_date:this.end_date,
-          cvo: {
-          	cno: cvo.cno,
-            logo: cvo.logo,
-            name: cvo.name,
-            address: cvo.address,
-            phone: cvo.phone,
-            homepage: cvo.homepage,
-            email: cvo.email
-          }
+			cno:this.cno,
+			title:this.title,
+			stack_txt:this.stack_txt,
+			stack_img:this.stack_img, 
+			career:this.career, 
+			education:this.education, 
+			content_j:this.content_j, 
+			content_q:this.content_q, 
+			content_p:this.content_p, 
+			content_b:this.content_b, 
+			end_date:this.end_date,
+			cvo: {
+				cno: cvo.cno,
+			  	logo: cvo.logo,
+				name: cvo.name,
+				address: cvo.address,
+				phone: cvo.phone,
+				homepage: cvo.homepage,
+				email: cvo.email
+			}
         }
       }).then(response=>{
         if(response.data==="yes") {

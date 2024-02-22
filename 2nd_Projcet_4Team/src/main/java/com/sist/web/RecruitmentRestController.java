@@ -29,6 +29,14 @@ public class RecruitmentRestController {
 		int end=rowSize*page;
 
 		List<RecruitVO> list=rService.recruitListData(start, end);
+		
+		for (RecruitVO area : list) {
+		    String[] addressParts = area.getCvo().getAddress().split(" ", 2);
+		    if (addressParts.length == 2) {
+		    	area.getCvo().setAddress(addressParts[1]); // 두 번째 공백 이후의 부분을 address로 설정
+		    }
+		}
+		
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 
@@ -78,6 +86,8 @@ public class RecruitmentRestController {
 	public String company_detail_vue(int rno, int cno) throws Exception {
 		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
+		
+		List<RecruitVO> recruits=rService.recruitListData(rno, cno);
 
 		Map map=new HashMap();
 		map.put("rvo", rvo);
@@ -90,10 +100,10 @@ public class RecruitmentRestController {
 	}
 	
 	@PostMapping(value="recruit_insert_vue.do", produces="text/plain;charset=UTF-8")
-	public String recruit_insert_vue(RecruitVO vo, int cno) {
+	public String recruit_insert_vue(RecruitVO vo) throws Exception {
 		String result="";
 		try {
-			rService.recruitInsert(vo, cno);
+			rService.recruitInsert(vo);
 			result="yes";
 		} catch(Exception ex) {
 			result=ex.getMessage();
@@ -101,12 +111,32 @@ public class RecruitmentRestController {
 		return result;
 	}
 	
-	/*
-	 * @GetMapping(value="recruit_update_vue.do",
-	 * produces="text/plain;charset=UTF-8") public String recruit_update(int no)
-	 * throws Exception { RecruitVO vo=rService.recruitUpdate(no); ObjectMapper
-	 * mapper=new ObjectMapper(); String json=mapper.writeValueAsString(vo);
-	 * 
-	 * return json; }
-	 */
+	@GetMapping(value="recruit_update_vue.do", produces="text/plain;charset=UTF-8")
+	public String recruit_update_vue(RecruitVO vo) throws Exception {
+//		rService.recruitUpdate(vo);
+//		
+//		ObjectMapper mapper=new ObjectMapper();
+//		String json=mapper.writeValueAsString(vo);
+//		return json;
+		String result="";
+		try {
+			rService.recruitUpdate(vo);
+			result="yes";
+		} catch(Exception ex) {
+			result=ex.getMessage();
+		}
+		return result;
+	}
+	
+	@GetMapping(value="recruit_delete_vue.do", produces="text/plain;charset=UTF-8")
+	public String recruit_delete_vue(int rno) {
+		String result="";
+	   	try {
+			rService.recruitDelete(rno);
+			result="yes";
+		} catch(Exception ex) {
+			result=ex.getMessage();
+		}
+		return result;
+   }
 }

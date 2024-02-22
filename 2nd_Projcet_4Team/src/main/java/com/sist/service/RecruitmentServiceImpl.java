@@ -46,15 +46,23 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 
 	// 채용 공고 추가
 	@Override
-	public void recruitInsert(RecruitVO vo, int cno) {
+	public void recruitInsert(RecruitVO vo) {
 		// TODO Auto-generated method stub
-		rDao.recruitInsert(vo, cno);
+		rDao.recruitInsert(vo);
 	}
 
+	// 채용 공고 수정
 	@Override
 	public void recruitUpdate(RecruitVO vo) {
 		// TODO Auto-generated method stub
 		rDao.recruitUpdate(vo);
+	}
+
+	// 채용 공고 삭제
+	@Override
+	public void recruitDelete(int rno) {
+		// TODO Auto-generated method stub
+		rDao.recruitDelete(rno);
 	}
 
 }

@@ -35,12 +35,17 @@ public class RecruitmentDAO {
 	}
 	
 	// 채용 공고 추가
-	public void recruitInsert(RecruitVO vo, int cno) {
-		mapper.recruitInsert(vo, cno);
+	public void recruitInsert(RecruitVO vo) {
+		mapper.recruitInsert(vo);
 	}
 	
 	// 채용 공고 수정
 	public void recruitUpdate(RecruitVO vo) {
 		mapper.recruitUpdate(vo);
+	}
+	
+	// 채용 공고 삭제
+	public void recruitDelete(int rno) {
+		mapper.recruitDelete(rno);
 	}
 }

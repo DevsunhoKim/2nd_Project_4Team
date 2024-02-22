@@ -126,7 +126,7 @@
                 <h4 class="company-name">{{rvo.cvo.name}}</h4>
                 <div class="recruit-info">
                   <h3 class="recruit-tit">{{rvo.title}}</h3>
-                  <span class="recruit-area">{{rvo.cvo.address}}</span>
+                  <span class="recruit-area">{{rvo.cvo.area}}</span>
                   <span class="recruit-career">{{rvo.career}}</span>
                   <ul class="recruit-stack">
                     <li>Java</li>
@@ -181,6 +181,7 @@ let recruitmentListApp=Vue.createApp({
 	data(){
 		return{
 			recruit_list:[],
+			area:[],
 			curpage:1,
 			totalpage:0,
 			startPage:0,
@@ -202,6 +203,7 @@ let recruitmentListApp=Vue.createApp({
 			}).then(response=>{
 				console.log(response.data)
 				this.recruit_list=response.data
+				this.area = response.data
 			})
 			
 			// 페이지
