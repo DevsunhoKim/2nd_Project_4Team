@@ -46,7 +46,7 @@ public class MemberRestController {
 		  System.out.println(res);
 		  if(res.equals("CHANGE_PWD")) {
 			  MailSender smr=new MailSender();
-			  smr.gmailMailSend(email, tempPwd);
+			  smr.naverMailSend(email, tempPwd);
 		  }
 		  return res;
 	  }

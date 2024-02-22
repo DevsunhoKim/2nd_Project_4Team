@@ -67,7 +67,6 @@ public class MemberDAO {
     public String pwdFind(String userId,String email, String tempPwd) {
     	String msg = "";
 		   int count=mapper.getIDCount(userId);
-		   System.out.println(count);
 		   System.out.println(userId);
 		   System.out.println(email);
 		   System.out.println(tempPwd);
@@ -75,6 +74,9 @@ public class MemberDAO {
 			   msg = "NOID";
 		   }
 		   else{
+			   System.out.println(count);
+			   System.out.println(userId);
+			   System.out.println(email);
 			   int count2 = mapper.getEmailCount(userId,email);
 			   System.out.println(count2);
 			   if(count2==0) {

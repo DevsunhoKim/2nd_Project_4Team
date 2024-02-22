@@ -257,7 +257,7 @@ body{ margin: 20px; }
 let booksDapp = Vue.createApp({
   data() {
     return {
-        userId:${sessionScope.member.userId},
+        userId:${sessionScope.userId},
     	no: ${no}, // 서버 측에서 주입해야 하는 'no' 값
         detail_data: {}, // 책 상세 정보를 저장할 객체
         reviews: [], // 리뷰 목록을 저장할 배열
