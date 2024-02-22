@@ -300,7 +300,7 @@ let recruitmentInsertApp=Vue.createApp({
         }
       }).then(response=>{
         if(response.data==="yes") {
-           location.href="'../recruitment/recruit_insert.do?cno='+parseInt(cvo.cno)"
+           location.href="../recruitment/recruit_insert.do?cno="+this.cno
         }
         else {
           alert(response.data)
