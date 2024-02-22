@@ -17,12 +17,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px; /* Adjust as needed */
+    margin-bottom: 10px; 
 }
 
 .inputset-input {
     flex: 1;
-    margin-right: 10px; /* Adjust as needed */
+    margin-right: 10px; 
+}
+
+.glamping-N44 .contents-inner {
+    padding: 17rem 2.4rem;
 }
 </style>
 </head>
@@ -32,10 +36,12 @@
     <div class="contents-container" draggable="false">
       <div class="textset" draggable="false">
         <h2 class="textset-tit" draggable="false">아이디 찾기</h2>
-        <p class="textset-desc" draggable="false">회원님의 아이디는 ${userId } 입니다.</p>
+        <p class="textset-desc" draggable="false">회원님의 아이디는 <b style="color:#7918F2;"> ${userId }</b> 입니다.</p>
+        <div style="height: 50px"></div>
+        <a href="../member/login.do" class="btnset btnset-round" draggable="false">로그인</a>
       </div>
+      
     </div>
-    <a href="../member/login.do" class="btnset btnset-round" draggable="false">로그인</a>
   </div>
 </div>
 </body>

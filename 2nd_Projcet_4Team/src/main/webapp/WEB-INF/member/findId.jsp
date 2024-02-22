@@ -24,6 +24,10 @@
     flex: 1;
     margin-right: 10px; /* Adjust as needed */
 }
+
+.glamping-N44 .contents-inner {
+    padding: 14.5rem 2.4rem;
+}
 </style>
 </head>
 <body>
@@ -54,71 +58,58 @@
   </div>
 </div>
  <script>
- let findIdApp=Vue.createApp({
-	  data(){
-		  return {
-			  email:'',
-			  code:''
-		  }
+ let findIdApp = Vue.createApp({
+	  data() {
+	    return {
+	      email: '',
+	      code: ''
+	    };
 	  },
-	  methods:{
-		  sendCode(){
-			  if(this.email==='')
-			  {
-				  alert("이메일을 입력하세요.")
-				  this.$refs.email.focus()
-				  return
-			  }
-			  axios.get('../member/sendCode_vue.do',{
-				  params:{
-					  email:this.email,
-					  code:this.code
-				  }
-			  }).then(response=>{
-				  // NOEMAIL,SEND_CODE
-				  if(response.data==='NOEMAIL'){
-					  alert("입력하신 이메일을 찾을 수 없습니다.")
-					  this.id=''
-					  this.email=''
-					  this.$refs.email.focus()
-				  }
-				  else
-			      {
-					  alert("입력하신 이메일로 인증번호를 전송했습니다.")
-			      }
-			  })
-		  },
-		  findId(){
-			  if(this.code==='')
-			  {
-				  alert("인증번호를 입력하세요.")
-				  this.$refs.email.focus()
-				  return
-			  }
-			  axios.get('../member/sendCode_vue.do',{
-				  params:{
-					  email:this.email,
-					  code:this.code
-				  }
-			  }).then(response=>{
-				  // WRONG_CODE, userId
-				  if(response.data==='WRONG_CODE'){
-					  alert("잘못된 인증번호 입니다.")
-					  this.code=''
-					  this.$refs.code.focus()
-				  }
-				  else
-			      {
-					  axios.get('../member/.do',{
-						  params:{
-							  
-						  }
-					  }
-			      }
-			  })
-		  }
+	  methods: {
+	    sendCode() {
+	      if (this.email === '') {
+	        alert("이메일을 입력하세요.");
+	        this.$refs.email.focus();
+	        return;
+	      }
+	      axios.get('../member/sendCode_vue.do', {
+	        params: {
+	          email: this.email,
+	          code: this.code
+	        }
+	      }).then(response => {
+	        if (response.data === 'NOEMAIL') {
+	          alert("입력하신 이메일을 찾을 수 없습니다.");
+	          this.email = '';
+	          this.$refs.email.focus();
+	        } else {
+	          alert("입력하신 이메일로 인증번호를 전송했습니다.");
+	        }
+	      });
+	    },
+	    findId() {
+	      if (this.code === '') {
+	        alert("인증번호를 입력하세요.");
+	        this.$refs.code.focus();
+	        return;
+	      }
+	      axios.get('../member/findId_vue.do', {
+	        params: {
+	          email: this.email,
+	          code: this.code
+	        }
+	      }).then(response => {
+	        if (response.data === 'WRONG_CODE') {
+	          alert("잘못된 인증번호 입니다.");
+	          this.code = '';
+	          this.$refs.code.focus();
+	        } else {
+	          location.href='../member/findId_ok.do?userId='+response.data
+	        }
+	      });
+	    }
 	  }
- }).mount("#findIdApp")
+	}).mount("#findIdApp");
  </script>
 </body>
 </html>
