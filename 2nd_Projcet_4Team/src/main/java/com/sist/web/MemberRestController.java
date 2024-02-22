@@ -1,15 +1,13 @@
 package com.sist.web;
 
 import java.util.Random;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.sist.MailSender.MailSender;
 import com.sist.service.MemberService;
 
@@ -17,10 +15,12 @@ import com.sist.service.MemberService;
 @RequestMapping("member/")
 public class MemberRestController {
 	private MemberService mService;
-
+	private BCryptPasswordEncoder encoder;
+	
 	@Autowired
-	 public MemberRestController(MemberService mService) {
+	 public MemberRestController(MemberService mService,BCryptPasswordEncoder encoder) {
 		this.mService = mService;
+		this.encoder = encoder;
 	}
 
 	@GetMapping(value="idcheck_vue.do",produces = "text/plain;charset=UTF-8")
@@ -41,7 +41,8 @@ public class MemberRestController {
 		  int random_ = rand.nextInt(9000) + 1000; // 임시비밀번호 4자리수 1000~9999
 		  String tempPwd=random_+"";
 		  System.out.println(userId);
-		  String res = mService.pwdFind(userId,email,tempPwd);
+		  String enTempPwd=encoder.encode(tempPwd);
+		  String res = mService.pwdFind(userId,email,enTempPwd);
 		  // id, email 맞으면 임시비밀번호 변경 후 메일전송
 		  System.out.println(res);
 		  if(res.equals("CHANGE_PWD")) {

@@ -49,13 +49,13 @@ public class MemberController {
     	mService.memberAuthorityInsert(vo.getUserId());
     	return "member/join_ok";
 	}
-
+	
     @GetMapping("findId.do")
 	public String member_findId()
 	{
 		return "member/findId";
 	}
-
+    
     @GetMapping("findPwd.do")
 	public String member_findPwd()
 	{

@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../studyRoom/css/common.css">
 <link rel="stylesheet" href="../studyRoom/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
 <script src="https://unpkg.com/vue@3"></script>
@@ -182,7 +183,7 @@ $(document).ready(function() {
 						    <p>Selected times: {{ selectedTimes }}</p>
 					    </div> -->
 					</div>
-					<div class="contents-bottom">
+					<div class="contents-bottom" style="border-top: 1px solid var(--border-color);">
 					    <h2 class="contents-tit">개인정보 수집 동의</h2>
 					    <div class="checkset checkset-sm">
 					        <input id="chk-1-1" class="checkset-input input-round" type="checkbox" value="" @change="checkAll">
@@ -232,6 +233,7 @@ $(document).ready(function() {
 	  mounted(){
 		  this.dataRecv();
 		  //this.inwon = parseInt($('.inwon_count').text());
+		  IMP.init("imp80485780");
 		  
 	  },
 	  computed: {
@@ -278,7 +280,9 @@ $(document).ready(function() {
 			        });
 			    });
 			},
-		  date_click(){		  
+		  date_click(){	
+			  this.inwon=2
+			  this.selectedTimes=[]
 			  let Month=$('.start-day').text().substring(6,7);
 			  let Day=$('.start-day').text().substring(8);
 			  axios.get('../studyRoom/date_vue.do',{
@@ -293,8 +297,10 @@ $(document).ready(function() {
 				  this.month=parseInt(Month); // 정수로 변환합니다.
 				  this.day=parseInt(Day); // 정수로 변환합니다.
 				  console.log(this.day)
-				  this.inwon = parseInt($('.inwon_count').text());
+				  //this.inwon = parseInt($('.inwon_count').text());
+				  
 				  console.log(this.inwon)
+				  console.log(this.selectedTimes)
 			  })
 		  },/* ,
 		  handleClick(event){
@@ -325,6 +331,8 @@ $(document).ready(function() {
 		        });
 		   },
 		   order() {
+			    let Times=this.selectedTimes;
+			    console.log(Times)
 		        let chk1_2Checkbox = document.getElementById('chk-1-2');
 		        let chk1_3Checkbox = document.getElementById('chk-1-3');
 		        if(this.selectedTimes.length==0)
@@ -336,8 +344,59 @@ $(document).ready(function() {
 		        }
 		        else if (!chk1_3Checkbox.checked) {
 		            alert('(필수) 예약변경 및 취소 규정 동의에 동의해주세요.');
+		        }else{
+		        	this.requestPay();
 		        }
-		   }
+		   },
+		   requestPay() {
+	            let vm = this; // Vue 인스턴스를 변수에 저장하여 함수 내에서 사용
+	            IMP.request_pay({
+	                pg: 'html5_inicis',
+	                pay_method: 'card',
+	                merchant_uid: 'merchant_' + new Date().getTime(),
+	                name: this.reserve_data.name,
+	                amount: this.totalPrice,
+	                buyer_email: 'iamport@siot.do',
+	                buyer_name: '구매자이름',
+	                buyer_tel: '010-1234-5678',
+	                buyer_addr: '서울특별시 강남구 삼성동',
+	                buyer_postcode: '123-456',
+	                app_scheme: 'iamporttest'
+	            }, function (rsp) {
+	                if (rsp.success) {
+	                    var msg = '결제가 완료되었습니다.';
+	                    msg += '고유ID : ' + rsp.imp_uid;
+	                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+	                    msg += '결제 금액 : ' + rsp.paid_amount;
+	                    msg += '카드 승인번호 : ' + rsp.apply_num;
+	                } else {
+	                    var msg = '결제에 실패하였습니다.';
+	                    msg += '에러내용 : ' + rsp.error_msg;
+	                    console.log("성공")
+	                    vm.reserve();
+	                }
+	            })
+	        },
+	        reserve(){
+	        	let times = this.selectedTimes;
+                axios.post('../studyRoom/reserve_ok_vue.do',null,{
+                	params:{
+                		sno:this.no,
+                		times: times.join(","),
+                		price:this.totalPrice,
+                		month:this.month,
+                		day:this.day
+                	}
+                }).then(response=>{
+                	if(response.data=='OK')
+                	{
+                		location.href="../main/main.do"
+                	}
+                }).catch(error => {
+                    console.error('Error occurred:', error);
+                });
+	        }
+		   
 	  }
   }).mount('.room_reserve')
   </script>
