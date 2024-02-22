@@ -19,8 +19,8 @@ public interface ReviewMapper {
     public List<ReviewVO> reviewListData(@Param("no") int no);
 
 
-    @Insert("INSERT INTO review1(rno, no, userId, cont, score) " +
-            "VALUES(review1_rno_seq.nextval, #{no}, #{userId}, #{cont}, #{score})")
+    @Insert("INSERT INTO review1(rno, no, userId, cont, score , TO_CHAR(r.regdate, 'YYYY-MM-DD HH24:MI:SS') as dbday,cateno) " +
+            "VALUES(review1_rno_seq.nextval, #{no}, #{userId}, #{cont}, #{score},#{dbday}),1")
     public void reviewInsert(ReviewVO vo);
 
     // 기존 리뷰의 내용 업데이트

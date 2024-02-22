@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,11 +15,13 @@ import com.sist.service.RecruitmentService;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @RestController
 @RequestMapping("recruitment/") // recruitment를 밖으로 빼냄
 public class RecruitmentRestController {
 	@Autowired
-	private RecruitmentService service;
+	private RecruitmentService rService;
 
 	// 목록 출력
 	@GetMapping(value="recruit_list_vue.do", produces="text/plain;charset=UTF-8")
@@ -27,7 +30,7 @@ public class RecruitmentRestController {
 		int start=(rowSize*page)-(rowSize-1);
 		int end=rowSize*page;
 
-		List<RecruitVO> list=service.recruitListData(start, end);
+		List<RecruitVO> list=rService.recruitListData(start, end);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 
@@ -40,7 +43,7 @@ public class RecruitmentRestController {
 		final int BLOCK=10;
 		int startPage=((page-1)/BLOCK*BLOCK)+1;
 		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
-		int totalpage=service.recruitTotalPage();
+		int totalpage=rService.recruitTotalPage();
 		if(endPage>totalpage) {
 			endPage=totalpage;
 		}
@@ -59,8 +62,8 @@ public class RecruitmentRestController {
 	// 채용 공고 상세 페이지
 	@GetMapping(value="recruit_detail_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_detail_vue(int no, int cno) throws Exception {
-		RecruitVO rvo=service.recuitDetailData(no);
-		CompanyVO cvo=service.companyDetailData(cno);
+		RecruitVO rvo=rService.recuitDetailData(no);
+		CompanyVO cvo=rService.companyDetailData(cno);
 
 		Map map=new HashMap();
 		map.put("rvo", rvo);
@@ -70,18 +73,17 @@ public class RecruitmentRestController {
 
 	  return json;
 	}
-	
+
 	// 기업 정보 상세 페이지
 	@GetMapping(value="company_detail_vue.do", produces="text/plain;charset=UTF-8")
 	public String company_detail_vue(int no, int cno) throws Exception {
-		RecruitVO rvo=service.recuitDetailData(no);
-		CompanyVO cvo=service.companyDetailData(cno);
-		
+		RecruitVO rvo=rService.recuitDetailData(no);
+		CompanyVO cvo=rService.companyDetailData(cno);
 //		int rowSize=4;
 //		int start=(rowSize*page)-(rowSize-1);
 //		int end=rowSize*page;
 //		List<RecruitVO> list=service.recruitListData(start, end);
-//		
+//
 //		final int BLOCK=5;
 //		int startPage=((page-1)/BLOCK*BLOCK)+1;
 //		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
@@ -96,11 +98,23 @@ public class RecruitmentRestController {
 //		map.put("totalpage", totalpage);
 //		map.put("startPage", startPage);
 //		map.put("endPage", endPage);
-		
+
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
-		
+
 		return json;
-				
+
+	}
+	
+	@PostMapping(value="recruit_insert_vue.do", produces="text/plain;charset=UTF-8")
+	public String recruit_insert_vue(RecruitVO vo) {
+		String result="";
+		try {
+			rService.recruitInsert(vo);
+			result="yes";
+		} catch(Exception ex) {
+			result=ex.getMessage();
+		}
+		return result;
 	}
 }

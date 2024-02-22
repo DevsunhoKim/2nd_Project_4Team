@@ -65,11 +65,12 @@ public class MemberServiceIml implements MemberService{
 	@Override
 	public void lastLoginUpdate(String name) {
 		dao.lastLoginUpdate(name);
-		
+
 	}
 
 	@Override
-	public String pwdFind(String userId, String email, String tempPwd) {
+	public String pwdFind(String userId, String email, String enTempPwd) {
+		String tempPwd = enTempPwd;
 		String res = dao.pwdFind(userId, email, tempPwd);
 		return res;
 	}

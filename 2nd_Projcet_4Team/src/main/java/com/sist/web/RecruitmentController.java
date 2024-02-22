@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sist.vo.RecruitVO;
+
 @Controller
 @RequestMapping("recruitment/")
 public class RecruitmentController {
@@ -25,5 +27,10 @@ public class RecruitmentController {
 		model.addAttribute("no", no);
 		model.addAttribute("cno", cno);
 		return "recruitment/company_detail";
+	}
+	
+	@GetMapping("recruit_insert.do")
+	public String recruit_insert(RecruitVO vo) {
+		return "recruit/insert";
 	}
 }

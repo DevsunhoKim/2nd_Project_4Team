@@ -18,4 +18,7 @@ public interface RecruitmentService {
 
 	// 2. 기업 정보
 	public CompanyVO companyDetailData(int no);
+	
+	//채용 공고 추가
+	public void recruitInsert(RecruitVO vo);
 }

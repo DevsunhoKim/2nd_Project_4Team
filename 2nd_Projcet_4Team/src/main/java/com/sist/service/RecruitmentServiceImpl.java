@@ -28,17 +28,26 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		// TODO Auto-generated method stub
 		return rDao.recruitTotalPage();
 	}
-
+	
+	// 채용 공고 상세 페이지
 	@Override
 	public RecruitVO recuitDetailData(int no) {
 		// TODO Auto-generated method stub
 		return rDao.recuitDetailData(no);
 	}
 
+	// 기업 정보 상세 페이지
 	@Override
 	public CompanyVO companyDetailData(int no) {
 		// TODO Auto-generated method stub
 		return rDao.companyDetailData(no);
+	}
+
+	// 채용 공고 추가
+	@Override
+	public void recruitInsert(RecruitVO vo) {
+		// TODO Auto-generated method stub
+		rDao.recruitInsert(vo);
 	}
 
 }
