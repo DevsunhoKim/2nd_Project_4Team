@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function chat() {
+    var width = 600; // 팝업 창의 너비
+    var height = 800; // 팝업 창의 높이
+    var leftPosition = (window.screen.width - width) / 2;
+    var topPosition = (window.screen.height - height) / 2;
+
+    var windowFeatures = 'width=' + width + ',height=' + height + ',left=' + leftPosition + ',top=' + topPosition + ',resizable=yes,scrollbars=yes';
+
+    window.open("../site/chat/chat_test.jsp", "_blank", windowFeatures);
+}
+</script>
+
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
@@ -79,9 +92,9 @@
               <img src="../images/icons/ico_seach_black.svg" alt="검색 아이콘">
             </button>
             <c:if test="${principal.username!=null }">
-            <a href="#" class="header-btn btn-user">
+            <button onclick="chat()" class="header-btn btn-user">
               <img src="../images/icons/icon-chat1.png" alt="채팅 아이콘">
-            </a>
+            </button>
             </c:if>
             <c:if test="${principal.username==null }">
             <a href="../member/login.do" class="header-btn btn-user">
