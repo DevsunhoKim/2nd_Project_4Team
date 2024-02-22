@@ -7,7 +7,7 @@ import com.sist.dao.JjimDAO;
 import com.sist.vo.JjimVO;
 
 @Service
-public class JjimServiceImpl implements JjimSerive{
+public class JjimServiceImpl implements JjimService{
 	@Autowired
 	private JjimDAO dao;
 	@Override

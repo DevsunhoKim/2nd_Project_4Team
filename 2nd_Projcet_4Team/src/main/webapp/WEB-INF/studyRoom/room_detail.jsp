@@ -424,6 +424,7 @@
      },
      mounted(){
         this.dataRecv();
+        this.jjimRecv();
      },
      methods:{
         dataRecv(){
@@ -451,24 +452,34 @@
                     this.addScript()
                   }
            })
-           axios.get('../jjim/jjim_vue.do',{
-        	    params:{
-        	        userId:this.userId,
-        	        no:this.no,
-        	        cateno:this.cateno
-        	    }
-        	}).then(response=>{
-        	    if(response.data > 0) {
-        	        this.u = 1;
-        	        this.jjimText = '담기취소';
-        	        this.src = '../studyRoom/icons/cart_minus.png';
-        	    } else {
-        	        this.u = 0;
-        	        this.jjimText = '담아두기';
-        	        this.src = '../studyRoom/icons/cart_plus.png';
-        	    }
-        	});
-
+        },
+        jjimRecv(){
+        	if(this.userId=='' || this.userId==null){
+        		this.u = 0;
+    	        this.jjimText = '담아두기';
+    	        this.src = '../studyRoom/icons/cart_plus.png';
+        	}
+        	else{
+        		axios.get('../jjim/jjim_vue.do',{
+            	    params:{
+            	        userId:this.userId,
+            	        no:this.no,
+            	        cateno:this.cateno
+            	    }
+            	}).then(response=>{
+            		console.log(response.data)
+            	    if(response.data > 0) {
+            	    	
+            	        this.u = 1;
+            	        this.jjimText = '담기취소';
+            	        this.src = '../studyRoom/icons/cart_minus.png';
+            	    } else {
+            	        this.u = 0;
+            	        this.jjimText = '담아두기';
+            	        this.src = '../studyRoom/icons/cart_plus.png';
+            	    }
+            	});
+        	}
         },
         initMap(){
                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -536,11 +547,11 @@
         	jjim(){
         		 if(this.userId==null || this.userId=='')
          	    {
-         	        alert("로그인 후 예약 가능합니다.");  
+         	        alert("로그인 후 담기가 가능합니다.");  
          	        location.href="../member/login.do"
          	    }
          	    else{
-         	    	alert("담기")
+         	    	//alert("담기")
     		        if(this.u==0)
     		        {
 		    		    this.u=1;
@@ -553,8 +564,10 @@
 		    		    }).then(response=>{
 		    		    	if(response.data>0)
 		    		    	{
+		    		    		alert('담기가 완료되었습니다.')
 		    		    		$('#jjim').text('담기취소')
 				    		    this.src='../studyRoom/icons/cart_minus.png'
+				    		   
 		    		    	}
 		    		    })
     		        }
@@ -570,6 +583,7 @@
 		    		    }).then(response=>{
 		    		    	if(response.data==0)
 		    		    	{
+		    		    		alert('담기가 취소되었습니다.')
 		    		    		$('#jjim').text('담아두기')
 				    			this.src='../studyRoom/icons/cart_plus.png'
 		    		    	}
