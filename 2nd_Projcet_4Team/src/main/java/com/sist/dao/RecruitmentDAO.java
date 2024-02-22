@@ -33,5 +33,9 @@ public class RecruitmentDAO {
 	public CompanyVO companyDetailData(int no) {
 		return mapper.companyDetailData(no);
 	}
-
+	
+	// 채용 공고 추가
+	public void recruitInsert(RecruitVO vo) {
+		mapper.recruitInsert(vo);
+	}
 }
