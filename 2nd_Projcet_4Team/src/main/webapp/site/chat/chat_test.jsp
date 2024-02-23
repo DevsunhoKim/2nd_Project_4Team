@@ -182,6 +182,10 @@ function connection()
 	websocket.onclose=onClose
 	websocket.onmessage=OnMessage
 }
+function disConnection()
+{
+	websocket.close()
+}
 // 연결 처리 => CallBack
 function onOpen(event)
 { 
@@ -238,7 +242,7 @@ $(function(){
 		connection()
 	})
 	$('#endBtn').click(function(){
-		connection()
+		disConnection()
 	})
 	$('#sendBtn').click(function(){
 		send()

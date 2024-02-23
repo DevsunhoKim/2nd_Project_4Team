@@ -12,17 +12,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sist.service.BooksServiceImpl;
 import com.sist.service.MemberService;
+import com.sist.service.StudyRoomService;
 import com.sist.vo.BooksVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.StudyRoomVO;
 @Controller
 public class MainController {
 	private MemberService mService;
 	private BooksServiceImpl bService;
+	private StudyRoomService sService;
 	
 	@Autowired
-	public MainController(MemberService mService, BooksServiceImpl bService) {
+	public MainController(MemberService mService, BooksServiceImpl bService, StudyRoomService sService) {
 		this.mService = mService;
 		this.bService = bService;
+		this.sService = sService;
+		
 	}
 
 	@GetMapping("main/main.do")
@@ -47,7 +52,9 @@ public class MainController {
 		}
 		
 		List<BooksVO> booksList=bService.mainBooks();
+		List<StudyRoomVO> roomList=sService.studyRoomListData();
 		model.addAttribute("booksList", booksList);
+		model.addAttribute("roomList", roomList);
 		return "main";
 	}
 
