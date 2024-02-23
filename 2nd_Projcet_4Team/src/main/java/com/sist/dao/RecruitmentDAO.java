@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.RecruitmentMapper;
+import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
@@ -47,5 +48,10 @@ public class RecruitmentDAO {
 	// 채용 공고 삭제
 	public void recruitDelete(int rno) {
 		mapper.recruitDelete(rno);
+	}
+	
+	// 지원하기
+	public void applyInsert(ApplyVO vo) {
+		mapper.applyInsert(vo);
 	}
 }

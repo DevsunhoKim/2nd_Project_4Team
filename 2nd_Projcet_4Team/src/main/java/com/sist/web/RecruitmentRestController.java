@@ -1,5 +1,6 @@
 package com.sist.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,14 +30,6 @@ public class RecruitmentRestController {
 		int end=rowSize*page;
 
 		List<RecruitVO> list=rService.recruitListData(start, end);
-		
-		for (RecruitVO area : list) {
-		    String[] addressParts = area.getCvo().getAddress().split(" ", 2);
-		    if (addressParts.length == 2) {
-		    	area.getCvo().setAddress(addressParts[1]); // 두 번째 공백 이후의 부분을 address로 설정
-		    }
-		}
-		
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 

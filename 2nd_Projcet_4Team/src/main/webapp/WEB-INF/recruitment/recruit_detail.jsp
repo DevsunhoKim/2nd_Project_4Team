@@ -18,13 +18,14 @@
 <script src="../recruitment/js/template.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
   <section id="recruitmentDetail" class="sub">
     <div class="content-container" id="recruitmentDetailApp">
       <div class="container-md">
-        <div class="content-desc">
-          <div class="recruit-top">
+        <div class="content-desc">          <div class="recruit-top">
             <div class="recruit-info">
               <a :href="'company_detail.do?rno='+ rno+'&cno='+ cno" class="company-info">
                 <figure class="company-logo">
@@ -34,7 +35,7 @@
               </a>
               <h2 class="recruit-tit">{{recruit_detail.title}}</h2>
             </div>
-            <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn">지원하기</button>
+            <!-- <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn" @click="apply(rno)">지원하기</button> -->
             <button type="button" id="recruitUpdateBtn" class="irecruit-btn" value="수정하기" @click="update()">수정하기</button>
           </div>
         </div>
@@ -47,7 +48,7 @@
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
               </figure>
             </button>
-            <button type="button" id="recruitShareBtn" class="recruit-btn">
+            <button type="button" id="recruitShareBtn" class="recruit-btn" @click="share()">
               <figure class="recruit-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/54/54628.png" alt="채용 공고 공유">
               </figure>
@@ -173,18 +174,121 @@
             {{company_detail.address}}
           </p>
         </div>
-        <button type="button" id="recruitApplyBtnBottom" class="recruit-btn recruit-apply-btn">지원하기</button>
+        <button type="button" id="recruitApplyBtnBottom" class="recruit-btn recruit-apply-btn" @click="apply(rno)">지원하기</button>
       </div>
+    </div>
+    <div id="dialog" title="지원하기 창">
+      <apply-data v-bind:apply="apply">
+        <!-- <section id="applyForm" class="th-layout-sub">
+			    <div class="content-container">
+			      <figure class="close-btn">
+			        <img class="width-100" src="" alt="닫기">
+			      </figure>
+			      <h2>지원하기</h2>
+			      <form method="" action="">
+			        <h3>지원 정보</h3>
+			        <ul class="apply-info">
+			          <li>
+			            <label for="name">이름</label>
+			            <span class="user-info">심청이</span>
+			            <input type="text" name="name" id="name" class="apply-input" readonly>
+			          </li>
+			          <li>
+			            <label for="age">나이</label>
+			            <span class="user-info">27세</span>
+			            <input type="text" name="age" id="age" class="apply-input" readonly>
+			          </li>
+			          <li>
+			            <label for="sex">성별</label>
+			            <span class="user-info">여성</span>
+			            <input type="text" name="sex" id="sex" class="apply-input" readonly>
+			          </li>
+			          <li>
+			            <label for="email">이메일</label>
+			            <span class="user-info">shim02@codev.com</span>
+			            <input type="text" name="email" id="email" class="apply-input" readonly>
+			          </li>
+			          <li>
+			            <label for="phone">연락처</label>
+			            <span class="user-info">010-1234-5678</span>
+			            <input type="text" name="phone" id="phone" class="apply-input" readonly>
+			          </li>
+			        </ul>
+			        <div class="apply-file">
+			          <h3>지원서 첨부</h3>
+			          <input type="file" name="file" id="file" class="apply-input">
+			          <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
+			        </div>
+			        <div class="apply-btn-wrapper">
+			          <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기">지원하기</button>
+			          <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
+			        </div>
+			      </form>
+			    </div>
+			  </section> -->
+      </apply-data>
     </div>
   </section>
 <script>
+const apply={
+    props:['apply'],
+    template:`<section id="applyForm" class="th-layout-sub">
+    <div class="content-container">
+      <!-- <figure class="close-btn">
+        <img class="width-100" src="" alt="닫기">
+      </figure> -->
+      <h2>지원하기</h2>
+      <form method="" action="">
+        <h3>지원 정보</h3>
+        <ul class="apply-info">
+          <li>
+            <label for="name">이름</label>
+            <span class="user-info">심청이</span>
+            <!-- <input type="text" name="name" id="name" class="apply-input" readonly> -->
+          </li>
+          <li>
+            <label for="age">나이</label>
+            <span class="user-info">27세</span>
+            <!-- <input type="text" name="age" id="age" class="apply-input" readonly> -->
+          </li>
+          <li>
+            <label for="sex">성별</label>
+            <span class="user-info">여성</span>
+            <!-- <input type="text" name="sex" id="sex" class="apply-input" readonly> -->
+          </li>
+          <li>
+            <label for="email">이메일</label>
+            <span class="user-info">shim02@codev.com</span>
+            <!-- <input type="text" name="email" id="email" class="apply-input" readonly> -->
+          </li>
+          <li>
+            <label for="phone">연락처</label>
+            <span class="user-info">010-1234-5678</span>
+            <!-- <input type="text" name="phone" id="phone" class="apply-input" readonly> -->
+          </li>
+        </ul>
+        <div class="apply-file">
+          <h3>지원서 첨부</h3>
+          <input type="file" name="file" id="file" class="apply-input">
+          <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
+        </div>
+        <div class="apply-btn-wrapper">
+          <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기">지원하기</button>
+          <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
+        </div>
+      </form>
+    </div>
+  </section>`
+}
+
 let recruitmentDetailApp=Vue.createApp({
 	data(){
 		return{
 			recruit_detail:[],
 			company_detail:[],
 			rno:${rno},
-			cno:${cno}
+			cno:${cno},
+			isShow:false
 		}
 	},
 	mounted(){
@@ -197,6 +301,7 @@ let recruitmentDetailApp=Vue.createApp({
 			console.log(response.data)
 			this.recruit_detail=response.data.rvo
 			this.company_detail=response.data.cvo
+			this.addScript();
 		})
 	},
 	methods:{
@@ -227,30 +332,64 @@ let recruitmentDetailApp=Vue.createApp({
   		    if (status === kakao.maps.services.Status.OK) {
   		    	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-  		        // 결과값으로 받은 위치를 마커로 표시합니다
-  		        var marker = new kakao.maps.Marker({
-  		        	map: map,
-  		            position: coords
-  		        });
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		        	map: map,
+		            position: coords
+		        });
 
-  		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-  		        var infowindow = new kakao.maps.InfoWindow({
-  		            content: '<div style="width:150px; text-align:center; padding:6px 0;">'+$("#name").text()+'</div>'
-  		        });
-  		        infowindow.open(map, marker);
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px; text-align:center; padding:6px 0;">'+$(".company-name").text()+'</div>'
+		        });
+		        infowindow.open(map, marker);
 
-  		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-  		        map.setCenter(coords);
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
   		    } 
 			});    
 		},
+		apply(rno) {
+			this.isShow=true
+			let _this=this
+			axios.get('../recruitment/recruit_detail_vue.do', {
+				params:{
+					rno:this.rno,
+					cno:this.cno
+				}
+			}).then(function(response){
+				console.log(response.data)
+				_this.apply=response.data
+				_this.isShow=true
+				$('#dialog').dialog({
+					autoOpen:false,
+					modal:true
+				}).dialog('open')
+			})
+		},
+		share(){
+			const shareLink=window.location.href;
+
+      // 클립보드에 복사
+      const textarea=document.createElement('textarea');
+      textarea.value=shareLink;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      alert('링크가 복사되었습니다!');
+		},
 		update(){
-	    	location.href="../recruitment/recruit_update.do?rno="+this.rno;
-	    },
+	    location.href="../recruitment/recruit_update.do?rno="+this.rno;
+	  },
 		goback(){
-    		location.href="../recruitment/reruit_list_vue.do"
-    	}
-	}
+    	location.href="../recruitment/reruit_list_vue.do"
+    }
+	},
+	components:{
+    'apply-data':apply
+  }
 }).mount('#recruitmentDetailApp')
 </script>
 </body>

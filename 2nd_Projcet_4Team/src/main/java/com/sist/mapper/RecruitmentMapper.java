@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
@@ -53,13 +54,13 @@ public interface RecruitmentMapper {
 	  @Result(column="logo", property="cvo.logo"),
 	  @Result(column="name", property="cvo.name"),
 	  @Result(column="address", property="cvo.address")
-	 })
-	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, " +
-	        "c.logo, c.name, c.address " +
-	        "FROM recruit r " +
-	        "JOIN company c ON r.cno=c.cno " +
-	        "WHERE r.rno BETWEEN #{start} AND #{end} " +
-	        "ORDER BY r.rno DESC")
+	})
+	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, "
+	      + "c.logo, c.name, c.address "
+	      + "FROM recruit r "
+	      + "JOIN company c ON r.cno=c.cno "
+	      + "WHERE r.rno BETWEEN #{start} AND #{end} "
+	      + "ORDER BY r.rno DESC")
 	public List<RecruitVO> recruitListData(@Param("start") int start, @Param("end") int end);
 
 	
@@ -89,7 +90,7 @@ public interface RecruitmentMapper {
 	  @Result(column="phone", property="cvo.phone"),
 	  @Result(column="homepage", property="cvo.homepage"),
 	  @Result(column="email", property="cvo.email")
-	 })
+	})
 	@Insert("INSERT INTO recruit (rno, cno, title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date) "
 		    + "VALUES (#{rno}, #{cno}, #{title}, #{stack_txt}, #{stack_img}, #{career}, #{education}, #{content_j}, #{content_q}, #{content_p}, #{content_b}, #{end_date}) "
 		    + "INSERT INTO company (cno, logo, name, address, phone, homepage, email) "
@@ -105,7 +106,7 @@ public interface RecruitmentMapper {
 	  @Result(column="phone", property="cvo.phone"),
 	  @Result(column="homepage", property="cvo.homepage"),
 	  @Result(column="email", property="cvo.email")
-	 })
+	})
 	@Update("UPDATE recruit SET "
 			+ "no=#{rno}, cno=#{cno}, title=#{title}, stack_txt=#{stack_txt}, stack_img=#{stack_img}, career=#{career}, education=#{education}, content_j=#{content_j}, content_q=#{content_q}, content_p=#{content_p}, content_b=#{content_b}, end_date=#{end_date} "
 			+ "UPDATE company SET "
@@ -118,6 +119,11 @@ public interface RecruitmentMapper {
 	public void recruitDelete(int rno);
 		
 
+	// 지원하기
+	@Insert("INSERT INTO apply VALUES("
+ 	   + "ap_ano_seq.nextval, #{cno}, #{userId}, SYSDATE, #{filename}, #{filesize}, #{filecount})")
+	public void applyInsert(ApplyVO vo);
+	
 
 	// 면접 후기 작성
 }

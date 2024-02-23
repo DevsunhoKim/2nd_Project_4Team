@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.sist.dao.RecruitmentDAO;
+import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
@@ -63,6 +64,12 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	public void recruitDelete(int rno) {
 		// TODO Auto-generated method stub
 		rDao.recruitDelete(rno);
+	}
+
+	@Override
+	public void applyInsert(ApplyVO vo) {
+		// TODO Auto-generated method stub
+		rDao.applyInsert(vo);
 	}
 
 }

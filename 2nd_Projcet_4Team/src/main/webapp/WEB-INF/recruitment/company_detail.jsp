@@ -38,7 +38,7 @@
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/7794/7794674.png" alt="관심 기업 추가">
               </figure>
             </button>
-            <button type="button" id="companyShareBtn" class="company-btn">
+            <button type="button" id="companyShareBtn" class="company-btn" @click="share()">
               <figure class="company-icon">
                 <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/54/54628.png" alt="기업 정보 공유">
               </figure>
@@ -423,6 +423,19 @@ let companyDetailApp=Vue.createApp({
 			this.cookie_list=response.data
 		}) */
     	},
+    	share(){
+        const shareLink=window.location.href;
+
+        // 클립보드에 복사
+        const textarea=document.createElement('textarea');
+        textarea.value=shareLink;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        alert('링크가 복사되었습니다!');
+      },
 	    insert(){
 	    	location.href="../recruitment/recruit_insert.do?cno="+this.cno;
 	    },

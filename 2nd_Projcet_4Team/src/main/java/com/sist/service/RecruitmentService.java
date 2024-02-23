@@ -2,6 +2,7 @@ package com.sist.service;
 
 import java.util.List;
 
+import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
 
@@ -27,4 +28,7 @@ public interface RecruitmentService {
 	
 	// 채용 공고 삭제
 	public void recruitDelete(int rno);
+	
+	// 지원하기
+	public void applyInsert(ApplyVO vo);
 }

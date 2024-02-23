@@ -17,8 +17,8 @@
 <script src="../js/plugin.js"></script>
 <script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
-<script src="../recruitment/js/setting.js"></script>
-<script src="../recruitment/js/plugin.js"></script>
+<!-- <script src="../recruitment/js/setting.js"></script>
+<script src="../recruitment/js/plugin.js"></script> -->
 <script src="../recruitment/js/template.js"></script>
 <script src="../recruitment/js/script.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
@@ -126,7 +126,7 @@
                 <h4 class="company-name">{{rvo.cvo.name}}</h4>
                 <div class="recruit-info">
                   <h3 class="recruit-tit">{{rvo.title}}</h3>
-                  <span class="recruit-area">{{rvo.cvo.area}}</span>
+                  <span class="recruit-area">{{getAddressPart(rvo.cvo.address)}}</span>
                   <span class="recruit-career">{{rvo.career}}</span>
                   <ul class="recruit-stack">
                     <li>Java</li>
@@ -181,7 +181,6 @@ let recruitmentListApp=Vue.createApp({
 	data(){
 		return{
 			recruit_list:[],
-			area:[],
 			curpage:1,
 			totalpage:0,
 			startPage:0,
@@ -190,6 +189,7 @@ let recruitmentListApp=Vue.createApp({
 	},
 	mounted(){
 		this.dataRecv()
+		/* this.getArea(area) */
 	},
 	updated(){
 		
@@ -203,7 +203,6 @@ let recruitmentListApp=Vue.createApp({
 			}).then(response=>{
 				console.log(response.data)
 				this.recruit_list=response.data
-				this.area = response.data
 			})
 			
 			// 페이지
@@ -223,6 +222,15 @@ let recruitmentListApp=Vue.createApp({
 				this.cookie_list=response.data
 			}) */
 		},
+		getAddressPart(address) {
+	    // 주소를 두 번째 공백을 기준으로 분할
+	    const addressParts=address.split(' ')
+	    
+	    // 두 번째 공백 이후의 부분을 지우고 첫 번째 부분만 반환
+	    const area=addressParts.slice(0, 2).join(' ')
+
+	    return area
+	  },
 		range(start, end){
 			let arr=[]
 			let leng=end-start

@@ -38,4 +38,5 @@ public class RecruitmentController {
 	public String recruit_update(RecruitVO vo) {
 		return "recruitment/recruit_update";
 	}
+	
 }
