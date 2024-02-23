@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function chat() {
-    var width = 600; // 팝업 창의 너비
-    var height = 800; // 팝업 창의 높이
+    var width = 832; // 팝업 창의 너비
+    var height = 902; // 팝업 창의 높이
     var leftPosition = (window.screen.width - width) / 2;
     var topPosition = (window.screen.height - height) / 2;
 
@@ -102,11 +102,11 @@ function chat() {
             </a>
             </c:if>
             <c:if test="${principal.username!=null }">
-            <a href="#" class="header-btn btn-user">
+            <!-- <a href="#" class="header-btn btn-user">
               <img src="../images/icons/ico_user_black.svg" alt="마이페이지 아이콘">
-            </a>
+            </a> -->
             <a href="../member/logout.do" class="header-btn btn-user">
-              <img src="../images/icons/loginout.png" alt="로그아웃 아이콘">
+              <img src="../images/icons/free-icon-logout.png" alt="로그아웃 아이콘">
             </a>
             </c:if>
             <button class="header-btn btn-cart badgeset badgeset-circle badgeset-position badgeset-bottom-right">

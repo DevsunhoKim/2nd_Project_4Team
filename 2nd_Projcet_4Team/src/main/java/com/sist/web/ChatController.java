@@ -23,6 +23,6 @@ public class ChatController {
 	   String nickname=(String)session.getAttribute("nickname");
 	   System.out.println(nickname);
 	   model.addAttribute("nickname", nickname);
-	   return "site/chat/chat"; // ViewResolver
+	   return "site/chat/chat_test"; // ViewResolver
    }
 }

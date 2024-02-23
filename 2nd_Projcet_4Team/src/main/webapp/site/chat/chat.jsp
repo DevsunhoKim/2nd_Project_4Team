@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/setting.css">
+<link rel="stylesheet" href="../css/plugin.css">
+<link rel="stylesheet" href="../css/template.css">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/style.css">
 <style type="text/css">
 .container{
    margin-top: 50px;
@@ -18,6 +23,9 @@
    height: 450px;
    overflow-y:auto;
    border: 1px solid black;
+}
+.my-msg{
+   color:blue;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -59,19 +67,23 @@ function disConnection()
 // 메세지 전송 => Callback
 function appendMessage(msg)
 {
-	 $('#recvMsg').append(msg+"<br>")
+	 let nick=$('#name').attr("data-nickname");
+	 let name=$('#name').attr("data-name");
+	 if(nick!==name)
+	 {
+		 $('#recvMsg').append(msg+"<br>")
+	 }
+	 else{
+		 $('#recvMsg').append("<p class=\"my-msg\">"+msg+"</p>")
+	 }
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
 function send()
 {
-	let name=$('#name').val()
-	if(name.trim()==="")
-	{
-		$('#name').focus()
-		return
-	}
+	let nick=$('#name').attr("data-nickname");
+	let name=$('#name').attr("data-name");
 	
 	let msg=$('#sendMsg').val()
 	if(msg.trim()==="")
@@ -80,7 +92,7 @@ function send()
 		return 
 	}
 	
-	websocket.send("msg:["+name+"]"+msg)
+	websocket.send("msg:["+nick+"]"+msg)
 	$('#sendMsg').val("")
 	$('#sendMsg').focus()
 }
@@ -110,7 +122,7 @@ $(function(){
      <table class="table">
       <tr>
         <td>
-         이름:<input type=text id="name" size=15 class="input-sm">
+         <input type=hidden id="name" size=15 class="input-sm" data-nickname="${sessionScope.nickname}" data-name="${nickname}">
          <input type=button value="입장" class="btn-danger btn-sm" id="inputBtn">
          <input type=button value="퇴장" class="btn-success btn-sm" id="outputBtn">
         </td>
@@ -126,6 +138,7 @@ $(function(){
         <td>
           <input type=text id="sendMsg" size=80 class="input-sm">
           <input type=button id="sendBtn" value="전송" class="btn-sm btn-primary">
+          
         </td>
       </tr>
      </table>
