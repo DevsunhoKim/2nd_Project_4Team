@@ -31,6 +31,7 @@ public class MainController {
 			MemberVO vo = mService.getMemberByID(p.getName());
 			session.setAttribute("userId", vo.getUserId());
 			session.setAttribute("userPwd", vo.getUserPwd());
+			session.setAttribute("userName", vo.getUserName());
 			session.setAttribute("nickname", vo.getNickname());
 			session.setAttribute("birthday", vo.getBirthday());
 			session.setAttribute("gender", vo.getGender());

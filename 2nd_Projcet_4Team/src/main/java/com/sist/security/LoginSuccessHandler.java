@@ -42,6 +42,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		MemberVO vo=mService.getMemberByID(authentication.getName());
 		session.setAttribute("userId", vo.getUserId());
 		session.setAttribute("userPwd", vo.getUserPwd());
+		session.setAttribute("userName", vo.getUserName());
 		session.setAttribute("nickname", vo.getNickname());
 		session.setAttribute("birthday", vo.getBirthday());
 		session.setAttribute("gender", vo.getGender());
