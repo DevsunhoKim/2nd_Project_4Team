@@ -1,18 +1,24 @@
 package com.sist.service;
 
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sist.MailSender.MailSender;
 import com.sist.dao.MemberDAO;
 import com.sist.vo.MemberVO;
 @Service
 public class MemberServiceIml implements MemberService{
     private MemberDAO dao;
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
-    MemberServiceIml(MemberDAO dao){
+    MemberServiceIml(MemberDAO dao,BCryptPasswordEncoder encoder) {
         this.dao = dao;
+        this.encoder = encoder;
     }
 
     @Override
@@ -57,8 +63,17 @@ public class MemberServiceIml implements MemberService{
 	}
 
 	@Override
-	public String sendCode(String email, int code) {
-		String res = dao.sendCode(email, code);
+	public String sendCode(String email) {
+		int code = (int)(Math.random() * 900000) + 100000; // 인증번호 6자리수 100000~999999
+		String res = dao.sendCode(email,code);
+		if(res.equals("SEND_CODE")) {
+			  try {
+				  MailSender ms = new MailSender();
+				ms.FindIdMailSend(email, code);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		}
 		return res;
 	}
 	
@@ -69,9 +84,20 @@ public class MemberServiceIml implements MemberService{
 	}
 	
 	@Override
-	public String pwdFind(String userId, String email, String enTempPwd) {
-		String tempPwd = enTempPwd;
-		String res = dao.pwdFind(userId, email, tempPwd);
-		return res;
+	public String pwdFind(String userId, String email) {
+		int random_ = (int)(Math.random() * 900000) + 100000; // 임시비밀번호 6자리수 100000~999999
+		  String tempPwd=random_+"";
+		  String enTempPwd=encoder.encode(tempPwd);
+		  String res = dao.pwdFind(userId,email,enTempPwd);
+		  // id, email 맞으면 임시비밀번호 변경 후 메일전송
+		  if(res.equals("CHANGE_PWD")) {
+			  try {
+				  MailSender ms = new MailSender();
+				ms.FindPwdMailSend(email, tempPwd);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		  }
+		  return res;
 	}
 }

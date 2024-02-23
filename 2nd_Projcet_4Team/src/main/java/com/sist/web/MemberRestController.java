@@ -7,19 +7,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.sist.MailSender.MailSender;
 import com.sist.service.MemberService;
 
 @RestController
 @RequestMapping("member/")
 public class MemberRestController {
 	private MemberService mService;
-	private BCryptPasswordEncoder encoder;
 	
 	@Autowired
-	 public MemberRestController(MemberService mService,BCryptPasswordEncoder encoder) {
+	 public MemberRestController(MemberService mService) {
 		this.mService = mService;
-		this.encoder = encoder;
 	}
 
 	@GetMapping(value="idcheck_vue.do",produces = "text/plain;charset=UTF-8")
@@ -35,14 +32,8 @@ public class MemberRestController {
 	 }
 
 	 @GetMapping(value="sendCode_vue.do",produces = "text/plain;charset=UTF-8")
-	  public String member_sendCode(String email) throws AddressException, MessagingException {
-		  int code = (int)(Math.random() * 900000) + 100000; // 인증번호 6자리수 100000~999999
-		  System.out.println(code);
-		  String res = mService.sendCode(email,code);
-		  if(res.equals("SEND_CODE")) {
-			  MailSender smr=new MailSender();
-			  smr.FindIdMailSend(email, code);
-		  }
+	  public String member_sendCode(String email) {
+		  String res = mService.sendCode(email);
 		  return res;
 	  }
 	 
@@ -54,15 +45,7 @@ public class MemberRestController {
 	 
 	 @GetMapping(value="findpwd_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String member_pwdfindvue(String userId, String email) throws AddressException, MessagingException {
-		  int random_ = (int)(Math.random() * 900000) + 100000; // 임시비밀번호 6자리수 100000~999999
-		  String tempPwd=random_+"";
-		  String enTempPwd=encoder.encode(tempPwd);
-		  String res = mService.pwdFind(userId,email,enTempPwd);
-		  // id, email 맞으면 임시비밀번호 변경 후 메일전송
-		  if(res.equals("CHANGE_PWD")) {
-			  MailSender smr=new MailSender();
-			  smr.FindPwdMailSend(email, enTempPwd);
-		  }
+		  String res = mService.pwdFind(userId,email);
 		  return res;
 	  }
 }

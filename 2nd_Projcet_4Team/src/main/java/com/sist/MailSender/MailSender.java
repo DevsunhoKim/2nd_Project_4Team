@@ -14,11 +14,6 @@ import org.springframework.messaging.MessagingException;
 public class MailSender {
 	
 	public void FindIdMailSend(String toEmail, int code) throws AddressException, javax.mail.MessagingException {
-	/*	String temp ="";
-		try {
-			FileReader fr = new FileReader(".c)
-		}*/
-		
 		// 수신이메일, 임시비번
 		String host="smtp.naver.com"; 
 		String user="ariluv1009@naver.com";
