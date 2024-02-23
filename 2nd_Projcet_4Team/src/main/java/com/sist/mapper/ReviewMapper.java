@@ -11,28 +11,23 @@ import com.sist.vo.ReviewVO;
 
 // 데이터베이스 내 리뷰 작업을 처리하기 위한 매퍼 인터페이스
 public interface ReviewMapper {
-    // 특정 카테고리와 리뷰 번호에 대한 리뷰 목록 검색
-    @Select("SELECT r.no, r.rno, r.userId, r.cont, TO_CHAR(r.regdate, 'YYYY-MM-DD HH24:MI:SS') as dbday,cateno " +
-            "FROM review1 r JOIN member m ON r.userId = m.userId " +
-            "WHERE r.no=#{no} AND r.cateno=1 " +
-            "ORDER BY r.no DESC")
-    public List<ReviewVO> reviewListData(@Param("no") int no);
 
+    @Select("SELECT r.no, r.rno, r.userId, r.cont, TO_CHAR(r.regdate, 'YYYY-MM-DD HH24:MI:SS') as dbday, cateno " +
+            "FROM review1 r JOIN member m ON r.userId = m.userId " +
+            "WHERE r.no=#{no} AND r.cateno = #{cateno}" +
+            "ORDER BY r.rno DESC")
+    public List<ReviewVO> reviewListData(@Param("no") int no,@Param("cateno") int cateno);
 
     @Insert("INSERT INTO review1(rno, no, userId, cont, score, regdate, cateno) " +
-            "VALUES(review1_rno_seq.nextval, #{no}, #{userId}, #{cont}, #{score}, SYSDATE, 1)")
+            "VALUES(review1_rno_seq.nextval, #{no}, #{userId}, #{cont}, #{score}, SYSDATE, #{cateno})")
     public void reviewInsert(ReviewVO vo);
 
-
-
- // 기존 리뷰의 내용을 업데이트하는 쿼리
     @Update("UPDATE review1 SET " +
             "cont=#{cont}, score=#{score} " +
-            "WHERE no=#{no} AND cateno=1 AND userId=#{userId}")
+            "WHERE no=#{no} AND cateno=#{cateno} AND userId=#{userId}")
     public void reviewUpdate(ReviewVO vo);
 
-    // 데이터베이스에서 리뷰 삭제
-    @Delete("DELETE FROM review1 WHERE rno=#{rno} AND userId=#{userId}")
-    public void reviewDelete(@Param("rno") int rno, @Param("userId") String userId);
-
+    @Delete("DELETE FROM review1 WHERE rno=#{rno} AND userId=#{userId} AND cateno=#{cateno}")
+    public void reviewDelete(@Param("rno") int rno, @Param("userId") String userId, @Param("cateno") int cateno);
 }
+

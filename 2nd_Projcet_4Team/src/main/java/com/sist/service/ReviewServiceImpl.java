@@ -14,9 +14,9 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDAO dao;
 
 	@Override
-	public List<ReviewVO> reviewListData(int no) {
+	public List<ReviewVO> reviewListData(int no,int cateno) {
 		// TODO Auto-generated method stub
-		return dao.reviewListData(no);
+		return dao.reviewListData(no, cateno); 
 	}
 
 	@Override
@@ -32,9 +32,9 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void reviewDelete(int no,String userId) {
+	public void reviewDelete(int no,String userId,int cateno) {
 		// TODO Auto-generated method stub
-		dao.reviewDelete(no,userId);
+		dao.reviewDelete(no,userId,cateno);
 	}
 
 }

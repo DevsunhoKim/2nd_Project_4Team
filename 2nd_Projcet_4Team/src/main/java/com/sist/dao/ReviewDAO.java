@@ -12,9 +12,9 @@ public class ReviewDAO {
 	@Autowired
 	private ReviewMapper mapper;
 
-	public List<ReviewVO> reviewListData(int no)
+	public List<ReviewVO> reviewListData(int no,int cateno)
 	{
-		return mapper.reviewListData(no);
+		return mapper.reviewListData(no,cateno);
 	}
 
 	public void reviewInsert(ReviewVO vo)
@@ -27,9 +27,9 @@ public class ReviewDAO {
 		mapper.reviewUpdate(vo);
 	}
 
-	public void reviewDelete(int no,String userId)
+	public void reviewDelete(int no,String userId,int cateno)
 	{
-		mapper.reviewDelete(no,userId);
+		mapper.reviewDelete(no,userId,cateno);
 	}
 
 }

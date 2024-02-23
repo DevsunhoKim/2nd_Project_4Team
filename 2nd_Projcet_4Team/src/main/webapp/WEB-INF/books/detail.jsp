@@ -113,7 +113,7 @@ body{ margin: 20px; }
   </style>
 </head>
 <body>
-  <div id="books_detail">
+  <div id="books_detail" >
   <!-- [S]hooms-N40 -->
     <div class="hooms-N40" data-bid="oylSl2orEZ">
       <div class="contents-inner">
@@ -272,18 +272,21 @@ let booksDapp = Vue.createApp({
     return {
       sessionId: '',
       no: ${no}, // 서버 측에서 주입해야 하는 'no' 값
+      cateno: 1, // cateno 값을 1로 고정
       detail_data: {}, // 책 상세 정보를 저장할 객체
       reviews: [], // 리뷰 목록을 저장할 배열
       quantity: 1, // 수량을 저장하는 변수
       totalPrice: 0, // 총 가격을 저장하는 변수
       newReview: { // 새 리뷰를 위한 객체
         cont: '',
-        score: 0 // 점수는 문자열에서 숫자로 변환될 것임
+        score: 0 ,// 점수는 문자열에서 숫자로 변환될 것임
+        cateno:1
       },
       editReview: { // 수정할 리뷰를 위한 객체
         no: null,
         cont: '',
         score: 0
+       
       }
     };
   },
@@ -296,7 +299,8 @@ let booksDapp = Vue.createApp({
       axios.get('../books/detail_vue.do', {
         params: {
           no: this.no,
-          sessionId: this.sessionId
+          sessionId: this.sessionId,
+          cateno:this.cateno
         }
       }).then(response => {
         this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
@@ -330,7 +334,8 @@ let booksDapp = Vue.createApp({
           no: this.no,
           userId: this.sessionId, // 현재 로그인한 사용자 ID
           cont: this.newReview.cont,
-          score: parseInt(this.newReview.score) // 점수를 문자열에서 숫자로 변환
+          score: parseInt(this.newReview.score), // 점수를 문자열에서 숫자로 변환
+          cateno:1
         }
       }).then(() => {
         alert("리뷰가 성공적으로 추가되었습니다.");
@@ -347,7 +352,8 @@ let booksDapp = Vue.createApp({
         params: {
           no: this.editReview.no,
           cont: this.editReview.cont,
-          score: parseInt(this.editReview.score) // 점수를 문자열에서 숫자로 변환
+          score: parseInt(this.editReview.score), // 점수를 문자열에서 숫자로 변환
+          cateno:this.cateno
         }
       }).then(() => {
         alert("리뷰가 성공적으로 수정되었습니다.");
@@ -362,7 +368,7 @@ let booksDapp = Vue.createApp({
       axios.get('../books/review_delete_vue.do', {
         params: {
           rno: rno,
-          
+          cateno:this.cateno
         }
       })
       .then(response => {
