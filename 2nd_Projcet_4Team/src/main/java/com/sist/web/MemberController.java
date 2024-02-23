@@ -2,7 +2,6 @@ package com.sist.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +15,10 @@ import com.sist.vo.MemberVO;
 @RequestMapping("member/")
 public class MemberController {
 	private MemberService mService;
-	private BCryptPasswordEncoder encoder;
 
     @Autowired
-    public MemberController(MemberService mService,BCryptPasswordEncoder encoder) {
+    public MemberController(MemberService mService) {
     	this.mService = mService;
-    	this.encoder = encoder;
     }
 
 	@RequestMapping("login.do")
@@ -41,8 +38,6 @@ public class MemberController {
 
 	@PostMapping("join_submit.do")
 	public String member_submit(MemberVO vo) {
-		String enPwd=encoder.encode(vo.getUserPwd());// 비밀번호 암호화
-    	vo.setUserPwd(enPwd);
     	mService.joinMember(vo);
     	mService.memberAuthorityInsert(vo.getUserId());
     	return "member/join_ok";

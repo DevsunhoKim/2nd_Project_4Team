@@ -43,6 +43,8 @@ public class MemberServiceIml implements MemberService{
 
 	@Override
 	public int joinMember(MemberVO vo) {
+		String enPwd=encoder.encode(vo.getUserPwd());// 비밀번호 암호화
+    	vo.setUserPwd(enPwd);
 		return dao.joinMember(vo);
 	}
 
