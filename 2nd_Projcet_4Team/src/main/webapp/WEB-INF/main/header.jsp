@@ -16,7 +16,7 @@ function chat() {
 
     var windowFeatures = 'width=' + width + ',height=' + height + ',left=' + leftPosition + ',top=' + topPosition + ',resizable=yes,scrollbars=yes';
 
-    window.open("../site/chat/chat_test.jsp", "_blank", windowFeatures);
+    window.open("../chat/chat.do", "_blank", windowFeatures);
 }
 </script>
 
