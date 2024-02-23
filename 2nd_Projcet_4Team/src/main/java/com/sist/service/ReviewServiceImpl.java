@@ -37,4 +37,10 @@ public class ReviewServiceImpl implements ReviewService{
 		dao.reviewDelete(no,userId,cateno);
 	}
 
+	@Override
+	public Double avgScore(int no, int cateno) {
+		// TODO Auto-generated method stub
+		return dao.avgScore(no, cateno);
+	}
+
 }

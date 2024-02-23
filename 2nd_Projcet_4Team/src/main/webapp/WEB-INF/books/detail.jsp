@@ -110,6 +110,42 @@ body{ margin: 20px; }
 }
 
 .hooms-N40 .contents-thumbnail { width: 125%; height: 64rem; }
+
+.rating {
+    direction: rtl; /* 별점을 오른쪽에서 왼쪽으로 표시 */
+    display: inline-flex; /* 별점을 인라인 블록으로 표시 */
+}
+
+.rating > input {
+    display: none; /* 라디오 버튼 숨기기 */
+}
+
+.rating > label {
+    cursor: pointer;
+    font-size: 2em;
+    color: grey; /* 기본 색상을 회색으로 설정 */
+    margin: 0;
+}
+
+/* 마우스 호버 시 그 별과 그 이전의 모든 별의 색상을 변경 */
+.rating > label:hover,
+.rating > label:hover ~ label {
+    color: gold; /* 호버 시 금색으로 변경 */
+}
+
+/* 선택된 별과 그 이전의 별들을 회색으로 표시 */
+.rating > input:checked ~ label {
+    color: grey; /* 선택된 별의 색상을 회색으로 설정 */
+}
+
+/* 선택된 별과 마우스 호버시 색상 변경 */
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+    color: gold; /* 호버 시 금색으로 변경 */
+}
+
   </style>
 </head>
 <body>
@@ -143,7 +179,7 @@ body{ margin: 20px; }
               출간일 : {{detail_data.b_date}}
             </p>
              <p class="contents-desc">
-              평점 : {{detail_data.score}}
+              평점 : {{ detail_data.avgScore }}
             </p>
             
             <div class="contents-sum">
@@ -246,14 +282,12 @@ body{ margin: 20px; }
         <label style="margin-bottom: 3rem">
             <h6 class="inputset-tit">리뷰 남기기</h6>
             <!-- 드롭다운 메뉴를 사용하여 점수 입력 -->
-            <select v-model="newReview.score" class="dropdown-menu" name="reviewScore" id="reviewScore" style="margin-bottom: 1rem;">
-                <option disabled value="">점수 선택</option>
-                <option value="1">1점</option>
-                <option value="2">2점</option>
-                <option value="3">3점</option>
-                <option value="4">4점</option>
-                <option value="5">5점</option>
-            </select>
+           <!-- 별점 표시 -->
+<ul class="rating">
+  <li v-for="star in 5" :class="{ 'default-star': true, 'highlighted-star': false }" :key="star">⭐</li>
+</ul>
+           
+
 
             <textarea class="inputset-textarea" v-model="newReview.cont" placeholder="리뷰 내용을 입력해 주세요." required="" name="reviewContent" id="reviewContent"></textarea>
             <div class="inputset-langth">
@@ -306,6 +340,7 @@ let booksDapp = Vue.createApp({
         this.detail_data = response.data.bookDetail; // 책 상세 정보 저장
         this.reviews = response.data.reviews; // 리뷰 목록 데이터 저장
         this.sessionId = response.data.sessionId; // 응답에서 sessionId 저장
+        this.detail_data.avgScore = response.data.avgScore.toFixed(1); // 소수점 첫째 자리까지 반올림하여 저장
         this.calculateTotalPrice();
       }).catch(error => {
         console.error("책 상세 정보 및 리뷰 목록 가져오기 실패:", error);

@@ -9,5 +9,6 @@ public interface ReviewService {
 	public void reviewInsert(ReviewVO vo);
 	public void reviewUpdate(ReviewVO vo);
 	public void reviewDelete(int rno,String userId,int cateno);
+	public Double avgScore(int no, int cateno);
 
 }

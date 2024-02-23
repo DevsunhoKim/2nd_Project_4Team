@@ -1,6 +1,7 @@
 package com.sist.dao;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,5 +32,11 @@ public class ReviewDAO {
 	{
 		mapper.reviewDelete(no,userId,cateno);
 	}
+	
+	public Double avgScore(int no, int cateno) 
+	{   
+		return mapper.avgScore(no, cateno);  
+	}
+
 
 }
