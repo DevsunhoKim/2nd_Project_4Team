@@ -8,6 +8,6 @@ public interface ReviewService {
 	public List<ReviewVO> reviewListData(int no);
 	public void reviewInsert(ReviewVO vo);
 	public void reviewUpdate(ReviewVO vo);
-	public void reviewDelete(int no);
+	public void reviewDelete(int rno,String userId);
 
 }

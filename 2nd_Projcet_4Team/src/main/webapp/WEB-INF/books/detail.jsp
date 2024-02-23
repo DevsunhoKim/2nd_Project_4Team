@@ -190,39 +190,54 @@ body{ margin: 20px; }
 
     </div>
     <!-- [E]hooms-N40 -->
-     <!-- [S]hooms-N41 -->
+   <!-- [S]hooms-N41 수정된 부분 -->
 <div class="hooms-N41" data-bid="IYlsL2pcgs" style="margin-bottom: 6rem">
-    <div class="contents-inner">
-        <div class="contents-container container-md">
-            <div class="contents-group">
-                <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.no">
-                    <div class="cardset cardset-hor">
-                        <!-- 수정 및 삭제 버튼, SessionScope 적용 예정 -->
-                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-left: 10px; margin-top: 15px;" @click="() => updateReview()">수정</a>
-                        <a href="javascript:void(0)" class="btnset btnset-sm" style="float: right; margin-top: 25px;" @click="deleteReview(review.no)">삭제</a>
-                        <div class="cardset-body">
-                            <div class="contents-info">
-                                <ul class="contents-ico-list">
-                                    <!-- 별점 표시, 'ico-item-active' 클래스는 활성화된 별을 의미함 -->
-                                    <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.rating }" :key="star"></li>
-                                </ul>
-                                <div class="contents-name" style="float: right">
-                                    {{ review.userId }}
-                                    <span class="contents-date">{{ review.dbday }}</span>
-                                </div>
-                            </div>
-                            <p class="cardset-desc">
-                                {{ review.cont }}
-                            </p>
-					      </div>
-					    </div>
-					  </div>
-					
-					</div>
+  <div class="contents-inner">
+    <div class="contents-container container-md">
+      <div class="contents-group">
+        <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.rno">
+          <div class="cardset cardset-hor">
+            <div class="cardset-body">
+              <!-- 리뷰 내용 및 저자 정보 -->
+              <div class="contents-info">
+                <div class="contents-name" style="float: right">
+                  {{ review.userId }}
+                  <span class="contents-date">{{ review.dbday }}</span>
+                </div>
+                <ul class="contents-ico-list">
+                  <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.score }" :key="star"></li>
+                </ul>
+              </div>
+              <!-- 리뷰 내용 표시 -->
+              <div v-if="editReview.rno !== review.rno">
+                <p class="cardset-desc">{{ review.cont }}</p>
+              </div>
+              <!-- 리뷰 수정 입력 필드 -->
+              <div v-if="editReview.rno === review.rno" class="edit-section">
+                <textarea v-model="editReview.cont" class="inputset-textarea"></textarea>
+                <select v-model="editReview.score" class="dropdown-menu">
+                  <option value="1">1점</option>
+                  <option value="2">2점</option>
+                  <option value="3">3점</option>
+                  <option value="4">4점</option>
+                  <option value="5">5점</option>
+                </select>
               </div>
             </div>
-             </div>
-              
+            <!-- 수정 및 삭제 버튼 -->
+            <div v-if="sessionId === review.userId" class="review-actions">
+              <a href="javascript:void(0)" class="btnset btnset-sm" @click="selectForEdit(review)">수정</a>
+              <a href="javascript:void(0)" class="btnset btnset-sm" @click="deleteReview(review.rno)">삭제</a>
+              <button v-if="editReview.rno === review.rno" @click="updateReview" class="btnset btnset-sm">저장</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [E]hooms-N41 -->
+   
             
          
     <!-- [S]hooms-N41 -->
@@ -343,11 +358,11 @@ let booksDapp = Vue.createApp({
       });
     },
     // 리뷰 삭제 메소드
-    deleteReview(no) {
+    deleteReview(rno) {
       axios.get('../books/review_delete_vue.do', {
         params: {
-          no: no,
-          rno: this.no
+          rno: rno,
+          
         }
       })
       .then(response => {

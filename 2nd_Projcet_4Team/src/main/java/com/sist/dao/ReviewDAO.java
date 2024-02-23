@@ -27,9 +27,9 @@ public class ReviewDAO {
 		mapper.reviewUpdate(vo);
 	}
 
-	public void reviewDelete(int no)
+	public void reviewDelete(int no,String userId)
 	{
-		mapper.reviewDelete(no);
+		mapper.reviewDelete(no,userId);
 	}
 
 }

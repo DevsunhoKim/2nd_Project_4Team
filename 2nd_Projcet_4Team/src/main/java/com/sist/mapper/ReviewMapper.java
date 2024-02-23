@@ -25,14 +25,14 @@ public interface ReviewMapper {
 
 
 
-    // 기존 리뷰의 내용 업데이트
+ // 기존 리뷰의 내용을 업데이트하는 쿼리
     @Update("UPDATE review1 SET " +
             "cont=#{cont}, score=#{score} " +
-            "WHERE no=#{no} AND cateno=1")
+            "WHERE no=#{no} AND cateno=1 AND userId=#{userId}")
     public void reviewUpdate(ReviewVO vo);
 
     // 데이터베이스에서 리뷰 삭제
-    @Delete("DELETE FROM review1 " +
-            "WHERE no=#{no} AND cateno=1")
-    public void reviewDelete(int no);
+    @Delete("DELETE FROM review1 WHERE rno=#{rno} AND userId=#{userId}")
+    public void reviewDelete(@Param("rno") int rno, @Param("userId") String userId);
+
 }

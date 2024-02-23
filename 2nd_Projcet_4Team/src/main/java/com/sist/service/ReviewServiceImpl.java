@@ -32,9 +32,9 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void reviewDelete(int no) {
+	public void reviewDelete(int no,String userId) {
 		// TODO Auto-generated method stub
-		dao.reviewDelete(no);
+		dao.reviewDelete(no,userId);
 	}
 
 }
