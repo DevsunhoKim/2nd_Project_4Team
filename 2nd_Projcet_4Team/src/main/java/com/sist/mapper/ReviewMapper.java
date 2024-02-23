@@ -24,7 +24,7 @@ public interface ReviewMapper {
 
     @Update("UPDATE review1 SET " +
             "cont=#{cont}, score=#{score} " +
-            "WHERE no=#{no} AND cateno=#{cateno} AND userId=#{userId}")
+            "WHERE rno=#{rno} AND cateno=#{cateno} AND userId=#{userId}")
     public void reviewUpdate(ReviewVO vo);
 
     @Delete("DELETE FROM review1 WHERE rno=#{rno} AND userId=#{userId} AND cateno=#{cateno}")
