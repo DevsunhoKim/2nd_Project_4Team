@@ -45,7 +45,7 @@
       p:order="1"
     />    
      <!-- WebSocket Handler Bean 등록 -->
-    <bean id="chattingHandler" class="com.sist.chat.ChatServer"/>
+    <!-- <bean id="chattingHandler" class="com.sist.chat.ChatServer"/> -->
 </beans>
 
 

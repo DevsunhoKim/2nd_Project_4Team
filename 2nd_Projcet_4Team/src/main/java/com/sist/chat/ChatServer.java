@@ -12,7 +12,6 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 
-@RequestMapping("/chatting")
 public class ChatServer extends TextWebSocketHandler{
 
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
