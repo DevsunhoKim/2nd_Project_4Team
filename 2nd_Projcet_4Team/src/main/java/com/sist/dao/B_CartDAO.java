@@ -31,6 +31,11 @@ public class B_CartDAO {
 	{
 		mapper.deleteCartItem(rno);
 	}
+	
+	public void payCartItem(B_CartVO vo)
+	{
+	    mapper.insertCartItem(vo);
+	}
 
 
 }

@@ -224,7 +224,7 @@ textarea {
     <label v-for="(n, index) in Math.min(Math.round(parseFloat(detail_data.avgScore)), 5)" :key="'filled-' + index" :for="'star' + (index + 1)" class="star" id="realStar-{{ index }}">⭐</label>
     <!-- 빈 별 표시 -->
     <label v-for="(n, index) in 5 - Math.min(Math.round(parseFloat(detail_data.avgScore)), 5)" :key="'empty-' + index" :for="'star' + (5 - index)" class="empty-star" id="emptyStar-{{ index }}" style="color:grey">⭐</label>
-    <label style="color:grey">⭐</label>
+   
   </template>
 </p>
 
