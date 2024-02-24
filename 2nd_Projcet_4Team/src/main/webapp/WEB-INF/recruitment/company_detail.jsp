@@ -4,18 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기업 상세 정보</title>
 <link rel="stylesheet" href="../css/setting.css">
 <link rel="stylesheet" href="../css/plugin.css">
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../recruitment/css/template.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
 <script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>
-<script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
-<script src="../recruitment/js/script.js"></script>
+<script src="../js/template.js"></script>
+<script src="../js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
+<script src="../recruitment/js/script.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
@@ -96,7 +96,7 @@
 	            <figure class="company-img">
 	              <img class="width-100" :src="company_detail.img" alt="기업 이미지">
 	            </figure>
-	            <p class="company-content">{{company_detail.content}}</p>
+	            <pre class="company-content">{{company_detail.content}}</pre>
             </div>
           </div>
         </div>
@@ -381,8 +381,8 @@ let companyDetailApp=Vue.createApp({
 	data(){
 		return{
 			recruit_list:[],
-			recruit_detail:[],
-			company_detail:[],
+			recruit_detail:{},
+			company_detail:{},
 			rno:${rno},
 			cno:${cno},
 			curpage:1,

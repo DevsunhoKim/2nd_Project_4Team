@@ -10,7 +10,7 @@ import com.sist.dao.RecruitmentDAO;
 import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.RecruitVO;
-
+// RecruitmentService를 구현한 클래스로 RecruitmentDAO를 주입받아 비즈니스 로직에서 데이터 액세스를 수행
 @Service
 public class RecruitmentServiceImpl implements RecruitmentService{
 
@@ -29,6 +29,13 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	public int recruitTotalPage() {
 		// TODO Auto-generated method stub
 		return rDao.recruitTotalPage();
+	}
+	
+	// 검색
+	@Override
+	public List<RecruitVO> recruitFindData(String word) {
+		// TODO Auto-generated method stub
+		return rDao.recruitFindData(word);
 	}
 	
 	// 채용 공고 상세 페이지
@@ -66,10 +73,10 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		rDao.recruitDelete(rno);
 	}
 
+	// 지원하기
 	@Override
 	public void applyInsert(ApplyVO vo) {
 		// TODO Auto-generated method stub
 		rDao.applyInsert(vo);
 	}
-
 }
