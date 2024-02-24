@@ -107,6 +107,13 @@
 #recruitmentList .recruit-area{
   margin-right: 1rem;
 }
+#recruitmentList .recruit-stack{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* word-break: break-all; */
+}
 #recruitmentList .recruit-stack li{
   display: inline-block;
   margin-right: 0.8rem;
@@ -284,6 +291,7 @@
   color: #444;
   white-space: pre-wrap;
   word-break: keep-all;
+  white-space: pre-line;
 }
 #recruitmentDetail .recruit-date{
   display: flex;
@@ -583,7 +591,7 @@
   text-align: center;
 }
 #recruitmentCompany .company-detail-box li{
-  padding: 0 2rem;
+  padding: 0;
 }
 #recruitmentCompany .company-detail-box li .company-icon{
   max-width: 3rem;
@@ -600,14 +608,14 @@
 }
 #recruitmentCompany .company-detail-info{
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 1rem;
   margin: 2rem 0;
 }
 #recruitmentCompany .company-detail-info li{
-  width: 49.6%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -629,19 +637,27 @@
 #recruitmentCompany .company-detail-intro > div{
   display: flex;
   justify-content: space-between;
-  align-items: flex-top;
+  align-items: flex-start;
+  flex-wrap: nowrap;
   gap: 4rem;
 }
 #recruitmentCompany .company-img{
   width: 100%;
   max-width: 64rem;
+  height: 100%;
   border-radius: 1rem;
   overflow: hidden;
 }
-#recruitmentCompany .company-detail-intro p{
+#recruitmentCompany .company-img img{
+	width: 100%;
+	height:100%;
+	object-fit: cover;
+}
+#recruitmentCompany .company-detail-intro pre{
   width: 100%;
   color: #444;
   word-break: keep-all;
+  white-space: pre-line;
 }
 #recruitmentCompany .pagiset.pagiset-circ .pagiset-link{
   border-radius: 0.5rem;
@@ -666,6 +682,14 @@
 @media (max-width: 1366px) {
   #recruitmentCompany .container-md { padding: 0 1.5rem; }
 }
+@media (max-width: 640px) {
+  #recruitmentCompany .company-detail-info{flex-wrap: wrap;}
+  #recruitmentCompany .company-detail-intro > div {flex-wrap: wrap;}
+}
+@media (max-width: 576px) {
+	#recruitmentCompany .company-detail-box{gap: 2rem;}
+}
+
 
 
 
@@ -708,9 +732,6 @@
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid #eee;
-}
-#recruitmentCompany .company-detail-box li{
-  padding: 0;
 }
 #recruitmentCompany.insert .company-detail-intro textarea{
   resize: none;
