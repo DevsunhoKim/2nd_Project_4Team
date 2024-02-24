@@ -29,7 +29,7 @@ public interface ReviewMapper {
 
     @Delete("DELETE FROM review1 WHERE rno=#{rno} AND userId=#{userId} AND cateno=#{cateno}")
     public void reviewDelete(@Param("rno") int rno, @Param("userId") String userId, @Param("cateno") int cateno);
-    
+
     @Select("SELECT ROUND(AVG(score), 1) AS average_score FROM review1 WHERE no = #{no} AND cateno = #{cateno}")
     Double avgScore(@Param("no") int no, @Param("cateno") int cateno);
 

@@ -62,6 +62,6 @@ public interface BooksMapper {
 			  "OR keyword LIKE '%' || #{ss} || '%'")
 			  public List<BooksVO> searchBooks(@Param("ss") String ss);
 
-	  
+
 
 }

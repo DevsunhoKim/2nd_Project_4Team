@@ -1,15 +1,18 @@
 package com.sist.chat;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import java.util.*;
 @ServerEndpoint("/chat/chat-ws")
 public class ChatManager {
-   private static List<Session> users=new ArrayList<Session>();
-   
+   private static List<Session> users=new ArrayList<>();
+
    @OnOpen
    public void onOpen(Session session)
    {
@@ -26,7 +29,7 @@ public class ChatManager {
 		   it.next().getBasicRemote().sendText(message);
 		   System.out.println(session.getId()+":전송 완료!!");
 	   }
-	   
+
    }
    @OnClose
    public void onClose(Session session)

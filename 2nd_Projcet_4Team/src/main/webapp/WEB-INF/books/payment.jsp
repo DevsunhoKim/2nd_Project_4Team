@@ -360,50 +360,56 @@
 let paymentApp = Vue.createApp({
   data() {
     return {
-      no: ${no}, // Vue 인스턴스 데이터로 책 번호 설정
+      no: ${no}, // Vue 인스턴스의 데이터로 책 번호 설정
       detail_data: {}, // 책 상세 정보를 저장할 객체 (빈 객체로 초기화)
       quantity: 1, // 선택한 책의 수량
       totalPrice: 0, // 총 가격
       sessionId: '', // 사용자 세션 ID
       post: '', // 우편번호
       addr: '', // 주소
-      detail_addr: '' // 상세 주소
+      detail_addr: '' // 상세주소
     };
   },
   mounted() {
-    this.fetchBookDetail(); // 컴포넌트가 마운트되면 책 상세 정보를 가져옴
-    IMP.init("imp41460687"); // IAMPORT 초기화
+    this.fetchBookDetail(); // 컴포넌트가 마운트되면 책 상세 정보를 가져옵니다.
+    IMP.init("imp41460687"); // 아임포트 초기화
+    
   },
   methods: {
-    // 서버에서 책 상세 정보를 가져오는 메소드
+    // 서버에서 책 상세 정보를 가져오는 메서드
     fetchBookDetail() {
       axios.get('../books/pay_info_vue.do', {
         params: {
-          no: this.no // 요청 파라미터로 책 번호 전달
+          no: this.no // 책 번호를 요청 파라미터로 전달
         }
       })
       .then(response => {
-        this.detail_data = response.data.detail_data; // 응답 데이터에서 책 상세 정보 추출 후 저장
-        this.sessionId = response.data.sessionId; // 응답 데이터에서 사용자 세션 ID 추출 후 저장
-        this.calculateTotalPrice(); // 책 상세 정보를 바탕으로 총 가격 계산
+    	  this.detail_data = response.data.detail_data; // 응답 데이터에서 책 상세 정보를 추출하여 저장
+    	  console.log("책 상세 정보:", this.detail_data); // 콘솔에 책 상세 정보 출력
+
+    	  this.sessionId = response.data.sessionId; // 응답 데이터에서 사용자 세션 ID를 추출하여 저장
+    	  console.log("세션 ID:", this.sessionId); // 콘솔에 세션 ID 출력
+
+    	  this.calculateTotalPrice(); // 책 상세 정보를 바탕으로 총 가격 계산
+    	  console.log("총 가격:", this.totalPrice); // 콘솔에 총 가격 출력
       })
       .catch(error => {
         console.error("책 상세 정보 가져오기 실패:", error); // 오류 발생 시 콘솔에 오류 메시지 출력
       });
     },
-    // 수량 증가 메소드
+    // 수량 증가 메서드
     increaseQuantity() {
       this.quantity++; // 수량을 1 증가
-      this.calculateTotalPrice(); // 총 가격 재계산
+      this.calculateTotalPrice(); // 총 가격 다시 계산
     },
-    // 수량 감소 메소드
+    // 수량 감소 메서드
     decreaseQuantity() {
       if (this.quantity > 1) {
         this.quantity--; // 수량이 1보다 클 때만 감소
-        this.calculateTotalPrice(); // 총 가격 재계산
+        this.calculateTotalPrice(); // 총 가격 다시 계산
       }
     },
-    // 총 가격 계산 메소드
+    // 총 가격 계산 메서드
     calculateTotalPrice() {
       this.totalPrice = this.quantity * this.detail_data.price; // 수량과 단가를 곱하여 총 가격 계산
     },
@@ -420,36 +426,32 @@ let paymentApp = Vue.createApp({
         }).open();
     },
     requestPay() {
-        let vm = this; // Vue 인스턴스를 변수에 저장하여 함수 내에서 사용
+        let vm = this; // Store the Vue instance in a variable and use it within the function
         IMP.request_pay({
-            pg: 'html5_inicis', // 결제 게이트웨이
-            pay_method: 'card', // 결제 수단
-            merchant_uid: 'merchant_' + new Date().getTime(), // 주문 번호
-            name: '주문 상품명', // 상품명
-            amount: this.totalPrice, // 총 결제 금액은 totalPrice로 설정
+            pg: 'html5_inicis',
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: 'order product name',
+            amount: this.totalPrice,
             buyer_email: 'iamport@siot.do',
-            buyer_name: '구매자 이름', // 구매자 이름
-            buyer_tel: '010-1234-5678', // 구매자 전화번호
-            buyer_addr: '구매자 주소', // 구매자 주소
-            buyer_postcode: '구매자 우편번호', // 구매자 우편번호
+            buyer_name: 'buyer name',
+            buyer_tel: '010-1234-5678',
+            buyer_addr: 'Buyer address',
+            buyer_postcode: 'Buyer postcode',
             app_scheme: 'iamporttest'
         }, function (rsp) {
+            // For testing, treat both success and failure as success and execute the success logic.
+            vm.completePurchase(); // Execute the purchase completion logic.
             if (rsp.success) {
-                // 결제 성공 시 처리 로직
-                 vm.completePurchase();
                 alert('결제가 완료되었습니다.');
-                console.log(rsp);
-                // 결제 성공 정보를 활용한 추가 로직 구현 (예: 결제 성공 페이지로 이동)
-                window.location.href = '../books/payment_ok.do'; // 예시 URL, 실제 프로젝트에 맞게 수정 필요
             } else {
-                // 결제 실패 시 처리 로직
-                 vm.completePurchase();
-                alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
-                // 결제 실패 정보를 활용한 추가 로직 구현 (예: 결제 실패 페이지로 이동 또는 사용자에게 알림)
-                window.location.href = '../books/payment_ok.do'; // 예시 URL, 실제 프로젝트에 맞게 수정 필요
+                alert('결제가 취소되었습니다. (테스트 페이지에서는 취소도 성공 로직으로 처리됩니다.)');
             }
+            // Redirect to the payment success page for both cases.
+            window.location.href = '../books/payment_ok.do';
         });
     },
+
     completePurchase() {
         // 구매 정보 객체 생성
         const purchaseData = {
@@ -458,20 +460,20 @@ let paymentApp = Vue.createApp({
             quantity: this.quantity,
             totalPrice: this.totalPrice
         };
-        
-        // 서버로 구매 정보 전송
-        axios.post('/pay_ok.do', purchaseData)
+
+        // 서버에 구매 정보 전송
+        axios.post('../books/pay_ok.do', purchaseData)
         .then(response => {
             if(response.data.status === 'success') {
-                // 서버로부터 성공 응답을 받은 경우, 결제 성공 페이지로 이동
+                // 서버로부터 성공 응답을 받았을 때, 결제 성공 페이지로 이동
                 window.location.href = '../books/payment_ok.do';
             } else {
                 // 서버 처리 실패 응답
-                alert('Failed to process purchase information on the server.');
+                alert('서버에서 구매 정보 처리에 실패하였습니다.');
             }
         })
         .catch(error => {
-            console.error('Failed to send purchase information:', error);
+            console.error('구매 정보 전송 실패:', error);
         });
     }
   },
@@ -479,11 +481,12 @@ let paymentApp = Vue.createApp({
     // 책 가격을 형식화하여 반환하는 계산된 속성
     formattedPrice() {
       return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(this.detail_data.price);
-      // 총 가격을 형식화하여 반환하는 계산된 속성도 필요한 경우 여기에 추가 구현
+      // 총 가격을 형식화하여 반환하는 계산된 속성도 필요하다면 여기에 구현 추가
     }
   }
 }).mount('#paymentApp'); // Vue 애플리케이션을 마운트할 요소의 ID
 </script>
+
 
 
   

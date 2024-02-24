@@ -57,33 +57,33 @@ public interface MemberMapper {
                 "DETAIL_ADDRESS=#{detail_address} " +
             "WHERE USER_ID=#{user_id}")
     public int updateMember(MemberVO vo); // 회원정보 수정
-    
+
     @Update("UPDATE MEMBER SET "
   		  +"lastlogin=SYSDATE "
   		  +"WHERE userId=#{userId}")
      public void lastLoginUpdate(String userId); // 마지막 로그인 시점
 
-    /*------ 아이디 찾기 ------*/ 
+    /*------ 아이디 찾기 ------*/
     @Select("SELECT COUNT(*) FROM MEMBER WHERE email=#{email}")
     public int getEmailCount(@Param("email") String email); //  이메일 존재여부 확인
-    
+
     @Insert("UPDATE member SET code=#{code} WHERE email = #{email}")
     public void sendCode(@Param("code") int code,@Param("email") String email); // 인증번호 저장
-    
+
     @Select("SELECT SUBSTR(userId, 1, LENGTH(userId) - 3) || '***' AS userId "
     		+ "FROM member WHERE code = #{code} AND email = #{email}")
     public String idFind(@Param("code") int code,@Param("email") String email); // 아이디 찾기
     /*-----------------------*/
-    
-    /*------ 비밀번호 찾기 ------*/    
+
+    /*------ 비밀번호 찾기 ------*/
     @Select("SELECT COUNT(*) FROM MEMBER WHERE userId = #{userId} AND email = #{email}")
     public int getEmailCountbyUserId(@Param("userId") String userId, @Param("email") String email); // 이메일 존재여부 확인
-    
+
     @Update("UPDATE member SET userPwd=#{tempPwd} WHERE userId = #{userId}")
     public void pwdFind(@Param("userId") String userId,@Param("tempPwd") String tempPwd); // 비밀번호 임시비밀번호로 변경
-    /*-----------------------*/      
- 
-    
-    
-    
+    /*-----------------------*/
+
+
+
+
 }

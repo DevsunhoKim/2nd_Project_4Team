@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -99,8 +98,8 @@ public class StudyRoomRestController {
    @PostMapping(value="reserve_ok_vue.do", produces = "text/plain;charset=UTF-8")
    public String room_reserve_ok(int sno,int price,int month,int day, String[] times,HttpSession session,Principal p)
    {
-	  
-	   String userId=(String) p.getName();
+
+	   String userId=p.getName();
 	   for(String t:times)
 	   {
 		   System.out.println(t);
@@ -118,7 +117,7 @@ public class StudyRoomRestController {
 	   srrvo.setPrice(price);
 	   srrvo.setUserId(userId);
 	   service.studyRoomReserveInsert(srrvo);
-	   
+
 	   StudyRoomTimeVO srtvo=new StudyRoomTimeVO();
 	   srtvo.setMonth(month);
 	   srtvo.setDay(day);

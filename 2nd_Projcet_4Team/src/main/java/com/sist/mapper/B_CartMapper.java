@@ -1,10 +1,12 @@
 package com.sist.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
 import com.sist.vo.B_CartVO;
 
 public interface B_CartMapper {
@@ -29,8 +31,8 @@ public interface B_CartMapper {
  // 구매완료 detail 페이지에서 바로 구매  (상태 기본값 'Y' 로변경)
     @Insert("INSERT INTO b_cart(rno, userid, no, quantity, totalprice, isSale, regdate, status) " +
             "VALUES(b_cart_seq.NEXTVAL, #{userid}, #{no}, #{quantity}, #{totalPrice}, 0 , SYSDATE, 'Y')")
-    public void payCartItem(B_CartVO vo); 
-  
+    public void payCartItem(B_CartVO vo);
+
     // 구매완료 페이지 출력
     @Select("SELECT * FROM b_cart WHERE rno=#{rno}")
     public B_CartVO pay_ok(int rno);

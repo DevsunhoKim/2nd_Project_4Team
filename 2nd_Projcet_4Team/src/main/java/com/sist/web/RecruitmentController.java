@@ -28,15 +28,15 @@ public class RecruitmentController {
 		model.addAttribute("cno", cno);
 		return "recruitment/company_detail";
 	}
-	
+
 	@GetMapping("recruit_insert.do")
 	public String recruit_insert(RecruitVO vo) {
 		return "recruitment/recruit_insert";
 	}
-	
+
 	@GetMapping("recruit_update.do")
 	public String recruit_update(RecruitVO vo) {
 		return "recruitment/recruit_update";
 	}
-	
+
 }

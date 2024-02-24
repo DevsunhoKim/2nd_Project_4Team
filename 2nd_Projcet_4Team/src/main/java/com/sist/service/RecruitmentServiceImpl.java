@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.sist.dao.RecruitmentDAO;
 import com.sist.vo.ApplyVO;
@@ -30,7 +29,7 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		// TODO Auto-generated method stub
 		return rDao.recruitTotalPage();
 	}
-	
+
 	// 채용 공고 상세 페이지
 	@Override
 	public RecruitVO recuitDetailData(int rno) {

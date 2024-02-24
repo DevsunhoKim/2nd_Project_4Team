@@ -25,5 +25,5 @@ public class JjimServiceImpl implements JjimService{
 		// TODO Auto-generated method stub
 		dao.jjimDelete(vo);
 	}
-	
+
 }
