@@ -10,4 +10,6 @@ public interface B_CartService {
 	public void updateCartItem(B_CartVO vo);
 	public void insertCartItem(B_CartVO vo);
 	public void deleteCartItem(int rno);
+	public void payCartItem(B_CartVO vo);
+	public B_CartVO pay_ok(int rno);
 }

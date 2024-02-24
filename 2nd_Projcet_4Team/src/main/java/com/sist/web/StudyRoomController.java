@@ -2,8 +2,6 @@ package com.sist.web;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +21,7 @@ public class StudyRoomController {
 		String userId="";
 		if(p!=null)
 		{
-			userId=(String)p.getName();
+			userId=p.getName();
 		}
 		model.addAttribute("no", no);
 		model.addAttribute("userId", userId);

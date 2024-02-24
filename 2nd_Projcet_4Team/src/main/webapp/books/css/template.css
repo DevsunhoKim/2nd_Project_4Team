@@ -805,7 +805,7 @@ progress { vertical-align: baseline; }
  .tableset.tableset-receipt .tableset-table .tableset-tit { max-height: 100% !important; color: var(--text-color1) !important; }
  .tableset.tableset-receipt .tableset-table td.tableset-figure { display: flex; }
  .tableset.tableset-receipt .tableset-table td.tableset-figure figure { width: 21.8rem; height: 21.8rem; margin-bottom: 0; }
- .tableset.tableset-receipt .tableset-table td.tableset-figure figure img { width: 100%; height: 100%; object-fit: cover; }
+ .tableset.tableset-receipt .tableset-table td.tableset-figure figure img { width: 100%; height: 100%; object-fit: contain; }
  .tableset.tableset-receipt .tableset-table td.tableset-figure .tableset-group { display: flex; flex-direction: column; justify-content: space-between; margin-left: 1.6rem; text-align: left; }
  .tableset.tableset-receipt .tableset-table td.tableset-figure .tableset-group h5 { font-weight: 500 !important; color: var(--text-color1) !important; }
  .tableset.tableset-receipt .tableset-table td.tableset-figure .tableset-group ul li { font-size: var(--fs-p1); }

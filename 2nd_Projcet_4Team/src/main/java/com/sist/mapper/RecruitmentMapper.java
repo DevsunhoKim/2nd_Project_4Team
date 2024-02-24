@@ -2,11 +2,11 @@ package com.sist.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -65,12 +65,12 @@ public interface RecruitmentMapper {
 	      + "ORDER BY r.rno DESC")
 	public List<RecruitVO> recruitListData(@Param("start") int start, @Param("end") int end);
 
-	
+
 	// 총 페이지 수
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM recruit")
 	public int recruitTotalPage();
 
-	
+
 	// 검색
 	@Results({
 	  @Result(column="logo", property="cvo.logo"),
@@ -95,8 +95,13 @@ public interface RecruitmentMapper {
 	// 1. 채용 공고 정보 => recurit 테이블에서 각 rno에 해당하는 채용 공고 정보 가져오기
 	@Select("SELECT * FROM recruit WHERE rno=#{rno}")
 	public RecruitVO recuitDetailData(int rno);
+<<<<<<< HEAD
 	
 	// 2. 기업 정보 => company 테이블에서 각 cno에 해당하는 기업 정보 가져오기
+=======
+
+	// 2. 기업 정보
+>>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	@Select("SELECT * FROM company WHERE cno=#{cno}")
 	public CompanyVO companyDetailData(int cno);
 
@@ -115,7 +120,7 @@ public interface RecruitmentMapper {
 		    + "INSERT INTO company (cno, logo, name, address, phone, homepage, email) "
 		    + "VALUES (#{cvo.cno}, #{cvo.logo}, #{cvo.name}, #{cvo.address}, #{cvo.phone}, #{cvo.homepage}, #{cvo.email})")
 	public void recruitInsert(RecruitVO vo);
-		
+
 	// 채용 공고 수정
 	@Results({
 	  @Result(column="cno", property="cvo.cno"),
@@ -132,17 +137,17 @@ public interface RecruitmentMapper {
 			+ "no=#{cvo.cno}, logo=#{cvo.logo}, name=#{cvo.name}, address=#{cvo.address}, phone=#{cvo.phone}, homepage=#{cvo.homepage}, email=#{cvo.email} "
 			+ "WHERE no=#{rno}")
 	public void recruitUpdate(RecruitVO vo);
-	
+
 	// 채용 공고 삭제
 	@Delete("DELETE FROM recruit WHERE rno=#{rno}")
 	public void recruitDelete(int rno);
-		
+
 
 	// 지원하기
 	@Insert("INSERT INTO apply VALUES("
  	   + "ap_ano_seq.nextval, #{cno}, #{userId}, SYSDATE, #{filename}, #{filesize}, #{filecount})")
 	public void applyInsert(ApplyVO vo);
-	
+
 
 	// 면접 후기 작성
 }

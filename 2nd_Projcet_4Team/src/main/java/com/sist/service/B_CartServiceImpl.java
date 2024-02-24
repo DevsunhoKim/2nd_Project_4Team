@@ -38,4 +38,16 @@ public class B_CartServiceImpl implements B_CartService{
 		dao.deleteCartItem(rno);
 	}
 
+	@Override
+	public void payCartItem(B_CartVO vo) {
+		// TODO Auto-generated method stub
+		dao.payCartItem(vo);
+	}
+
+	@Override
+	public B_CartVO pay_ok(int rno) {
+		// TODO Auto-generated method stub
+		return dao.pay_ok(rno);
+	}
+
 }

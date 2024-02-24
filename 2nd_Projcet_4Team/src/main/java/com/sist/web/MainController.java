@@ -1,5 +1,4 @@
 package com.sist.web;
-import java.net.http.HttpRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -21,13 +20,13 @@ public class MainController {
 	private MemberService mService;
 	private BooksServiceImpl bService;
 	private StudyRoomService sService;
-	
+
 	@Autowired
 	public MainController(MemberService mService, BooksServiceImpl bService, StudyRoomService sService) {
 		this.mService = mService;
 		this.bService = bService;
 		this.sService = sService;
-		
+
 	}
 
 	@GetMapping("main/main.do")
@@ -50,7 +49,7 @@ public class MainController {
 			session.setAttribute("mentor", vo.getMentor());
 			session.setAttribute("authority", vo.getAuthority());
 		}
-		
+
 		List<BooksVO> booksList=bService.mainBooks();
 		List<StudyRoomVO> roomList=sService.studyRoomListData();
 		model.addAttribute("booksList", booksList);

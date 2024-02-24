@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.sist.dao.RecruitmentDAO;
 import com.sist.vo.ApplyVO;
@@ -30,6 +29,7 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		// TODO Auto-generated method stub
 		return rDao.recruitTotalPage();
 	}
+<<<<<<< HEAD
 	
 	// 검색
 	@Override
@@ -38,6 +38,9 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return rDao.recruitFindData(word);
 	}
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	// 채용 공고 상세 페이지
 	@Override
 	public RecruitVO recuitDetailData(int rno) {

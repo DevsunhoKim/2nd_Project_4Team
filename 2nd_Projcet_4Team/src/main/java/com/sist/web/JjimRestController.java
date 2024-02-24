@@ -13,7 +13,7 @@ import com.sist.vo.JjimVO;
 public class JjimRestController {
 	@Autowired
 	private JjimService service;
-	
+
 	@GetMapping("jjim_vue.do")
 	public int jjim_count(String userId,int no,int cateno) {
 		JjimVO vo=new JjimVO();
@@ -24,7 +24,7 @@ public class JjimRestController {
 		int count=service.jjimCount(vo);
 		return count;
 	}
-	
+
 	@GetMapping("jjim_ok.do")
 	public int jjim_ok(String userId,int no,int cateno) {
 		JjimVO vo=new JjimVO();
@@ -35,7 +35,7 @@ public class JjimRestController {
 		int count=service.jjimCount(vo);
 		System.out.println(count);
 		return count;
-		
+
 	}
 	@GetMapping("jjim_delete.do")
 	public int jjim_delete(String userId,int no,int cateno) {

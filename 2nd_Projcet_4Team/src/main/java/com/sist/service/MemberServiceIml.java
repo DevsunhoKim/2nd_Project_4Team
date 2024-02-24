@@ -78,13 +78,13 @@ public class MemberServiceIml implements MemberService{
 		}
 		return res;
 	}
-	
+
 	@Override
 	public String idFind(String email, int code) {
 		String res = dao.idFind(email, code);
 		return res;
 	}
-	
+
 	@Override
 	public String pwdFind(String userId, String email) {
 		int random_ = (int)(Math.random() * 900000) + 100000; // 임시비밀번호 6자리수 100000~999999

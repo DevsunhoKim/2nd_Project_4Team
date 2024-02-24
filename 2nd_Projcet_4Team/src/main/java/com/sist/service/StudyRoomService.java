@@ -1,7 +1,7 @@
 package com.sist.service;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Select;
+
 import com.sist.vo.StudyRoomReserveVO;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
@@ -14,8 +14,8 @@ public interface StudyRoomService {
    public List<String> studyRoomTimeList(StudyRoomTimeVO vo);
    //예약 인서트
    public void studyRoomReserveInsert(StudyRoomReserveVO vo);
-	
+
    public void StudyRoomReserveTimeInsert(String time);
-	
+
    public void StudyRoomTimeUpdate(StudyRoomTimeVO vo);
 }
