@@ -48,6 +48,8 @@ PHONE               VARCHAR2(100)
 EMAIL               VARCHAR2(1000)
 LIKE_COUNT          NUMBER
  */
+
+// 어노테이션을 사용하여 SQL 쿼리를 지정
 public interface RecruitmentMapper {
 	// 목록 출력
 	@Results({
@@ -70,12 +72,31 @@ public interface RecruitmentMapper {
 
 
 	// 검색
+	@Results({
+	  @Result(column="logo", property="cvo.logo"),
+	  @Result(column="name", property="cvo.name"),
+	  @Result(column="address", property="cvo.address")
+	})
+	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, "
+			+ "c.logo, c.name, c.address "
+			+ "FROM recruit r "
+			+ "JOIN company c ON r.cno=c.cno "
+			+ "WHERE r.title LIKE '%' || #{word} || '%' "
+			+ "OR r.stack_txt LIKE '%' || #{word} || '%' "
+			+ "OR r.career LIKE '%' || #{word} || '%' "
+			+ "OR c.name LIKE '%' || #{word} || '%' "
+			+ "OR c.address LIKE '%' || #{word} || '%'")
+	public List<RecruitVO> recruitFindData(@Param("word") String word);
+	// 메소드의 파라미터 이름과 SQL 쿼리의 변수 이름을 일치시켜주는 역할
 
+	// 정렬
 
 	// 상세보기
-	// 1. 채용 공고 정보
+	// 1. 채용 공고 정보 => recurit 테이블에서 각 rno에 해당하는 채용 공고 정보 가져오기
 	@Select("SELECT * FROM recruit WHERE rno=#{rno}")
 	public RecruitVO recuitDetailData(int rno);
+	
+	// 2. 기업 정보 => company 테이블에서 각 cno에 해당하는 기업 정보 가져오기
 
 	// 2. 기업 정보
 	@Select("SELECT * FROM company WHERE cno=#{cno}")

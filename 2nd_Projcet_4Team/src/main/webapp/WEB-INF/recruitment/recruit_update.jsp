@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="../css/plugin.css">
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../recruitment/css/template.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
 <script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>
-<script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
-<script src="../recruitment/js/script.js"></script>
+<script src="../js/template.js"></script>
+<script src="../js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
+<script src="../recruitment/js/script.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
 </head>
