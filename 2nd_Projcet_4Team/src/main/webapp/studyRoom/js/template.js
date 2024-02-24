@@ -140,7 +140,7 @@
   });
 
   // Radioset
-  const radiosetElements = document.querySelectorAll(".radioset");
+  /*const radiosetElements = document.querySelectorAll(".radioset");
   radiosetElements.forEach((radiosetElement) => {
     const radiosetText = radiosetElement.querySelector(".radioset-text");
     const radioboxInput = radiosetElement.querySelector(".radioset-input");
@@ -149,7 +149,7 @@
         radioboxInput.checked = !radioboxInput.checked;
       }
     });
-  });
+  });*/
 
   // Inputset
   const inputsetElements = document.querySelectorAll(".inputset-textarea");

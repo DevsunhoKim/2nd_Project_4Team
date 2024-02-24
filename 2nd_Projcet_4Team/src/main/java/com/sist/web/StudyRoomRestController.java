@@ -1,19 +1,24 @@
 package com.sist.web;
 
+import java.io.File;
 import java.security.Principal;
-import java.util.List;
+import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.StudyRoomServiceImpl;
+import com.sist.vo.StudyRoomAskVO;
 import com.sist.vo.StudyRoomReserveVO;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
@@ -24,14 +29,6 @@ public class StudyRoomRestController {
    @Autowired
    private StudyRoomServiceImpl service;
 
-//   @GetMapping(value="list_vue.do",produces="text/plain;charset=UTF-8")
-//   public String room_list() throws Exception
-//   {
-//      List<StudyRoomVO> list=service.studyRoomListData();
-//      ObjectMapper mapper=new ObjectMapper();
-//      String json=mapper.writeValueAsString(list);
-//      return json;
-//   }
    @GetMapping(value="list_vue.do",produces = "text/plain;charset=UTF-8")
       public String room_list() throws Exception
       {
@@ -130,5 +127,36 @@ public class StudyRoomRestController {
 	   }
 	   return "OK";
    }
+
+   @GetMapping(value="ask_list_vue.do", produces = "text/plain;charset=UTF-8")
+   public String ask_list(int sno,int page) throws Exception {
+	   
+	   int rowsize=10;
+	   int start=(rowsize*page)-(rowsize-1);
+	   int end=rowsize*page;
+	   final int BLOCK=5;
+	   Map map=new HashMap();
+	   map.put("start", start);
+	   map.put("end", end);
+	   map.put("sno", sno);
+	   List<StudyRoomAskVO> list=service.StudyRoomAskList(map);
+	   int totalpage=service.StudyRoomAskTotalpage(sno);
+	   int startpage=((page-1)/BLOCK*BLOCK)+1;
+	   int endpage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	   if(endpage>totalpage)
+		   endpage=totalpage;
+	   Map map1=new HashMap();
+	   map1.put("curpage", page);
+	   map1.put("endpage", endpage);
+	   map1.put("startpage",startpage);
+	   map1.put("totalpage",totalpage);
+	   map1.put("list", list);
+	   ObjectMapper mapper = new ObjectMapper();
+       String json = mapper.writeValueAsString(map1);
+	   return json;
+	   
+   }
+   
+   
 
 }

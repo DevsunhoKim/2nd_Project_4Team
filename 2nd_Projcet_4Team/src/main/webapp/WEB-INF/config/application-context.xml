@@ -46,6 +46,10 @@
     />    
      <!-- WebSocket Handler Bean 등록 -->
     <!-- <bean id="chattingHandler" class="com.sist.chat.ChatServer"/> -->
+    
+    <bean id="multipartResolver"
+       class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+    />
 </beans>
 
 

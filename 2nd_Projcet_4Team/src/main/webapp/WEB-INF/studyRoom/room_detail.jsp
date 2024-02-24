@@ -203,7 +203,7 @@
     
     
     <!-- [S]hooms-N36 -->
-        <div class="hooms-N36" data-bid="rxlskcGXa1" v-show="askShow">
+     <div class="hooms-N36" data-bid="rxlskcGXa1" v-show="askShow">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <!-- <div class="textset textset-h2">
@@ -216,6 +216,7 @@
              <div class="contents-btn askBtn">
                <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
              </div>
+             
              <div class="contents-form">
               <div class="inputset inputset-lg">
                 <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
@@ -246,22 +247,28 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="tableset-mobile">24</td>
-                  <td class="tableset-category tableset-order03">가구 상담</td>
+                <tr v-for="ask in ask_list">
+                  <td class="tableset-mobile">{{ask.ano}}</td>
+                  <td class="tableset-category tableset-order03">{{ask.cate}}</td>
                   <td class="tableset-tit tableset-order02">
+                   <div class="asklist-title">
                     <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
+                      <span class="asktitle">{{ask.subject}}</span>
                     </a>
+                    <img v-if="ask.userId!=='${sessionScope.userId }'" src="../studyRoom/icons/ico_lock_black.svg">
+                    <img v-if="ask.userId==='${sessionScope.userId }'" src="../studyRoom/icons/ico_lock_black.svg">
+                   </div>
                   </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset">대기</div>
+                  <td class="tableset-order05">{{ask.dbday}}</td>
+                  <td class="tableset-order04">{{ask.name}}</td>
+                  <td class="tableset-order01" v-if="ask.state===0">
+                    <div class="badgeset state">답변대기</div>
                   </td>
-                  
+                  <td class="tableset-order01" v-if="ask.state===1">
+                    <div class="badgeset badgeset-active state state1">답변완료</div>
+                  </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td class="tableset-mobile">23</td>
                   <td class="tableset-category tableset-order03">인테리어 상담</td>
                   <td class="tableset-tit tableset-order02">
@@ -350,19 +357,22 @@
                     <div class="badgeset badgeset-active">답변완료</div>
                   </td>
                   
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
           
           <nav class="pagiset pagiset-line">
-            <div class="pagiset-ctrl">
+            <a class="btn" @click="prev()">이전</a>
+              {{curpage }} page / {{totalpage }} pages
+             <a class="btn" @click="next()">다음</a>
+            <!-- <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-first" href="javascript:void(0)">
                 <span class="visually-hidden">처음</span>
               </a>
-            </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
+            </div> -->
+            <!-- <div class="pagiset-ctrl">
+              <a v-if="startpage>1" class="pagiset-link pagiset-prev" href="javascript:void(0)">
                 <span class="visually-hidden">이전</span>
               </a>
             </div>
@@ -375,12 +385,12 @@
               <a class="pagiset-link pagiset-next" href="javascript:void(0)">
                 <span class="visually-hidden">다음</span>
               </a>
-            </div>
-            <div class="pagiset-ctrl">
+            </div> -->
+            <!-- <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-last" href="javascript:void(0)">
                 <span class="visually-hidden">마지막</span>
               </a>
-            </div>
+            </div> -->
           </nav>
         </div>
       </div>
@@ -418,7 +428,12 @@
            cateno:2,
            u:0,
            src:'',
-           jjimText:''
+           jjimText:'',
+           curpage:1,
+           totalpage:0,
+           endpage:0,
+           startpage:0,
+           ask_list:[]
            
         }
      },
@@ -529,6 +544,7 @@
            ask(){
         	   this.askShow=true
         	   this.infoShow=false
+        	   this.askList();
            },
            info(){
         	   this.infoShow=true
@@ -604,6 +620,44 @@
          	    	}) */
          	    }
         		 
+        	},
+        	next(){
+        		let page=this.curpage
+        		if(page+1<this.totalpage)
+        		{
+        			this.curpage=page+1
+        		}
+        		else{
+        			this.curpage=page
+        		}
+        		this.askList();
+        	},
+        	prev(){
+        		let page=this.curpage
+        		if(page-1>this.startpage)
+        		{
+        			this.curpage=page-1
+        		}
+        		else{
+        			this.curpage=page
+        		}
+        		this.askList();
+        	},
+        	askList(){
+        		axios.get('../studyRoom/ask_list_vue.do',{
+         		   params:{
+         			   sno:this.no,
+         			   page:this.curpage
+         			   
+         		   }
+         	   }).then(response=>{
+         		   console.log(response.data)
+         		   this.ask_list=response.data.list
+         		   this.curpage=response.data.curpage
+         		   this.totalpage=response.data.totalpage
+         		   this.startpage=response.data.startpage
+         		   this.endpage=response.data.endpage
+         	   })
         	}
 
 

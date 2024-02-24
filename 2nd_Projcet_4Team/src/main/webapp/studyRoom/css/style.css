@@ -432,7 +432,7 @@
 .tableset .tableset-table > tbody > * > * { padding: 1.6rem; font-size: var(--fs-p2); color: var(--text-color3); text-align: center; }
  .tableset .tableset-table td a { display: inline-block; }
  .tableset .tableset-table td a.tableset-ico { display: inline-block; max-width: 50rem; align-items: center; position: relative; padding-right: 2rem; }
- .tableset .tableset-table td a.tableset-ico::after { content: ''; position: absolute; top: 0.2rem; right: 0; width: 2rem; height: 2rem; background-image: url('../../studyRoom/icons/ico_lock_black.svg'); background-repeat: no-repeat; background-position: center; background-size: contain; }
+/*  .tableset .tableset-table td a.tableset-ico::after { content: ''; position: absolute; top: 0.2rem; right: 0; width: 2rem; height: 2rem; background-image: url('../../studyRoom/icons/ico_lock_black.svg'); background-repeat: no-repeat; background-position: center; background-size: contain; } */
  .tableset .tableset-table td span { display: inline-block; width: 100%; margin-right: .8rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
  .tableset .tableset-table td.tableset-tit { font-size: var(--fs-p1); color: var(--text-color1); text-align: left; }
  .tableset .tableset-table td.tableset-dark { color: var(--text-color1); }
@@ -1178,3 +1178,88 @@
 #studyRoom_detail .btnset:hover #cart{
 	filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(140deg) brightness(106%) contrast(105%);
 }
+
+#studyRoomAsk .btnadd{
+	min-width: 11rem;
+	height: 4rem;
+	
+}
+#studyRoomAsk #filetitle{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+	
+}
+#studyRoomAsk .filestyle{
+	margin-bottom: 0.5rem;
+}
+#studyRoomAsk .fileset .fileset-body {
+    display: block;
+}
+#studyRoomAsk .fileset-group{
+	margin-bottom: 1rem;
+}
+#studyRoomAsk #selectset {
+    width: 100%;
+    padding: 0px 11px 0px 18px;
+    border: 1px solid #999;
+    background: url('https://design-science.or.kr/app/dubu_subcontent/docs/imgs/1586411111_arrow.png') no-repeat 95% 50%;
+    background-size: 16px; /* 아이콘의 크기를 조정합니다 */
+    border-radius: 0.6rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: var(--ht-lg);
+    border-color: var(--border-color);
+}
+
+/* Badgeset : Badgeset */
+/* .badgeset { display: flex; align-items: center; justify-content: center; width: 9rem; height: 3.2rem; padding: .6rem; background-color: var(--primary); color: var(--text-color5); text-align: center; }
+.badgeset.badgeset-center { margin: 0 auto; }
+.badgeset.badgeset-active { background-color: var(--secondary); }
+@media (max-width: 992px){
+ .badgeset { width: 6.8rem; height: 2.5rem; display: flex !important; }
+
+ } */
+ #studyRoom_detail .state{
+ background-color: var(--primary); color: var(--text-color5);
+ padding: 0.4rem 2rem;
+ font-size: 1.4rem;
+ }
+  #studyRoom_detail .state1{
+ background-color: #6713d2; color: var(--text-color5);
+ padding: 0.4rem 3rem;
+ font-size: 1.4rem;
+ }
+ .asklist-title{
+    display: flex;
+    align-items: center;
+ }
+ .asktitle{
+    display: block !important;
+ }
+ #studyRoom_detail .asklist-title .tableset-ico{
+    padding-right: 0;
+ }
+#studyRoom_detail a.btn{
+    padding:0.4rem 0;
+    width: 60px;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 13px;
+    margin: 0px 10px;
+}
+/*                            content: '';
+    position: absolute;
+    top: 0.2rem;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    background-image: url(../../studyRoom/icons/ico_lock_black.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+ */

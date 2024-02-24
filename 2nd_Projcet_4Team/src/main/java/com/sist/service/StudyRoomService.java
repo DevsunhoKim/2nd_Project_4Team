@@ -1,7 +1,11 @@
 package com.sist.service;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Select;
+
+import com.sist.vo.StudyRoomAskVO;
 import com.sist.vo.StudyRoomReserveVO;
 import com.sist.vo.StudyRoomTimeVO;
 import com.sist.vo.StudyRoomVO;
@@ -18,4 +22,9 @@ public interface StudyRoomService {
    public void StudyRoomReserveTimeInsert(String time);
 	
    public void StudyRoomTimeUpdate(StudyRoomTimeVO vo);
+   
+   //1:1문의
+   public void StudyRoomAskInsert(StudyRoomAskVO vo);
+   public List<StudyRoomAskVO> StudyRoomAskList(Map map);
+   public int StudyRoomAskTotalpage(int sno);
 }

@@ -601,7 +601,7 @@ progress { vertical-align: baseline; }
 .radioset .radioset-input:disabled + .radioset-label::before { color: var(--line-color2); }
 .radioset .radioset-input.input-line:checked + .radioset-label::before { content: '\e917'; }
 .radioset .radioset-input.input-fill:checked + .radioset-label::before { content: '\e916'; }
-.radioset .radioset-text { display: inline-block; margin-left: .8rem; font-size: var(--fs-h6); cursor: pointer; }
+.radioset .radioset-text { display: inline-block; margin-left: .8rem; font-size: var(--fs-h6);/*  cursor: pointer; */ }
 .radioset-wrap { display: flex; align-items: center; }
 .radioset-wrap .radioset + .radioset { margin-left: .8rem; margin-top: 0; }
 .radioset-wrap .radioset .radioset-thumb { display: flex; justify-content: center; align-items: center; padding: 0 2.4rem; height: var(--ht-md); border: 1px solid var(--line-color2); background-color: var(--body-bg); font-size: var(--fs-p1); font-weight: 500; cursor: pointer; }
@@ -828,13 +828,13 @@ progress { vertical-align: baseline; }
 
 /* ========== */
 /* Badgeset : Badgeset */
-.badgeset { display: flex; align-items: center; justify-content: center; width: 9rem; height: 3.2rem; padding: .6rem; background-color: var(--primary); color: var(--text-color5); text-align: center; }
+/* .badgeset { display: flex; align-items: center; justify-content: center; width: 9rem; height: 3.2rem; padding: .6rem; background-color: var(--primary); color: var(--text-color5); text-align: center; }
 .badgeset.badgeset-center { margin: 0 auto; }
 .badgeset.badgeset-active { background-color: var(--secondary); }
 @media (max-width: 992px){
  .badgeset { width: 6.8rem; height: 2.5rem; }
  }
-
+ */
 /* ========== */
 /* Accordion : Accordset */
 .accordset { position: relative; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
