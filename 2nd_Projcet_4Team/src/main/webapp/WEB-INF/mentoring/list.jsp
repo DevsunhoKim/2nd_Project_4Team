@@ -35,30 +35,30 @@
 		        </button>
 		        <ul class="selectset-list">
 		          <li class="selectset-item">
-		            <button class="selectset-link btn" type="button" data-value="멘토명" v-on:click="ss = 'nickname'">
+		            <button class="selectset-link btn" type="button" data-value="멘토명" v-on:click="selectedVal = 'nickname'">
 		              <span>멘토명</span>
 		            </button>
 		          </li>
 		          <li class="selectset-item">
-		            <button class="selectset-link btn" type="button" data-value="멘토링 제목" v-on:click="ss = 'title'">
+		            <button class="selectset-link btn" type="button" data-value="멘토링 제목" v-on:click="selectedVal = 'title'">
 		              <span>멘토링 제목</span>
 		            </button>
 		          </li>
 		        </ul>
 		      </div>
-		    <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="icon"></button>
+		    <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="icon" @click="setupSearch()"></button>
 		    <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해 주세요." 
-			  ref="fd" v-model="fd" @keyup.enter="setupSearch()">
+			  ref="searchWord" v-model="searchWord" @keyup.enter="setupSearch()">
 		  </div>
 	  </div>
 	  <div style="height: 30px"></div>
 	  <!-- 기술스택 -->
-	  <div class="row-tech">
+	<!--    <div class="row-tech">
             <div class="css-goiz5j" id="headlessui-popover-panel-3" tabindex="-1" data-headlessui-state="open">
                 <ul class="LanguageBar_languages__243rH">
-                    <li v-for="(tech, index) in tech_list"
+                    <li v-for="(job, index) in job_list"
                         class="LanguageBar_languageIcon__2PTl1 LanguageBar_full__2eorP" :key="index"
-                        :class="{'active': index == selectedTech}" v-on:click="selectTech(index)">
+                        :class="{'active': index == selectedJob}" v-on:click="selectJob(index)">
                         <img class="LanguageBar_logo__rGfFz"
                              :src="'${pageContext.request.contextPath}/images/tech/'+ tech.toLowerCase() +'.svg'"
                              alt="tech">
@@ -69,22 +69,61 @@
                     <ul class="SelectedLanguage_selectedLanguages__3r4F4"></ul>
                 </div>
             </div>
-        </div>
+        </div>-->
+        <div class="tabset tabset-brick">
+              <ul class="tabset-list tabset-sm tabset-fill">
+              <li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob()">
+					    <span>전체</span>
+					  </a>
+					</li>
+                <li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob('Backend')">
+					    <span>Backend</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob('Frontend')">
+					    <span>Frontend</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob('Android')">
+					    <span>Android</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob('iOS')">
+					    <span>iOS</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob('Data Engineering')">
+					    <span>Data Engineering</span>
+					  </a>
+					</li>
+					<li class="tabset-item">
+					  <a class="tabset-link" @click="selectedJob('Devops')">
+					    <span>Devops</span>
+					  </a>
+					</li>
+				  </ul>
+            </div>
 	  <!-- 정렬 버튼 -->
 	  <div class="tabset tabset-text">
 	    <ul class="tabset-list">
 	      <li class="tabset-item">
-	        <a class="tabset-link active" href="javascript:void(0)">
+	        <a class="tabset-link active" @click="applyFilter('rev_cnt')">
 	          <span>예약많은순</span>
 	        </a>
 	      </li>
 	      <li class="tabset-item">
-	        <a class="tabset-link" href="javascript:void(0)">
+	        <a class="tabset-link" @click="applyFilter('score_avg')">
 	          <span>리뷰많은순</span>
 	        </a>
 	      </li>
 	      <li class="tabset-item">
-	        <a class="tabset-link" href="javascript:void(0)">
+	        <a class="tabset-link" @click="applyFilter('follower')">
 	          <span>팔로워순</span>
 	        </a>
 	      </li>
@@ -321,8 +360,10 @@ let mentorListApp = Vue.createApp({
             	'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest'] ,
             mentor_list: [],
             selectedTech: -1,
-            fd: '',
-            ss: '',
+            job:'',
+            selectedVal: '',
+            searchWord: '',
+            filter:'',
             curpage: 1,
             totalpage: 0,
             startPage: 0,
@@ -335,21 +376,25 @@ let mentorListApp = Vue.createApp({
     },
     methods: {
         setupSearch() {
-            axios.get('../mentoring/setupSearch_view.do', {
+            axios.get('../mentoring/list_vue.do', {
                 params: {
                     page: this.curpage,
-                    ss: this.ss,
-                    fd: this.fd.trim(),
-                    tech: (this.selectedTech !== -1) ? this.tech_list[this.selectedTech].toLowerCase() : ''
+                    selectedVal: this.selectedVal,
+                    searchWord: this.searchWord.trim(),
+                    job: this.job,
+                    filter: this.filter
                 }
             }).then(response => {
-                console.log(response);
+                console.log(response.data);
                 this.mentor_list = response.data;
-            });
+            })
 
-            axios.get('../mentoring/page_view.do', {
+            axios.get('../mentoring/page_vue.do', {
                 params: {
-                    page: this.curpage
+                    page: this.curpage,
+                    selectedVal: this.selectedVal,
+                    searchWord: this.searchWord.trim(),
+                    job: this.job
                 }
             }).then(response => {
                 console.log(response.data);
@@ -358,30 +403,40 @@ let mentorListApp = Vue.createApp({
                 this.totalpage = response.data.totalpage;
                 this.startPage = response.data.startPage;
                 this.endPage = response.data.endPage;
-            });
+            }).catch(error => {
+                console.log(error.response)
+            })
         },
         prev() {
-        	if (this.curpage === 1) {
+            if (this.curpage === 1) {
                 return;
             }
             this.curpage = this.startPage - 1;
             this.setupSearch();
         },
         next() {
-        	if (this.curpage === this.totalpage) {
+            if (this.curpage === this.totalpage) {
                 return;
             }
             this.curpage = this.endPage + 1;
             this.setupSearch();
         },
         pageChange(page) {
-        	if (page === this.curpage) {
+            if (page === this.curpage) {
                 return;
             }
             this.curpage = page;
             this.setupSearch();
         },
-        selectTech: function (index) {
+        selectedJob(job){
+            this.job = job
+            this.setupSearch()
+        },
+        applyFilter(filter) {
+            this.filter = filter;
+            this.setupSearch()
+        },
+        selectTech(index) {
             if (this.selectedTech === index) {
                 this.selectedTech = -1;
             } else {

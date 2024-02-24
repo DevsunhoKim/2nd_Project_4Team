@@ -1,6 +1,5 @@
 package com.sist.web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +66,7 @@ public class RecruitmentRestController {
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
-		
+
 		ObjectMapper mapper=new ObjectMapper();
 	  String json=mapper.writeValueAsString(map);
 
@@ -79,19 +78,19 @@ public class RecruitmentRestController {
 	public String company_detail_vue(int rno, int cno) throws Exception {
 		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
-		
+
 		List<RecruitVO> recruits=rService.recruitListData(rno, cno);
 
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
-		
+
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
 
 		return json;
 	}
-	
+
 	@PostMapping(value="recruit_insert_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_insert_vue(RecruitVO vo) throws Exception {
 		String result="";
@@ -103,11 +102,11 @@ public class RecruitmentRestController {
 		}
 		return result;
 	}
-	
+
 	@GetMapping(value="recruit_update_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_update_vue(RecruitVO vo) throws Exception {
 //		rService.recruitUpdate(vo);
-//		
+//
 //		ObjectMapper mapper=new ObjectMapper();
 //		String json=mapper.writeValueAsString(vo);
 //		return json;
@@ -120,7 +119,7 @@ public class RecruitmentRestController {
 		}
 		return result;
 	}
-	
+
 	@GetMapping(value="recruit_delete_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_delete_vue(int rno) {
 		String result="";

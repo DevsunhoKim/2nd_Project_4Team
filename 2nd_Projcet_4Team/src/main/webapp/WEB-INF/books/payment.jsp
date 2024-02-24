@@ -103,7 +103,36 @@
  .hooms-N45 .contents-btn .btnset { max-width: 100%; }
  
  .tableset.tableset-receipt .tableset-table td.tableset-figure figure img { width: 100%; height: 100%; object-fit: scale-down; }
+
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.button {
+    width: 33px; /* 버튼의 가로 너비를 33px로 조정 */
+    height: 30px; /* 버튼의 세로 높이를 30px로 조정 */
+    background-color: #f2f2f2;
+    border: 1px solid #d1d1d1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.quantity-input {
+    width: 35px; /* 입력 필드의 가로 너비를 40px로 줄임 */
+    text-align: center;
+    margin: 0 5px; /* 버튼과 입력 필드 사이의 간격을 5px로 줄임 */
+    border: 1px solid #d1d1d1;
+}
+
+
+
+
 
   </style>
 </head>
@@ -151,11 +180,21 @@
                   </td>
                   <td class="td-border-bottom">
                     <strong>수량</strong>
-                    {{ quantity }}
+                   
+               <div id="app" class="quantity-control">
+    <button @click="decreaseQuantity" class="button" style="width:33px;height: 30px;background-color: black;color:white">-</button>
+    <input type="text" v-model="quantity" class="quantity-input" style="width:45px;height: 30px;text-align: center">
+    <button @click="increaseQuantity" class="button" style="width:33px;height: 30px;background-color: black;color:white">+</button>
+</div>
+                 
+                   
+                   
+      
+       
                   </td>
                   <td class="tableset-dark">
-                    <strong>상품금액</strong>
-                    {{ totalPrice }}
+                    <strong>총 금액</strong>
+                    {{ totalPrice.toLocaleString('ko-KR') }}
                   </td>
                 </tr>
               </tbody>
@@ -321,7 +360,7 @@
 let paymentApp = Vue.createApp({
   data() {
     return {
-      no: ${no}, // 책 번호를 Vue 인스턴스의 데이터로 설정
+      no: ${no}, // Vue 인스턴스의 데이터로 책 번호 설정
       detail_data: {}, // 책 상세 정보를 저장할 객체 (빈 객체로 초기화)
       quantity: 1, // 선택한 책의 수량
       totalPrice: 0, // 총 가격
@@ -333,7 +372,8 @@ let paymentApp = Vue.createApp({
   },
   mounted() {
     this.fetchBookDetail(); // 컴포넌트가 마운트되면 책 상세 정보를 가져옵니다.
-    IMP.init("imp41460687");
+    IMP.init("imp41460687"); // 아임포트 초기화
+    
   },
   methods: {
     // 서버에서 책 상세 정보를 가져오는 메서드
@@ -344,9 +384,14 @@ let paymentApp = Vue.createApp({
         }
       })
       .then(response => {
-        this.detail_data = response.data.detail_data; // 응답 데이터에서 책 상세 정보를 추출하여 저장
-        this.sessionId = response.data.sessionId; // 응답 데이터에서 사용자 세션 ID를 추출하여 저장
-        this.calculateTotalPrice(); // 책 상세 정보를 바탕으로 총 가격 계산
+    	  this.detail_data = response.data.detail_data; // 응답 데이터에서 책 상세 정보를 추출하여 저장
+    	  console.log("책 상세 정보:", this.detail_data); // 콘솔에 책 상세 정보 출력
+
+    	  this.sessionId = response.data.sessionId; // 응답 데이터에서 사용자 세션 ID를 추출하여 저장
+    	  console.log("세션 ID:", this.sessionId); // 콘솔에 세션 ID 출력
+
+    	  this.calculateTotalPrice(); // 책 상세 정보를 바탕으로 총 가격 계산
+    	  console.log("총 가격:", this.totalPrice); // 콘솔에 총 가격 출력
       })
       .catch(error => {
         console.error("책 상세 정보 가져오기 실패:", error); // 오류 발생 시 콘솔에 오류 메시지 출력
@@ -381,49 +426,68 @@ let paymentApp = Vue.createApp({
         }).open();
     },
     requestPay() {
-        let vm = this; // Vue 인스턴스를 변수에 저장하여 함수 내에서 사용
+        let vm = this; // Store the Vue instance in a variable and use it within the function
         IMP.request_pay({
             pg: 'html5_inicis',
             pay_method: 'card',
             merchant_uid: 'merchant_' + new Date().getTime(),
-            name: '주문 상품명', // 상품명을 올바르게 수정해주세요
-            amount: this.totalPrice, // 총 결제 금액은 totalPrice로 설정
+            name: 'order product name',
+            amount: this.totalPrice,
             buyer_email: 'iamport@siot.do',
-            buyer_name: '구매자 이름', // 구매자 이름을 올바르게 수정해주세요
+            buyer_name: 'buyer name',
             buyer_tel: '010-1234-5678',
-            buyer_addr: '구매자 주소', // 구매자 주소를 올바르게 수정해주세요
-            buyer_postcode: '구매자 우편번호', // 구매자 우편번호를 올바르게 수정해주세요
+            buyer_addr: 'Buyer address',
+            buyer_postcode: 'Buyer postcode',
             app_scheme: 'iamporttest'
         }, function (rsp) {
+            // For testing, treat both success and failure as success and execute the success logic.
+            vm.completePurchase(); // Execute the purchase completion logic.
             if (rsp.success) {
-                var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
-                console.log(msg);
-                // 결제 성공시 추가적으로 수행할 작업을 여기에 추가할 수 있습니다.
+                alert('결제가 완료되었습니다.');
             } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-                console.error(msg);
-                // 결제 실패시 추가적으로 수행할 작업을 여기에 추가할 수 있습니다.
+                alert('결제가 취소되었습니다. (테스트 페이지에서는 취소도 성공 로직으로 처리됩니다.)');
+            }
+            // Redirect to the payment success page for both cases.
+            window.location.href = '../books/payment_ok.do';
+        });
+    },
+
+    completePurchase() {
+        // 구매 정보 객체 생성
+        const purchaseData = {
+            userid: this.sessionId,
+            no: this.detail_data.no,
+            quantity: this.quantity,
+            totalPrice: this.totalPrice
+        };
+
+        // 서버에 구매 정보 전송
+        axios.post('../books/pay_ok.do', purchaseData)
+        .then(response => {
+            if(response.data.status === 'success') {
+                // 서버로부터 성공 응답을 받았을 때, 결제 성공 페이지로 이동
+                window.location.href = '../books/payment_ok.do';
+            } else {
+                // 서버 처리 실패 응답
+                alert('서버에서 구매 정보 처리에 실패하였습니다.');
             }
         })
+        .catch(error => {
+            console.error('구매 정보 전송 실패:', error);
+        });
     }
-
-    
-
   },
   computed: {
     // 책 가격을 형식화하여 반환하는 계산된 속성
     formattedPrice() {
       return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(this.detail_data.price);
-      return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(this.totalPrice);
+      // 총 가격을 형식화하여 반환하는 계산된 속성도 필요하다면 여기에 구현 추가
     }
   }
 }).mount('#paymentApp'); // Vue 애플리케이션을 마운트할 요소의 ID
 </script>
+
+
 
   
   <script src="../books/js/setting.js"></script>

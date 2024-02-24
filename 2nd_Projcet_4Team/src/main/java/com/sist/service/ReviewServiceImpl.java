@@ -16,7 +16,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public List<ReviewVO> reviewListData(int no,int cateno) {
 		// TODO Auto-generated method stub
-		return dao.reviewListData(no, cateno); 
+		return dao.reviewListData(no, cateno);
 	}
 
 	@Override
