@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +15,11 @@ import com.sist.vo.MentorVO;
 @Controller
 @RequestMapping("mentoring/")
 public class MentoringController {
-	private MentorService mService;
+	private MentorService service;
 
     @Autowired
-    public MentoringController(MentorService mService) {
-    	this.mService = mService;
+    public MentoringController(MentorService service) {
+    	this.service = service;
     }
 
 	@GetMapping("list.do")
@@ -27,7 +28,9 @@ public class MentoringController {
 	}
 
 	@GetMapping("detail.do")
-	public String mentor_detail() {
+	public String mentor_detail(int mno,Model model) {
+		MentorVO vo = service.mentorDetailData(mno);
+		model.addAttribute("vo", vo);
 		return "mentoring/detail";
 	}
 
@@ -39,15 +42,8 @@ public class MentoringController {
 	@PostMapping("mentor_join_submit.do")
 	public String mentor_submit(MentorVO vo,Principal p) {
 		String userId = p.getName();
-		// String userId = (String)session.getAttribute("userId");
-		/*
-		 * String sessionId = "";
-		 * if(userId==null) sessionId="";
-		 * else sessionId =
-		 * userId;
-		 */
 		vo.setUserId(userId);
-    	mService.enrollMentor(vo);
+    	service.enrollMentor(vo);
     	return "mentoring/enrollment_ok";
 	}
 }
