@@ -36,6 +36,11 @@ public class B_CartDAO {
 	{
 	    mapper.insertCartItem(vo);
 	}
+	
+	public B_CartVO pay_ok(int rno)
+	{
+		return mapper.pay_ok(rno);
+	}
 
 
 }

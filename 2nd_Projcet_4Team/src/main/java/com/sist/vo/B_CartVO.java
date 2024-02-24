@@ -6,7 +6,7 @@ import lombok.Data;
 public class B_CartVO {
 	private int rno,quantity,totalPrice,isSale;
 	private Date regdate;
-	private String dbday;
+	private String dbday,userId;
 	private BooksVO bvo;
 	private MemberVO mvo;
-}
+} 

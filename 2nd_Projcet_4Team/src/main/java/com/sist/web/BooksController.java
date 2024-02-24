@@ -45,6 +45,12 @@ public class BooksController {
 		model.addAttribute("no",no);
 		return "books/payment";
 	}
+	
+	@GetMapping("books/payment_ok.do")
+	public String book_payment_ok()
+	{
+	   return "books/payment_ok";	
+	}
 
 
 
