@@ -132,16 +132,16 @@
           <h5 class="contents-subtit">멘토 소개</h5>
           <ul class="contents-list">
             <li class="contents-item">
-              <span class="contents-item-name text-with-spacing"><b>- 직무</b>: ${vo.job }</span>
+              <span class="contents-item-name"><b class="text-with-spacing">- 직무</b>: ${vo.job }</span>
             </li>
             <li class="contents-item">
-              <span class="contents-item-name text-with-spacing"><b>- 주요경력</b> : ${vo.career }</span>
+              <span class="contents-item-name"><b class="text-with-spacing">- 주요경력</b> : ${vo.career }</span>
             </li>
             <li class="contents-item">
-              <span class="contents-item-name text-with-spacing"><b>- 부서</b> : ${vo.department }</span>
+              <span class="contents-item-name"><b class="text-with-spacing">- 부서</b> : ${vo.department }</span>
             </li>
             <li class="contents-item">
-              <span class="contents-item-name"><b>- 멘토링 소개</b> : ${vo.intro }</span>
+              <span class="contents-item-name"><b class="text-with-spacing">- 멘토링 소개</b> : ${vo.intro }</span>
             </li>
           </ul>
         </div>
@@ -149,7 +149,7 @@
           <h5 class="contents-subtit">멘토링 가격</h5>
           <ul class="contents-list">
             <li class="contents-item">
-              <span class="contents-item-name">- 1회 멘토링 : 1시간당</span>
+              <span class="contents-item-name"><b class="text-with-spacing">- 1회 멘토링</b> : 1시간당</span>
               <span class="contents-item-price"><fmt:formatNumber value="${vo.pay}" pattern="#,###" />원</span>
             </li>
           </ul>
