@@ -3,23 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.MentorMapper">
-
-    <select id="getMentorListBymap" parameterType="hashmap" resultType="MentorVO">
+	
+	<resultMap id="mentorResultMap" type="MentorVO">
+        <result column="nickname" property="mvo.nickname"/>
+    </resultMap>
+    <select id="getMentorListBymap" parameterType="hashmap" resultMap="mentorResultMap">
         SELECT * FROM (
             SELECT mno, userId, job, career, img, keyword, title, score_avg, nickname, rownum AS num
             FROM (
                 SELECT mno, member.userId, job, career, img, keyword, title, score_avg, nickname
                 FROM Member JOIN Mentor ON member.userId = mentor.userId
                 <where>
-                    <if test="selectedVal != '' and selectedVal != ''">
-                        ${selectedVal} LIKE '%' || #{searchWord} || '%'
-                    </if>
-                    <if test="job != null and job != ''">
-                        job = #{job}
-                    </if>
-                    <if test="selectedVal != '' and selectedVal != '' and job != ''">
-            			${selectedVal} LIKE '%' || #{searchWord} || '%' AND job = #{job}
-            		</if>
+                <choose>
+	                <when test="selectedVal != '' and searchWord != '' and job != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%' AND job = #{job}
+	                </when>
+	                <when test="selectedVal != '' and searchWord != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%'
+	                </when>
+	                <when test="job != null and job != ''">
+	                	job = #{job}
+	                </when>
+            	</choose>
                 </where>
                 ORDER BY 
                 <choose>
@@ -36,15 +41,17 @@
     <select id="getTotalMentorPageBymap" parameterType="hashmap" resultType="int">
         SELECT CEIL(COUNT(*)/8.0) FROM member JOIN mentor ON member.userId = mentor.userId
         <where>
-            <if test="selectedVal != '' and selectedVal != ''">
-                ${selectedVal} LIKE '%' || #{searchWord} || '%'
-            </if>
-            <if test="job != null and job != ''">
-                job = #{job}
-            </if>
-            <if test="selectedVal != '' and selectedVal != '' and job != ''">
-            	${selectedVal} LIKE '%' || #{searchWord} || '%' AND job = #{job}
-            </if>
+            <choose>
+	                <when test="selectedVal != '' and searchWord != '' and job != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%' AND job = #{job}
+	                </when>
+	                <when test="selectedVal != '' and searchWord != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%'
+	                </when>
+	                <when test="job != null and job != ''">
+	                	job = #{job}
+	                </when>
+            	</choose>
         </where>
     </select>
 </mapper>

@@ -111,28 +111,28 @@
 	                <div class="radioset">
 	                  <input id="radioset-a-3" value="mentor3" v-model="img" name="img" class="radioset-input input-line" type="radio">
 	                  <label class="radioset-label" for="radioset-a-3"></label>
-	                  	<img alt="" src="../images/img_basic_mobile_N33_1.png">
+	                  	<img alt="" src="${pageContext.request.contextPath}/images/mentor3.png">
 	                </div>
 	              </div>
 	              <div>
 	                <div class="radioset">
 	                  <input id="radioset-a-4" value="mentor4" v-model="img" name="img" class="radioset-input input-line" type="radio">
 	                  <label class="radioset-label" for="radioset-a-4"></label>
-	                  	<img alt="" src="../images/img_basic_mobile_N33_1.png">
+	                  	<img alt="" src="${pageContext.request.contextPath}/images/mentor4.png">
 	                </div>
 	              </div>
 	              <div>
 	                <div class="radioset">
 	                  <input id="radioset-a-5" value="mentor5" v-model="img" name="img" class="radioset-input input-line" type="radio">
 	                  <label class="radioset-label" for="radioset-a-5"></label>
-	                  	<img alt="" src="../images/img_basic_mobile_N33_1.png">
+	                  	<img alt="" src="${pageContext.request.contextPath}/images/mentor5.png">
 	                </div>
 	              </div>
 	              <div>
 	                <div class="radioset">
 	                  <input id="radioset-a-6" value="mentor6" v-model="img" name="img" class="radioset-input input-line" type="radio">
 	                  <label class="radioset-label" for="radioset-a-6"></label>
-	                  	<img alt="" src="../images/img_basic_mobile_N33_1.png">
+	                  	<img alt="" src="${pageContext.request.contextPath}/images/mentor6.png">
 	                </div>
 	              </div>
 	            </div>

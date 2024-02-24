@@ -15,8 +15,6 @@ package com.sist.vo;
 	rev_cnt NUMBER NULL
  */
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
@@ -24,5 +22,6 @@ public class MentorVO {
 	private int mno,pay,follower,rev_cnt;
 	private double score_avg;
 	private String userId,job,career,department,img,title,intro,keyword;
-	/* private List<String> keyword; */
+	private String[] keywords;
+	private MemberVO mvo = new MemberVO();
 }

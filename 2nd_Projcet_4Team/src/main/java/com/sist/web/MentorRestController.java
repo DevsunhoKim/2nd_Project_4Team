@@ -29,9 +29,9 @@ public class MentorRestController {
     }
     
     @GetMapping(value = "list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String mentoring_list(int page,String selectedVal,String searchWord,String job, HttpSession session) throws JsonProcessingException {
+	public String mentoring_list(int page,String selectedVal,String searchWord,String job, String filter, HttpSession session) throws JsonProcessingException {
 		String userId=(String) session.getAttribute("userId");
-		List<MentorVO> json = service.getMentorListBymap(page,selectedVal,searchWord,job,userId);
+		List<MentorVO> json = service.getMentorListBymap(page,selectedVal,searchWord,job,filter,userId);
 		return objectMapper.writeValueAsString(json);
 	}
     

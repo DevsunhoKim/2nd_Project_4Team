@@ -73,7 +73,7 @@
         <div class="tabset tabset-brick">
               <ul class="tabset-list tabset-sm tabset-fill">
               <li class="tabset-item">
-					  <a class="tabset-link" @click="selectedJob()">
+					  <a class="tabset-link" @click="selectedJob('')">
 					    <span>전체</span>
 					  </a>
 					</li>
@@ -119,7 +119,7 @@
 	      </li>
 	      <li class="tabset-item">
 	        <a class="tabset-link" @click="applyFilter('score_avg')">
-	          <span>리뷰많은순</span>
+	          <span>평점높은순</span>
 	        </a>
 	      </li>
 	      <li class="tabset-item">
@@ -131,220 +131,57 @@
 	  </div>
 	  
 	  <div class="cardset-wrapper">
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
+		<div class="cardset cardset-user" v-for="vo in mentor_list">
+			<a :href="'../mentoring/detail.do?mno='+vo.mno">
 		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
+		        <!--  <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고"> -->
+		         <span class="width-100 bold-and-large">{{vo.career}}</span>
 		      </figure>
 		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
+		        <img class="cardset-img" :src="'../images/'+vo.img+'.png'" alt="프로필 이미지">
 		      </figure>
 		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
+		      	<h3><span>{{vo.mvo.nickname}}</span> 멘토</h3>
+		        <h4>{{vo.job}}</h4>
 		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
+		      <p class="cardset-text">{{vo.title.length > 25 ? vo.title.substring(0, 25) + '...' : vo.title}}</p>
 		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
+		      	<li v-for="kwd in vo.keywords.slice(1, 8)">{{kwd}}</li>
 		      </ul>
 		    </a>
 		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
 		</div>
 		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-		
-		<div class="cardset cardset-user">
-			<a href="../mentoring/detail.do">
-		      <figure class="work-logo">
-		        <img class="width-100" src="../images/img_logo_black.png" alt="전·현직장 로고">
-		      </figure>
-		      <figure class="cardset-figure">
-		        <img class="cardset-img" src="../images/img_basic_mobile_N33_1.png" alt="프로필 이미지">
-		      </figure>
-		      <div class="cardset-profile">
-		      	<h3><span>홍길동</span> 멘토</h3>
-		        <h4>Back-End</h4>
-		      </div>
-		      <p class="cardset-text">네이버웹툰 백엔드 개발자 멘토와 함께 하는 IT/SW 개발과 취준법</p>
-		      <ul class="mentor-stack">
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      	<li>Java</li>
-		      </ul>
-		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
-		</div>
-
 	  </div>
 	</div>
         
-    <nav class="pagiset pagiset-circ">
-      <div class="pagiset-ctrl">
-        <a class="pagiset-link pagiset-first" href="javascript:void(0)">
-          <span class="visually-hidden">처음</span>
-        </a>
-      </div>
-      <div class="pagiset-ctrl">
-        <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
-          <span class="visually-hidden">이전</span>
-        </a>
-      </div>
-      <div class="pagiset-list">
-        <a class="pagiset-link active-fill" href="javascript:void(0)">1</a>
-        <a class="pagiset-link" href="javascript:void(0)">2</a>
-        <a class="pagiset-link" href="javascript:void(0)">3</a>
-      </div>
-      <div class="pagiset-ctrl">
-        <a class="pagiset-link pagiset-next" href="javascript:void(0)">
-          <span class="visually-hidden">다음</span>
-        </a>
-      </div>
-      <div class="pagiset-ctrl">
-        <a class="pagiset-link pagiset-last" href="javascript:void(0)">
-          <span class="visually-hidden">마지막</span>
-        </a>
-      </div>
-    </nav>
+    <nav class="pagiset pagiset-line" style="margin-bottom: 3rem">
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-first" href="javascript:void(0)" @click="pageChange(1)">
+              <span class="visually-hidden">처음</span>
+            </a>
+          </div>
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-prev" href="javascript:void(0)" v-if="curpage > 1" @click="pageChange(curpage - 1)">
+              <span class="visually-hidden">이전</span>
+            </a>
+          </div>
+          <div class="pagiset-list">
+            <a class="pagiset-link" :class="{'active-fill': curpage === i}" href="javascript:void(0)" v-for="i in range(startPage, endPage)" :key="i" @click="pageChange(i)">
+              {{ i }}
+            </a>
+          </div>
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-next" href="javascript:void(0)" v-if="curpage < totalpage" @click="pageChange(curpage + 1)">
+              <span class="visually-hidden">다음</span>
+            </a>
+          </div>
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-last" href="javascript:void(0)" @click="pageChange(totalpage)">
+              <span class="visually-hidden">마지막</span>
+            </a>
+          </div>
+        </nav>
     
   </div>
 </div>
@@ -427,6 +264,13 @@ let mentorListApp = Vue.createApp({
             }
             this.curpage = page;
             this.setupSearch();
+        },
+        range(start, end) {
+            let arr = [];
+            for (let i = start; i <= end; i++) {
+              arr.push(i);
+            }
+            return arr;
         },
         selectedJob(job){
             this.job = job

@@ -18,10 +18,6 @@ public class MentorDAO {
         this.mapper = mapper;
     }
 
-    public MentorVO getMentorByID(String userId) {
-    	return mapper.getMentorByID(userId);
-    }
-
     public void enrollMentor(MentorVO vo) {
     	mapper.enrollMentor(vo);
     	mapper.updateMentorById(vo.getUserId());
@@ -33,5 +29,9 @@ public class MentorDAO {
 
 	public int getTotalMentorPageBymap(Map map) {
 		return mapper.getTotalMentorPageBymap(map);
+	}
+	
+	public MentorVO mentorDetailData(int mno) {
+		return mapper.mentorDetailData(mno);
 	}
 }

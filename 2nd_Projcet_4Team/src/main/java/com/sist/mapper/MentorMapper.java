@@ -5,50 +5,19 @@ import org.apache.ibatis.annotations.*;
 import com.sist.vo.MentorVO;
 
 public interface MentorMapper {
-/*	@Select("<script>"
-		    + "SELECT * FROM ("
-		    + "    SELECT mno, userId, job, career, img, keyword, title, score_avg, nickname, ROWNUM AS num "
-		    + "    FROM ("
-		    + "        SELECT mno, member.userId, job, career, img, keyword, title, score_avg, nickname "
-		    + "        FROM Member, Mentor "
-		    + "        WHERE member.userId = mentor.userId "
-		    + "        <if test='selectedVal != null and searchWord != null'>"
-		    + "            AND #{selectedVal} LIKE '%' || #{searchWord} || '%'"
-		    + "        </if>"
-		    + "        <if test='job != null'>"
-		    + "            AND job = #{job}"
-		    + "        </if>"
-		    + "        ORDER BY "
-		    + "        <choose>"
-		    + "            <when test='filter == \"rev_cnt\"'> rev_cnt DESC </when>"
-		    + "            <when test='filter == \"score_avg\"'> score_avg DESC </when>"
-		    + "            <when test='filter == \"follower\"'> follower DESC </when>"
-		    + "            <otherwise> rev_cnt DESC </otherwise>"
-		    + "        </choose>"
-		    + "    )"
-		    + ")"
-		    + "WHERE num BETWEEN #{start} AND #{end}"
-		    + "</script>") */
 	public List<MentorVO> getMentorListBymap(Map map);// 멘토 목록 검색(param : start, end, selectedVal, searchWord, job)
-
-/*	@Select("<script>"
-		    + "SELECT CEIL(COUNT(*)/8.0) FROM member,mentor "
-		    + "WHERE "
-		    + "    member.userId = mentor.userId "
-		    + "    <if test='selectedVal != null and searchWord != null'>"
-		    + "        AND #{selectedVal} LIKE '%' || #{searchWord} || '%'"
-		    + "    </if>"
-		    + "    <if test='job != null'>"
-		    + "        AND job = #{job}"
-		    + "    </if>"
-		    + "</script>")*/
+	
 	public int getTotalMentorPageBymap(Map map);// 총 페이지
-		
-		
-	@Select("SELECT userId,userPwd,userName,nickname,birthday,gender,email,phone,post,addr,detail_addr,hope_job,regdate " +
-            "FROM MEMBER " +
-            "WHERE userId=#{userId}")
-    public MentorVO getMentorByID(String userId); // 아이디로 멘토정보 조회
+	
+	
+	@Results({
+		  @Result(column="nickname", property="mvo.nickname"),
+	})
+	@Select("SELECT m.nickname, ment.* "
+			+ "FROM member m "
+			+ "JOIN mentor ment ON m.userId = ment.userId "
+            + "WHERE mno=#{mno}")
+    public MentorVO mentorDetailData(int mno); // mno로 멘토정보 조회
 
     @Insert("INSERT INTO mentor(mno,pay,userId,job,career,department,img,keyword,title,intro) VALUES (" +
     		"mt_mno_seq.nextval,"

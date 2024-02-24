@@ -18,29 +18,32 @@ public class MentorServiceIml implements MentorService{
     }
 
     @Override
-	public MentorVO getMentorByID(String userId) {
-    	return dao.getMentorByID(userId);
-    }
-
-    @Override
 	public void enrollMentor(MentorVO vo) {
     	dao.enrollMentor(vo);
     }
 
 	@Override
-	public List<MentorVO> getMentorListBymap(int page,String selectedVal,String searchWord,String job,String userId) {
+	public List<MentorVO> getMentorListBymap(int page,String selectedVal,String searchWord,String job,String filter,String userId) {
 		int rowSize=8;
         int start=(rowSize*page)-(rowSize-1);
         int end=rowSize*page;
-
+        
         Map<String, Object> map=new HashMap<>();
         map.put("start", start);
         map.put("end", end);
         map.put("selectedVal", selectedVal);
         map.put("searchWord", searchWord);
+        map.put("filter", filter);
         map.put("job", job);
         
 		List<MentorVO> list = dao.getMentorListBymap(map);
+		for(MentorVO vo : list) {
+			String kwd = vo.getKeyword();
+			if(kwd != null) {
+				String[] kList = kwd.split("#");
+				vo.setKeywords(kList);
+			}
+		}
 		
 		return list;
 	}
@@ -69,5 +72,16 @@ public class MentorServiceIml implements MentorService{
 		map.put("endPage", endPage);
 		
 		return map;
+	}
+
+	@Override
+	public MentorVO mentorDetailData(int mno) {
+		MentorVO vo = dao.mentorDetailData(mno);
+		String kwd = vo.getKeyword();
+		if(kwd != null) {
+			String[] kList = kwd.split("#");
+			vo.setKeywords(kList);
+		}
+		return vo;
 	}
 }
