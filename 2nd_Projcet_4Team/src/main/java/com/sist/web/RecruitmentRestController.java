@@ -79,11 +79,8 @@ public class RecruitmentRestController {
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
-<<<<<<< HEAD
 		// Map 객체는 Java에서 키-값 쌍을 저장하는 데 사용되는 인터페이스로 Map에 rno와 cno를 담아 JSON 형태로 응답
-=======
 
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 		ObjectMapper mapper=new ObjectMapper();
 	  String json=mapper.writeValueAsString(map);
 
@@ -97,33 +94,22 @@ public class RecruitmentRestController {
 	// RecruitmentService를 통해 채용 공고 정보와 기업 정보를 가져옴
 		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
-<<<<<<< HEAD
 		
 		// 특정 기업(cno)의 특정 채용 공고(rno) => 여러 개의 채용 정보가 담긴 리스트를 가져오는 메서드
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
+		
 		List<RecruitVO> recruits=rService.recruitListData(rno, cno);
 
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
-<<<<<<< HEAD
 		// Map 객체는 Java에서 키-값 쌍을 저장하는 데 사용되는 인터페이스로 Map에 rno와 cno를 담아 JSON 형태로 응답
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
 
 		return json;
 	}
-<<<<<<< HEAD
 	
 	// 채용 공고 추가
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	@PostMapping(value="recruit_insert_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_insert_vue(RecruitVO vo) throws Exception {
 		String result="";
@@ -135,12 +121,7 @@ public class RecruitmentRestController {
 		}
 		return result;
 	}
-<<<<<<< HEAD
-	
 	// 채용 공고 수정
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	@GetMapping(value="recruit_update_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_update_vue(RecruitVO vo) throws Exception {
 //		rService.recruitUpdate(vo);

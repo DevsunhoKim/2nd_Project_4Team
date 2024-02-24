@@ -36,22 +36,14 @@ public class RecruitmentController {
 		// company_detail 메서드는 recruitment/company_detail 뷰로 이동
 		return "recruitment/company_detail";
 	}
-<<<<<<< HEAD
 	
 	// 채용 공고 작성
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	@GetMapping("recruit_insert.do")
 	public String recruit_insert(RecruitVO vo) {
 		return "recruitment/recruit_insert";
 	}
-<<<<<<< HEAD
 	
 	// 채용 공고 수정
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	@GetMapping("recruit_update.do")
 	public String recruit_update(RecruitVO vo) {
 		return "recruitment/recruit_update";

@@ -29,7 +29,6 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		// TODO Auto-generated method stub
 		return rDao.recruitTotalPage();
 	}
-<<<<<<< HEAD
 	
 	// 검색
 	@Override
@@ -38,9 +37,6 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return rDao.recruitFindData(word);
 	}
 	
-=======
-
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	// 채용 공고 상세 페이지
 	@Override
 	public RecruitVO recuitDetailData(int rno) {

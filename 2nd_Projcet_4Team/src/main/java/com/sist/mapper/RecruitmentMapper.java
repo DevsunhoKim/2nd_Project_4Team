@@ -95,13 +95,10 @@ public interface RecruitmentMapper {
 	// 1. 채용 공고 정보 => recurit 테이블에서 각 rno에 해당하는 채용 공고 정보 가져오기
 	@Select("SELECT * FROM recruit WHERE rno=#{rno}")
 	public RecruitVO recuitDetailData(int rno);
-<<<<<<< HEAD
 	
 	// 2. 기업 정보 => company 테이블에서 각 cno에 해당하는 기업 정보 가져오기
-=======
 
 	// 2. 기업 정보
->>>>>>> branch 'master' of https://github.com/DevsunhoKim/2nd_Project_4Team.git
 	@Select("SELECT * FROM company WHERE cno=#{cno}")
 	public CompanyVO companyDetailData(int cno);
 
