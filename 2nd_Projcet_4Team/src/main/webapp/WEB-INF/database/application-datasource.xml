@@ -17,6 +17,13 @@
         p:password="happy" 
     />
     
+    <!--  트랜잭션 선언 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<bean id="transactionManager"
+	  class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+	  p:dataSource-ref="ds"
+	/>
+    
     <bean id="ssf" 
         class="org.mybatis.spring.SqlSessionFactoryBean" 
         p:dataSource-ref="ds"
