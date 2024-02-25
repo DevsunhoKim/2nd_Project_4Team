@@ -75,6 +75,30 @@
     height: 80px;
     display: block;
 }
+#Mreserve-time {
+    /*margin-top: 20px;*/
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #Mreserve-time div {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  #Mreserve-time span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  #Mreserve-time select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
 </style>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -218,6 +242,39 @@
               </div>
             </div>
             <div class="form-wrap">
+              <h6 class="form-tit">멘토링 시간 <span>*</span>
+              </h6>
+              <div id="Mreserve-time" >
+                        <div>
+                            <span> 시작시간 </span>
+                            <select v-model="str_time" name="str_Mtime">
+                                <option value=9>9시</option>
+                                <option value=10>10시</option>
+                                <option value=11>11시</option>
+                                <option value=12>12시</option>
+                                <option value=13>13시</option>
+                                <option value=14>14시</option>
+                                <option value=15>15시</option>
+                                <option value=16>16시</option>
+                                <option value=17>17시</option>
+                                <option value=18>18시</option>
+                                <option value=19>19시</option>
+                                <option value=20>20시</option>
+                                <option value=21>21시</option>
+                                <option value=22>22시</option>
+                                <option value=23>23시</option>
+                                <option value=24>24시</option>
+                            </select> &nbsp;
+                        </div>
+                        <div>
+                            <span> 종료시간  </span>
+                            <select v-model="end_time" ref="end_time" name="end_Mtime">
+                                <option v-for="num in range(str_time, 24)" :value="num">{{num}}시</option>
+                            </select>
+                        </div>
+                    </div>
+            </div>
+            <div class="form-wrap">
                 <h6 class="form-tit">멘토링 소개 
                 </h6>
                 <div class="inputset inputset-round">
@@ -241,7 +298,7 @@
       </div>
     </div>
 <script>
-  let mentor_enrollmentApp=Vue.createApp({
+let mentor_enrollmentApp=Vue.createApp({
 	  data(){
 		  return {
 			  img:'',
@@ -251,6 +308,8 @@
 			  keyword:'',
 			  title:'',
 			  intro:'',
+			  str_time: '9',
+	          end_time: '',
 			  pay:''
 		  }
 	  },
@@ -271,11 +330,21 @@
 			}
 			else if(this.career===''){
 				this.$refs.career.focus()
-			}
+			}else if (!this.end_time) {
+                alert('종료 시간을 선택해주세요.');
+                return;
+            }
 			e.preventDefault()
 		  },
 		  selectJob(job) {
               this.selectedJob = job; 
+          },
+          range: function (start, end) {
+              const arr = [];
+              for (let num = start; num <= end; num++) {
+                  arr.push(num);
+              }
+              return arr;
           }
 	  }
   }).mount("#mentor_enrollmentApp")

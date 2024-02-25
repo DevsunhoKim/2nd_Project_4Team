@@ -203,7 +203,7 @@
 .campland-N21 .contents-inner { padding: 8rem 1.6rem; }
 .campland-N21 .form-wrap+.form-wrap { margin-top: 1.6rem; }
 .campland-N21 .form-wrap .form-tit { min-width: 8.9rem; }
-.campland-N21 .contents-form-group { display: flex; width: 100%; }
+.campland-N21 .contents-form-group { /*display: flex;*/ width: 100%; }
 .campland-N21 .contents-form-group+.contents-form-group { margin-left: 8rem; }
 .campland-N21 .form-wrap .inputset { width: 100%; }
 .campland-N21 .inputset-textarea { height: 12rem; }
@@ -218,3 +218,96 @@
  .campland-N21 .contents-form-group { flex-direction: column; gap: 0.8rem; }
  .campland-N21 .contents-confirm { margin-top: 4rem; text-align: center; }
 }
+
+/* 멘토링 예약
+    #reserveApp .rounded {
+        -moz-border-radius: 20px 20px 20px 20px;
+        border-radius: 20px 20px 20px 20px;
+        border: solid 1px rgb(121, 24, 242);
+        background-color: rgb(121, 24, 242);
+        padding: 10px;
+        color: #ffffff;
+    }
+
+    #reserveApp .inputset.inputset-round .inputset-input {
+        border-radius: 2.6rem;
+        width: 70%;
+        padding: 0 2rem;
+    }
+
+    #reserveApp .selectedInfo {
+        font-size: 18px;
+        font-weight: 500;
+        color: rgb(121, 24, 242);
+        letter-spacing: -0.05em;
+    }
+
+    #reserveApp .time_info_box {
+        position: relative;
+        display: inline-block;
+        width: 55px;
+        height: 35px;
+        background-color: #E6E0FA;
+        border: rgb(121, 24, 242);
+        font-size: 13px;
+        line-height: 33px;
+        text-align: center;
+        color: #fff;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 0px !important;
+    }
+
+    #reserveApp .time-select {
+        background-color: rgb(121, 24, 242);
+        color: white;
+    }
+
+    #reserveApp .time-unable {
+        background-color: #eaeaea;
+        color: white;
+        cursor: default;
+    }
+
+    #reserveApp .d-none {
+        display: none !important
+    }
+
+    #reserveApp .reserve_tit {
+        font-size: 4.5rem;
+        font-weight: 300;
+    }
+
+    #reserveApp .textset {
+        position: relative;
+        margin-top: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    #reserveApp .btnset {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 18rem;
+        padding: 0 2rem;
+        height: var(--ht-lg);
+        font-size: var(--fs-p3);
+        color: var(--white);
+        background-color: rgb(121, 24, 242);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(121, 24, 242);
+        border-radius: 0.6rem;
+        font-weight: 500;
+        letter-spacing: var(--letter-spacing);
+        transition: .3s;
+    }
+
+    #reserveApp .btnset.btnset-line.btnset-black {
+        border-color: rgb(121, 24, 242);
+        color: rgb(121, 24, 242);
+    }
+
+ */

@@ -1,15 +1,10 @@
 package com.sist.web;
 
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,4 +35,11 @@ public class MentorRestController {
 		Map json = service.getTotalMentorPageBymap(page,selectedVal,searchWord,job);
 		return objectMapper.writeValueAsString(json);
 	}
+
+	@PostMapping(value="reservation_vue.do",produces = "text/plain;charset=UTF-8")
+	 public String mentor_reservation_vue(int mno, String rDate, int totalAmount, String inquiry,HttpSession session) {
+		String userId=(String) session.getAttribute("userId");
+		service.insertMentoring(mno, rDate, totalAmount, inquiry, userId);
+		return "yes";
+	  }
 }

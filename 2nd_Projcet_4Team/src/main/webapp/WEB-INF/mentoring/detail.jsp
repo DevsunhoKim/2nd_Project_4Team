@@ -105,7 +105,7 @@ function reserve() {
         alert("로그인 후 이용해주세요.");  
         location.href = "../member/login.do";
     } else {
-        location.href = "../mentoring/reservation.do?mno=${vo.mno}";
+        location.href = "../mentoring/reservation.do?mno=${vo.mno}&str_Mtime=${vo.str_Mtime}&end_Mtime=${vo.end_Mtime}&pay=${vo.pay}";
     }
 }
 </script>

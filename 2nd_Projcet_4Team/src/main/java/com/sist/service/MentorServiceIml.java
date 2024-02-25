@@ -4,8 +4,10 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.dao.MentorDAO;
+import com.sist.vo.MentorReserveVO;
 import com.sist.vo.MentorVO;
 
 @Service
@@ -44,7 +46,6 @@ public class MentorServiceIml implements MentorService{
 				vo.setKeywords(kList);
 			}
 		}
-		
 		return list;
 	}
 
@@ -83,5 +84,18 @@ public class MentorServiceIml implements MentorService{
 			vo.setKeywords(kList);
 		}
 		return vo;
+	}
+	
+	@Transactional
+	@Override
+	public void insertMentoring(int mno, String rDate, int totalAmount, String inquiry, String userId) {
+		MentorReserveVO vo=new MentorReserveVO();
+        vo.setMno(mno);
+		vo.setRDate(rDate);
+		vo.setTotalAmount(totalAmount);
+		vo.setInquiry(inquiry);
+		vo.setUserId(userId);
+        dao.insertMentoring(vo); 
+        dao.increaseRevCnt(mno);
 	}
 }

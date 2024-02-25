@@ -307,8 +307,15 @@
 .glamping-N9 .tabset-text {display: flex; justify-content: right; margin: 2rem 0;}
 .glamping-N9 .cardset-wrapper{position: relative; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; gap: 2rem;}
 .glamping-N9 .swiper-slide { width: 40rem; margin-right: 4rem; }
-.glamping-N9 .cardset{width: 23.8%; height: calc(100% - 6.8rem); padding: 2rem; border-radius: 1rem; border: 1px solid #eee; background-color: #f9f9f9;}
-.glamping-N9 .cardset .work-logo{position: absolute; top: 0; right: 2rem; max-width: 10rem; height: 4rem; padding: 1rem; border-radius:  0 0 1rem 1rem; background: #fff; display: flex; justify-content: center; align-items: center;  border: 1px solid;}
+ .glamping-N9 .cardset {
+    width: 23.8%;
+    height: calc(100% - 6.8rem);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+}
+.glamping-N9 .cardset .work-logo{position: absolute; top: 0; right: 2rem; max-width: 10rem; height: 4rem; padding: 1rem; border-radius:  0 0 1rem 1rem; background: #fff; display: flex; justify-content: center; align-items: center;  border: 1px solid #872ed2;}
 .glamping-N9 .cardset.cardset-user .cardset-figure{width: 10rem; height: 10rem; margin: 0 0 2rem 0;}
 .glamping-N9 .cardset.cardset-user::after{display:none}
 .glamping-N9 .cardset.cardset-user .cardset-profile{padding: 0; text-align: left;}
@@ -477,5 +484,6 @@
 #mentorList .bold-and-large {
     font-weight: bold;
     font-size: 1em; 
+    color: #872ed2;
 }
 

@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Data
 public class MentorVO {
-	private int mno,pay,follower,rev_cnt;
+	private int mno,pay,follower,rev_cnt,str_Mtime,end_Mtime;
 	private double score_avg;
 	private String userId,job,career,department,img,title,intro,keyword;
 	private String[] keywords;

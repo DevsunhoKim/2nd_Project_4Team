@@ -9,4 +9,5 @@ public interface MentorService {
     public List<MentorVO> getMentorListBymap(int page,String selectedVal,String searchWord,String job,String filter,String userId);
     public Map getTotalMentorPageBymap(int page,String selectedVal,String searchWord,String job);
     public MentorVO mentorDetailData(int mno);
+	public void insertMentoring(int mno, String rDate, int totalAmount, String inquiry, String userId);
 }

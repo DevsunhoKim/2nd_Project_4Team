@@ -1,7 +1,6 @@
 package com.sist.web;
 
 import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +47,12 @@ public class MentoringController {
 	}
 	
 	@GetMapping("reservation.do")
-	public String mentor_reservation() {
+	public String mentor_reservation(int mno, int str_Mtime, int end_Mtime,Model model,int pay) {
+		model.addAttribute("mno", mno);
+		model.addAttribute("str_Mtime", str_Mtime);
+		model.addAttribute("end_Mtime", end_Mtime);
+		model.addAttribute("pay", pay);
 		return "mentoring/reservation";
 	}
+	
 }
