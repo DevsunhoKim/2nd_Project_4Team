@@ -491,7 +491,6 @@ let paymentApp = Vue.createApp({
 
   
   <script src="../books/js/setting.js"></script>
-  <script src="../books/js/template.js"></script>
   <script src="../books/js/common.js"></script>
   <script src="../books/js/script.js"></script>
 </body>
