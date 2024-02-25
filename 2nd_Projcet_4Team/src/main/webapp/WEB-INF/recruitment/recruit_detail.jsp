@@ -32,14 +32,17 @@
             <div class="recruit-info">
               <a :href="'company_detail.do?rno='+ rno+'&cno='+ cno" class="company-info">
                 <figure class="company-logo">
-                  <img class="width-100" :src="company_detail.logo" alt="기업 로고">
+                  <img class="width-100" :src="company_detail.logo" :title="company_detail.name">
                 </figure>
                 <h3 class="company-name">{{company_detail.name}}</h3>
               </a>
               <h2 class="recruit-tit">{{recruit_detail.title}}</h2>
             </div>
             <!-- <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn" @click="apply(rno)">지원하기</button> -->
-            <button type="button" id="recruitUpdateBtn" class="irecruit-btn" value="수정하기" @click="update()">수정하기</button>
+            <div class="recruit-btn-wrapper">
+	            <button type="button" id="recruitUpdateBtn" class="recruit-btn" value="수정" @click="update(rno)">수정</button>
+	            <button type="button" id="recruitDeleteBtn" class="recruit-btn" value="삭제" @click="delete(rno)">삭제</button>
+            </div>
           </div>
         </div>
 
@@ -89,17 +92,6 @@
                 </figure>
                 <span class="emph">{{recruit_detail.stack_txt.split('|')[index]}}</span>
               </li>
-<!--               <li>Spring Framework</li>
-              <li>AWS</li>
-              <li>Git</li>
-              <li>Github</li>
-              <li>SQL</li>
-              <li>MySQL</li>
-              <li>HTML</li>
-              <li>JavaScript</li>
-              <li>React</li>
-              <li>JPA</li>
-              <li>Linux</li> -->
             </ul>
           </div>
           <div class="recruit-detail-info">
@@ -124,12 +116,12 @@
             
             <div class="recruit-date">
               <h4>마감일</h4>
-              <p>
+              <div>
                 <span class="recruit-icon">
                   <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/8895/8895471.png" alt="마감일">
                 </span>
                 {{recruit_detail.end_date}}
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -178,111 +170,85 @@
             {{company_detail.address}}
           </p>
         </div>
-        <button type="button" id="recruitApplyBtnBottom" class="recruit-btn recruit-apply-btn" @click="apply(rno)">지원하기</button>
+        <button type="button" id="recruitApplyBtnBottom" class="recruit-btn recruit-apply-btn">지원하기</button>
       </div>
-    </div>
-    <div id="dialog" title="지원하기 창">
-      <apply-data v-bind:apply="apply">
-        <!-- <section id="applyForm" class="th-layout-sub">
-			    <div class="content-container">
-			      <figure class="close-btn">
-			        <img class="width-100" src="" alt="닫기">
-			      </figure>
-			      <h2>지원하기</h2>
-			      <form method="" action="">
-			        <h3>지원 정보</h3>
-			        <ul class="apply-info">
-			          <li>
-			            <label for="name">이름</label>
-			            <span class="user-info">심청이</span>
-			            <input type="text" name="name" id="name" class="apply-input" readonly>
-			          </li>
-			          <li>
-			            <label for="age">나이</label>
-			            <span class="user-info">27세</span>
-			            <input type="text" name="age" id="age" class="apply-input" readonly>
-			          </li>
-			          <li>
-			            <label for="sex">성별</label>
-			            <span class="user-info">여성</span>
-			            <input type="text" name="sex" id="sex" class="apply-input" readonly>
-			          </li>
-			          <li>
-			            <label for="email">이메일</label>
-			            <span class="user-info">shim02@codev.com</span>
-			            <input type="text" name="email" id="email" class="apply-input" readonly>
-			          </li>
-			          <li>
-			            <label for="phone">연락처</label>
-			            <span class="user-info">010-1234-5678</span>
-			            <input type="text" name="phone" id="phone" class="apply-input" readonly>
-			          </li>
-			        </ul>
-			        <div class="apply-file">
-			          <h3>지원서 첨부</h3>
-			          <input type="file" name="file" id="file" class="apply-input">
-			          <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
-			        </div>
-			        <div class="apply-btn-wrapper">
-			          <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기">지원하기</button>
-			          <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
-			        </div>
-			      </form>
-			    </div>
-			  </section> -->
-      </apply-data>
+      <!-- <div id="dialog" title="지원하기 창">
+	      <apply-data v-bind:apply="apply">
+	      </apply-data>
+	    </div> -->
+	    <section id="applyForm" class="th-layout-sub">
+	      <div class="content-container">
+	        <h2>지원하기</h2>
+	        <form method="post" action="../recruitment">
+	          <!-- <h3>지원 정보</h3> -->
+	          <ul class="apply-info">
+	            <li class="company-info">
+	              <figure class="company-logo">
+	                <img class="width-100" :src="company_detail.logo" :title="company_detail.name">
+	              </figure>
+	              <span class="company-name">{{company_detail.name}}</span>
+	            </li>
+	            <li class="recruit-info">
+	              <span class="recruit-tit">{{recruit_detail.title}}</span>
+	            </li>
+	            <li class="user-info">
+                <h4>이름</h4>
+                <span class="userName">심청이</span>     
+	            </li>
+	            <li class="user-info">
+                <h4>성별</h4>
+                <span class="gender">여성</span>             
+              </li>
+              <li class="user-info">
+                <h4>나이</h4>
+                <span class="age">27세</span>         
+              </li>
+	            
+	            <!-- <li>
+	              <input type="text" name="age" id="age" class="apply-input" readonly>
+	              <input type="text" name="userName" id="userName" v-model="userName" class="apply-input" readonly>
+	              <input type="text" name="gender" id="gender" v-model="gender" class="apply-input" readonly>
+	            </li> -->
+	            
+	            <li class="user-info">
+	              <h4>연락처</h4>
+	              <span class="phone">010-1234-5678</span>
+	              <!-- <input type="text" name="phone" id="phone" v-model="phone" class="apply-input" readonly> -->
+	            </li>
+	            <li class="user-info">
+	              <h4>이메일</h4>
+	              <span class="email">shim02@codev.com</span>
+	              <!-- <input type="text" name="email" id="email" v-model="email" class="apply-input" readonly> -->
+	            </li>
+	          </ul>
+	          <div class="apply-file">
+	            <h3>지원서 첨부</h3>
+	            <input type="file" name="file" id="file" class="apply-input">
+	            <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
+	          </div>
+	          <div class="apply-btn-wrapper">
+	            <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기">지원하기</button>
+	            <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
+	          </div>
+	        </form>
+	      </div>
+	    </section>
     </div>
   </section>
 <script>
+$(function(){
+    $(".recruit-apply-btn").click(function() {
+      $("#applyForm").show();
+    });
+    
+    $("#applyCancelBtn").click(function() {
+      $("#applyForm").hide();
+    });
+})
+
 const apply={
 	props:['apply'],
-  template:`<section id="applyForm" class="th-layout-sub">
-				    <div class="content-container">
-				      <!-- <figure class="close-btn">
-				        <img class="width-100" src="" alt="닫기">
-				      </figure> -->
-				      <h2>지원하기</h2>
-				      <form method="" action="">
-				        <h3>지원 정보</h3>
-				        <ul class="apply-info">
-				          <li>
-				            <label for="name">이름</label>
-				            <span class="user-info">심청이</span>
-				            <!-- <input type="text" name="name" id="name" class="apply-input" readonly> -->
-				          </li>
-				          <li>
-				            <label for="age">나이</label>
-				            <span class="user-info">27세</span>
-				            <!-- <input type="text" name="age" id="age" class="apply-input" readonly> -->
-				          </li>
-				          <li>
-				            <label for="sex">성별</label>
-				            <span class="user-info">여성</span>
-				            <!-- <input type="text" name="sex" id="sex" class="apply-input" readonly> -->
-				          </li>
-				          <li>
-				            <label for="email">이메일</label>
-				            <span class="user-info">shim02@codev.com</span>
-				            <!-- <input type="text" name="email" id="email" class="apply-input" readonly> -->
-				          </li>
-				          <li>
-				            <label for="phone">연락처</label>
-				            <span class="user-info">010-1234-5678</span>
-				            <!-- <input type="text" name="phone" id="phone" class="apply-input" readonly> -->
-				          </li>
-				        </ul>
-				        <div class="apply-file">
-				          <h3>지원서 첨부</h3>
-				          <input type="file" name="file" id="file" class="apply-input">
-				          <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
-				        </div>
-				        <div class="apply-btn-wrapper">
-				          <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기">지원하기</button>
-				          <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
-				        </div>
-				      </form>
-				    </div>
-				  </section>`
+  template:``
 }
 
 let recruitmentDetailApp=Vue.createApp({
@@ -293,7 +259,11 @@ let recruitmentDetailApp=Vue.createApp({
 			company_detail:{},
 			rno:${rno},
 			cno:${cno},
-			isShow:false
+			isShow:false,
+			userName:'',
+			gender:'',
+			email:'',
+			phone:''
 		}
 	},
 	mounted(){
@@ -366,28 +336,9 @@ let recruitmentDetailApp=Vue.createApp({
 	    // 두 번째 공백 이후의 부분을 지우고 첫 번째 부분만 반환
 	    const area=addressParts.slice(0, 2).join(' ');
 	    return area
-		},
-		apply(rno) {
-			this.isShow=true
-			let _this=this
-			axios.get('../recruitment/recruit_detail_vue.do', {
-				params:{
-					rno:this.rno,
-					cno:this.cno
-				}
-			}).then(function(response){
-				console.log(response.data)
-				_this.apply=response.data
-				_this.isShow=true
-				$('#dialog').dialog({
-					autoOpen:false,
-					modal:true
-				}).dialog('open')
-			})
-		},
+		},	
 		share(){
 			const shareLink=window.location.href;
-
 	      // 클립보드에 복사
 	      const textarea=document.createElement('textarea');
 	      textarea.value=shareLink;
@@ -395,7 +346,6 @@ let recruitmentDetailApp=Vue.createApp({
 	      textarea.select();
 	      document.execCommand('copy');
 	      document.body.removeChild(textarea);
-	
 	      alert('링크가 복사되었습니다!');
 			},
 			update(){
@@ -405,12 +355,45 @@ let recruitmentDetailApp=Vue.createApp({
 	    	location.href="../recruitment/reruit_list_vue.do"
 	    }
 	 },
+	 /*apply() {
+		 $('#applyForm').onClick().show()
+      this.isShow=true
+     let _this=this
+     axios.get('../recruitment/recruit_detail_vue.do', {
+       params:{
+         rno:this.rno,
+         cno:this.cno
+       }
+     }).then(function(response){
+       console.log(response.data)
+       _this.apply=response.data
+       _this.isShow=true
+       $('#dialog').dialog({
+         autoOpen:false,
+         modal:true
+       }).dialog('open')
+     }) 
+   },*/
+   submit(){
+  	 axios.post('../recruitment/apply_insert_vue.do', null, {
+  		 params:{
+  			 userName:this.userName,
+  			 gender:this.gender,
+  			 phone:this.phone,
+  			 email:this.email
+  		 }
+  	 }).then(response=>{
+  		 if(response.data==='yes') {
+  			 location.href="../recruitment/recruit.detail.do";
+  		 } else {
+  			 alert("response.data")
+  		 }
+  	 })
+   }
 	/* components:{
     'apply-data':apply
   	} */
-}).component('apply-data', apply); // apply 컴포넌트 등록
-
-recruitmentDetailApp.mount('#recruitmentDetailApp');
+}).mount('#recruitmentDetailApp');
 </script>
 </body>
 </html>

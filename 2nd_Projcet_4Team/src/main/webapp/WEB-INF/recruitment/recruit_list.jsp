@@ -134,11 +134,19 @@
                 </ul>
               </div>
             </div>
-            <ul class="sort-order">
-              <li class="selected">최신순</li>
-              <li>인기순</li>
-              <li>마감일순</li>
+            <div class="tabset tabset-text">
+            <ul class="tabset-list">
+              <li class="selected tabset-item">
+			            <span class="tabset-link active">최신순</span>
+              </li>
+              <li class="tabset-item">
+                  <span class="tabset-link">인기순</span>
+              </li>
+              <li class="tabset-item">
+                  <span class="tabset-link">마감일순</span>
+              </li>
             </ul>
+            </div>
           </div>
 
           <div class="col-group">

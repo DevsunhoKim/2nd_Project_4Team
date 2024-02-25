@@ -188,8 +188,8 @@
             <div class="accordset-item">
               <div class="accordset-header">
                 <div class="accordset-button btn">
-                  <h4 class="interview-tit">면접 후기 제목1<br>
-                    <span class="interview-date">2024-02-14</span></h4>
+                  <h4 class="interview-tit">{{ivo.title}}<br>
+                    <span class="interview-date">{{ivo.regdate}}</span></h4>
                 </div>
               </div>
               <div class="accordset-body">
@@ -199,108 +199,28 @@
                       <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
                       </figure>
-                      <span>경력 </span><span class="emph">신입</span>
+                      <span>경력 </span><span class="emph">{{ivo.career}}</span>
                     </li>
                     <li>
                       <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
                       </figure>
-                      <span>만족도 </span><span class="emph">긍정적</span>
+                      <span>만족도 </span><span class="emph">{ivo.score}}</span>
                     </li>
                     <li>
                       <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
                       </figure>
-                      <span>난이도 </span><span class="emph">보통</span>
+                      <span>난이도 </span><span class="emph">{{ivo.ilevel}}</span>
                     </li>
                     <li>
                       <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
                       </figure>
-                      <span>결과 </span><span class="emph">합격</span>
+                      <span>결과 </span><span class="emph">{{ivo.result}}</span>
                     </li>
                   </ul>
-                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="accordset-item">
-              <div class="accordset-header">
-                <div class="accordset-button btn">
-                  <h4 class="interview-tit">면접 후기 제목1<br>
-                    <span class="interview-date">2024-02-14</span></h4>
-                </div>
-              </div>
-              <div class="accordset-body">
-                <div class="accordset-content">
-                  <ul class="interview-icon-wrapper">
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
-                      </figure>
-                      <span>경력 </span><span class="emph">신입</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
-                      </figure>
-                      <span>만족도 </span><span class="emph">긍정적</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
-                      </figure>
-                      <span>난이도 </span><span class="emph">보통</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
-                      </figure>
-                      <span>결과 </span><span class="emph">합격</span>
-                    </li>
-                  </ul>
-                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="accordset-item">
-              <div class="accordset-header">
-                <div class="accordset-button btn">
-                  <h4 class="interview-tit">면접 후기 제목1<br>
-                    <span class="interview-date">2024-02-14</span></h4>
-                </div>
-              </div>
-              <div class="accordset-body">
-                <div class="accordset-content">
-                  <ul class="interview-icon-wrapper">
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
-                      </figure>
-                      <span>경력 </span><span class="emph">신입</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
-                      </figure>
-                      <span>만족도 </span><span class="emph">긍정적</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
-                      </figure>
-                      <span>난이도 </span><span class="emph">보통</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
-                      </figure>
-                      <span>결과 </span><span class="emph">합격</span>
-                    </li>
-                  </ul>
-                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
+                  <p class="interview-content">{{ivo.content}}</p>
                 </div>
               </div>
             </div>
