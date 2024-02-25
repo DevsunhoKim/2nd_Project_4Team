@@ -26,5 +26,17 @@ public class StudyRoomAskDAO {
 	{
 		return mapper.StudyRoomAskCount(sno);
 	}
+	public StudyRoomAskVO StudyRoomAskDetail(int ano) {
+		return mapper.StudyRoomAskDetail(ano);
+	}
+	public void StudyRoomAskDelete(int ano) {
+		mapper.StudyRoomAskDelete(ano);
+	}
+	public void StudyRoomAskUpdate(StudyRoomAskVO vo) {
+		mapper.StudyRoomAskUpdate(vo);
+	}
+	public void StudyRoomAskfileNoneUpdate(StudyRoomAskVO vo) {
+		mapper.StudyRoomAskfileNoneUpdate(vo);
+	}
 	
 }

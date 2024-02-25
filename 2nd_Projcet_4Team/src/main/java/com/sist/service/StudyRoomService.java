@@ -29,4 +29,9 @@ public interface StudyRoomService {
    public void StudyRoomAskInsert(StudyRoomAskVO vo);
    public List<StudyRoomAskVO> StudyRoomAskList(Map map);
    public int StudyRoomAskTotalpage(int sno);
+   public StudyRoomAskVO StudyRoomAskDetail(int ano);
+   public int StudyRoomAskCount(int sno);
+   public void StudyRoomAskDelete(int ano);
+   public void StudyRoomAskUpdate(StudyRoomAskVO vo);
+   public void StudyRoomAskfileNoneUpdate(StudyRoomAskVO vo);
 }

@@ -144,18 +144,28 @@ public class StudyRoomRestController {
 	   int endpage=((page-1)/BLOCK*BLOCK)+BLOCK;
 	   if(endpage>totalpage)
 		   endpage=totalpage;
+	   int totalCount=service.StudyRoomAskCount(sno);
 	   Map map1=new HashMap();
 	   map1.put("curpage", page);
 	   map1.put("endpage", endpage);
 	   map1.put("startpage",startpage);
 	   map1.put("totalpage",totalpage);
 	   map1.put("list", list);
+	   map1.put("totalCount", totalCount);
 	   ObjectMapper mapper = new ObjectMapper();
        String json = mapper.writeValueAsString(map1);
 	   return json;
 	   
    }
-   
-   
+
+   @GetMapping(value="ask_detail_vue.do", produces = "text/plain;charset=UTF-8")
+   public String ask_list(int ano) throws Exception {
+	   
+	   StudyRoomAskVO vo=service.StudyRoomAskDetail(ano);
+	   ObjectMapper mapper = new ObjectMapper();
+       String json = mapper.writeValueAsString(vo);
+	   return json;
+	   
+   }
 
 }

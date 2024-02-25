@@ -75,6 +75,31 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		// TODO Auto-generated method stub
 		return sadao.StudyRoomAskTotalpage(sno);
 	}
+	@Override
+	public StudyRoomAskVO StudyRoomAskDetail(int ano) {
+		// TODO Auto-generated method stub
+		return sadao.StudyRoomAskDetail(ano);
+	}
+	@Override
+	public int StudyRoomAskCount(int sno) {
+		// TODO Auto-generated method stub
+		return sadao.StudyRoomAskCount(sno);
+	}
+	@Override
+	public void StudyRoomAskDelete(int ano) {
+		// TODO Auto-generated method stub
+		sadao.StudyRoomAskDelete(ano);
+	}
+	@Override
+	public void StudyRoomAskUpdate(StudyRoomAskVO vo) {
+		// TODO Auto-generated method stub
+		sadao.StudyRoomAskUpdate(vo);
+	}
+	@Override
+	public void StudyRoomAskfileNoneUpdate(StudyRoomAskVO vo) {
+		// TODO Auto-generated method stub
+		sadao.StudyRoomAskfileNoneUpdate(vo);
+	}
 	
 
 }

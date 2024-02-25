@@ -53,9 +53,7 @@
             <div class="textset textset-h2">
               <span class="textset-name">{{detail_list.ename}}</span>
               <h2 class="textset-tit">{{detail_list.name}}</h2>
-            </div>
-            <!-- <p class="contents-desc"> 개성 있는 텍스처감의 패브릭과 헤드보드 양 사이드에 배치된 원목의 조화가 돋보이는 침구 세트 </p> -->
-            
+            </div>            
             <div class="contents-sum">공간 면적<span>{{detail_list.area}}</span>
             </div>
             <div class="contents-sum">이용 요금<span class="price">￦{{price}}<span>/시간</span></span>
@@ -93,11 +91,6 @@
                 <span>REVIEW</span>
               </a>
             </li>
-            <!-- <li class="tabset-item">
-              <a class="tabset-link" href="javascript:void(0)">
-                <span>HERITAGE</span>
-              </a>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -211,7 +204,7 @@
           </div> -->
          
           <div class="contents-search">
-            <p class="contents-result"> 전체<span> 24</span>개 </p>
+            <p class="contents-result"> 전체 <span> {{totalCount}}</span>개 </p>
             <div class="askANDsearch">
              <div class="contents-btn askBtn">
                <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
@@ -252,11 +245,12 @@
                   <td class="tableset-category tableset-order03">{{ask.cate}}</td>
                   <td class="tableset-tit tableset-order02">
                    <div class="asklist-title">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span class="asktitle">{{ask.subject}}</span>
-                    </a>
+                    <a class="tableset-ico" :href="ask.userId !== userId ? 'javascript:void(0)' : '../studyRoom/ask_detail.do?ano=' + ask.ano">
+						  <span class="asktitle">{{ ask.subject }}</span>
+				    </a>
                     <img v-if="ask.userId!=='${sessionScope.userId }'" src="../studyRoom/icons/ico_lock_black.svg">
-                    <img v-if="ask.userId==='${sessionScope.userId }'" src="../studyRoom/icons/ico_lock_black.svg">
+                    <%-- <img v-if="ask.userId==='${sessionScope.userId }'" src="../studyRoom/icons/icon-open-lock.png" style="width: 2rem;"> --%>
+                    
                    </div>
                   </td>
                   <td class="tableset-order05">{{ask.dbday}}</td>
@@ -268,96 +262,6 @@
                     <div class="badgeset badgeset-active state state1">답변완료</div>
                   </td>
                 </tr>
-                <!-- <tr>
-                  <td class="tableset-mobile">23</td>
-                  <td class="tableset-category tableset-order03">인테리어 상담</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">22</td>
-                  <td class="tableset-category tableset-order03">A/S 신청</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset">대기</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">21</td>
-                  <td class="tableset-category tableset-order03">기타</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">20</td>
-                  <td class="tableset-category tableset-order03">가구 상담</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">19</td>
-                  <td class="tableset-category tableset-order03">기타</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">18</td>
-                  <td class="tableset-category tableset-order03">기타</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr> -->
               </tbody>
             </table>
           </div>
@@ -423,8 +327,8 @@
            lobby:[],
            conve:[],
            address:'서울 마포구 월드컵북로 21 풍성빌딩 2~4층',
-           askShow:false,
-           infoShow:true,
+           askShow:${askShow},
+           infoShow:${infoShow},
            cateno:2,
            u:0,
            src:'',
@@ -433,13 +337,15 @@
            totalpage:0,
            endpage:0,
            startpage:0,
-           ask_list:[]
+           ask_list:[],
+           totalCount:0
            
         }
      },
      mounted(){
         this.dataRecv();
         this.jjimRecv();
+        this.askList();
      },
      methods:{
         dataRecv(){
@@ -657,6 +563,7 @@
          		   this.totalpage=response.data.totalpage
          		   this.startpage=response.data.startpage
          		   this.endpage=response.data.endpage
+         		   this.totalCount=response.data.totalCount
          	   })
         	}
 

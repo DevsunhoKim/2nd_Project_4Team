@@ -677,6 +677,40 @@
  .glamping-N32 .contents-item.item-check::after { width: 2rem; height: 2rem; }
 }
 
+/* hooms-N37 [NiLT00VHDB] */
+.hooms-N37 .contents-inner { padding: 10rem 2.4rem; }
+.hooms-N37 .textset { margin-top: 0; margin-bottom: 4rem; padding: 0; }
+.hooms-N37 .contents-titgroup { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; }
+.hooms-N37 .contents-tit { display: inline-block; margin-right: 0.8rem; font-size: 2.4rem; font-weight: 500; }
+.hooms-N37 .contents-tit span { display: flex; }
+.hooms-N37 .contents-tit span::after { content: ''; flex-shrink: 0; align-self: flex-start; width: 2.4rem; height: 2.4rem; margin-left: 1.4rem; background: url("../../studyRoom/icons/icon-open-lock.png") no-repeat center/cover; }
+.hooms-N37 .contents-date { display: flex; align-self: flex-start; flex-shrink: 0; align-items: center; font-size: 1.6rem; color: var(--text-color3); }
+.hooms-N37 .contents-date i { font-style: normal; margin-right: .8rem; }
+.hooms-N37 .contents-group { border-top: 1px solid var(--line-color4); border-bottom: 1px solid var(--line-color4); }
+.hooms-N37 .contents-file { display: flex; align-items: center; padding: 1.6rem 0; font-size: var(--fs-p1); border-bottom: 1px solid var(--line-color1); }
+.hooms-N37 .contents-file-txt { align-self: flex-start; width: 7.4rem; color: var(--text-color3); }
+.hooms-N37 .contents-file-link { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.hooms-N37 .contents-file-link::after { content: ''; flex-shrink: 0; align-self: flex-start; width: 2.4rem; height: 2.4rem; background: url("../../studyRoom/icons/ico_download_black.svg") no-repeat center/cover; }
+.hooms-N37 .contents-ask { padding: 4rem 0; font-size: var(--fs-p1); color: #505050; }
+.hooms-N37 .contents-group-bottom { padding: 4rem 0; border-top: 1px solid var(--line-color1); }
+.hooms-N37 .badgeset { width: 6.6rem; height: 3.2rem; margin-right: .8rem; color: var(--text-color5); font-size: var(--fs-p2); background-color: #666666; }
+/* .hooms-N37 .badgeset.badgeset-active { background-color: var(--secondary); } */
+.hooms-N37 .contents-answer { margin-top: 1.6rem; font-size: var(--fs-p1); line-height: var(--lh-p1); color: #505050; }
+.hooms-N37 .contents-btn { margin-top: 6rem; text-align: center; }
+.hooms-N37 .contents-btn .btnset { min-width: 26rem; }
+@media (max-width: 992px) {
+ .hooms-N37 .contents-inner { padding: 6rem 2.4rem; }
+ .hooms-N37 .textset { margin-bottom: 2.4rem; text-align: left; }
+ .hooms-N37 .contents-date { font-size: 1.7rem; line-height: 1.8rem; }
+ .hooms-N37 .contents-titgroup { flex-direction: column; align-items: flex-start; margin-bottom: 2.4rem; }
+ .hooms-N37 .contents-tit { margin-right: 0; margin-bottom: .8rem; font-size: 1.6rem; }
+ .hooms-N37 .contents-tit span::after { width: 2rem; height: 2rem; }
+ .hooms-N37 .badgeset { width: 4.6rem; height: 2.5rem; }
+ .hooms-N37 .contents-ask { padding: 2.4rem 0; }
+ .hooms-N37 .contents-group-bottom { padding: 2.4rem 0; }
+ .hooms-N37 .contents-btn { margin-top: 4rem; }
+}
+
 #studyRoom {
 	margin-top: 100px;
 }
@@ -1227,19 +1261,19 @@
  padding: 0.4rem 2rem;
  font-size: 1.4rem;
  }
-  #studyRoom_detail .state1{
+ #studyRoom_detail .state1{
  background-color: #6713d2; color: var(--text-color5);
  padding: 0.4rem 3rem;
  font-size: 1.4rem;
  }
- .asklist-title{
+#studyRoom_detail .asklist-title{
     display: flex;
     align-items: center;
  }
- .asktitle{
+#studyRoom_detail .asktitle{
     display: block !important;
  }
- #studyRoom_detail .asklist-title .tableset-ico{
+#studyRoom_detail .asklist-title .tableset-ico{
     padding-right: 0;
  }
 #studyRoom_detail a.btn{
@@ -1251,15 +1285,44 @@
     text-align: center;
     font-size: 13px;
     margin: 0px 10px;
+    cursor: pointer;
 }
-/*                            content: '';
-    position: absolute;
-    top: 0.2rem;
-    right: 0;
-    width: 2rem;
-    height: 2rem;
-    background-image: url(../../studyRoom/icons/ico_lock_black.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
- */
+
+#ask_detail{
+	margin: 4rem 0 10rem 0;
+	
+}
+
+/* Badgeset : Badgeset */
+#ask_detail .badgeset { display: flex; align-items: center; justify-content: center; width: 9rem; height: 3.2rem; padding: .6rem; background-color: var(--primary); color: var(--text-color5); text-align: center; }
+#ask_detail .badgeset.badgeset-center { margin: 0 auto; }
+#ask_detail .badgeset.badgeset-active { background-color: #6713d2; }
+@media (max-width: 992px){
+ #ask_detail .badgeset { width: 6.8rem; height: 2.5rem; }
+}
+ 
+#ask_detail .hooms-N37 .contents-btn .btnset{
+	min-width: 13rem;
+} 
+#ask_detail .hooms-N37 .contents-btn {
+    text-align: right;
+}
+#ask_detail .textset-tit{
+	font-weight: 600;
+	font-size: 5rem;
+}
+#ask_detail .hooms-N37 .contents-titgroup {
+    margin-bottom: 3rem;
+}
+#ask_detail .ask-return{
+	margin-right: 1rem;
+}
+
+#ask_detail .hooms-N37 .contents-file-txt {
+    margin-right: 1rem;
+}
+.studyRoomAsk_update .fileset1{
+	display: flex;
+	align-items: center;
+	
+}

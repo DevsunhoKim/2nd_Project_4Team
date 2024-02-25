@@ -146,7 +146,7 @@
                 <!-- <p class="cardset-desc"> HOOMS 매장을 방문하셔서 재료를 시험해보세요. 당신은 친절한 오프라인 직원에게 맞는 가구를 찾을 수 있도록 상담받을 수 있습니다. </p> -->
               </div>
               <div class="textset contents-link container-md">
-                <a class="textset-link btnset btnset-mono" :href="'../studyRoom/room_detail.do?no='+vo.no">View more</a>
+                <a class="textset-link btnset btnset-mono" :href="'../studyRoom/room_detail.do?no='+vo.no+'&infoShow=true'">View more</a>
              </div>
             </div>
           </div>
