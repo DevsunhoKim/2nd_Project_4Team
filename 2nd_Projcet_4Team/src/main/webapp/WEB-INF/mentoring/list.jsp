@@ -157,27 +157,27 @@
         
     <nav class="pagiset pagiset-line" style="margin-bottom: 3rem">
           <div class="pagiset-ctrl">
-            <a class="pagiset-link pagiset-first" href="javascript:void(0)" @click="pageChange(1)">
+            <a class="pagiset-link pagiset-first" @click="pageChange(1)">
               <span class="visually-hidden">처음</span>
             </a>
           </div>
           <div class="pagiset-ctrl">
-            <a class="pagiset-link pagiset-prev" href="javascript:void(0)" v-if="curpage > 1" @click="pageChange(curpage - 1)">
+            <a class="pagiset-link pagiset-prev" v-if="curpage > 1" @click="pageChange(curpage - 1)">
               <span class="visually-hidden">이전</span>
             </a>
           </div>
           <div class="pagiset-list">
-            <a class="pagiset-link" :class="{'active-fill': curpage === i}" href="javascript:void(0)" v-for="i in range(startPage, endPage)" :key="i" @click="pageChange(i)">
+            <a class="pagiset-link" :class="{'active-fill': curpage === i}" v-for="i in range(startPage, endPage)" :key="i" @click="pageChange(i)">
               {{ i }}
             </a>
           </div>
           <div class="pagiset-ctrl">
-            <a class="pagiset-link pagiset-next" href="javascript:void(0)" v-if="curpage < totalpage" @click="pageChange(curpage + 1)">
+            <a class="pagiset-link pagiset-next" v-if="curpage < totalpage" @click="pageChange(curpage + 1)">
               <span class="visually-hidden">다음</span>
             </a>
           </div>
           <div class="pagiset-ctrl">
-            <a class="pagiset-link pagiset-last" href="javascript:void(0)" @click="pageChange(totalpage)">
+            <a class="pagiset-link pagiset-last" @click="pageChange(totalpage)">
               <span class="visually-hidden">마지막</span>
             </a>
           </div>

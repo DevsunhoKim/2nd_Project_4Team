@@ -98,6 +98,18 @@
   <script src="../mentoring/js/setting.js"></script>
   <script src="../mentoring/js/template.js"></script>
   <script src="../mentoring/js/script.js"></script>
+<script type="text/javascript">
+function reserve() {
+    let userId = "${sessionScope.userId}";
+    if (userId == null || userId == '') {
+        alert("로그인 후 이용해주세요.");  
+        location.href = "../member/login.do";
+    } else {
+        location.href = "../mentoring/reservation.do?mno=${vo.mno}";
+    }
+}
+</script>
+
 </head>
 <body>
 <div class="campland-N10" data-bid="fmLSn6qZhU">
@@ -157,7 +169,7 @@
       </div>
     </div>
     <div class="contents-button">
-      <a href="javascript:void(0);" class="btnset btnset-round" data-aos="fade-up">RESERVATION</a>
+      <a onclick="reserve()" class="btnset btnset-round" data-aos="fade-up">RESERVATION</a>
     </div>
   </div>
 </div>
@@ -168,30 +180,6 @@
     <div class="textset">
       <h2 class="textset-tit" data-aos="fade-up">멘토링 리뷰</h2>
     </div>
-<!--     <div class="contents-form" data-aos="fade-up">
-      <div class="selectset selectset-round selectset-lg">
-        <button class="selectset-toggle btn" type="button">
-          <span>전체</span>
-        </button>
-        <ul class="selectset-list">
-          <li class="selectset-item">
-            <button class="selectset-link btn" type="button" data-value="전체">
-              <span>전체</span>
-            </button>
-          </li>
-          <li class="selectset-item">
-            <button class="selectset-link btn" type="button" data-value="선택1">
-              <span>선택1</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="inputset inputset-lg">
-        <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
-        <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." aria-label="내용">
-      </div>
-    </div> -->
-    <div class="contents-group" data-aos="fade-up">
       <a href="javascript:void(0);" class="cardset cardset-inner cardset-hover cardset-border">
         <div class="cardset-cont">
           <h2 class="cardset-tit">템하 비즈니스 홈페이지가 리뉴얼오픈

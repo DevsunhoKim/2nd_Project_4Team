@@ -46,4 +46,9 @@ public class MentoringController {
     	service.enrollMentor(vo);
     	return "mentoring/enrollment_ok";
 	}
+	
+	@GetMapping("reservation.do")
+	public String mentor_reservation() {
+		return "mentoring/reservation";
+	}
 }
