@@ -11,15 +11,15 @@
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../recruitment/css/template.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
+<script src="https://unpkg.com/vue@3"></script>
+<!-- axios : JavaScript에서 사용되는 HTTP 클라이언트 라이브러리로, 비동기적으로 서버와 통신하며 데이터 입·출력 시 사용 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../js/setting.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/template.js"></script>
 <script src="../js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
 <script src="../recruitment/js/script.js"></script>
-<script src="https://unpkg.com/vue@3"></script>
-<!-- axios : JavaScript에서 사용되는 HTTP 클라이언트 라이브러리로, 비동기적으로 서버와 통신하며 데이터 입·출력 시 사용 -->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>

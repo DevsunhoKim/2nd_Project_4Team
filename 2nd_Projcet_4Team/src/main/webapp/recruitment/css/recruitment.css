@@ -508,6 +508,8 @@
 .opilsol-N24 .contents-top{display: flex; justify-content: space-between; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid #eee;}
 .opilsol-N24 .contents-text{color: #444; font-size: 1.5rem;}
 .opilsol-N24 .contents-text .emph{color: #7918F2; font-size: 1.6rem; font-weight: 600;}
+.opilsol-N24 #recruitInsertBtn{padding: 0.2rem 1rem; background-color: transparent; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
+.opilsol-N24 #recruitInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
 .opilsol-N24 table {table-layout: fixed; width: 100%;}
 .opilsol-N24 .table tr{padding: 1rem 0; border-bottom: 1px solid #eee}
 .opilsol-N24 .tableset .tableset-table tr td{padding: 1rem 0;}
@@ -528,6 +530,8 @@
 .glamping-N40 #interviewInsertBtn{padding: 0.2rem 1rem; background-color: transparent; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
 .glamping-N40 #interviewInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
 .glamping-N40 .accordset{border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+.glamping-N40 .accordset-header::after {content: '\e902';}
+.glamping-N40 .accordset-header.active::after {content: '\e901';}
 .glamping-N40 .accordset .accordset-header:hover{background-color: #f9f9f9; transition: all 03.s ease-in-out;}
 .glamping-N40 .accordset-button{padding: 1rem 0; cursor: pointer;}
 .glamping-N40 .interview-tit{font-weight: 500;}
@@ -569,6 +573,7 @@
   align-items: center;
   gap: 1rem;
 }
+
 #recruitmentCompany .company-btn{
   border: none;
   background-color: transparent;
@@ -809,6 +814,81 @@
 #recruitmentCompany.insert #companyCancelBtn:hover{
   background-color: #ddd;
   transition: all 0.3s ease-in-out;
+}
+
+
+/* interview - insert */
+#interviewForm{
+	display: none;
+	width: 100%;
+	padding: 2rem;
+}
+#interviewForm label{
+	min-width: 5.5rem
+}
+#interviewForm input,
+#interviewForm select,
+#interviewForm textarea{
+	width: 100%;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid #ddd;
+	resize: none;
+}
+#interviewForm .interview-input li{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+#interviewForm .interview-info div{
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+#interviewForm .interview-input .interview-info {
+	gap: 6rem;
+}
+#interviewForm .interview-btn-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+#interviewForm .interview-btn{
+	border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 3rem;
+  font-size: 1.5rem
+}
+#interviewForm #inerviewSubmitBtn{
+  background-color: #7918F2;
+  color: #fff;
+  text-align: center;
+}
+#interviewForm #inerviewSubmitBtn:hover{
+  background-color: #6713d2;
+  transition: 0.3s all ease-in-out;
+  font-weight: 500;
+}
+#interviewForm #inerviewCancelBtn{
+  background-color: #ededed;
+}
+#interviewForm #inerviewCancelBtn:hover{
+  background-color: #ddd;
+  transition: 0.3s all ease-in-out;
+}
+@media (max-width: 992px) {
+	#interviewForm .interview-info{
+	  flex-wrap: wrap;
+	}
+	#interviewForm .interview-input .interview-info{
+	  gap: 2rem;
+	}
 }
 
 
