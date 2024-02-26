@@ -6,142 +6,312 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/setting.css">
-<link rel="stylesheet" href="../css/plugin.css">
-<link rel="stylesheet" href="../css/template.css">
-<link rel="stylesheet" href="../css/common.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+<link rel="stylesheet" href="../studyRoom/css/setting.css">
+<link rel="stylesheet" href="../studyRoom/css/plugin.css">
+<link rel="stylesheet" href="../studyRoom/css/template.css">
+<link rel="stylesheet" href="../studyRoom/css/common.css">
+<link rel="stylesheet" href="../studyRoom/css/style.css">
 <style type="text/css">
-.container{
-   margin-top: 50px;
+#chatting .chattitle {
+   font-size: 2.5rem;
+    FONT-WEIGHT: 600;
 }
-.row{
-   margin: 0px auto;
-   width: 800px;
+#chatting #nameinput{
+    height: 3.5rem;
+    border-radius: 3rem;
+    border: 2.5px solid #e5e5e5;
+    padding: 14px;
+}
+#chatting .namearea{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+#chatting #sendBtn{
+      background: white;
+    border: 0;
+    /* width: 0.1rem; */
+    margin-left: 0.5rem;
+    border-radius: 3rem;
+    width: 3rem;
+    height: 3rem;
+}
+#chatting input:focus {
+    outline:none;
+}
+#chatting .into{
+    margin: 2rem 0 1rem;
+    padding-left: 0;
+    text-align: right;
+    
+    /* display: flex;
+    align-items: flex-end;
+    justify-content: space-between; */
+}
+#chatting .btnset{
+   min-width: 0;
+   width: 0.5rem;
+   border-radius: 0.5rem;
+   height: 3.5rem;
+   font-size: 1.5rem;
+   margin-top: 1rem;
+}
+#chatting .btnset:hover{
+   background-color:#6713d2;
+   color:white;
+   border-color: transparent;
+}
+#chatting #sendMsg{
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 3rem;
+    margin-left: 1rem;
+    padding: 0 1rem;
+    height: 3rem;
+    font-size: 1.5rem;
+}
+#chatting .sendArea{
+   max-width: 64rem;
+    height: 5rem;
+    background-color: #efefef;
+    width: 100%;
+    /* position: absolute; */
+    /* bottom: 0; */
+    border-radius: 0 0 1rem 1rem;
+}
+#chatting #sendIcon{
+   width: 1.8rem;
+   height: 1.8rem;
+   filter: invert(16%) sepia(75%) saturate(5889%) hue-rotate(267deg) brightness(80%) contrast(108%);
+}
+.container{
+  margin-top: 50px;
+}
+.row {
+  margin: 0px auto;
+  width:65rem;
 }
 #chatArea{
-   height: 450px;
-   overflow-y:auto;
-   border: 1px solid black;
+    max-width: 64rem;
+    height: 70rem;
+    overflow-y: auto;
+    /* border: 1px solid black; */
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+    /* overflow: hidden; */
+    padding: 1rem 1.5rem;
 }
-.my-msg{
-   color:blue;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
+
+a {
+    text-decoration: none;
+}
+
+.wrap {
+    /* padding: 40px 0; */
+    background-color: #efefef;
+}
+
+.wrap .chat {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.wrap .chat .icon {
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+.wrap .chat .icon i {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    font-size: 4.5rem;
+    color: #aaa;
+    transform: translateX(-50%);
+}
+
+.wrap .chat .textbox {
+    position: relative;
+    display: inline-block;
+    max-width: calc(100% - 70px);
+    padding: 0.5rem 1.5rem;
+    margin-top: 0px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.wrap .chat .textbox::before {
+    position: absolute;
+    display: block;
+    top: 0;
+    font-size: 1.5rem;
+}
+
+.wrap .ch1 .textbox {
+    
+    background-color: #ddd;
+}
+
+/* .wrap .ch1 .textbox::before {
+    left: -10px;
+    content: "◀";
+    color: #ddd;
+} */
+
+.wrap .ch2 {
+    
+    align-items: flex-end;
+}
+
+.wrap .ch2 .textbox {
+    
+    background-color: #6713d2;
+    color: white;
+}
+
+/* .wrap .ch2 .textbox::before {
+    right: -10px;
+    content: "▶";
+    color: #F9EB54;
+} */
+
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <script type="text/javascript">
 let websocket;
-// 서버연결 
+let user;
+let userset;
+//서버 연결
 function connection()
 {
-	// 소켓연결 
-	websocket=new WebSocket("ws://211.238.142.115:8080/web/chat/chat-ws")
+	websocket=new WebSocket("ws://localhost:8080/web/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
-	websocket.onmessage=onMessage
-}
-// 연결처리 => Callback 
-function onOpen(event)
-{
-	 alert("채팅 서버와 연결되었습니다...")
-}
-function onClose(event)
-{
-	  alert("채팅 서버와 연결 해제되었습니다...")
-}
-function onMessage(event)
-{
-	 let data=event.data // 전송된 데이터 
-	 if(data.substring(0,4)==="msg:") // oto , makeroom  ==> 100 200 300...
-	 // msg:[이름] 메세지
-	 {
-		 appendMessage(data.substring(4))
-	 }
+	websocket.onmessage=OnMessage
 }
 function disConnection()
 {
 	websocket.close()
 }
-// 퇴장처리 => Callback
-// 메세지 전송 => Callback
+// 연결 처리 => CallBack
+function onOpen(event)
+{ 
+	alert("채팅 접속이 완료되었습니다.")
+}
+function onClose(event)
+{
+	alert("채팅이 종료되었습니다.")
+	window.close();
+}
+function OnMessage(event)
+{
+	 
+	 let data=event.data // 전송된 데이터 
+	 if(data.substring(0,3)==="my:") // oto , makeroom  ==> 100 200 300...
+		 // msg:[이름] 메세지
+	 {
+			appendMessage(data.substring(data.indexOf("[")))
+			console.log(user)
+	 		userset='my'
+	 }
+	 else if(data.substring(0,3)==="no:") // oto , makeroom  ==> 100 200 300...
+			 // msg:[이름] 메세지
+	 {
+		    appendMessage(data.substring(data.indexOf("[")))
+			userset='no'
+	  }
+}
+
+//메세지 띄우기
 function appendMessage(msg)
 {
-	 let nick=$('#name').attr("data-nickname");
-	 let name=$('#name').attr("data-name");
-	 if(nick!==name)
+	let content=msg.substring(msg.lastIndexOf("]")+1)
+	console.log(msg)
+	console.log(content)
+	let name=msg.substring(msg.indexOf("[")+1,msg.lastIndexOf("]"))
+	if(userset=='no')
 	 {
-		 $('#recvMsg').append(msg+"<br>")
+		 $('#recvMsg').append(
+				 "<div class=\"chat ch1\"><div class=\"namearea\"><p>"+name+"</p></div><div class=\"textbox\">"+content+"</div></div>"
+          )
 	 }
 	 else{
-		 $('#recvMsg').append("<p class=\"my-msg\">"+msg+"</p>")
+		 $('#recvMsg').append("<div class=\"chat ch2\"><div class=\"namearea\"><p>"+name+"</p></div><div class=\"textbox\">"+content+"</div></div>")
 	 }
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
-function send()
-{
+
+function send(){
 	let nick=$('#name').attr("data-nickname");
 	let name=$('#name').attr("data-name");
-	
 	let msg=$('#sendMsg').val()
 	if(msg.trim()==="")
 	{
 		$('#sendMsg').focus()
-		return 
+		return
 	}
-	
-	websocket.send("msg:["+nick+"]"+msg)
+	websocket.send(msg)
 	$('#sendMsg').val("")
 	$('#sendMsg').focus()
 }
 $(function(){
-	$('#inputBtn').click(function(){
-		connection() 
+	$('#startBtn').click(function(){
+		connection()
 	})
-	$('#outputBtn').click(function(){
+	$('#endBtn').click(function(){
 		disConnection()
 	})
 	$('#sendBtn').click(function(){
 		send()
 	})
 	$('#sendMsg').keydown(function(key){
-		if(key.keyCode===13)//enter @keydown.13 => enter
-		{
+		if(key.keyCode===13)
+	    {
 			send()
-		}
+	    }
 	})
 })
 </script>
 </head>
 <body>
-  <div class="container">
-   <h3 class="text-center">실시간 채팅</h3>
+  <div class="container" id="chatting">
+   <h1 class="text-center chattitle">CODEV LIVE CHAT</h1>
    <div class="row">
-     <table class="table">
-      <tr>
-        <td>
-         <input type=hidden id="name" size=15 class="input-sm" data-nickname="${sessionScope.nickname}" data-name="${nickname}">
-         <input type=button value="입장" class="btn-danger btn-sm" id="inputBtn">
-         <input type=button value="퇴장" class="btn-success btn-sm" id="outputBtn">
-        </td>
-      </tr>
-      <tr>
-       <td>
-        <div id="chatArea">
-          <div id="recvMsg"></div>
-        </div>
-       </td>
-      </tr>
-      <tr>
-        <td>
-          <input type=text id="sendMsg" size=80 class="input-sm">
-          <input type=button id="sendBtn" value="전송" class="btn-sm btn-primary">
-          
-        </td>
-      </tr>
-     </table>
+     <div class="input-Btn into">
+          <input type=hidden id="name" size=15 class="input-sm">
+          <!-- <div>
+          <p class="nick">* 가입하실 때 입력한 닉네임으로 입장됩니다.</p>
+          </div> -->
+          <div style="margin-right: 0.4rem;">
+          <input type=button class="btnset" id="startBtn" value="입장">
+          <input type=button class="btnset" id="endBtn" value="퇴장">
+          </div>
+    </div>
+    <div class="wrap" id="chatArea">
+      <div id="recvMsg">
+        
+      </div>
+    </div>
+    <div class="input-Btn sendArea">
+      <input type=text id="sendMsg" size=64>
+      <button id="sendBtn">
+         <img src="../images/icons/icon-top.png" id="sendIcon">
+      </button>
+    </div>
    </div>
   </div>
 </body>

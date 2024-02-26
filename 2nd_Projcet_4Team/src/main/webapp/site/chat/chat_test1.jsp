@@ -24,6 +24,8 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
 <script type="text/javascript">
 let websocket;
+let user;
+let userset;
 // 서버연결 
 function connection()
 {
@@ -46,11 +48,21 @@ function onMessage(event)
 {
 	 let data=event.data // 전송된 데이터 
 	 
-	 if(data.substring(0,4)==="msg:") // oto , makeroom  ==> 100 200 300...
+	 if(data.substring(0,3)==="my:") // oto , makeroom  ==> 100 200 300...
 	 // msg:[이름] 메세지
 	 {
 		 appendMessage(data.substring(4))
+		 user=data.substring(4,data.lastIndexOf("]"))
+		 console.log(user)
+		 userset='my'
 	 }
+	 else if(data.substring(0,3)==="no:") // oto , makeroom  ==> 100 200 300...
+		 // msg:[이름] 메세지
+		 {
+			 appendMessage(data.substring(4))
+			 user=data.substring(5,data.lastIndexOf("]"))
+			 userset='no'
+		 }
 }
 function disConnection()
 {

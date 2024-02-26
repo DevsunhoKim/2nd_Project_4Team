@@ -35,7 +35,7 @@ public class ChatDAO {
 	  try
 	  {
 		  getConnection();
-		  String sql="SELECT userId,userName FROM projectMember "
+		  String sql="SELECT userId,userName,nickname FROM projectMember "
 				    +"WHERE userId=?";
 		  ps=conn.prepareStatement(sql);
 		  ps.setString(1, userId);
@@ -43,6 +43,7 @@ public class ChatDAO {
 		  rs.next();
 		  vo.setUserId(rs.getString(1));
 		  vo.setUserName(rs.getString(2));
+		  vo.setNickname(rs.getString(3));
 		  rs.close();
 	  }catch(Exception ex)
 	  {

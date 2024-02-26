@@ -30,6 +30,7 @@ public class ChatManager {
 	   HttpSession hs=(HttpSession)config.getUserProperties().get("PRIVATE_HTTP_SESSION");
 	   vo.setUserId((String)hs.getAttribute("userId"));
 	   vo.setUserName((String)hs.getAttribute("userName"));
+	   vo.setNickname((String)hs.getAttribute("nickname"));
 	   vo.setSession(session);
 	   users.put(session,vo);
 	   Iterator<Session> it=users.keySet().iterator();
@@ -55,7 +56,13 @@ public class ChatManager {
 	   {
 		   Session ss=it.next();
 		   ChatVO vo=users.get(session);
-		   ss.getBasicRemote().sendText("msg:["+vo.getUserName()+"]"+message);
+		   if(ss.getId()!=session.getId())
+		   {
+			   ss.getBasicRemote().sendText("no:["+vo.getUserName()+"]"+message);
+		   }
+		   else {
+			   ss.getBasicRemote().sendText("my:["+vo.getUserName()+"]"+message);
+		   }
 		   System.out.println(vo.getUserName()+":전송 완료!!");
 	   }
 	   
@@ -64,6 +71,10 @@ public class ChatManager {
    public void onClose(Session session) throws Exception
    {
 	   Iterator<Session> it=users.keySet().iterator();
+	   // user안에 있는 <Session,ChatVO> 키 집합(set)을 얻어서 순회함
+	   // it에 저장
+	   // hasNext으로 존재여부확인
+	   //next() 메서드로 다음요소 가져오기
 	   while(it.hasNext())
 	   {
 		   Session ss=it.next();

@@ -14,5 +14,6 @@ public class WebSokcetSessionConfigurator extends Configurator{
 		if(session!=null)
 			sec.getUserProperties().put("PRIVATE_HTTP_SESSION", session);
 	}
+	
    
 }
