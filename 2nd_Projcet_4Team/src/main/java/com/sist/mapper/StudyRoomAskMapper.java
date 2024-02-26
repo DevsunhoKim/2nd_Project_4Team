@@ -22,15 +22,15 @@ public interface StudyRoomAskMapper {
 			+ "filesize,cate,email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num"
 			+ " FROM (SELECT ano,sno,group_id,group_step,state,userId,name,content,filename,"
 			+ "filesize,cate,email,subject,regdate,rownum as num "
-			+ "FROM (SELECT * FROM studyRoom_ASK WHERE sno=#{sno} ORDER BY ano DESC)) "
+			+ "FROM (SELECT * FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%' ORDER BY ano DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<StudyRoomAskVO> StudyRoomAskList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/10.0) FROM studyRoom_ASK WHERE sno=#{sno}")
-	public int StudyRoomAskTotalpage(int sno);
+	@Select("SELECT CEIL(COUNT(*)/10.0) FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%'")
+	public int StudyRoomAskTotalpage(Map map);
 	
-	@Select("SELECT COUNT(*) FROM studyRoom_ASK WHERE sno=#{sno}")
-	public int StudyRoomAskCount(int sno);
+	@Select("SELECT COUNT(*) FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%'")
+	public int StudyRoomAskCount(Map map);
 	
 	@Select("SELECT ano,sno,group_id,group_step,state,userId,name,content,filename," 
 			+"filesize,cate,email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday "

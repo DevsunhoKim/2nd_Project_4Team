@@ -71,9 +71,9 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		return sadao.StudyRoomAskList(map);
 	}
 	@Override
-	public int StudyRoomAskTotalpage(int sno) {
+	public int StudyRoomAskTotalpage(Map map) {
 		// TODO Auto-generated method stub
-		return sadao.StudyRoomAskTotalpage(sno);
+		return sadao.StudyRoomAskTotalpage(map);
 	}
 	@Override
 	public StudyRoomAskVO StudyRoomAskDetail(int ano) {
@@ -81,9 +81,9 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		return sadao.StudyRoomAskDetail(ano);
 	}
 	@Override
-	public int StudyRoomAskCount(int sno) {
+	public int StudyRoomAskCount(Map map) {
 		// TODO Auto-generated method stub
-		return sadao.StudyRoomAskCount(sno);
+		return sadao.StudyRoomAskCount(map);
 	}
 	@Override
 	public void StudyRoomAskDelete(int ano) {

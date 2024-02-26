@@ -211,6 +211,41 @@
              </div>
              
              <div class="contents-form">
+             
+             <div class="selectset selectset-lg">
+                <button class="selectset-toggle btn" type="button" value="all" @click="listshow('all')">
+                  <span>전체</span>
+                </button>
+                <ul class="selectset-list" v-show="listShow">
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" value="all" @click="listChange('all')">
+                      <span>전체</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" value="시설" @click="listChange('시설')">
+                      <span>시설 문의</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" value="가격" @click="listChange('가격')">
+                      <span>가격 문의</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" value="취소" @click="listChange('취소')">
+                      <span>취소 문의</span>
+                    </button>
+                  </li>
+                  <li class="selectset-item">
+                    <button class="selectset-link btn" type="button" value="기타" @click="listChange('기타')">
+                      <span>기타 문의</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              
+              
               <div class="inputset inputset-lg">
                 <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
                 <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." aria-label="내용">
@@ -338,7 +373,9 @@
            endpage:0,
            startpage:0,
            ask_list:[],
-           totalCount:0
+           totalCount:0,
+           listShow:false,
+           fn:'all'
            
         }
      },
@@ -529,7 +566,7 @@
         	},
         	next(){
         		let page=this.curpage
-        		if(page+1<this.totalpage)
+        		if(page<this.totalpage)
         		{
         			this.curpage=page+1
         		}
@@ -540,7 +577,7 @@
         	},
         	prev(){
         		let page=this.curpage
-        		if(page-1>this.startpage)
+        		if(page>this.startpage)
         		{
         			this.curpage=page-1
         		}
@@ -553,7 +590,8 @@
         		axios.get('../studyRoom/ask_list_vue.do',{
          		   params:{
          			   sno:this.no,
-         			   page:this.curpage
+         			   page:this.curpage,
+         			   fn:this.fn
          			   
          		   }
          	   }).then(response=>{
@@ -565,6 +603,14 @@
          		   this.endpage=response.data.endpage
          		   this.totalCount=response.data.totalCount
          	   })
+        	},
+        	listChange(fn){
+        		this.fn=fn
+        		this.listShow=false
+        		this.askList();
+        	},
+        	listshow(){
+        		this.listShow=true
         	}
 
 

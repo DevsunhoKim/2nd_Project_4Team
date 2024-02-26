@@ -128,8 +128,10 @@ public class StudyRoomRestController {
    }
 
    @GetMapping(value="ask_list_vue.do", produces = "text/plain;charset=UTF-8")
-   public String ask_list(int sno,int page) throws Exception {
+   public String ask_list(int sno,int page,String fn) throws Exception {
 	   
+	   if(fn==null || fn.equals("all"))
+		   fn="";
 	   int rowsize=10;
 	   int start=(rowsize*page)-(rowsize-1);
 	   int end=rowsize*page;
@@ -138,13 +140,14 @@ public class StudyRoomRestController {
 	   map.put("start", start);
 	   map.put("end", end);
 	   map.put("sno", sno);
+	   map.put("cate", fn);
 	   List<StudyRoomAskVO> list=service.StudyRoomAskList(map);
-	   int totalpage=service.StudyRoomAskTotalpage(sno);
+	   int totalpage=service.StudyRoomAskTotalpage(map);
 	   int startpage=((page-1)/BLOCK*BLOCK)+1;
 	   int endpage=((page-1)/BLOCK*BLOCK)+BLOCK;
 	   if(endpage>totalpage)
 		   endpage=totalpage;
-	   int totalCount=service.StudyRoomAskCount(sno);
+	   int totalCount=service.StudyRoomAskCount(map);
 	   Map map1=new HashMap();
 	   map1.put("curpage", page);
 	   map1.put("endpage", endpage);
