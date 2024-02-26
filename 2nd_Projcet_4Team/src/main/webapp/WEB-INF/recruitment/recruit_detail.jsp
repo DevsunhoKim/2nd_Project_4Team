@@ -24,6 +24,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
+  <sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"/>
+  </sec:authorize>
   <section id="recruitmentDetail" class="sub">
     <div class="content-container" id="recruitmentDetailApp">
       <div class="container-md">
@@ -38,11 +41,11 @@
               </a>
               <h2 class="recruit-tit">{{recruit_detail.title}}</h2>
             </div>
-            <!-- <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn" @click="apply(rno)">지원하기</button> -->
-            <div class="recruit-btn-wrapper">
-	            <button type="button" id="recruitUpdateBtn" class="recruit-btn" value="수정" @click="update(rno)">수정</button>
+            <button type="button" id="recruitApplyBtnTop" class="recruit-btn recruit-apply-btn" @click="apply(rno)">지원하기</button>
+            <!-- <div class="recruit-btn-wrapper">
+	            <button type="button" id="recruitUpdateBtn" class="recruit-btn" value="수정" @click="update(rno, cno)">수정</button>
 	            <button type="button" id="recruitDeleteBtn" class="recruit-btn" value="삭제" @click="delete(rno)">삭제</button>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -179,7 +182,7 @@
 	    <section id="applyForm" class="th-layout-sub">
 	      <div class="content-container">
 	        <h2>지원하기</h2>
-	        <form method="post" action="../recruitment">
+	        <form>
 	          <!-- <h3>지원 정보</h3> -->
 	          <ul class="apply-info">
 	            <li class="company-info">
@@ -193,16 +196,16 @@
 	            </li>
 	            <li class="user-info">
                 <h4>이름</h4>
-                <span class="userName">심청이</span>     
+                <span class="userName">{{user_detail.userName}}</span>     
 	            </li>
 	            <li class="user-info">
                 <h4>성별</h4>
-                <span class="gender">여성</span>             
+                <span class="gender">{{user_detail.gender}}</span>             
               </li>
-              <li class="user-info">
+              <!-- <li class="user-info">
                 <h4>나이</h4>
                 <span class="age">27세</span>         
-              </li>
+              </li> -->
 	            
 	            <!-- <li>
 	              <input type="text" name="age" id="age" class="apply-input" readonly>
@@ -212,12 +215,12 @@
 	            
 	            <li class="user-info">
 	              <h4>연락처</h4>
-	              <span class="phone">010-1234-5678</span>
+	              <span class="phone">{{user_detail.phone}}</span>
 	              <!-- <input type="text" name="phone" id="phone" v-model="phone" class="apply-input" readonly> -->
 	            </li>
 	            <li class="user-info">
 	              <h4>이메일</h4>
-	              <span class="email">shim02@codev.com</span>
+	              <span class="email">{{user_detail.email}}</span>
 	              <!-- <input type="text" name="email" id="email" v-model="email" class="apply-input" readonly> -->
 	            </li>
 	          </ul>
@@ -227,7 +230,7 @@
 	            <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
 	          </div>
 	          <div class="apply-btn-wrapper">
-	            <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기">지원하기</button>
+	            <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기" @click="submit(rno)">지원하기</button>
 	            <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
 	          </div>
 	        </form>
@@ -246,24 +249,16 @@ $(function(){
     });
 })
 
-const apply={
-	props:['apply'],
-  template:``
-}
-
 let recruitmentDetailApp=Vue.createApp({
 	data(){
 		return{
-			//  Vue 인스턴스의 데이터로 정의
+			// Vue 인스턴스의 데이터로 정의
 			recruit_detail:{},
 			company_detail:{},
+			user_detail:{},
 			rno:${rno},
 			cno:${cno},
-			isShow:false,
-			userName:'',
-			gender:'',
-			email:'',
-			phone:''
+			isShow:false
 		}
 	},
 	mounted(){
@@ -280,7 +275,8 @@ let recruitmentDetailApp=Vue.createApp({
 			// Vue 인스턴스의 데이터(recruit_detail과 company_detail)를 업데이트
 			this.recruit_detail=response.data.rvo
 			this.company_detail=response.data.cvo
-			// recruit_detail과 company_detail은 Vue.js의 data 속성에 정의된 객체입니다. 서버에서 받은 JSON 데이터를 이 객체에 할당함으로써 동적인 UI를 구현
+			this.user_detail=response.data.mvo
+			// recruit_detail과 company_detail은 Vue.js의 data 속성에 정의된 객체임, 서버에서 받은 JSON 데이터를 이 객체에 할당함으로써 동적인 UI를 구현
 			this.addScript();
 		})
 	},
@@ -330,69 +326,63 @@ let recruitmentDetailApp=Vue.createApp({
   		    } 
 			});    
 		},
+		// 근무 지역 출력
 		getAddressPart(address) {
 	    // 주소를 두 번째 공백을 기준으로 분할
 	    const addressParts=address.split(' ')
 	    // 두 번째 공백 이후의 부분을 지우고 첫 번째 부분만 반환
 	    const area=addressParts.slice(0, 2).join(' ');
 	    return area
-		},	
+		},
+		// 링크 공유
 		share(){
 			const shareLink=window.location.href;
-	      // 클립보드에 복사
-	      const textarea=document.createElement('textarea');
-	      textarea.value=shareLink;
-	      document.body.appendChild(textarea);
-	      textarea.select();
-	      document.execCommand('copy');
-	      document.body.removeChild(textarea);
-	      alert('링크가 복사되었습니다!');
-			},
-			update(){
-		    location.href="../recruitment/recruit_update.do?rno="+this.rno;
-		  },
-			goback(){
-	    	location.href="../recruitment/reruit_list_vue.do"
-	    }
+      // 클립보드에 복사
+      const textarea=document.createElement('textarea');
+      textarea.value=shareLink;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('링크가 복사되었습니다!');
+		},
+		
+		update(rno, cno){
+	    location.href="../recruitment/recruit_update.do?rno=" + rno + "&cno=" + cno;
+	    axios.post('../recruitment/recruit_update_vue.do', null, {
+	       params:{
+	      	 rno:this.rno,
+	         cno:this.cno,
+	         recruit_detail:this.recruit_detail
+	       }
+	     }).then(response=>{
+	    	 recruit_detail:this.recruit_detail
+	       if(response.data==='yes') {
+	         location.href="../recruitment/recruit.detail.do";
+	       } else {
+	         alert("response.data")
+	       }
+	     })
+	  },
+		goback(){
+    	location.href="../recruitment/reruit_list_vue.do"
+    }
 	 },
-	 /*apply() {
-		 $('#applyForm').onClick().show()
-      this.isShow=true
-     let _this=this
-     axios.get('../recruitment/recruit_detail_vue.do', {
-       params:{
-         rno:this.rno,
-         cno:this.cno
-       }
-     }).then(function(response){
-       console.log(response.data)
-       _this.apply=response.data
-       _this.isShow=true
-       $('#dialog').dialog({
-         autoOpen:false,
-         modal:true
-       }).dialog('open')
-     }) 
-   },*/
-   submit(){
+	 // 지원서 전송
+   submit(rno){
   	 axios.post('../recruitment/apply_insert_vue.do', null, {
   		 params:{
-  			 userName:this.userName,
-  			 gender:this.gender,
-  			 phone:this.phone,
-  			 email:this.email
+  			 user_datail:this.response.data
   		 }
   	 }).then(response=>{
   		 if(response.data==='yes') {
-  			 location.href="../recruitment/recruit.detail.do";
+  			 alert("지원이 완료되었습니다.")
+  			 location.href="../recruitment/recruit_detail.do";
   		 } else {
-  			 alert("response.data")
+  			 alert("지원 정보 저장을 실패하였습니다.")
   		 }
   	 })
    }
-	/* components:{
-    'apply-data':apply
-  	} */
 }).mount('#recruitmentDetailApp');
 </script>
 </body>
