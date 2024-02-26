@@ -364,9 +364,11 @@ let recruitmentDetailApp=Vue.createApp({
 	       }
 	     })
 	  },
+	  
 		goback(){
     	location.href="../recruitment/reruit_list_vue.do"
     }
+	  
 	 },
 	 // 지원서 전송
    submit(rno){
