@@ -14,31 +14,11 @@
 .opilsol-N19 .col-group .item {position: relative; width: 23.7%; max-height: 25.6rem; margin: 0; padding: 2rem; border: 2px solid #eee; cursor: pointer;}
 .opilsol-N19 .col-group .item:hover{border: 2px solid #7918F2; background-color: #f9f9f9; transition: all 0.3s ease-in-out;}
 
-@media (max-width: 1366px) {
-  .opilsol-N19 .container-md { padding: 0 1.5rem; }
-}
-@media (max-width: 1279px) {
-  .opilsol-N19 .col-group .item {width: 31.8%;}
-}
-@media (max-width: 1024px) {
-  .opilsol-N19 .content-container { margin-bottom: 4rem; padding: 4rem 0; }
-  .opilsol-N19 .container-md { padding: 0 1.5rem; }
-  .opilsol-N19 .col-group { margin-top: 0; }
-  .opilsol-N19 .col-group .item {width: 31.8%;}
-}
-@media (max-width: 922px) {
-  .opilsol-N19 .col-group .item {width: 47.7%;}
-}
-@media (max-width: 767px){
-  .opilsol-N19 .col-group .item {width: 47.7%;}
-}
-@media (max-width: 576px) {
-  .opilsol-N19 .col-group .item {width: 100%;}
-}
 #recruitmentList .filter{
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 0;
   margin-bottom: 4rem;
   padding: 2rem 0;
   border-bottom: 1px solid #eee;
@@ -54,6 +34,7 @@
   background-color: transparent;
   border-radius: 1rem;
   border: 1px solid #eee;
+  white-space: nowrap;
 }
 #recruitmentList .filter-list{
   display: none;
@@ -63,17 +44,16 @@
   margin-left: 1rem;
   color: #888;
   font-size: 1.4rem;
-  cursor: pointer;
 }
-#recruitmentList .sort-order li.selected{
-  color: #7918F2;
-  font-weight: 500;
-}
-#recruitmentList .sort-order li:hover{
-  color: #7918F2;
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
-}
+
+#recruitmentList .tabset.tabset-text .tabset-item .tabset-link::before {display :none; content: ''; width: 3px; height: 3px; background-color: var(--text-color3); border-radius: 50%; }
+#recruitmentList .tabset .tabset-list {justify-content: flex-end; gap: 1rem;}
+#recruitmentList .tabset.tabset-text .tabset-link {gap: 0; align-items: center; padding: 0; font-size: 1.4rem; line-height: normal; color: #888; cursor: pointer;} 
+#recruitmentList .tabset.tabset-text .tabset-link.active,
+#recruitmentList .tabset.tabset-text .tabset-link:hover {color: #7918F2; font-weight: 500; transition: all 0.3s ease-in-out;} 
+#recruitmentList .tabset.tabset-text .tabset-item .tabset-link.active {gap: 0;} 
+#recruitmentList .tabset.tabset-text .tabset-item .tabset-link.active::before {display:none; content: '\e918'; font-family: var(--ff-ico); font-size: 1.4rem; width: auto; height: auto; background-color: transparent; } 
+
 #recruitmentList .company-info{width: 100%;}
 #recruitmentList .company-logo{
   width: 4rem;
@@ -107,6 +87,13 @@
 #recruitmentList .recruit-area{
   margin-right: 1rem;
 }
+#recruitmentList .recruit-stack{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* word-break: break-all; */
+}
 #recruitmentList .recruit-stack li{
   display: inline-block;
   margin-right: 0.8rem;
@@ -138,9 +125,35 @@
   transition: all 0.3s ease-in-out;
 }
 
+@media (max-width: 1366px) {
+  .opilsol-N19 .container-md { padding: 0 1.5rem; }
+}
+@media (max-width: 1279px) {
+  .opilsol-N19 .col-group .item {width: 31.8%;}
+}
+@media (max-width: 1024px) {
+  .opilsol-N19 .content-container { margin-bottom: 4rem; padding: 4rem 0; }
+  .opilsol-N19 .container-md { padding: 0 1.5rem; }
+  .opilsol-N19 .col-group { margin-top: 0; }
+  .opilsol-N19 .col-group .item {width: 31.8%;}
+}
+@media (max-width: 922px) {
+  .opilsol-N19 .col-group .item {width: 47.7%;}
+}
+@media (max-width: 767px){
+  .opilsol-N19 .col-group .item {width: 47.7%;}
+}
+@media (max-width: 576px) {
+  #recruitmentList .filter{flex-wrap: wrap; gap: 1rem;}
+  .opilsol-N19 .col-group .item {width: 100%;}
+}
+
 
 
 /* detail */
+#recruitmentDetail{
+	position: relative;
+}
 #recruitmentDetail .recruit-top{
   display: flex;
   justify-content: space-between;
@@ -194,6 +207,34 @@
   background-color: #6713d2;
   transition: all 0.3s ease-in-out;
 }
+#recruitmentDetail #recruitUpdateBtn{
+	padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #7918F2;
+  background-color: transparent;
+  color: #7918F2;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+#recruitmentDetail #recruitUpdateBtn:hover{
+  background-color: #7918F2;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+#recruitmentDetail #recruitDeleteBtn{
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #666;
+  background-color: transparent;
+  color: #666;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+
 #recruitmentDetail .recruit-tit{
   margin-top: 1rem;
   font-size: 2.4rem;
@@ -241,6 +282,7 @@
   border-radius: 1rem;
   border: 1px solid #eee;
 }
+#recruitmentDetail .recruit-detail-card li h4{color: #444;}
 #recruitmentDetail .recruit-detail-card li .emph{margin-left: 0.5rem; font-weight: 500; vertical-align: middle;}
 #recruitmentDetail .recruit-stack{
   display: flex;
@@ -251,6 +293,7 @@
 }
 #recruitmentDetail .recruit-stack h4{
   min-width: 5.5rem;
+  color: #444;
 }
 #recruitmentDetail .recruit-stack-list{
   display: flex;
@@ -266,7 +309,7 @@
   font-size: 1.4rem;
   white-space: nowrap;
 }
-#recruitmentDetail .recruit-stack-list li .recruit-stack-icon{display: inline-block; max-width: 1.6rem; margin-right: 1rem}
+#recruitmentDetail .recruit-stack-list li .recruit-stack-icon{display: inline-block; max-width: 1.6rem; margin-right: 1rem; border-radius: 4rem;}
 #recruitmentDetail .recruit-detail-info{
   margin: 2rem 0;
   padding: 2rem 0;
@@ -284,6 +327,7 @@
   color: #444;
   white-space: pre-wrap;
   word-break: keep-all;
+  white-space: pre-line;
 }
 #recruitmentDetail .recruit-date{
   display: flex;
@@ -291,7 +335,8 @@
   align-items: center;
   gap: 2rem;
 }
-#recruitmentDetail .recruit-date p{
+#recruitmentDetail .recruit-date h4{color: #444;}
+#recruitmentDetail .recruit-date div{
   padding: 0.5rem 2rem;
   border-radius: 1rem;
   border: 1px solid #7918F2;
@@ -330,6 +375,7 @@
   align-items: center;
   gap: 1rem;
 }
+#recruitmentDetail .company-contact li h4{color: #444;}
 #recruitmentDetail .root_daum_roughmap{
   width: 100%;
   height: 40rem;
@@ -462,6 +508,8 @@
 .opilsol-N24 .contents-top{display: flex; justify-content: space-between; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid #eee;}
 .opilsol-N24 .contents-text{color: #444; font-size: 1.5rem;}
 .opilsol-N24 .contents-text .emph{color: #7918F2; font-size: 1.6rem; font-weight: 600;}
+.opilsol-N24 #recruitInsertBtn{padding: 0.2rem 1rem; background-color: transparent; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
+.opilsol-N24 #recruitInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
 .opilsol-N24 table {table-layout: fixed; width: 100%;}
 .opilsol-N24 .table tr{padding: 1rem 0; border-bottom: 1px solid #eee}
 .opilsol-N24 .tableset .tableset-table tr td{padding: 1rem 0;}
@@ -473,23 +521,6 @@
 .opilsol-N24 .table tr:hover td { background-color: #f9f9f9; transition: all 0.3s ease-in-out;}
 .opilsol-N24 .pagiset {margin: 2rem 0;}
 .opilsol-N24 .pagiset-link { font-family: var(--ff-en); font-weight: 400; }
-@media (max-width: 1366px) {
- .opilsol-N24 .container-md { padding: 0 1.5rem; }
-}
-@media (max-width: 1024px) {
- .opilsol-N24 .content-container { margin-bottom: 6rem; padding: 4rem 0; }
- .opilsol-N24 .pagiset { margin-top: 4rem; }
- .opilsol-N24 .pagiset-link { width: 3.2rem; height: 3.2rem; }
-}
-@media (max-width: 768px){
-  .opilsol-N24 .table tr td.recruit-tit{width: 20%;}
-}
-@media (max-width: 576px){
-  .opilsol-N24 .table tr{display: block;}
-  .opilsol-N24 .tableset .tableset-table tr td{display: inline; width: 50%; margin-right: 0.5rem; padding: 0.5rem; text-align: left;}
-  .opilsol-N24 .table tr td.recruit-tit{display: block; width: 100%;}
-}
-
 
 /* glamping-N40 [UDlsBl0l6L] */
 .glamping-N40 .contents-inner {margin: 4rem 0;}
@@ -499,6 +530,8 @@
 .glamping-N40 #interviewInsertBtn{padding: 0.2rem 1rem; background-color: transparent; border-radius: 0.5rem; border: 1px solid #7918F2; color: #7918F2; font-size: 1.4rem;}
 .glamping-N40 #interviewInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
 .glamping-N40 .accordset{border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+.glamping-N40 .accordset-header::after {content: '\e902';}
+.glamping-N40 .accordset-header.active::after {content: '\e901';}
 .glamping-N40 .accordset .accordset-header:hover{background-color: #f9f9f9; transition: all 03.s ease-in-out;}
 .glamping-N40 .accordset-button{padding: 1rem 0; cursor: pointer;}
 .glamping-N40 .interview-tit{font-weight: 500;}
@@ -511,11 +544,6 @@
 .glamping-N40 .interview-content{color: #444; word-break: keep-all;}
 .glamping-N40 .inputset { width: 100%; max-width: 40rem; }
 .glamping-N40 .pagiset {margin: 2rem 0;}
-@media (max-width: 992px) {
- .glamping-N40 .contents-text { width: 100%; }
- .glamping-N40 .inputset { max-width: 100%; }
- .glamping-N40 .pagiset { margin-top: 4rem; }
-}
 
 #recruitmentCompany .company-top{
   display: flex;
@@ -545,6 +573,7 @@
   align-items: center;
   gap: 1rem;
 }
+
 #recruitmentCompany .company-btn{
   border: none;
   background-color: transparent;
@@ -583,7 +612,7 @@
   text-align: center;
 }
 #recruitmentCompany .company-detail-box li{
-  padding: 0 2rem;
+  padding: 0;
 }
 #recruitmentCompany .company-detail-box li .company-icon{
   max-width: 3rem;
@@ -600,14 +629,14 @@
 }
 #recruitmentCompany .company-detail-info{
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 1rem;
   margin: 2rem 0;
 }
 #recruitmentCompany .company-detail-info li{
-  width: 49.6%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -629,19 +658,27 @@
 #recruitmentCompany .company-detail-intro > div{
   display: flex;
   justify-content: space-between;
-  align-items: flex-top;
+  align-items: flex-start;
+  flex-wrap: nowrap;
   gap: 4rem;
 }
 #recruitmentCompany .company-img{
   width: 100%;
   max-width: 64rem;
+  height: 100%;
   border-radius: 1rem;
   overflow: hidden;
 }
-#recruitmentCompany .company-detail-intro p{
+#recruitmentCompany .company-img img{
+	width: 100%;
+	height:100%;
+	object-fit: cover;
+}
+#recruitmentCompany .company-detail-intro pre{
   width: 100%;
   color: #444;
   word-break: keep-all;
+  white-space: pre-line;
 }
 #recruitmentCompany .pagiset.pagiset-circ .pagiset-link{
   border-radius: 0.5rem;
@@ -663,9 +700,35 @@
 #recruitmentCompany .pagiset .pagiset-next::after{
   font-size: 1.2rem;
 }
+
 @media (max-width: 1366px) {
   #recruitmentCompany .container-md { padding: 0 1.5rem; }
+  .opilsol-N24 .container-md { padding: 0 1.5rem; }
 }
+@media (max-width: 1024px) {
+ .opilsol-N24 .content-container { margin-bottom: 6rem; padding: 4rem 0; }
+ .opilsol-N24 .pagiset { margin-top: 4rem; }
+ .opilsol-N24 .pagiset-link { width: 3.2rem; height: 3.2rem; }
+}
+@media (max-width: 992px) {
+ .glamping-N40 .contents-text { width: 100%; }
+ .glamping-N40 .inputset { max-width: 100%; }
+ .glamping-N40 .pagiset { margin-top: 4rem; }
+}
+@media (max-width: 768px){
+  .opilsol-N24 .table tr td.recruit-tit{width: 20%;}
+}
+@media (max-width: 640px) {
+  #recruitmentCompany .company-detail-info{flex-wrap: wrap;}
+  #recruitmentCompany .company-detail-intro > div {flex-wrap: wrap;}
+}
+@media (max-width: 576px) {
+	#recruitmentCompany .company-detail-box{gap: 2rem;}
+	.opilsol-N24 .table tr{display: block;}
+  .opilsol-N24 .tableset .tableset-table tr td{display: inline; width: 50%; margin-right: 0.5rem; padding: 0.5rem; text-align: left;}
+  .opilsol-N24 .table tr td.recruit-tit{display: block; width: 100%;}
+}
+
 
 
 
@@ -708,9 +771,6 @@
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid #eee;
-}
-#recruitmentCompany .company-detail-box li{
-  padding: 0;
 }
 #recruitmentCompany.insert .company-detail-intro textarea{
   resize: none;
@@ -757,22 +817,106 @@
 }
 
 
+/* interview - insert */
+#interviewForm{
+	display: none;
+	width: 100%;
+	padding: 2rem;
+}
+#interviewForm label{
+	min-width: 5.5rem
+}
+#interviewForm input,
+#interviewForm select,
+#interviewForm textarea{
+	width: 100%;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid #ddd;
+	resize: none;
+}
+#interviewForm .interview-input li{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+#interviewForm .interview-info div{
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+#interviewForm .interview-input .interview-info {
+	gap: 6rem;
+}
+#interviewForm .interview-btn-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+#interviewForm .interview-btn{
+	border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 3rem;
+  font-size: 1.5rem
+}
+#interviewForm #inerviewSubmitBtn{
+  background-color: #7918F2;
+  color: #fff;
+  text-align: center;
+}
+#interviewForm #inerviewSubmitBtn:hover{
+  background-color: #6713d2;
+  transition: 0.3s all ease-in-out;
+  font-weight: 500;
+}
+#interviewForm #inerviewCancelBtn{
+  background-color: #ededed;
+}
+#interviewForm #inerviewCancelBtn:hover{
+  background-color: #ddd;
+  transition: 0.3s all ease-in-out;
+}
+@media (max-width: 992px) {
+	#interviewForm .interview-info{
+	  flex-wrap: wrap;
+	}
+	#interviewForm .interview-input .interview-info{
+	  gap: 2rem;
+	}
+}
+
+
 
 /* apply */
 #applyForm{
+	display:none;
+	width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.5);
+}
+#applyForm .content-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  z-index: 99999;
   max-width: 48rem;
   margin: 0 auto;
   padding: 2rem 0;
   border-radius: 2rem;
   border: 1px solid #eee;
-}
-#applyForm .content-container{
-  position: relative;
-}
-#applyForm .close-btn{
-  position: absolute;
-  top: 0;
-  right: 2rem
+  background-color: #fff;
+  box-shadow:0px 0px 2rem rgba(103,19,210,0.2);
 }
 #applyForm h2{
   font-size: 2.4rem;
@@ -781,34 +925,43 @@
 }
 #applyForm form{
   margin-top: 2rem;
-  padding: 2rem 4rem;
+  padding: 0 4rem 1rem 4rem;
   border-top: 1px solid #eee;
-}
-#applyForm h3{
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
 }
 #applyForm .apply-info li{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 2rem;
   padding: 1.5rem 0;
   border-bottom: 1px solid #eee;
 }
-#applyForm .apply-info li label{
+#applyForm .apply-info li h4{min-width: 4rem; color: #666}
+#applyForm .apply-info li span{font-weight: 500}
+#applyForm .apply-info .user-info{justify-content: space-between;}
+#applyForm .company-info .company-logo{width: 4rem; height: 4rem;}
+#applyForm .recruit-info .recruit-tit{margin-top: 0; font-size: 2rem;}
+
+/* #applyForm .apply-info li label{
+	width: 50%;
+	min-width: 4rem;
   color: #666;
-  width: 10%;
+  white-space: nowrap;
 }
 #applyForm .apply-info li .apply-input{
-  width: 90%;
-  padding: 0.5rem;
-}
+  width: 50%;
+} */
+
 #applyForm .apply-file{
   margin: 2rem 0;
 }
+#applyForm .apply-file h3{
+	margin-bottom: 1rem;
+  font-size: 1.6rem;
+}
 #applyForm .apply-file .apply-input{
   width: 100%;
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 1rem;
   border: 1px solid #7918F2;
   background-color: #f9f9f9;
@@ -844,6 +997,10 @@
 }
 #applyForm .apply-btn-wrapper #applyCancelBtn{
   background-color: #ededed;
+}
+#applyForm .apply-btn-wrapper #applyCancelBtn:hover{
+	background-color: #ddd;
+	transition: 0.3s all ease-in-out;
 }
 #applyForm.update .apply-info li .user-info{
   width: 90%;

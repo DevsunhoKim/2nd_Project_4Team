@@ -53,9 +53,7 @@
             <div class="textset textset-h2">
               <span class="textset-name">{{detail_list.ename}}</span>
               <h2 class="textset-tit">{{detail_list.name}}</h2>
-            </div>
-            <!-- <p class="contents-desc"> 개성 있는 텍스처감의 패브릭과 헤드보드 양 사이드에 배치된 원목의 조화가 돋보이는 침구 세트 </p> -->
-            
+            </div>            
             <div class="contents-sum">공간 면적<span>{{detail_list.area}}</span>
             </div>
             <div class="contents-sum">이용 요금<span class="price">￦{{price}}<span>/시간</span></span>
@@ -93,11 +91,6 @@
                 <span>REVIEW</span>
               </a>
             </li>
-            <!-- <li class="tabset-item">
-              <a class="tabset-link" href="javascript:void(0)">
-                <span>HERITAGE</span>
-              </a>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -203,7 +196,7 @@
     
     
     <!-- [S]hooms-N36 -->
-        <div class="hooms-N36" data-bid="rxlskcGXa1" v-show="askShow">
+     <div class="hooms-N36" data-bid="rxlskcGXa1" v-show="askShow">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <!-- <div class="textset textset-h2">
@@ -211,11 +204,12 @@
           </div> -->
          
           <div class="contents-search">
-            <p class="contents-result"> 전체<span> 24</span>개 </p>
+            <p class="contents-result"> 전체 <span> {{totalCount}}</span>개 </p>
             <div class="askANDsearch">
              <div class="contents-btn askBtn">
                <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
              </div>
+             
              <div class="contents-form">
               <div class="inputset inputset-lg">
                 <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
@@ -246,123 +240,43 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="tableset-mobile">24</td>
-                  <td class="tableset-category tableset-order03">가구 상담</td>
+                <tr v-for="ask in ask_list">
+                  <td class="tableset-mobile">{{ask.ano}}</td>
+                  <td class="tableset-category tableset-order03">{{ask.cate}}</td>
                   <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
+                   <div class="asklist-title">
+                    <a class="tableset-ico" :href="ask.userId !== userId ? 'javascript:void(0)' : '../studyRoom/ask_detail.do?ano=' + ask.ano">
+						  <span class="asktitle">{{ ask.subject }}</span>
+				    </a>
+                    <img v-if="ask.userId!=='${sessionScope.userId }'" src="../studyRoom/icons/ico_lock_black.svg">
+                    <%-- <img v-if="ask.userId==='${sessionScope.userId }'" src="../studyRoom/icons/icon-open-lock.png" style="width: 2rem;"> --%>
+                    
+                   </div>
                   </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset">대기</div>
+                  <td class="tableset-order05">{{ask.dbday}}</td>
+                  <td class="tableset-order04">{{ask.name}}</td>
+                  <td class="tableset-order01" v-if="ask.state===0">
+                    <div class="badgeset state">답변대기</div>
                   </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">23</td>
-                  <td class="tableset-category tableset-order03">인테리어 상담</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
+                  <td class="tableset-order01" v-if="ask.state===1">
+                    <div class="badgeset badgeset-active state state1">답변완료</div>
                   </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">22</td>
-                  <td class="tableset-category tableset-order03">A/S 신청</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset">대기</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">21</td>
-                  <td class="tableset-category tableset-order03">기타</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">20</td>
-                  <td class="tableset-category tableset-order03">가구 상담</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">19</td>
-                  <td class="tableset-category tableset-order03">기타</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <td class="tableset-mobile">18</td>
-                  <td class="tableset-category tableset-order03">기타</td>
-                  <td class="tableset-tit tableset-order02">
-                    <a class="tableset-ico" href="javascript:void(0)">
-                      <span>안녕하세요. 문의드립니다.</span>
-                    </a>
-                  </td>
-                  <td class="tableset-order05">2023.01.01</td>
-                  <td class="tableset-order04">홍**</td>
-                  <td class="tableset-order01">
-                    <div class="badgeset badgeset-active">답변완료</div>
-                  </td>
-                  
                 </tr>
               </tbody>
             </table>
           </div>
           
           <nav class="pagiset pagiset-line">
-            <div class="pagiset-ctrl">
+            <a class="btn" @click="prev()">이전</a>
+              {{curpage }} page / {{totalpage }} pages
+             <a class="btn" @click="next()">다음</a>
+            <!-- <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-first" href="javascript:void(0)">
                 <span class="visually-hidden">처음</span>
               </a>
-            </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
+            </div> -->
+            <!-- <div class="pagiset-ctrl">
+              <a v-if="startpage>1" class="pagiset-link pagiset-prev" href="javascript:void(0)">
                 <span class="visually-hidden">이전</span>
               </a>
             </div>
@@ -375,12 +289,12 @@
               <a class="pagiset-link pagiset-next" href="javascript:void(0)">
                 <span class="visually-hidden">다음</span>
               </a>
-            </div>
-            <div class="pagiset-ctrl">
+            </div> -->
+            <!-- <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-last" href="javascript:void(0)">
                 <span class="visually-hidden">마지막</span>
               </a>
-            </div>
+            </div> -->
           </nav>
         </div>
       </div>
@@ -413,18 +327,25 @@
            lobby:[],
            conve:[],
            address:'서울 마포구 월드컵북로 21 풍성빌딩 2~4층',
-           askShow:false,
-           infoShow:true,
+           askShow:${askShow},
+           infoShow:${infoShow},
            cateno:2,
            u:0,
            src:'',
-           jjimText:''
+           jjimText:'',
+           curpage:1,
+           totalpage:0,
+           endpage:0,
+           startpage:0,
+           ask_list:[],
+           totalCount:0
            
         }
      },
      mounted(){
         this.dataRecv();
         this.jjimRecv();
+        this.askList();
      },
      methods:{
         dataRecv(){
@@ -529,6 +450,7 @@
            ask(){
         	   this.askShow=true
         	   this.infoShow=false
+        	   this.askList();
            },
            info(){
         	   this.infoShow=true
@@ -604,6 +526,45 @@
          	    	}) */
          	    }
         		 
+        	},
+        	next(){
+        		let page=this.curpage
+        		if(page+1<this.totalpage)
+        		{
+        			this.curpage=page+1
+        		}
+        		else{
+        			this.curpage=page
+        		}
+        		this.askList();
+        	},
+        	prev(){
+        		let page=this.curpage
+        		if(page-1>this.startpage)
+        		{
+        			this.curpage=page-1
+        		}
+        		else{
+        			this.curpage=page
+        		}
+        		this.askList();
+        	},
+        	askList(){
+        		axios.get('../studyRoom/ask_list_vue.do',{
+         		   params:{
+         			   sno:this.no,
+         			   page:this.curpage
+         			   
+         		   }
+         	   }).then(response=>{
+         		   console.log(response.data)
+         		   this.ask_list=response.data.list
+         		   this.curpage=response.data.curpage
+         		   this.totalpage=response.data.totalpage
+         		   this.startpage=response.data.startpage
+         		   this.endpage=response.data.endpage
+         		   this.totalCount=response.data.totalCount
+         	   })
         	}
 
 

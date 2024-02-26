@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.MentorMapper">
+	
+	<resultMap id="mentorResultMap" type="MentorVO">
+        <result column="nickname" property="mvo.nickname"/>
+    </resultMap>
+    <select id="getMentorListBymap" parameterType="hashmap" resultMap="mentorResultMap">
+        SELECT * FROM (
+            SELECT mno, userId, job, career, img, keyword, title, score_avg, nickname, rownum AS num
+            FROM (
+                SELECT mno, member.userId, job, career, img, keyword, title, score_avg, nickname
+                FROM Member JOIN Mentor ON member.userId = mentor.userId
+                <where>
+                <choose>
+	                <when test="selectedVal != '' and searchWord != '' and job != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%' AND job = #{job}
+	                </when>
+	                <when test="selectedVal != '' and searchWord != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%'
+	                </when>
+	                <when test="job != null and job != ''">
+	                	job = #{job}
+	                </when>
+            	</choose>
+                </where>
+                ORDER BY 
+                <choose>
+                    <when test="filter == 'rev_cnt'"> rev_cnt DESC </when>
+                    <when test="filter == 'score_avg'"> score_avg DESC </when>
+                    <when test="filter == 'follower'"> follower DESC </when>
+                    <otherwise> rev_cnt DESC </otherwise>
+                </choose>
+            ) sub
+        ) main
+        WHERE num BETWEEN #{start} AND #{end}
+    </select>
+
+    <select id="getTotalMentorPageBymap" parameterType="hashmap" resultType="int">
+        SELECT CEIL(COUNT(*)/8.0) FROM member JOIN mentor ON member.userId = mentor.userId
+        <where>
+            <choose>
+	                <when test="selectedVal != '' and searchWord != '' and job != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%' AND job = #{job}
+	                </when>
+	                <when test="selectedVal != '' and searchWord != ''">
+	                	${selectedVal} LIKE '%' || #{searchWord} || '%'
+	                </when>
+	                <when test="job != null and job != ''">
+	                	job = #{job}
+	                </when>
+            	</choose>
+        </where>
+    </select>
+</mapper>

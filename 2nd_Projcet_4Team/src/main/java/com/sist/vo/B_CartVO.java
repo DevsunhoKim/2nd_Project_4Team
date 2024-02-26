@@ -1,12 +1,11 @@
 package com.sist.vo;
-import java.util.Date;
+import java.util.*;
 
 import lombok.Data;
+
 @Data
 public class B_CartVO {
-	private int rno,quantity,totalPrice,isSale;
+	private int rno,quantity,totalPrice,isSale,no;
 	private Date regdate;
-	private String dbday;
-	private BooksVO bvo;
-	private MemberVO mvo;
+	private String dbday,userId,status,poster,title;
 }

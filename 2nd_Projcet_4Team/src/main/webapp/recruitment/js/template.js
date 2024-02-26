@@ -92,10 +92,14 @@
   });
 
   // Accordset
+  function getSiblings(element, filter) {
+    const siblings = Array.from(element.parentNode.children);
+    return siblings.filter((sibling) => sibling !== element && sibling.matches(filter));
+  }
   const accordsetButton = document.querySelectorAll(".accordset-button");
   accordsetButton.forEach((buttonElement) => {
     const clickEventHandler = (event) => {
-      const button = event.target.closest(".accordset-button");
+      const button = event.currentTarget;
       const buttonGrandParent = button.closest(".accordset");
       const buttonParent = button.closest(".accordset-item");
       const buttonParentSiblings = getSiblings(buttonGrandParent, buttonParent);

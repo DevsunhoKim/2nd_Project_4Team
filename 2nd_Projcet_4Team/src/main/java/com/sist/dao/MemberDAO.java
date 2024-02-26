@@ -81,7 +81,7 @@ public class MemberDAO {
 		   }
 		return msg;
     }
-    
+
     public String sendCode(String email, int code) {
     	String msg = "";
 		   int count=mapper.getEmailCount(email);
@@ -94,7 +94,7 @@ public class MemberDAO {
 		   }
 		return msg;
     }
-    
+
     public String idFind(String email, int code) {
 		   String userId = mapper.idFind(code,email);
 		   if(userId == null || userId.isEmpty()){
@@ -102,5 +102,5 @@ public class MemberDAO {
 		   }
 		return userId;
     }
-    
+
 }

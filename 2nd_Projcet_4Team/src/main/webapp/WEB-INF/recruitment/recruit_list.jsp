@@ -9,20 +9,19 @@
 <link rel="stylesheet" href="../css/plugin.css">
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../recruitment/css/setting.css">
-<link rel="stylesheet" href="../recruitment/css/plugin.css">
 <link rel="stylesheet" href="../recruitment/css/template.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
+<script src="https://unpkg.com/vue@3"></script>
+<!-- axios : JavaScript에서 사용되는 HTTP 클라이언트 라이브러리로, 비동기적으로 서버와 통신하며 데이터 입·출력 시 사용 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../js/setting.js"></script>
-<script src="../js/plugin.js"></script>
-<script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
-<script src="../recruitment/js/setting.js"></script>
-<script src="../recruitment/js/plugin.js"></script>
+<script src="../js/template.js"></script>
+<script src="../js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
 <script src="../recruitment/js/script.js"></script>
-<script src="https://unpkg.com/vue@3"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- axios : 전송 객체 => 데이터 입·출력 시 사용 -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
   <section id="recruitmentList" class="sub">
@@ -34,8 +33,8 @@
 
             <!-- [S]glamping-N40 -->
             <div class="inputset inputset-border-bottom">
-              <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
-              <input type="text" class="inputset-input form-control" placeholder="검색어를 입력하세요." aria-label="내용">
+              <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘" @click="search"></button>
+              <input type="text" class="inputset-input form-control" placeholder="검색어를 입력하세요." aria-label="내용" v-model="word" @keyup.enter="search">
             </div>
 
           </div>
@@ -45,7 +44,35 @@
                 <button type="button" id="filterAreaBtn" class="filter-btn">근무 지역</button>
                 <ul id="filterAreaList" class="filter-list">
                   <li>전체</li>
-                  <li>서울</li>
+                  <li>서울
+                    <ul>
+                      <li>강남구</li>
+                      <li>강동구</li>
+                      <li>강북구</li>
+                      <li>강서구</li>
+                      <li>관악구</li>
+                      <li>광진구</li>
+                      <li>구로구</li>
+                      <li>금천구</li>
+                      <li>노원구</li>
+                      <li>도봉구</li>
+                      <li>동대문구</li>
+                      <li>동작구</li>
+                      <li>마포구</li>
+                      <li>서대문구</li>
+                      <li>서초구</li>
+                      <li>성동구</li>
+                      <li>성북구</li>
+                      <li>송파구</li>
+                      <li>양천구</li>
+                      <li>영등포구</li>
+                      <li>용산구</li>
+                      <li>은평구</li>
+                      <li>종로구</li>
+                      <li>중구</li>
+                      <li>중랑구</li>
+                    </ul>
+                  </li>
                   <li>경기</li>
                   <li>인천</li>
                   <li>강원</li>
@@ -110,11 +137,19 @@
                 </ul>
               </div>
             </div>
-            <ul class="sort-order">
-              <li class="selected">최신순</li>
-              <li>인기순</li>
-              <li>마감일순</li>
+            <div class="tabset tabset-text">
+            <ul class="tabset-list">
+              <li class="selected tabset-item">
+			            <span class="tabset-link active">최신순</span>
+              </li>
+              <li class="tabset-item">
+                  <span class="tabset-link">인기순</span>
+              </li>
+              <li class="tabset-item">
+                  <span class="tabset-link">마감일순</span>
+              </li>
             </ul>
+            </div>
           </div>
 
           <div class="col-group">
@@ -126,12 +161,10 @@
                 <h4 class="company-name">{{rvo.cvo.name}}</h4>
                 <div class="recruit-info">
                   <h3 class="recruit-tit">{{rvo.title}}</h3>
-                  <span class="recruit-area">{{rvo.cvo.area}}</span>
+                  <span class="recruit-area">{{getAddressPart(rvo.cvo.address)}}</span>
                   <span class="recruit-career">{{rvo.career}}</span>
                   <ul class="recruit-stack">
-                    <li>Java</li>
-                    <li>Spring Boot</li>
-                    <li>React</li>
+                    <li v-for="(stackText, index) in rvo.stack_txt.split('|')" :key="index">{{stackText}}</li>
                   </ul>
                   <span class="recruit-date">~ {{rvo.end_date}}</span>
                 </div>
@@ -181,11 +214,11 @@ let recruitmentListApp=Vue.createApp({
 	data(){
 		return{
 			recruit_list:[],
-			area:[],
 			curpage:1,
 			totalpage:0,
 			startPage:0,
-			endPage:0
+			endPage:0,
+			word:'' 
 		}
 	},
 	mounted(){
@@ -198,18 +231,19 @@ let recruitmentListApp=Vue.createApp({
 		dataRecv(){
 			axios.get('../recruitment/recruit_list_vue.do', {
 				params:{
-					page:this.curpage
+					page:this.curpage,
+					word:this.word
 				}
 			}).then(response=>{
 				console.log(response.data)
 				this.recruit_list=response.data
-				this.area = response.data
 			})
 			
 			// 페이지
 			axios.get('../recruitment/recruit_page_vue.do', {
 				params:{
-					page:this.curpage
+					page:this.curpage,
+					word:this.word
 				}
 			}).then(response=>{
 				console.log(response.data)
@@ -223,6 +257,41 @@ let recruitmentListApp=Vue.createApp({
 				this.cookie_list=response.data
 			}) */
 		},
+		
+		// 검색
+		search(){
+			axios.get('../recruitment/recruit_find_vue.do', {
+				params:{
+					word:this.word,
+					page:this.curpage
+				}
+			}).then(response=>{
+				console.log(response.data)
+				this.recruit_list=response.data
+			})
+			
+			// 페이지
+			axios.get('../recruitment/recruit_page_vue.do', {
+	      params: {
+	        word:this.word,
+	        page:this.curpage
+	      }
+	    }).then(response => {
+	      console.log(response.data)
+	      this.curpage = response.data.curpage
+	      this.totalpage = response.data.totalpage
+	      this.startPage = response.data.startPage
+	      this.endPage = response.data.endPage
+	    })
+		},
+		
+		getAddressPart(address) {
+	    // 주소를 두 번째 공백을 기준으로 분할
+	    const addressParts=address.split(' ')
+	    // 두 번째 공백 이후의 부분을 지우고 첫 번째 부분만 반환
+      const area=addressParts.slice(0, 2).join(' ')
+	    return area
+	  },
 		range(start, end){
 			let arr=[]
 			let leng=end-start
@@ -233,7 +302,7 @@ let recruitmentListApp=Vue.createApp({
 			return arr
 		},
 		prev(){
-			this.curpage=this.endPage-1
+			this.curpage=this.startPage-1
 			this.dataRecv()
 		},
 		next(){
