@@ -10,6 +10,7 @@ import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecruitVO;
+import com.sist.vo.TechVO;
 
 // RecruitmentMapper를 주입받아 데이터베이스에서 데이터를 가져오는 역할
 @Repository
@@ -93,5 +94,13 @@ public class RecruitmentDAO {
 	// 사용자 정보 읽기
 	public MemberVO memberInfoData(String userId) {
 		return mapper.memberInfoData(userId);
+	}
+	
+	public TechVO getTechData(String engTech) {
+		return mapper.getTechData(engTech);
+	}
+	
+	public List<RecruitVO> getRecruitBytech(String engTech){
+		return mapper.getRecruitBytech(engTech);
 	}
 }
