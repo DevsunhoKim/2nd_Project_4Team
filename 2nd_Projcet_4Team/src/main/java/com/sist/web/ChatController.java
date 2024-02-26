@@ -24,6 +24,6 @@ public class ChatController {
 	   System.out.println(userId);
 	   model.addAttribute("nickname", nickname);
 	   model.addAttribute("userId", userId);
-	   return "site/chat/chat_test"; // ViewResolver
+	   return "site/chat/chat_test1"; // ViewResolver
    }
 }

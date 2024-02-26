@@ -43,4 +43,8 @@ public class MentorDAO {
 	public void increaseRevCnt(int mno) {
 		mapper.increaseRevCnt(mno);
 	}
+	
+	public List<MentorVO> getMentorBytech(String cate){
+		return mapper.getMentorBytech(cate);
+	}
 }

@@ -10,22 +10,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sist.service.BooksServiceImpl;
+import com.sist.service.MainService;
 import com.sist.service.MemberService;
 import com.sist.service.StudyRoomService;
-import com.sist.vo.BooksVO;
-import com.sist.vo.MemberVO;
-import com.sist.vo.StudyRoomVO;
+import com.sist.vo.*;
 @Controller
 public class MainController {
 	private MemberService mService;
 	private BooksServiceImpl bService;
 	private StudyRoomService sService;
+	private MainService service;
 
 	@Autowired
-	public MainController(MemberService mService, BooksServiceImpl bService, StudyRoomService sService) {
+	public MainController(MemberService mService, BooksServiceImpl bService, StudyRoomService sService,
+							MainService service) {
 		this.mService = mService;
 		this.bService = bService;
 		this.sService = sService;
+		this.service = service;
 
 	}
 
@@ -56,5 +58,17 @@ public class MainController {
 		model.addAttribute("roomList", roomList);
 		return "main";
 	}
-
+	
+	@GetMapping("main/searchTech.do")
+	public String main_searchTech(String engTech, Model model) {
+		List<MentorVO> mList = service.getMentorBytech(engTech);
+		List<BooksVO> bList = service.getBookstBytech(engTech);
+		List<RecruitVO> rList = service.getRecruitBytech(engTech);
+		String job = mList.get(0).getJob();
+		model.addAttribute("job", job);
+		model.addAttribute("mList",mList);
+		model.addAttribute("bList",bList);
+		model.addAttribute("rList",rList);
+		return "main/searchTech";
+	}
 }

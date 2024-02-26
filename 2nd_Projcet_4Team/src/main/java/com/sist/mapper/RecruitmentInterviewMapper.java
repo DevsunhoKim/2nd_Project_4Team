@@ -28,15 +28,15 @@ public interface RecruitmentInterviewMapper {
 //	public InterviewVO interviewDetailData(int ino);
 	
 	//면접 후기 목록 출력
-	@Select("SELECT ino, cno, userId, title, career, score, ilevel, result, content, TO_CHAR(regdate, 'YYYY-MM-DD') "
+	@Select("SELECT ino, cno, userId, title, career, score, ilevel, result, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday "
 			+ "FROM interview "
 			+ "WHERE cno=#{cno} "
 			+ "ORDER BY ino DESC")
 	public List<InterviewVO> interviewListData(int cno);
 	
 	// 면접 후기 작성
-	@Insert("INSERT INTO interview(ino, cno, userId, title, career, score, ilevel, result, content, regdate) "
-			+ "VALUES(it_ino_seq.nextval, #{cno}, #{userId}, #{title}, #{career}, #{score}, #{ilevel}, #{result}, #{content}, SYSDATE")
+	@Insert("INSERT INTO interview(ino, cno, userId, title, career, score, ilevel, result, content) "
+			+ "VALUES(it_ino_seq.nextval, #{cno}, #{userId}, #{title}, #{career}, #{score}, #{ilevel}, #{result}, #{content}")
 	public void interviewInsert(InterviewVO vo);
 	
 	// 면접 후기 수정

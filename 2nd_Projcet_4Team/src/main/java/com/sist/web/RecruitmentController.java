@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.vo.CompanyVO;
 import com.sist.vo.InterviewVO;
+import com.sist.vo.MemberVO;
 import com.sist.vo.RecruitVO;
 // Spring MVC의 @Controller 어노테이션을 사용하여 웹 요청을 처리
 @Controller
@@ -39,7 +40,7 @@ public class RecruitmentController {
 	}
 	
 	// 채용 공고 수정
-	@PostMapping("recruit_update.do")
+	@GetMapping("recruit_update.do")
 	public String recruit_update(int rno, int cno, Model model) {
 		model.addAttribute("rno", rno);
 		model.addAttribute("cno", cno);
@@ -77,7 +78,10 @@ public class RecruitmentController {
 		return "recruitment/company_update";
 	}
 	
+	// 지원하기
+
 	
+
 //	@GetMapping("interview_detail.do")
 //	public String interview_Detail(int cno, int ino, Model model) {
 //		model.addAttribute("cno", cno);
@@ -85,11 +89,22 @@ public class RecruitmentController {
 //		return "recruitment/company_detail";
 //	}
 	
-//	@GetMapping("interview_insert.do")
-//	public String interview_insert(InterviewVO vo) {
-//		return "recruitment/interview_insert";
-//	}
+//// 면접 후기 작성
+//@PostMapping("interview_insert.do")
+//public String interview_insert(InterviewVO vo, int ino, Model model) {
+//	model.addAttribute("ino", ino);
+//	return "recruitment/company_detail";
 //	
+//}
 	
+	// 지원하기
+	@GetMapping("apply_insert_vue.do")
+		public String apply_inert_vue(int ano, int rno, int cno, Model model) {
+  		model.addAttribute("ano", ano);
+  		model.addAttribute("rno", rno);
+  		model.addAttribute("cno", cno);
+
+			return "recruitment/recruit_detail";
+		}
 
 }

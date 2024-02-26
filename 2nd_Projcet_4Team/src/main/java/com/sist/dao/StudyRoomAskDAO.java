@@ -19,12 +19,12 @@ public class StudyRoomAskDAO {
 	public List<StudyRoomAskVO> StudyRoomAskList(Map map){
 		return mapper.StudyRoomAskList(map);
 	}
-	public int StudyRoomAskTotalpage(int sno) {
-		return mapper.StudyRoomAskTotalpage(sno);
+	public int StudyRoomAskTotalpage(Map map) {
+		return mapper.StudyRoomAskTotalpage(map);
 	}
-	public int StudyRoomAskCount(int sno)
+	public int StudyRoomAskCount(Map map)
 	{
-		return mapper.StudyRoomAskCount(sno);
+		return mapper.StudyRoomAskCount(map);
 	}
 	public StudyRoomAskVO StudyRoomAskDetail(int ano) {
 		return mapper.StudyRoomAskDetail(ano);

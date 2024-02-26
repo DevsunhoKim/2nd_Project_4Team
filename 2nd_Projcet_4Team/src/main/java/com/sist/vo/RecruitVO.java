@@ -24,4 +24,5 @@ public class RecruitVO {
 	private CompanyVO cvo;
 	private int rno, cno, like_count;
 	private String title, stack_txt, stack_img, career, education, content_j, content_q, content_p, content_b, end_date, cname;
+	private String[] stacks_txt;
 }

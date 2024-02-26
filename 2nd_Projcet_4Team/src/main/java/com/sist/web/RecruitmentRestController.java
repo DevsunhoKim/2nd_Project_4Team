@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.service.MemberService;
 import com.sist.service.RecruitmentService;
+import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.InterviewVO;
 import com.sist.vo.MemberVO;
@@ -28,6 +31,9 @@ import com.sist.vo.RecruitVO;
 public class RecruitmentRestController {
 	@Autowired
 	private RecruitmentService rService;
+	
+	@Autowired
+	private MemberService mService;
 
 	// 채용 공고 목록 출력
 	@GetMapping(value="recruit_list_vue.do", produces="text/plain;charset=UTF-8")
@@ -79,14 +85,16 @@ public class RecruitmentRestController {
 	// 채용 공고 상세 페이지
 	// recruitment/recruit_detail_vue.do URL에 대한 GET 요청이 들어올 때, recruit_detail_vue 메서드 실행
 	@GetMapping(value="recruit_detail_vue.do", produces="text/plain;charset=UTF-8")
-	public String recruit_detail_vue(int rno, int cno) throws Exception {
+	public String recruit_detail_vue(int rno, int cno, HttpSession session) throws Exception {
 	// RecruitmentService를 통해 채용 공고 정보와 기업 정보를 가져옴
 		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
+		MemberVO mvo=mService.getMemberByID((String)session.getAttribute("userId"));
 
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
+		map.put("mvo", mvo);
 		// Map 객체는 Java에서 키-값 쌍을 저장하는 데 사용되는 인터페이스로 Map에 rno와 cno를 담아 JSON 형태로 응답
 
 		ObjectMapper mapper=new ObjectMapper();
@@ -113,6 +121,7 @@ public class RecruitmentRestController {
 		}
 		return result;
 	}
+	
 	// 채용 공고 수정
 	@PostMapping(value="recruit_update_vue.do", produces="text/plain;charset=UTF-8")
 	public String recruit_update_vue(RecruitVO vo) throws Exception {
@@ -202,7 +211,7 @@ public class RecruitmentRestController {
 	
 	// 면접 후기 작성
 	@PostMapping(value="interview_insert_vue.do", produces="text/plain;charset=UTF-8")
-  public String interview_insert_vue(InterviewVO vo, int ino, Principal p) throws Exception {
+  public String interview_insert_vue(InterviewVO vo, int ino, int cno, Principal p) throws Exception {
 		String userId=p.getName();
 		MemberVO mvo=rService.memberInfoData(userId);
 		String userName=mvo.getUserName();
@@ -258,5 +267,21 @@ public class RecruitmentRestController {
 //
 //		return json;
 //	}
+	
+	// 지원하기
+	@GetMapping(value="apply/apply_insert_vue.do", produces="text/plain;charset=UTF-8")
+  public String apply_insert_vue(ApplyVO vo, HttpSession session) {
+	   String result="no";
+	   try {
+		   vo.setUserId((String)session.getAttribute("userId"));
+		   rService.applyInsert(vo);
+	       result="yes";
+	   } catch(Exception ex) {
+		   result="no";
+	   }
+	   
+	   return result;
+  }
+	
 	
 }

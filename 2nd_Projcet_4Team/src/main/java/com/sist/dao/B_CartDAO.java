@@ -12,10 +12,13 @@ public class B_CartDAO {
 	@Autowired
 	private B_CartMapper mapper;
 
-	/*
-	 * public List<B_CartVO> findCartItemsByUserId(String userId) { return
-	 * mapper.findCartItemsByUserId(userId); }
-	 */
+	
+	 public List<B_CartVO> findCartItemsByUserId(String userId) {
+		
+		 return mapper.findCartItemsByuserId(userId);
+	 
+	 }
+	 
 
 	public void updateCartItem(B_CartVO vo)
 	{
@@ -34,7 +37,7 @@ public class B_CartDAO {
 
 	public void payCartItem(B_CartVO vo)
 	{
-	    mapper.insertCartItem(vo);
+	    mapper.payCartItem(vo);
 	}
 
 	public B_CartVO pay_ok(int rno)
