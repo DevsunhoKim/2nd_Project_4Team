@@ -278,7 +278,7 @@ $(function(){
      <div class="input-Btn into">
           <input type=hidden id="name" size=15 class="input-sm" data-nickname="${sessionScope.nickname}" data-name="${nickname}">
           <div>
-          ID : <input type=text id="nameinput" size=30 data-id="${userId}">
+          ID : <input type=text id="nameinput" size=30 data-id="${userId}" data-pid="${userpId}">
           </div>
           <div style="margin-right: 0.4rem;">
           <input type=button class="btnset" id="startBtn" value="입장">
