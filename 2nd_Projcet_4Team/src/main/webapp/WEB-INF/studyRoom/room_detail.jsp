@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,9 @@
             <div class="textset textset-h2">
               <span class="textset-name">{{detail_list.ename}}</span>
               <h2 class="textset-tit">{{detail_list.name}}</h2>
-            </div>            
+            </div>    
+            <div class="contents-sum">수용 인원<span>{{detail_list.inwon}}명</span>
+            </div>        
             <div class="contents-sum">공간 면적<span>{{detail_list.area}}</span>
             </div>
             <div class="contents-sum">이용 요금<span class="price">￦{{price}}<span>/시간</span></span>
@@ -204,11 +207,9 @@
           </div> -->
          
           <div class="contents-search">
-            <p class="contents-result"> 전체 <span> {{totalCount}}</span>개 </p>
+            
             <div class="askANDsearch">
-             <div class="contents-btn askBtn">
-               <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
-             </div>
+             
              
              <div class="contents-form">
              
@@ -244,14 +245,23 @@
                   </li>
                 </ul>
               </div>
+              <p class="contents-result"> 전체 <span> {{totalCount}}</span>개 </p>
               
               
-              <div class="inputset inputset-lg">
+              <!-- <div class="inputset inputset-lg">
                 <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
                 <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." aria-label="내용">
-              </div>
+              </div> -->
              </div>
+             
+             
+             
             </div>
+            <div class="contents-btn askBtn">
+            <c:if test="${sessionScope.userId!=null }">
+               <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
+            </c:if>
+             </div>
           </div>
           <div class="tableset">
             <table class="tableset-table table">
@@ -289,7 +299,8 @@
                    </div>
                   </td>
                   <td class="tableset-order05">{{ask.dbday}}</td>
-                  <td class="tableset-order04">{{ask.name}}</td>
+                  <td v-if="ask.userId!=='${sessionScope.userId }'" class="tableset-order04">{{ask.name.substring(0, 1)}}**</td>
+                  <td v-if="ask.userId==='${sessionScope.userId }'" class="tableset-order04">{{ask.name}}</td>
                   <td class="tableset-order01" v-if="ask.state===0">
                     <div class="badgeset state">답변대기</div>
                   </td>
@@ -356,8 +367,8 @@
         return {
            detail_list:{},
            no:${no},
-           userId:'${userId}',
-          /*  userId:'${sessionScope.userId}', */
+           /* userId:'${userId}', */
+           userId:'${sessionScope.userId}',
            price:0,
            lobby:[],
            conve:[],
@@ -602,6 +613,7 @@
          		   this.startpage=response.data.startpage
          		   this.endpage=response.data.endpage
          		   this.totalCount=response.data.totalCount
+         		   
          	   })
         	},
         	listChange(fn){

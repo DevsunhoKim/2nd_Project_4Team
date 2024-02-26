@@ -26,7 +26,7 @@ public interface StudyRoomAskMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<StudyRoomAskVO> StudyRoomAskList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/10.0) FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%'")
+	@Select("SELECT CEIL(COUNT(*)/7.0) FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%'")
 	public int StudyRoomAskTotalpage(Map map);
 	
 	@Select("SELECT COUNT(*) FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%'")

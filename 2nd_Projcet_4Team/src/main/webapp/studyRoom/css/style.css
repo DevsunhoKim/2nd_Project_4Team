@@ -831,7 +831,7 @@
 	
 }
 #studyRoom_detail .hooms-N40 .textset.textset-h2 {
-    margin-bottom: 17.1rem;
+    margin-bottom: 12.43rem;
 }
 #studyRoom_detail .btnset:hover{
 	background-color: black;
@@ -909,15 +909,46 @@
     align-items: center;
     gap: 1rem;
 } 
-#studyRoom-ask .ask-tit{
-	margin-top: 3rem;
+#studyRoom_detail .btnset:hover #cart{
+	filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(140deg) brightness(106%) contrast(105%);
 }
-#studyRoom-ask .ask-title{
-	font-weight: 600;
+ #studyRoom_detail .state{
+ background-color: var(--primary); color: var(--text-color5);
+ padding: 0.4rem 2rem;
+ font-size: 1.4rem;
+ }
+ #studyRoom_detail .state1{
+ background-color: #6713d2; color: var(--text-color5);
+ padding: 0.4rem 3rem;
+ font-size: 1.4rem;
+ }
+#studyRoom_detail .asklist-title{
+    display: flex;
+    align-items: center;
+ }
+#studyRoom_detail .asktitle{
+    display: block !important;
+ }
+#studyRoom_detail .asklist-title .tableset-ico{
+    padding-right: 0;
+ }
+#studyRoom_detail a.btn{
+    padding:0.4rem 0;
+    width: 60px;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 13px;
+    margin: 0px 10px;
+    cursor: pointer;
 }
-
-
-
+#studyRoom_detail .contents-result {
+    font-size: 1.9rem;
+    font-weight: 550;
+    margin-left: 0.5rem;
+    padding-top: 2rem;
+}
 
 #room_reserve .month2{
 	display: none;
@@ -1209,10 +1240,14 @@
 	margin-right: 0.5rem;
     padding-bottom: 0.3rem;
 }
-#studyRoom_detail .btnset:hover #cart{
-	filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(140deg) brightness(106%) contrast(105%);
-}
 
+
+#studyRoom-ask .ask-tit{
+	margin-top: 3rem;
+}
+#studyRoom-ask .ask-title{
+	font-weight: 600;
+}
 #studyRoomAsk .btnadd{
 	min-width: 11rem;
 	height: 4rem;
@@ -1246,46 +1281,6 @@
     appearance: none;
     height: var(--ht-lg);
     border-color: var(--border-color);
-}
-
-/* Badgeset : Badgeset */
-/* .badgeset { display: flex; align-items: center; justify-content: center; width: 9rem; height: 3.2rem; padding: .6rem; background-color: var(--primary); color: var(--text-color5); text-align: center; }
-.badgeset.badgeset-center { margin: 0 auto; }
-.badgeset.badgeset-active { background-color: var(--secondary); }
-@media (max-width: 992px){
- .badgeset { width: 6.8rem; height: 2.5rem; display: flex !important; }
-
- } */
- #studyRoom_detail .state{
- background-color: var(--primary); color: var(--text-color5);
- padding: 0.4rem 2rem;
- font-size: 1.4rem;
- }
- #studyRoom_detail .state1{
- background-color: #6713d2; color: var(--text-color5);
- padding: 0.4rem 3rem;
- font-size: 1.4rem;
- }
-#studyRoom_detail .asklist-title{
-    display: flex;
-    align-items: center;
- }
-#studyRoom_detail .asktitle{
-    display: block !important;
- }
-#studyRoom_detail .asklist-title .tableset-ico{
-    padding-right: 0;
- }
-#studyRoom_detail a.btn{
-    padding:0.4rem 0;
-    width: 60px;
-    background-color: black;
-    color: white;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 13px;
-    margin: 0px 10px;
-    cursor: pointer;
 }
 
 #ask_detail{

@@ -132,7 +132,7 @@ public class StudyRoomRestController {
 	   
 	   if(fn==null || fn.equals("all"))
 		   fn="";
-	   int rowsize=10;
+	   int rowsize=7;
 	   int start=(rowsize*page)-(rowsize-1);
 	   int end=rowsize*page;
 	   final int BLOCK=5;
