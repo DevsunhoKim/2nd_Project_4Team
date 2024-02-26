@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="../studyRoom/css/common.css">
 <link rel="stylesheet" href="../studyRoom/css/style.css">
 <style type="text/css">
+#chatting #nameinput{
+    height: 3.5rem;
+    border-radius: 3rem;
+    border: 2.5px solid #e5e5e5;
+    padding: 14px;
+}
 #chatting .namearea{
     font-size: 1.3rem;
     font-weight: 600;
@@ -32,12 +38,17 @@
 #chatting .into{
     margin: 2rem 0 1rem;
     padding-left: 0;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 #chatting .btnset{
    min-width: 0;
    width: 0.5rem;
    border-radius: 0.5rem;
    height: 3.5rem;
+   font-size: 1.5rem;
 }
 #chatting .btnset:hover{
    background-color:#6713d2;
@@ -177,10 +188,14 @@ let websocket;
 //서버 연결
 function connection()
 {
-	websocket=new WebSocket("ws://211.238.142.115:8080/web/chat/chat-ws")
+	websocket=new WebSocket("ws://localhost:8080/web/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=OnMessage
+}
+function disConnection()
+{
+	websocket.close()
 }
 // 연결 처리 => CallBack
 function onOpen(event)
@@ -207,14 +222,17 @@ function appendMessage(msg)
 {
 	let nick=$('#name').attr("data-nickname");
 	let name=$('#name').attr("data-name");
-	if(nick!==name)
+	let userId=$('#nameinput').attr("data-id");
+	let id=$('#nameinput').val();
+	console.log("입력한 id:"+id+" 세션아이디:"+userId)
+	if(id!==userId)
 	 {
 		 $('#recvMsg').append(
-				 "<div class=\"chat ch1\"><div class=\"namearea\"><p>"+nick+"</p></div><div class=\"textbox\">"+msg+"</div></div>"
+				 "<div class=\"chat ch1\"><div class=\"namearea\"><p>"+id+"</p></div><div class=\"textbox\">"+msg+"</div></div>"
           )
 	 }
 	 else{
-		 $('#recvMsg').append("<div class=\"chat ch2\"><div class=\"namearea\"><p>"+nick+"</p></div><div class=\"textbox\">"+msg+"</div></div>")
+		 $('#recvMsg').append("<div class=\"chat ch2\"><div class=\"namearea\"><p>"+id+"</p></div><div class=\"textbox\">"+msg+"</div></div>")
 	 }
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
@@ -238,7 +256,7 @@ $(function(){
 		connection()
 	})
 	$('#endBtn').click(function(){
-		connection()
+		disConnection()
 	})
 	$('#sendBtn').click(function(){
 		send()
@@ -258,8 +276,13 @@ $(function(){
    <div class="row">
      <div class="input-Btn into">
           <input type=hidden id="name" size=15 class="input-sm" data-nickname="${sessionScope.nickname}" data-name="${nickname}">
+          <div>
+          ID : <input type=text id="nameinput" size=30 data-id="${userId}">
+          </div>
+          <div style="margin-right: 0.4rem;">
           <input type=button class="btnset" id="startBtn" value="입장">
           <input type=button class="btnset" id="endBtn" value="퇴장">
+          </div>
     </div>
     <div class="wrap" id="chatArea">
       <div id="recvMsg">
