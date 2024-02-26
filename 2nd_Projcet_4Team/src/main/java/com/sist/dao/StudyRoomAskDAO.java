@@ -1,5 +1,6 @@
 package com.sist.dao;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +38,22 @@ public class StudyRoomAskDAO {
 	}
 	public void StudyRoomAskfileNoneUpdate(StudyRoomAskVO vo) {
 		mapper.StudyRoomAskfileNoneUpdate(vo);
+	}
+	
+	
+	//adminpage
+    public List<StudyRoomAskVO> AdminRoomAskList(Map map){
+    	return mapper.AdminRoomAskList(map);
+    }
+	
+	public int AdminRoomAskTotalpage()
+	{
+		return mapper.AdminRoomAskTotalpage();
+	}
+	
+	public int AdminRoomAskCount()
+	{
+		return mapper.AdminRoomAskCount();
 	}
 	
 }

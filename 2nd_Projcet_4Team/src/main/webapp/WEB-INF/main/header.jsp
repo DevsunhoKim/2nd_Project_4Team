@@ -75,7 +75,7 @@ function chat() {
               </sec:authorize>
               <sec:authorize access="hasRole('ROLE_ADMIN')">
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../adminpage/admin.do">
                   <span>AdminPage</span>
                 </a>
               </li>

@@ -56,5 +56,23 @@ public interface StudyRoomAskMapper {
 	
 	
 	
+	// adminpage
+	@Select("SELECT ano,sno,group_id,group_step,state,userId,name,content,filename,"
+			+ "filesize,cate,email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num"
+			+ " FROM (SELECT ano,sno,group_id,group_step,state,userId,name,content,filename,"
+			+ "filesize,cate,email,subject,regdate,rownum as num "
+			+ "FROM (SELECT * FROM studyRoom_ASK ORDER BY ano DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<StudyRoomAskVO> AdminRoomAskList(Map map);
+	
+	@Select("SELECT CEIL(COUNT(*)/7.0) FROM studyRoom_ASK")
+	public int AdminRoomAskTotalpage();
+	
+	@Select("SELECT COUNT(*) FROM studyRoom_ASK")
+	public int AdminRoomAskCount();
+	
+	
+	
+	
 	
 }
