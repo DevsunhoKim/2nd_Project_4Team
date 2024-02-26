@@ -15,6 +15,7 @@ import com.sist.vo.CompanyVO;
 import com.sist.vo.InterviewVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecruitVO;
+import com.sist.vo.TechVO;
 
 /*
  * RNO         NOT NULL NUMBER
@@ -175,4 +176,17 @@ public interface RecruitmentMapper {
 	@Select("SELECT userId, userName FROM Member "
 			+ "WHERE userId=#{userId}")
 	public MemberVO memberInfoData(String userId);
+	
+	// tech 데이터
+	@Select("SELECT * FROM tech WHERE engTech = #{engTech}")
+	public TechVO getTechData(String engTech); 
+	
+	// 검색어(기술명)에 대한 채용공고리스트
+	@Results({
+		  @Result(column="logo", property="cvo.logo"),
+		})
+	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.end_date, "
+			+ "c.logo FROM recruit r JOIN company c ON r.cno=c.cno "
+			+ "WHERE  r.stack_txt LIKE '%' || #{engTech} || '%' ")
+	public List<RecruitVO> getRecruitBytech(String engTech); 
 }

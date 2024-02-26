@@ -62,6 +62,16 @@ public interface BooksMapper {
 			  "OR keyword LIKE '%' || #{ss} || '%'")
 			  public List<BooksVO> searchBooks(@Param("ss") String ss);
 
-
+		// 메인페이지- 검색어(기술명/한글기술명)에 대한 책리스트
+	  @Select("<script>"
+				+ "SELECT NO, title, poster, genre, price, keyword "
+				+ "FROM books "
+				+ "WHERE (TITLE LIKE '%' || #{engTech} || '%'"
+				+ "    OR TITLE LIKE '%' || #{korTech} || '%')"
+				+ "<if test=#{engTech} == \"javaScript\" >"
+				+ "   AND (TITLE NOT LIKE '%' ||자바스크립트|| '%' OR TITLE LIKE '%' ||javaScript|| '%')"
+				+ "</if>"
+				+"</script>")
+		public List<BooksVO> getBookstBytech(String engTech,String korTech); 
 
 }

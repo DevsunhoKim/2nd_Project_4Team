@@ -39,6 +39,10 @@
             <h2 class="company-name">{{company_detail.name}}</h2>
           </div>
           <p class="company-type">{{company_detail.type}}</p>
+          <!-- <div class="recruit-btn-wrapper">
+            <button type="button" id="recruitUpdateBtn" class="recruit-btn" value="수정" @click="update(rno)">수정</button>
+            <button type="button" id="recruitDeleteBtn" class="recruit-btn" value="삭제" @click="delete(rno)">삭제</button>
+          </div> -->
           <div class="company-btn-wrapper">
             <button type="button" id="companyLikeBtn" class="company-btn">
               <span class="company-like-count">{{company_detail.like_count}}</span>
@@ -115,7 +119,7 @@
         <div class="container-md">
           <div class="contents-top">
             <h3 class="contents-tit">채용 공고</h3>
-            <button type="button" id="recruitInsertBtn" class="review-btn" value="작성하기" @click="insert()">작성하기</button>
+            <!-- <button type="button" id="recruitInsertBtn" class="review-btn" value="작성하기" @click="insert()">작성하기</button> -->
             <!-- <p class="contents-text">총 <span class="emph">11</span>건</p> -->
           </div>
           <div class="tableset">
@@ -251,8 +255,8 @@
               </ul>
               
               <div class="interview-btn-wrapper">
-	              <button type="submit" id="inerviewSubmitBtn" class="interview-btn" value="확인" @click="InterviewSubmitBtn()">확인</button>
-	              <button type="button" id="inerviewCancelBtn" class="interview-btn" value="취소">취소</button>
+	              <button type="submit" id="interviewSubmitBtn" class="interview-btn" value="확인" @click="InterviewSubmitBtn()">확인</button>
+	              <button type="button" id="interviewCancelBtn" class="interview-btn" value="취소">취소</button>
 	            </div>
             </form>
           </div>
@@ -278,7 +282,7 @@
                       <figure class="interview-icon">
                         <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
                       </figure>
-                      <span>만족도 </span><span class="emph">{ivo.score}}</span>
+                      <span>만족도 </span><span class="emph">{{ivo.score}}</span>
                     </li>
                     <li>
                       <figure class="interview-icon">
@@ -294,56 +298,20 @@
                     </li>
                   </ul>
                   <p class="interview-content">{{ivo.content}}</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordset-item">
-              <div class="accordset-header">
-                <div class="accordset-button btn">
-                  <h4 class="interview-tit">면접 후기 제목1<br>
-                    <span class="interview-date">2024-02-14</span></h4>
-                </div>
-              </div>
-              <div class="accordset-body">
-                <div class="accordset-content">
-                  <ul class="interview-icon-wrapper">
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/11325/11325487.png" alt="경력">
-                      </figure>
-                      <span>경력 </span><span class="emph">신입</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4832/4832230.png" alt="만족도">
-                      </figure>
-                      <span>만족도 </span><span class="emph">긍정적</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/6231/6231766.png" alt="난이도">
-                      </figure>
-                      <span>난이도 </span><span class="emph">보통</span>
-                    </li>
-                    <li>
-                      <figure class="interview-icon">
-                        <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/9511/9511711.png" alt="결과">
-                      </figure>
-                      <span>결과 </span><span class="emph">합격</span>
-                    </li>
-                  </ul>
-                  <p class="interview-content">지원자와 2명과 면접관 2명이 면접을 진행합니다. 각 면접관 님이 간단한 아이스브레이킹을 시작으로 인성과 직무경험을 순서대로 질문하시며, 지원자 역시 각자의 정해진 순서대로 답변을 진행합니다. 편안한 분위기에서 면접자가 자유롭게 본인의 생각을 말할 수 있게 해주십니다. 최대한 긴장하지 않고 질문 의도를 잘 파악하여 답변하시고, 답변에 대한 확실한 근거(본인의 경험, 이론적 지식 등)를 말해주시면 좋을 거 같습니다.</p>
+                  <div class="interview-detail-btn-wrapper">
+	                  <button type="button" id="interviewUpdateBtn" class="interview-detail-btn" value="수정" @click="update(rno)">수정</button>
+	                  <button type="button" id="interviewDeleteBtn" class="interview-detail-btn" value="삭제" @click="delete(rno)">삭제</button>
+	                </div>
                 </div>
               </div>
             </div>
           </div>
-          <nav class="pagiset pagiset-circ">
-            <!-- <div class="pagiset-ctrl">
+<!--           <nav class="pagiset pagiset-circ">
+            <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-first" href="javascript:void(0)">
                 <span class="visually-hidden">처음</span>
               </a>
-            </div> -->
+            </div>
             <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
                 <span class="visually-hidden">이전</span>
@@ -357,12 +325,12 @@
                 <span class="visually-hidden">다음</span>
               </a>
             </div>
-            <!-- <div class="pagiset-ctrl">
+            <div class="pagiset-ctrl">
               <a class="pagiset-link pagiset-last" href="javascript:void(0)">
                 <span class="visually-hidden">마지막</span>
               </a>
-            </div> -->
-          </nav>
+            </div>
+          </nav> -->
         </div>
       </div>
     </div>
@@ -373,12 +341,10 @@
 $(document).ready(function() {
   // 초기에 모든 아코디언 아이템의 내용을 숨김
   $('.accordset-body').hide();
-
   // 아코디언 헤더 클릭 시 토글 동작
   $('.accordset-header').click(function() {
     // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 토글
     $(this).next('.accordset-body').slideToggle();
-    
     // 헤더에 'active' 클래스를 토글하여 스타일 변경
     $(this).toggleClass('active');
   });
@@ -389,7 +355,7 @@ $(function(){
     $("#interviewForm").show();
   });
   
-  $("#inerviewCancelBtn").click(function() {
+  $("#interviewCancelBtn").click(function() {
     $("#interviewForm").hide();
   });
 })
@@ -433,16 +399,17 @@ let companyDetailApp=Vue.createApp({
       }).then(response=>{
         console.log(response.data);
         this.recruit_list=response.data.recruit_list;
+        this.interview_list=response.data.interview_list;
       });
 
-      axios.get('../recruitment/interview_list_vue.do', {
+/*       axios.get('../recruitment/interview_list_vue.do', {
         params: {
           cno:this.cno
         }
       }).then(response=>{
         console.log(response.data);
-        this.interview_list=response.data.interview_list;
-      });
+        
+      }); */
       
 	    /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
 	      console.log(response.data)
