@@ -11,22 +11,6 @@ import org.apache.ibatis.annotations.Update;
 import com.sist.vo.InterviewVO;
 
 public interface RecruitmentInterviewMapper {
-//	// 면접 후기 목록 출력
-//	@Select("SELECT ino, cno, userId, title, career, score, ilevel, result, content, TO_CHAR(regdate, 'YYYY-MM-DD'), num "
-//			+ "FROM (SELECT ino, cno, userId, title, career, score, ilevel, result, content, regdate, rownum as num "
-//			+ "FROM (SELECT /*+ INDEX_DESC(interview it_ino_pk)*/ino, cno, userId, title, career, score, ilevel, result, content, regdate "
-//			+ "FROM interview)) "
-//			+ "WHERE num BETWEEN #{start} AND {end}")
-//	public List<InterviewVO> interviewListData(@Param("start") int start, @Param("end") int end);
-//
-//	// 면접 후기 총 페이지 수
-//	@Select("SELECT CEIL(COUNT(*)/10.0) FROM interview")
-//	public int interviewTotalPage();
-//
-//	// 면접 후기 상세보기
-//	@Select("SELECT * FROM interview WHERE ino=#{ino}")
-//	public InterviewVO interviewDetailData(int ino);
-	
 	//면접 후기 목록 출력
 	@Select("SELECT ino, cno, userId, title, career, score, ilevel, result, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday "
 			+ "FROM interview "
@@ -42,11 +26,12 @@ public interface RecruitmentInterviewMapper {
 	// 면접 후기 수정
 	@Update("UPDATE interview SET "
 			+ "title=#{title}, career=#{career}, score=#{score}, ilevel=#{ilevel}, result=#{result}, content=#{content} "
-			+ "WHERE ino=#{ino}")
+			+ "WHERE ino=#{ino} AND userId=#{userId}")
 	public void interviewUpdate(InterviewVO vo);
 	
 	// 면접 후기 삭제
 	@Delete("DELETE FROM interview "
-			+ "WHERE ino=#{ino}")
-	public void interviewDelete(int ino);
+			+ "WHERE ino=#{ino} AND userId=#{userId}")
+	public void interviewDelete(@Param("ino") int ino, @Param("userId") String userId);
+	
 }

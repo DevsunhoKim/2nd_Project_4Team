@@ -512,9 +512,9 @@
 .opilsol-N24 #recruitInsertBtn:hover{background-color: #7918F2; color: #fff; font-weight: 500; transition: all 0.3s ease-in-out;}
 .opilsol-N24 table {table-layout: fixed; width: 100%;}
 .opilsol-N24 .table tr{padding: 1rem 0; border-bottom: 1px solid #eee}
-.opilsol-N24 .tableset .tableset-table tr td{padding: 1rem;}
-.opilsol-N24 .table tr td{width: 12.5%; text-align: center; color: #444; font-size: 1.5rem;}
-.opilsol-N24 .table tr td.recruit-tit{width: 50%; text-align: left; font-size: 1.6rem; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.opilsol-N24 .tableset .tableset-table tr td{padding: 1rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all;}
+.opilsol-N24 .table tr td{width: 20%; text-align: center; color: #444; font-size: 1.5rem;}
+.opilsol-N24 .table tr td.recruit-tit{width: 40%; text-align: left; font-size: 1.6rem; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
 .opilsol-N24 .table tr td.recruit-tit a{width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; vertical-align: middle;}
 .opilsol-N24 .table tr td.recruit-date{color: #888; font-size: 1.4rem;}
 .opilsol-N24 .table tbody td:nth-of-type(2) a { overflow: hidden; display: block; text-align: left; white-space: nowrap; text-overflow: ellipsis; color: var(--text-color1); }

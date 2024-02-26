@@ -12,22 +12,7 @@ import com.sist.vo.InterviewVO;
 public class RecruitmentInterviewDAO {
 	@Autowired
 	private RecruitmentInterviewMapper mapper;
-	
-//// 면접 후기 목록 출력
-//public List<InterviewVO> interviewListData(int cno) {
-//	return mapper.interviewListData(cno);
-//}
-//
-//// 면접 후기 총 페이지 수
-//public int interviewTotalPage() {
-//	return mapper.interviewTotalPage();
-//}
-//
-//// 면접 후기 상세보기
-//public InterviewVO interviewDetailData(int ino) {
-//	return mapper.interviewDetailData(ino);
-//}
-	
+
 	// 면접 후기 목록 출력
 	public List<InterviewVO> interviewListData(int cno) {
 		return mapper.interviewListData(cno);
@@ -44,7 +29,8 @@ public class RecruitmentInterviewDAO {
 	}
 	
 	// 면접 후기 삭제
-	public void interviewDelete(int ino) {
-		mapper.interviewDelete(ino);
+	public void interviewDelete(int ino, String userId) {
+		mapper.interviewDelete(ino, userId);
 	}
+	
 }

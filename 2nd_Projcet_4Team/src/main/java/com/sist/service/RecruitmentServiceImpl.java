@@ -20,6 +20,13 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	
 	@Autowired
 	private RecruitmentInterviewDAO iDao;
+	
+	// 채용 공고 메인 출력
+	@Override
+	public List<RecruitVO> recruitMainData() {
+		// TODO Auto-generated method stub
+		return rDao.recruitMainData();
+	}
 
 	// 채용 공고 목록 출력
 	@Override
@@ -28,7 +35,7 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return rDao.recruitListData(start, end);
 	}
 
-	// 채용 공고 목록 총 페이지
+	// 채용 공고 목록 총 페이지 수
 	@Override
 	public int recruitTotalPage() {
 		// TODO Auto-generated method stub
@@ -42,83 +49,97 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return rDao.recruitFindData(word);
 	}
 	
-	// 채용 공고 상세 페이지
+	// 채용 공고 상세보기
 	@Override
 	public RecruitVO recuitDetailData(int rno) {
 		// TODO Auto-generated method stub
 		return rDao.recuitDetailData(rno);
 	}
 
-	// 채용 공고 추가
-	@Override
-	public void recruitInsert(RecruitVO vo) {
-		// TODO Auto-generated method stub
-		rDao.recruitInsert(vo);
-	}
-
-	// 채용 공고 수정
-	@Override
-	public void recruitUpdate(RecruitVO vo) {
-		// TODO Auto-generated method stub
-		rDao.recruitUpdate(vo);
-	}
-
-	// 채용 공고 삭제
-	@Override
-	public void recruitDelete(int rno) {
-		// TODO Auto-generated method stub
-		rDao.recruitDelete(rno);
-	}
+//	// 채용 공고 추가
+//	@Override
+//	public void recruitInsert(RecruitVO vo) {
+//		// TODO Auto-generated method stub
+//		rDao.recruitInsert(vo);
+//	}
+//
+//	// 채용 공고 수정
+//	@Override
+//	public void recruitUpdate(RecruitVO vo) {
+//		// TODO Auto-generated method stub
+//		rDao.recruitUpdate(vo);
+//	}
+//
+//	// 채용 공고 삭제
+//	@Override
+//	public void recruitDelete(int rno) {
+//		// TODO Auto-generated method stub
+//		rDao.recruitDelete(rno);
+//	}
 	
-	// 기업 정보 상세 페이지
+	// 기업 정보 상세보기
 	@Override
 	public CompanyVO companyDetailData(int cno) {
 		// TODO Auto-generated method stub
 		return rDao.companyDetailData(cno);
 	}
 	
-	// 기업 정보 작성
+	// 기업 정보 - 채용 공고 목록 출력
 	@Override
-	public void companyInsert(CompanyVO vo) {
+	public List<RecruitVO> companyRecruitListData(int cno) {
 		// TODO Auto-generated method stub
-		rDao.companyInsert(vo);
+		return rDao.companyRecruitListData(cno);
 	}
-
-	// 기업 정보 수정
-	@Override
-	public CompanyVO companyUpdate(int cno) {
-		// TODO Auto-generated method stub
-		return rDao.companyUpdate(cno);
-	}
-
-	// 기업 정보 삭제
-	@Override
-	public void companyDelete(int cno) {
-		// TODO Auto-generated method stub
-		rDao.companyDelete(cno);
-	}
-
-
-//	// 면접 후기 목록 출력
+	
+//	// 기업 정보 작성
 //	@Override
-//	public List<InterviewVO> interviewListData(int cno) {
+//	public void companyInsert(CompanyVO vo) {
 //		// TODO Auto-generated method stub
-//		return rDao.interviewListData(cno);
+//		rDao.companyInsert(vo);
 //	}
 //
-//	// 면접 후기 총 페이지 수
+//	// 기업 정보 수정
 //	@Override
-//	public int interviewTotalPage() {
+//	public CompanyVO companyUpdate(int cno) {
 //		// TODO Auto-generated method stub
-//		return rDao.interviewTotalPage();
+//		return rDao.companyUpdate(cno);
 //	}
-//	
-//	// 면접 후기 상세보기
+//
+//	// 기업 정보 삭제
 //	@Override
-//	public InterviewVO interviewDetailData(int ino) {
+//	public void companyDelete(int cno) {
 //		// TODO Auto-generated method stub
-//		return rDao.interviewDetailData(ino);
+//		rDao.companyDelete(cno);
 //	}
+	
+	// 지원하기
+	@Override
+	public void applyInsert(ApplyVO vo) {
+		// TODO Auto-generated method stub
+		rDao.applyInsert(vo);
+	}
+	
+//	// 지원서 수정
+//	@Override
+//	public void applyUpdate(ApplyVO vo) {
+//		// TODO Auto-generated method stub
+//		rDao.applyUpdate(vo);
+//	}
+	
+	// 지원 취소(삭제)
+	@Override
+	public void applyDelete(int ano) {
+		// TODO Auto-generated method stub
+		rDao.applyDelete(ano);
+	}
+	
+	// 사용자 정보 읽기
+	@Override
+	public MemberVO memberInfoData(String userId) {
+		// TODO Auto-generated method stub
+		return rDao.memberInfoData(userId);
+	}
+
 	
 	// 면접 후기 목록 출력
 	@Override
@@ -143,39 +164,9 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 
 	// 면접 후기 삭제
 	@Override
-	public void interviewDelete(int ino) {
+	public void interviewDelete(int ino, String userId) {
 		// TODO Auto-generated method stub
-		iDao.interviewDelete(ino);
-	}
-
-	
-	// 지원하기
-	@Override
-	public void applyInsert(ApplyVO vo) {
-		// TODO Auto-generated method stub
-		rDao.applyInsert(vo);
-	}
-	
-	// 지원서 수정
-	@Override
-	public void applyUpdate(ApplyVO vo) {
-		// TODO Auto-generated method stub
-		rDao.applyUpdate(vo);
-	}
-	
-	// 지원 취소(삭제)
-	@Override
-	public void applyDelete(int ano) {
-		// TODO Auto-generated method stub
-		rDao.applyDelete(ano);
-	}
-	
-	
-	// 사용자 정보 읽기
-	@Override
-	public MemberVO memberInfoData(String userId) {
-		// TODO Auto-generated method stub
-		return rDao.memberInfoData(userId);
+		iDao.interviewDelete(ino, userId);
 	}
 	
 }

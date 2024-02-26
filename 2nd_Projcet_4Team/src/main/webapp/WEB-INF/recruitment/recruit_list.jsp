@@ -213,26 +213,26 @@ let recruitmentListApp=Vue.createApp({
 	// 멤버 변수
 	data(){
 		return{
-			recruit_list:[],
-			curpage:1,
-			totalpage:0,
-			startPage:0,
-			endPage:0,
-			word:'' 
+			recruit_list:[], // 채용 공고 목록
+			word:'', // 검색어
+			curpage:1, // 현재 페이지
+			totalpage:0, // 총 페이지
+			startPage:0, // 페이지네이션 시작
+			endPage:0 // 페이지네이션 끝
 		}
 	},
 	mounted(){
 		this.dataRecv()
 	},
-	updated(){
-		
+	updated(){	
 	},
 	methods:{
+		// 데이터 불러오기
 		dataRecv(){
 			axios.get('../recruitment/recruit_list_vue.do', {
 				params:{
-					page:this.curpage,
-					word:this.word
+					word:this.word,
+					page:this.curpage					
 				}
 			}).then(response=>{
 				console.log(response.data)
@@ -242,8 +242,8 @@ let recruitmentListApp=Vue.createApp({
 			// 페이지
 			axios.get('../recruitment/recruit_page_vue.do', {
 				params:{
-					page:this.curpage,
-					word:this.word
+					word:this.word,
+					page:this.curpage
 				}
 			}).then(response=>{
 				console.log(response.data)
@@ -285,6 +285,7 @@ let recruitmentListApp=Vue.createApp({
 	    })
 		},
 		
+		// 근무 지역 출력
 		getAddressPart(address) {
 	    // 주소를 두 번째 공백을 기준으로 분할
 	    const addressParts=address.split(' ')
@@ -292,6 +293,8 @@ let recruitmentListApp=Vue.createApp({
       const area=addressParts.slice(0, 2).join(' ')
 	    return area
 	  },
+	  
+	  // 페이지네이션
 		range(start, end){
 			let arr=[]
 			let leng=end-start

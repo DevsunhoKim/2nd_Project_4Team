@@ -25,9 +25,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-	<sec:authorize access="isAuthenticated()">
-	  <sec:authentication property="principal" var="principal"/>
-	</sec:authorize>
   <section id="recruitmentCompany" class="sub">
     <div class="content-container" id="companyDetailApp">
       <div class="container-md">
@@ -187,12 +184,12 @@
         <div class="contents-container container-md">
           <div class="contents-top">
             <h3 class="contents-tit">면접 후기</h3>
-            <button type="button" id="interviewInsertBtn" class="interview-btn" value="작성하기" @click="InterviewInsert()" v-if="sessionId">작성하기</button>
+            <button type="button" id="interviewInsertBtn" class="interview-btn" value="작성하기" @click="interviewInsert">작성하기</button>
             <!-- <p class="contents-text">총 <span class="emph">13</span>건</p> -->
           </div>
           
           <div id="interviewForm">
-            <form method="" action="">
+            <form>
               <ul class="interview-input">
                 <li>
 	                <label for="title">제목</label>
@@ -202,7 +199,7 @@
                   <div>
 	                  <label for="career">경력</label>
 	                  <select id="career" name="career" ref="career" v-model="career">
-	                    <option value="신입">신입</option>
+	                    <option value="신입" selected>신입</option>
 		                  <option value="1년 미만">1년 미만</option>
 		                  <option value="1년">1년</option>
 		                  <option value="2년">2년</option>
@@ -224,7 +221,7 @@
                     <select id="score" name="score" ref="score" v-model="score">
                       <option value="매우불만족">매우 불만족</option>
                       <option value="약간불만족">약간 불만족</option>
-                      <option value="보통">보통</option>
+                      <option value="보통" selected>보통</option>
                       <option value="약간만족">약간 만족</option>
                       <option value="매우만족">매우 만족</option>
                     </select>
@@ -234,7 +231,7 @@
                     <select id="ilevel" name="ilevel" ref="ilevel" v-model="ilevel">
                       <option value="매우 쉬움">매우 쉬움</option>
                       <option value="약간 쉬움">약간 쉬움</option>
-                      <option value="보통">보통</option>
+                      <option value="보통" selected>보통</option>
                       <option value="약간 어려움">약간 어려움</option>
                       <option value="매우 어려움">매우 어려움</option>
                     </select>
@@ -242,7 +239,7 @@
                   <div>
                     <label for="result">결과</label>
                     <select id="result" name="result" ref="result" v-model="result">
-                      <option value="합격">합격</option>
+                      <option value="합격" selected>합격</option>
                       <option value="불합격">불합격</option>
                       <option value="대기중">대기중</option>
                     </select>
@@ -255,7 +252,7 @@
               </ul>
               
               <div class="interview-btn-wrapper">
-	              <button type="submit" id="interviewSubmitBtn" class="interview-btn" value="확인" @click="InterviewSubmitBtn()">확인</button>
+	              <button type="submit" id="interviewSubmitBtn" class="interview-btn" value="확인" @click="InterviewSubmit(ino)">확인</button>
 	              <button type="button" id="interviewCancelBtn" class="interview-btn" value="취소">취소</button>
 	            </div>
             </form>
@@ -299,38 +296,13 @@
                   </ul>
                   <p class="interview-content">{{ivo.content}}</p>
                   <div class="interview-detail-btn-wrapper">
-	                  <button type="button" id="interviewUpdateBtn" class="interview-detail-btn" value="수정" @click="update(rno)">수정</button>
-	                  <button type="button" id="interviewDeleteBtn" class="interview-detail-btn" value="삭제" @click="delete(rno)">삭제</button>
+	                  <button type="button" id="interviewUpdateBtn" class="interview-detail-btn" value="수정" @click="update(ino)">수정</button>
+	                  <button type="button" id="interviewDeleteBtn" class="interview-detail-btn" value="삭제" @click="delete(ino)">삭제</button>
 	                </div>
                 </div>
               </div>
             </div>
           </div>
-<!--           <nav class="pagiset pagiset-circ">
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-first" href="javascript:void(0)">
-                <span class="visually-hidden">처음</span>
-              </a>
-            </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-prev" href="javascript:void(0)">
-                <span class="visually-hidden">이전</span>
-              </a>
-            </div>
-            <div class="pagiset-list">
-              <a class="pagiset-link active-fill" href="javascript:void(0)">1</a>
-            </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-next" href="javascript:void(0)">
-                <span class="visually-hidden">다음</span>
-              </a>
-            </div>
-            <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-last" href="javascript:void(0)">
-                <span class="visually-hidden">마지막</span>
-              </a>
-            </div>
-          </nav> -->
         </div>
       </div>
     </div>
@@ -338,18 +310,7 @@
     </div>
   </section>
 <script>
-$(document).ready(function() {
-  // 초기에 모든 아코디언 아이템의 내용을 숨김
-  $('.accordset-body').hide();
-  // 아코디언 헤더 클릭 시 토글 동작
-  $('.accordset-header').click(function() {
-    // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 토글
-    $(this).next('.accordset-body').slideToggle();
-    // 헤더에 'active' 클래스를 토글하여 스타일 변경
-    $(this).toggleClass('active');
-  });
-});
-
+// 면접 후기 작성 폼 출력/숨김
 $(function(){
   $("#interviewInsertBtn").click(function() {
     $("#interviewForm").show();
@@ -363,11 +324,11 @@ $(function(){
 let companyDetailApp=Vue.createApp({
   data(){
     return{
+    	company_detail:{}, // 기업 상세 정보
+      recruit_list:[], // 채용 공고 목록
+      interview_list:[], // 면접 후기 목록
     	cno:${cno},
-    	company_detail:{},
-      recruit_list:[],
-      interview_list:[],
-      sessionId:'${principal.username}',
+      sessionId:'',
       title: '',
       career: '',
       score: '',
@@ -378,47 +339,39 @@ let companyDetailApp=Vue.createApp({
   },
   mounted(){
     this.dataRecv()
-    
-    axios.get('../recruitment/company_detail_vue.do', {
-      params:{
-        cno:this.cno
-      }
-    }).then(response=>{
-      console.log(response.data)
-      this.company_detail=response.data.cvo
-      this.recruit_list=response.data.recruit_list
-      this.interview_list=response.data.interview_list     
-    })
+    // 초기에 모든 아코디언 아이템의 내용을 숨김
+    $('.accordset-body').hide();
+
+    // 아코디언 헤더 클릭 시 토글 동작
+    $('.accordset-header').click(function() {
+      // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 토글
+      $(this).next('.accordset-body').slideToggle();
+      // 헤더에 'active' 클래스를 토글하여 스타일 변경
+      $(this).toggleClass('active');
+    });
   },
   methods:{
     dataRecv(){
-      axios.get('../recruitment/recruit_list_vue.do', {
-        params: {
+    	axios.get('../recruitment/company_detail_vue.do', {
+        params:{
           cno:this.cno
         }
       }).then(response=>{
-        console.log(response.data);
-        this.recruit_list=response.data.recruit_list;
-        this.interview_list=response.data.interview_list;
-      });
-
-/*       axios.get('../recruitment/interview_list_vue.do', {
-        params: {
-          cno:this.cno
-        }
-      }).then(response=>{
-        console.log(response.data);
-        
-      }); */
+        console.log(response.data)
+        this.company_detail=response.data.cvo
+        this.member_detail=response.data.mvo
+        this.recruit_list=response.data.recruit_list
+        this.interview_list=response.data.interview_list     
+      })
       
 	    /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
 	      console.log(response.data)
 	      this.cookie_list=response.data
 	    }) */
     },
+    // 링크 공유
     share(){
       const shareLink=window.location.href;
-
       // 클립보드에 복사
       const textarea=document.createElement('textarea');
       textarea.value=shareLink;
@@ -426,13 +379,28 @@ let companyDetailApp=Vue.createApp({
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-
       alert('링크가 복사되었습니다!');
     },
-    insert(){
+/*     insert(){
       location.href="../recruitment/recruit_insert.do?cno="+this.cno;
-    },
-    InterviewSubmitBtn(){
+    }, */
+    
+/*     // 지원창
+    interviewInsert() {
+      // 사용자의 인증 상태 확인
+      if (this.principal) {
+        // 사용자가 로그인한 경우, '지원하기' 창을 띄우기
+        $("#interviewForm").show();
+      } else {
+        // 사용자가 로그인하지 않은 경우, 로그인 알림 창을 띄우고 확인을 누르면 로그인 페이지로 이동
+        if (confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")) {
+          // 로그인 페이지로 이동하는 로직
+          window.location.href = "../member/login.do";
+        }
+      }
+    }, */
+    
+    InterviewSubmit(ino){
       if(this.title==="") {
         this.$refs.title.focus()
         return
@@ -459,7 +427,9 @@ let companyDetailApp=Vue.createApp({
       }
       axios.post('../recruitment/interview_insert_vue.do', null, {
         params:{
+        	ino:this.ino,
         	cno:this.cno,
+        	userId: this.sessionId,
           title:this.title,
           career:this.career,
           score:this.score,
