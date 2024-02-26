@@ -241,6 +241,7 @@ function appendMessage(msg)
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
+
 function send(){
 	let nick=$('#name').attr("data-nickname");
 	let name=$('#name').attr("data-name");
