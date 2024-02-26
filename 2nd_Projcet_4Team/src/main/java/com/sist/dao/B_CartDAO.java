@@ -44,6 +44,11 @@ public class B_CartDAO {
 	{
 		return mapper.pay_ok(rno);
 	}
+	
+	public int findMaxRno()
+	{
+		return mapper.findMaxRno(); 
+	}
 
 
 }

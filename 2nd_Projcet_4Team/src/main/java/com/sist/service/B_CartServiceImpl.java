@@ -50,4 +50,10 @@ public class B_CartServiceImpl implements B_CartService{
 		return dao.pay_ok(rno);
 	}
 
+	@Override
+	public int findMaxRno() {
+		// TODO Auto-generated method stub
+		return dao.findMaxRno();
+	}
+
 }

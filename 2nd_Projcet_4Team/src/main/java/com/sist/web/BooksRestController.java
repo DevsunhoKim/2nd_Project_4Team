@@ -81,8 +81,8 @@ public class BooksRestController {
        if (avgScore == null) {
            avgScore = 0.0; // 리뷰가 없을 경우 평균 점수를 0으로 설정
        }
-       // Principal 객체가 null이 아니면 userId를 가져오고, null이면 세션에서 userId를 가져옵니다.
-       String userId = (principal != null) ? principal.getName() : (String)session.getAttribute("userId");
+      
+       String userId = (String)session.getAttribute("userId");
 
        ObjectMapper mapper = new ObjectMapper();
        Map<String, Object> resultMap = new HashMap<>();
@@ -206,20 +206,22 @@ public class BooksRestController {
 
 
       @GetMapping(value="pay_info_ok.do", produces = "application/json;charset=UTF-8")
-      public String pay_info_ok(B_CartVO vo, int rno) throws Exception 
-      {
-         
-              cService.pay_ok(rno); // 결제 정보 처리
+      public String pay_info_ok() throws Exception {
+          // 최대 rno 값을 조회
+          int maxRno = cService.findMaxRno();
 
-              Map map = new HashMap();
-              map.put("vo", vo); // 처리된 결제 정보를 맵에 저장
-              map.put("rno", rno);
+          // 최대 rno 값에 해당하는 결제 정보 처리
+          B_CartVO vo = cService.pay_ok(maxRno);
 
-              ObjectMapper mapper = new ObjectMapper();
-              String json = mapper.writeValueAsString(map); // 맵을 JSON 문자열로 변환
+          // 처리된 결제 정보와 최대 rno 값을 응답 데이터에 포함
+          Map<String, Object> map = new HashMap<>();
+          map.put("vo", vo); // 처리된 결제 정보
+          map.put("maxRno", maxRno); // 최대 rno 값
 
-              return json; // JSON 문자열을 응답으로 반환
-          
+          ObjectMapper mapper = new ObjectMapper();
+          String json = mapper.writeValueAsString(map); // 맵을 JSON 문자열로 변환
+
+          return json; // JSON 문자열을 응답으로 반환
       }
 
 

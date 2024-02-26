@@ -12,4 +12,5 @@ public interface B_CartService {
 	public void deleteCartItem(int rno);
 	public void payCartItem(B_CartVO vo);
 	public B_CartVO pay_ok(int rno);
+	public int findMaxRno();
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -157,7 +159,7 @@
                   <th scope="col">상품정보</th>
                   <th scope="col">단가</th>
                   <th scope="col">수량</th>
-                  <th scope="col">상품금액</th>
+                  <th scope="col">총 금액</th>
                 </tr>
               </thead>
               <tbody>
@@ -170,13 +172,15 @@
                       <h5 class="p1">
                         {{ detail_data.title }}
                         <br>
+                        <br>
+                        <br>
                         {{ detail_data.publ }}
                       </h5>
                     </div>
                   </td>
                   <td>
                     <strong>단가</strong>
-                    {{ detail_data.price }}
+                    {{detail_data.price}} 원
                   </td>
                   <td class="td-border-bottom">
                     <strong>수량</strong>
@@ -186,22 +190,17 @@
     <input type="text" v-model="quantity" class="quantity-input" style="width:45px;height: 30px;text-align: center">
     <button @click="increaseQuantity" class="button" style="width:33px;height: 30px;background-color: black;color:white">+</button>
 </div>
-                 
-                   
-                   
-      
-       
                   </td>
                   <td class="tableset-dark">
                     <strong>총 금액</strong>
-                    {{ totalPrice.toLocaleString('ko-KR') }}
+                    {{ totalPrice.toLocaleString('ko-KR') }} 원
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="contents-bottom">
-            <p class="contents-price" style="text-align:right;">총 구매가 <span>{{ totalPrice }} 원</span>
+            <p class="contents-price" style="text-align:right;">총 구매가 <span>{{ totalPrice.toLocaleString('ko-KR') }} 원</span>
             </p>
           </div>
         </div>
@@ -304,7 +303,7 @@
             <h2 class="textset-tit">결제 정보</h2>
           </div>
           <div class="contents-price">
-            총 결제 금액 <span>{{totalPrice}} 원</span>
+            총 결제 금액 <span>{{ totalPrice.toLocaleString('ko-KR') }} 원</span>
           </div>
           <div class="contents-group">
             <p class="contents-name">결제수단</p>
@@ -313,16 +312,6 @@
                 <li class="tabset-item">
                   <a class="tabset-link" href="javascript:void(0)">
                     <span>신용카드</span>
-                  </a>
-                </li>
-                <li class="tabset-item">
-                  <a class="tabset-link" href="javascript:void(0)">
-                    <span>무통장 입금</span>
-                  </a>
-                </li>
-                <li class="tabset-item">
-                  <a class="tabset-link" href="javascript:void(0)">
-                    <span>카카오페이</span>
                   </a>
                 </li>
               </ul>

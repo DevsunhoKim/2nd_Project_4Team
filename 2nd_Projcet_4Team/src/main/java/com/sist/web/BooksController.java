@@ -6,14 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.sist.vo.*;
+import com.sist.service.B_CartServiceImpl;
 import com.sist.service.BooksServiceImpl;
 @Controller
 public class BooksController {
 	@Autowired
 	private BooksServiceImpl service;
 
-
+	@Autowired
+	private B_CartServiceImpl cService;
 
 	@GetMapping("books/list.do")
 	public String books_list()
@@ -42,14 +44,21 @@ public class BooksController {
 		model.addAttribute("no",no);
 		return "books/payment";
 	}
-	// 결제 완료창
 	@GetMapping("books/payment_ok.do")
-	public String book_payment_ok(int rno,Model model)  {
-	    
-	        model.addAttribute("rno", rno);
-	    
+	public String book_payment_ok(Model model) {
+	    // 최대 rno 값을 조회합니다.
+	    int maxRno = cService.findMaxRno();
+
+	    // 최대 rno에 해당하는 결제 정보를 조회합니다.
+	    B_CartVO paymentInfo = cService.pay_ok(maxRno);
+
+	    // 모델에 결제 정보와 rno를 추가합니다.
+	    model.addAttribute("paymentInfo", paymentInfo);
+	    model.addAttribute("rno", maxRno);
+
 	    return "books/payment_ok";
 	}
+
 
 
 

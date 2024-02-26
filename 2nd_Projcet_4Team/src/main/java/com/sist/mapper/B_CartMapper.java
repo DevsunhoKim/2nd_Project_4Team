@@ -33,7 +33,12 @@ public interface B_CartMapper {
             "VALUES(b_cart_rno_seq.NEXTVAL, #{userId}, #{no}, #{quantity}, #{totalPrice}, 0 , SYSDATE, 'Y', #{addr}, #{title}, #{poster})")
     public void payCartItem(B_CartVO vo);
 
-    // 구매완료 페이지 출력
-    @Select("SELECT * FROM b_cart WHERE rno=#{rno}")
+   // 최대값 조회
+    @Select("SELECT MAX(rno) FROM b_cart")
+    public int findMaxRno();
+
+    // 결제 완료 내역 출력
+    @Select("SELECT rno, userId, no, quantity, totalPrice, status, addr, title, poster, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday FROM b_cart WHERE rno=#{rno}")
     public B_CartVO pay_ok(int rno);
+
 }

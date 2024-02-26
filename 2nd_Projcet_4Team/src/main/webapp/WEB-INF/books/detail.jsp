@@ -259,10 +259,9 @@ textarea {
 
        
     		</div>
-            <div class="contents-btn">
-              <a class="btnset" :href="'../books/payment.do?no=' + detail_data.no">구매하기</a>
-
-            </div>
+           <div class="contents-btn">
+			  <a class="btnset" href="javascript:void(0)" @click="purchase">구매하기</a>
+			</div>
             <div class="contents-btn">
               <a class="btnset" href="javascript:void(0)">장바구니 담기</a>
             </div>
@@ -373,7 +372,7 @@ textarea {
         </label>
     </div>
 
-   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;" @click="addReview(no)">작성하기</a>
+   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;margin-bottom: 6rem" @click="addReview(no)">작성하기</a>
 </div>
 
 <script>
@@ -422,6 +421,14 @@ let booksDapp = Vue.createApp({
         console.error("책 상세 정보 및 리뷰 목록 가져오기 실패:", error);
       });
     },
+    purchase() {
+        if (!this.sessionId) {
+          alert("로그인이 필요한 메뉴입니다.");
+          window.location.href = '../member/login.do'; // 로그인 페이지로 리다이렉트
+        } else {
+        	window.location.href = '../books/payment.do?no=' + this.detail_data.no;
+        }
+      },
     // 수량 증가 메소드
     increaseQuantity() {
       this.quantity++;
