@@ -185,10 +185,11 @@ a {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <script type="text/javascript">
 let websocket;
+let user;
 //서버 연결
 function connection()
 {
-	websocket=new WebSocket("ws://localhost:8080/web/chat/chat-ws")
+	websocket=new WebSocket("ws://211.238.142.115:8080/web/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=OnMessage
@@ -215,6 +216,7 @@ function OnMessage(event)
 	 // msg:[이름] 메세지
 	 {
 		 appendMessage(data.substring(data.indexOf("]")+1))
+		 user=data.substring(data.indexOf("[")+1,data.indexOf("]"))
 	 }
 }
 
@@ -229,11 +231,11 @@ function appendMessage(msg)
 	if(id!==userId)
 	 {
 		 $('#recvMsg').append(
-				 "<div class=\"chat ch1\"><div class=\"namearea\"><p>"+id+"</p></div><div class=\"textbox\">"+msg+"</div></div>"
+				 "<div class=\"chat ch1\"><div class=\"namearea\"><p>"+user+"</p></div><div class=\"textbox\">"+msg+"</div></div>"
           )
 	 }
 	 else{
-		 $('#recvMsg').append("<div class=\"chat ch2\"><div class=\"namearea\"><p>"+id+"</p></div><div class=\"textbox\">"+msg+"</div></div>")
+		 $('#recvMsg').append("<div class=\"chat ch2\"><div class=\"namearea\"><p>"+user+"</p></div><div class=\"textbox\">"+msg+"</div></div>")
 	 }
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
@@ -248,7 +250,7 @@ function send(){
 		$('#sendMsg').focus()
 		return
 	}
-	websocket.send("msg:"+nick+"]"+msg)
+	websocket.send("msg:"+user+"]"+msg)
 	$('#sendMsg').val("")
 	$('#sendMsg').focus()
 }
@@ -278,7 +280,7 @@ $(function(){
      <div class="input-Btn into">
           <input type=hidden id="name" size=15 class="input-sm" data-nickname="${sessionScope.nickname}" data-name="${nickname}">
           <div>
-          ID : <input type=text id="nameinput" size=30 data-id="${userId}">
+          ID : <input type=text id="nameinput" size=30 data-id="${userId}" data-pid="${userpId}">
           </div>
           <div style="margin-right: 0.4rem;">
           <input type=button class="btnset" id="startBtn" value="입장">
