@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.*;
 
 import com.sist.vo.MentorReserveVO;
 import com.sist.vo.MentorVO;
-import com.sist.vo.StudyRoomReserveVO;
 
 public interface MentorMapper {
 	public List<MentorVO> getMentorListBymap(Map map);// 멘토 목록 검색(param : start, end, selectedVal, searchWord, job)
@@ -55,4 +54,12 @@ public interface MentorMapper {
                 "DETAIL_ADDRESS=#{detail_address} " +
             "WHERE USER_ID=#{user_id}")
     public int updateMentor(MentorVO vo); // 멘토정보 수정
+    
+    @Results({
+		  @Result(column="nickname", property="mvo.nickname"),
+	})
+    @Select("SELECT ment.mno,ment.img,ment.title,ment.job,ment.career,ment.keyword,ment.intro,m.nickname "
+    		+ "FROM member m JOIN mentor ment ON m.userId = ment.userId "
+    		+ "WHERE job = #{cate}")
+	public List<MentorVO> getMentorBytech(String cate); // 검색어(기술연관 직무)에 대한 멘토리스트
 }
