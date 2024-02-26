@@ -437,7 +437,7 @@ let paymentApp = Vue.createApp({
             buyer_name: 'buyer name',
             buyer_tel: '010-1234-5678',
             buyer_addr: this.addr, // 사용자가 선택한 주소
-            buyer_postcode: this.post, // 사용자가 선택한 우편번호
+            buyer_postcode: '', // 사용자가 선택한 우편번호
             app_scheme: 'iamporttest'
         }, function (rsp) {
             // For testing, treat both success and failure as success and execute the success logic.
@@ -471,15 +471,17 @@ let paymentApp = Vue.createApp({
         axios.post('../books/pay_ok.do', purchaseData)
         .then(response => {
             if(response.data.status === 'success') {
-                // 서버로부터 성공 응답을 받았을 때, 결제 성공 페이지로 이동
-                window.location.href = '../books/payment_ok.do';
+                // 응답에서 rno 값을 추출
+                const rno = response.data.rno;
+                // 결제 완료 페이지로 리다이렉트하면서 rno 값을 URL에 포함
+                window.location.href = `../books/payment_ok.do?rno=${rno}`;
             } else {
-                // 서버 처리 실패 응답
                 alert('서버에서 구매 정보 처리에 실패하였습니다.');
             }
         })
         .catch(error => {
             console.error('구매 정보 전송 실패:', error);
+            alert('서버와의 통신 중 오류가 발생했습니다.');
         });
     }
   },
