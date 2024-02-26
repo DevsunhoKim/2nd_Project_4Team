@@ -217,6 +217,7 @@ function OnMessage(event)
 		 appendMessage(data.substring(data.indexOf("]")+1))
 	 }
 }
+
 //메세지 띄우기
 function appendMessage(msg)
 {
