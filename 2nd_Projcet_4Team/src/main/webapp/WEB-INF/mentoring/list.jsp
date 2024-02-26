@@ -53,23 +53,6 @@
 	  </div>
 	  <div style="height: 30px"></div>
 	  <!-- 기술스택 -->
-	<!--    <div class="row-tech">
-            <div class="css-goiz5j" id="headlessui-popover-panel-3" tabindex="-1" data-headlessui-state="open">
-                <ul class="LanguageBar_languages__243rH">
-                    <li v-for="(job, index) in job_list"
-                        class="LanguageBar_languageIcon__2PTl1 LanguageBar_full__2eorP" :key="index"
-                        :class="{'active': index == selectedJob}" v-on:click="selectJob(index)">
-                        <img class="LanguageBar_logo__rGfFz"
-                             :src="'${pageContext.request.contextPath}/images/tech/'+ tech.toLowerCase() +'.svg'"
-                             alt="tech">
-                        <span class="LanguageBar_languageName__2dSeC">{{tech}}</span>
-                    </li>
-                </ul>
-                <div class="SelectedLanguage_selectedWrapper__3dpZm">
-                    <ul class="SelectedLanguage_selectedLanguages__3r4F4"></ul>
-                </div>
-            </div>
-        </div>-->
         <div class="tabset tabset-brick">
               <ul class="tabset-list tabset-sm tabset-fill">
               <li class="tabset-item">
@@ -190,11 +173,6 @@
 let mentorListApp = Vue.createApp({
     data() {
         return {
-            tech_list: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 
-            	'Nextjs', 'Nodejs', 'C', 'Java', 'Spring', 'Go', 'Nestjs', 'Kotlin', 
-            	'Express', 'MySQL', 'MongoDB', 'Python', 'Django', 'php', 'GraphQL', 
-            	'Firebase', 'Flutter', 'Swift', 'ReactNative', 'Unity', 'AWS', 
-            	'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest'] ,
             mentor_list: [],
             selectedTech: -1,
             job:'',
@@ -279,15 +257,6 @@ let mentorListApp = Vue.createApp({
         applyFilter(filter) {
             this.filter = filter;
             this.setupSearch()
-        },
-        selectTech(index) {
-            if (this.selectedTech === index) {
-                this.selectedTech = -1;
-            } else {
-                this.selectedTech = index;
-            }
-            this.curpage = 1;
-            this.setupSearch();
         }
     }
 }).mount("#mentorList");

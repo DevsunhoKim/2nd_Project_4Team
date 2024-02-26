@@ -62,7 +62,7 @@ function chat() {
                 </a>
               </li>
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../notice/list.do">
                   <span>Notice</span>
                 </a>
               </li>
