@@ -1,7 +1,7 @@
 package com.sist.web;
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.List; 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -81,7 +80,7 @@ public class BooksRestController {
        if (avgScore == null) {
            avgScore = 0.0; // 리뷰가 없을 경우 평균 점수를 0으로 설정
        }
-      
+
        String userId = (String)session.getAttribute("userId");
 
        ObjectMapper mapper = new ObjectMapper();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -40,5 +41,9 @@ public interface B_CartMapper {
     // 결제 완료 내역 출력
     @Select("SELECT rno, userId, no, quantity, totalPrice, status, addr, title, poster, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday FROM b_cart WHERE rno=#{rno}")
     public B_CartVO pay_ok(int rno);
+
+    // 구매 수량에 따라 books 테이블의 buy_cnt를 업데이트하는 메서드
+    @Update("UPDATE books SET buy_cnt = buy_cnt + #{quantity} WHERE no = #{no}")
+    public void updateBuyCnt(@Param("no") int no, @Param("quantity") int quantity);
 
 }

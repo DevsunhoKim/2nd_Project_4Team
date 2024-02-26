@@ -37,7 +37,7 @@ public class BooksDAO {
 	{
 		return mapper.searchBooks(ss);
 	}
-	
+
 	public List<BooksVO> getBookstBytech(String engTech,String korTech){
 		return mapper.getBookstBytech(engTech, korTech);
 	}

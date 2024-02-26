@@ -1,6 +1,7 @@
 package com.sist.dao;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,13 +13,13 @@ public class B_CartDAO {
 	@Autowired
 	private B_CartMapper mapper;
 
-	
+
 	 public List<B_CartVO> findCartItemsByUserId(String userId) {
-		
+
 		 return mapper.findCartItemsByuserId(userId);
-	 
+
 	 }
-	 
+
 
 	public void updateCartItem(B_CartVO vo)
 	{
@@ -44,11 +45,12 @@ public class B_CartDAO {
 	{
 		return mapper.pay_ok(rno);
 	}
-	
+
 	public int findMaxRno()
 	{
-		return mapper.findMaxRno(); 
+		return mapper.findMaxRno();
 	}
+
 
 
 }

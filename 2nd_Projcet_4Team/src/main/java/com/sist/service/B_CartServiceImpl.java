@@ -16,7 +16,7 @@ public class B_CartServiceImpl implements B_CartService{
 
 	@Override
 	public List<B_CartVO> findCartItemsByUserId(String userId) {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
 		return dao.findCartItemsByUserId(userId);
 	}
 
@@ -55,5 +55,13 @@ public class B_CartServiceImpl implements B_CartService{
 		// TODO Auto-generated method stub
 		return dao.findMaxRno();
 	}
+
+	@Override
+	public void updateBuyCnt(int no, int quantity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }
