@@ -69,7 +69,7 @@ public interface BooksMapper {
 		        + "WHERE (TITLE LIKE '%' || #{engTech} || '%'"
 		        + "    OR TITLE LIKE '%' || #{korTech} || '%')"
 		        + "<if test=\"engTech == 'javaScript'\">"
-		        + "   AND (TITLE NOT LIKE '%' || '자바스크립트' || '%' OR TITLE LIKE '%' || 'javaScript' || '%')"
+		        + "   AND (TITLE NOT LIKE '%' || '자바스크립트' || '%' OR TITLE NOT LIKE '%' || 'javaScript' || '%')"
 		        + "</if>"
 		        + "</script>")
 		public List<BooksVO> getBookstBytech(@Param("engTech") String engTech, @Param("korTech") String korTech);

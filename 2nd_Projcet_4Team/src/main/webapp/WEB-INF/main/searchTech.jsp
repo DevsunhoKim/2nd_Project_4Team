@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <link rel="stylesheet" href="../css/search/setting.css">
+  <link rel="stylesheet" href="../css/search/plugin.css">
+  <link rel="stylesheet" href="../css/search/template.css"> 
+  <link rel="stylesheet" href="../css/search/style.css">
+   <link rel="stylesheet" href="../mentoring/css/style.css">
+  <link rel="stylesheet" href="../css/template.css">
 <style type="text/css">
 .campland-N23 {
   overflow: hidden;
@@ -250,6 +257,16 @@
   .campland-N23 .contents-reservation .cardset-figure+.cardset-body {
     margin-top: 0;
   }
+ .recruit-stack li{
+  display: inline-block;
+  margin-right: 0.8rem;
+  color: #666;
+  font-size: 1.4rem;
+  padding: 0.2rem 1rem;
+    border-radius: 10rem;
+    border: 1px solid #eee;
+    font-size: 1.4rem;
+    white-space: nowrap;
 }
 </style>
 </head>
@@ -263,31 +280,34 @@
           <div class="textset textset-sub textset-center">
           <div class="content-wrapper" style=" display: flex;align-items: center;">
               <img alt="책 아이콘" style="width: 50px; display: inline-block;" src="${pageContext.request.contextPath}/images/search.png">
-               <h2 class="textset-tit" style="display: inline-block; margin: 0;">&nbsp;<c:out value="${param.engTech}" /> </h2><span class="reserve_tit" style="display: inline-block;">&nbsp;에 대한 검색내역</span>
+               <h2 class="textset-tit" style="display: inline-block; margin: 0;">&nbsp;<c:out value="${param.engTech}" /> </h2>
+          	<span class="reserve_tit" style="display: inline-block; align-items: end;">&nbsp;에 대한 검색내역</span>
           </div>
           </div>
         <!-- 멘토 리스트 -->
         <c:if test="${mList!=null }">
           <div class="contents-group contents-reservation" data-aos="slide-up">
-            <h2 class="contents-tit"> 멘토링 <a href="javascipt:void(0);" class="contents-more">더보기</a>
+            <h2 class="contents-tit"><b> 멘토링 </b><a href="javascipt:void(0);" class="contents-more">더보기</a>
             </h2>
-            <p class="contents-tit"> 해당 기술과 연관된 ${job} 멘토를 만나보세요.</p>
+            <p> 해당 기술과 연관된 <b>${job}</b> 멘토를 만나보세요.</p>
           <c:forEach var="vo" items="${mList}">
+          <a href="../mentoring/detail.do?mno=${vo.mno }">
             <div class="cardset cardset-hor cardset-sm">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="${pageContext.request.contextPath}/mentoring/images/${vo.img }.png" alt="카드 이미지">
+              <figure class="cardset-figure" style="width: 120px; height: 120px">
+                <img class="cardset-img" style="width: 120px; height: 120px" src="${pageContext.request.contextPath}/mentoring/images/${vo.img }_.png" alt="카드 이미지">
               </figure>
               <div class="cardset-body">
                 <div class="badgeset-wrap">
                   <div class="badgeset-group">
-                    <div class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary">이용완료</div>
+                    <div class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary"><b style="color: white; font-size: larger;">${vo.career }</b></div>
                   </div>
-                  <p class="cardset-txt">2023.01.09(월) ~ 2023.01.12(목)</p>
                 </div>
-                <h2 class="cardset-tit">${vo.mvo.nickname }</h2>
-                <p class="cardset-desc"> ${vo.title } <br class="br-mo"> 3박 4일 ㅣ 성인 2명, 어린이 1명 </p>
+                <h2 class="cardset-tit">${vo.mvo.nickname } &nbsp;멘토</h2>
+                <p class="cardset-desc"> ${vo.title } </p>
+                <p class="cardset-txt" style="margin-top: 0px;">${vo.keyword }</p>
               </div>
             </div>
+            </a>
             </c:forEach>
           </div>
         </c:if>
@@ -295,50 +315,69 @@
         <!-- 책 리스트 -->
         <c:if test="${bList!=null }">
           <div class="contents-group contents-reservation" data-aos="slide-up">
-            <h2 class="contents-tit"> 최근 예약내역 <a href="javascipt:void(0);" class="contents-more">더보기</a>
+            <h2 class="contents-tit"><b> 도서 </b><a href="javascipt:void(0);" class="contents-more">더보기</a>
             </h2>
+            <p> 해당 기술과 연관된 도서를 만나보세요.</p>
+          <c:forEach var="vo" items="${bList}">
+          <a href="../books/detail.do?no=${vo.no }">
             <div class="cardset cardset-hor cardset-sm">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/img_campland_N19_1.png" alt="카드 이미지">
+              <figure class="cardset-figure" style="width: 120px; height: 120px">
+                <img class="cardset-img" style="width: 120px; height: 120px" src="${vo.poster }" alt="카드 이미지">
               </figure>
               <div class="cardset-body">
                 <div class="badgeset-wrap">
                   <div class="badgeset-group">
-                    <div class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary">이용완료</div>
                   </div>
-                  <p class="cardset-txt">예약번호 2023010120230101</p>
                 </div>
-                <h2 class="cardset-tit">캠핑장 A구역</h2>
-                <p class="cardset-desc"> 2023.01.09(월) ~ 2023.01.12(목) ㅣ <br class="br-mo"> 3박 4일 ㅣ 성인 2명, 어린이 1명 </p>
+                <h2 class="cardset-tit">${vo.title }</h2>
+                <p class="cardset-desc"> ${vo.genre } </p>
+                <p class="cardset-desc"><fmt:formatNumber value="${vo.price}" pattern="#,###" />원 </p>
+                <p class="cardset-txt" style="margin-top: 0px;">${vo.keyword }</p>
               </div>
             </div>
+            </c:forEach>
           </div>
           </c:if>
           
         <!-- 채용공고 리스트 -->
         <c:if test="${rList!=null }">
           <div class="contents-group contents-reservation" data-aos="slide-up">
-            <h2 class="contents-tit"> 최근 예약내역 <a href="javascipt:void(0);" class="contents-more">더보기</a>
+            <h2 class="contents-tit"><b> 채용공고 </b><a href="javascipt:void(0);" class="contents-more">더보기</a>
             </h2>
-            <div class="cardset cardset-hor cardset-sm">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/img_campland_N19_1.png" alt="카드 이미지">
-              </figure>
-              <div class="cardset-body">
-                <div class="badgeset-wrap">
-                  <div class="badgeset-group">
-                    <div class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary">이용완료</div>
-                  </div>
-                  <p class="cardset-txt">예약번호 2023010120230101</p>
-                </div>
-                <h2 class="cardset-tit">캠핑장 A구역</h2>
-                <p class="cardset-desc"> 2023.01.09(월) ~ 2023.01.12(목) ㅣ <br class="br-mo"> 3박 4일 ㅣ 성인 2명, 어린이 1명 </p>
-              </div>
-            </div>
-          </div>
+             <p> 해당 기술과 연관된 채용공고를 만나보세요.</p>
+	          <c:forEach var="vo" items="${rList}" begin="0" end="9">
+	          <a href="../recruitment/recruit_detail.do?rno=${vo.rno }&cno=${vo.cno}">
+	            <div class="cardset cardset-hor cardset-sm">
+	              <figure class="cardset-figure" style="width: 120px; height: 120px">
+	                <img class="cardset-img" style="width: 120px; height: 120px" src="${vo.cvo.logo }" alt="카드 이미지">
+	              </figure>
+	              <div class="cardset-body">
+		              <div class="badgeset-wrap">
+	                  <div class="badgeset-group">
+	                    <div class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary"><b style="color: white; font-size: larger;">${vo.cname }</b></div>
+	                  </div>
+	                </div>
+	                <div class="badgeset-wrap">
+	                  <div class="badgeset-group">
+	                  </div>
+	                </div>
+	                <h2 class="cardset-tit">${vo.title }</h2>
+	                <p class="cardset-desc">${vo.end_date} </p>
+	                <div class="recruit-stack">
+	                <p class="cardset-txt" style="margin-top: 0px;">
+						    <c:forEach var="stack" items="${vo.stacks_txt}" varStatus="i">
+						        	#${stack} 
+							</c:forEach>
+					</p>
+		            </div>
+	              </div>
+	            </div>
+	            </a>
+	            </c:forEach>
+          </div> 
           </c:if>
           <div class="contents-button">
-            <button class="btnset btnset-round" type="button" data-aos="slide-up">메인으로 돌아가기</button>
+            <button class="btnset btnset-round" type="button" data-aos="slide-up" onclick="redirectToMain()">메인으로 돌아가기</button>
           </div>
         </div>
       </div>
@@ -346,4 +385,9 @@
 </div>
     <!-- [E]campland-N23 -->
 </body>
+<script>
+    function redirectToMain() {
+        window.location.href = "../main/main.do";
+    }
+</script>
 </html>

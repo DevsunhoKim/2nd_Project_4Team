@@ -40,7 +40,7 @@ public class MainServiceIml implements MainService{
 		List<RecruitVO> rList = rDao.getRecruitBytech(engTech);
 		
 		for(RecruitVO vo : rList) {
-			String[] stacks = vo.getStack_txt().split("|");
+			String[] stacks = vo.getStack_txt().split("\\|");
 			vo.setStacks_txt(stacks);
 		}
 		return rList;

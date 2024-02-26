@@ -116,7 +116,7 @@
               <h6 class="form-tit">생년월일 <span>*</span>
               </h6>
               <div class="inputset inputset-round">
-                <input type="date" ref=birthday size="30" v-model="birthday" name="birthday">
+                <input type="date" ref=birthday size="30" v-model="birthday" name="birthday" required="">
               </div>
             </div>
             <div class="form-wrap">
@@ -166,7 +166,7 @@
                   <input type="text" class="inputset-input form-control" name=addr v-model=addr ref=addr required="">
                 </div>
                 <div class="inputset inputset-round">
-                  <input type="text" class="inputset-input form-control" name=detail_addr v-model=detail_addr ref=detail_addr placeholder="상세주소를 입력하세요" required="">
+                  <input type="text" class="inputset-input form-control" name=detail_addr v-model=detail_addr ref=detail_addr placeholder="상세주소를 입력하세요">
                 </div>
               </div>
             </div>
