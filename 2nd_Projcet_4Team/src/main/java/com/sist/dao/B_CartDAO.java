@@ -37,7 +37,7 @@ public class B_CartDAO {
 
 	public void payCartItem(B_CartVO vo)
 	{
-	    mapper.insertCartItem(vo);
+	    mapper.payCartItem(vo);
 	}
 
 	public B_CartVO pay_ok(int rno)

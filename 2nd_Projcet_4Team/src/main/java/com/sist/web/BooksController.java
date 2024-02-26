@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sist.service.BooksServiceImpl;
 @Controller
@@ -34,19 +35,22 @@ public class BooksController {
 	    return "books/detail";
 	}
 
-
+    // 결제창
 	@GetMapping("books/payment.do")
 	public String books_payment(int no,Model model)
 	{
 		model.addAttribute("no",no);
 		return "books/payment";
 	}
-
+	// 결제 완료창
 	@GetMapping("books/payment_ok.do")
-	public String book_payment_ok()
-	{
-	   return "books/payment_ok";
+	public String book_payment_ok(int rno,Model model)  {
+	    
+	        model.addAttribute("rno", rno);
+	    
+	    return "books/payment_ok";
 	}
+
 
 
 

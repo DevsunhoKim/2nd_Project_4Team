@@ -1,7 +1,7 @@
 package com.sist.web;
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -187,35 +189,39 @@ public class BooksRestController {
            return json; // JSON 문자열 반환
        }
 
-      @PostMapping(value="pay_ok.do", produces = "application/json;charset=UTF-8")
-      public String addToPurchase(B_CartVO vo, Principal p) throws Exception {
+      @PostMapping(value="pay_ok.do", produces = "text/plain;charset=UTF-8")
+      public String addToPurchase(@RequestBody B_CartVO vo, Principal p) {
           try {
-              String userId = p.getName();
-               vo.setUserId(userId);
+              String userId = p.getName(); // 현재 로그인한 사용자의 ID를 가져옴
+              vo.setUserId(userId); // B_CartVO 객체에 사용자 ID 설정
 
-              cService.payCartItem(vo);
+              cService.payCartItem(vo); // 서비스를 통해 구매 정보 처리
 
-              return "{\"status\":\"success\"}";
+              return "{\"status\":\"success\"}"; // 성공 응답
           } catch(Exception e) {
               e.printStackTrace();
-              return "{\"status\":\"error\"}";
+              return "{\"status\":\"error\"}"; // 오류 응답
           }
       }
 
+
       @GetMapping(value="pay_info_ok.do", produces = "application/json;charset=UTF-8")
-      public String pay_info_ok(B_CartVO vo,int rno) throws Exception
+      public String pay_info_ok(B_CartVO vo, int rno) throws Exception 
       {
-         cService.pay_ok(rno);
+         
+              cService.pay_ok(rno); // 결제 정보 처리
 
-         Map map=new HashMap();
-         map.put("vo", vo);
+              Map map = new HashMap();
+              map.put("vo", vo); // 처리된 결제 정보를 맵에 저장
+              map.put("rno", rno);
 
-         ObjectMapper mapper= new ObjectMapper();
-         String json=mapper.writeValueAsString(map);
+              ObjectMapper mapper = new ObjectMapper();
+              String json = mapper.writeValueAsString(map); // 맵을 JSON 문자열로 변환
 
-
-         return json;
+              return json; // JSON 문자열을 응답으로 반환
+          
       }
+
 
 
 
