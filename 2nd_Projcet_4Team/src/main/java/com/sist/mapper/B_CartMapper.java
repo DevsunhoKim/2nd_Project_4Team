@@ -29,8 +29,8 @@ public interface B_CartMapper {
     public void deleteCartItem(int rno);
 
  // 구매완료 detail 페이지에서 바로 구매  (상태 기본값 'Y' 로변경)
-    @Insert("INSERT INTO b_cart(rno, userId, no, quantity, totalPrice, isSale, regdate, status,address,title,poster) " +
-            "VALUES(b_cart_rno_seq.NEXTVAL, #{userId}, #{no}, #{quantity}, #{totalPrice}, 0 , SYSDATE, 'Y', #{address},#{title},#{poster})")
+    @Insert("INSERT INTO b_cart(rno, userId, no, quantity, totalPrice, isSale, regdate, status,addr,title,poster) " +
+            "VALUES(b_cart_rno_seq.NEXTVAL, #{userId}, #{no}, #{quantity}, #{totalPrice}, 0 , SYSDATE, 'Y', #{addr}, #{title},#{poster})")
     public void payCartItem(B_CartVO vo);
 
     // 구매완료 페이지 출력

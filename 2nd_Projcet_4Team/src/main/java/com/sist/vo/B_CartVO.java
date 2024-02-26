@@ -7,5 +7,5 @@ import lombok.Data;
 public class B_CartVO {
 	private int rno,quantity,totalPrice,isSale,no;
 	private Date regdate;
-	private String dbday,userId,status,poster,title;
+	private String dbday,userId,status,poster,title,addr;
 }
