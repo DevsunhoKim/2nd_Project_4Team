@@ -55,5 +55,9 @@ public class StudyRoomAskDAO {
 	{
 		return mapper.AdminRoomAskCount();
 	}
+	public void StudyRoomAskReturnInsert(StudyRoomAskVO vo) {
+		mapper.StudyRoomAskReturnInsert(vo);
+		mapper.StudyRoomAskStateUpdate(vo.getAno());
+	}
 	
 }

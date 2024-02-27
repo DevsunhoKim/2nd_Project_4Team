@@ -31,4 +31,10 @@ public class AdminpageServiceImpl implements AdminpageService{
 		return saDao.AdminRoomAskCount();
 	}
 
+	@Override
+	public void StudyRoomAskReturnInsert(StudyRoomAskVO vo) {
+		// TODO Auto-generated method stub
+		saDao.StudyRoomAskReturnInsert(vo);
+	}
+
 }

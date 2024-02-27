@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -61,4 +62,13 @@ public class AdminpageRestController {
 		String json = mapper.writeValueAsString(vo);
 		return json;
 	}
+    @PostMapping(value="ask_return_ok.do",produces="text/plain;charset=UTF-8")
+	public String ask_return_ok(int ano,int group_id) throws Exception
+	{
+    	StudyRoomAskVO vo=sService.StudyRoomAskDetail(ano);
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(vo);
+		return json;
+	}
+    
 }

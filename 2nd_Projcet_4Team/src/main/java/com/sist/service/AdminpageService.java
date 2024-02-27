@@ -9,4 +9,5 @@ public interface AdminpageService {
 	public List<StudyRoomAskVO> AdminRoomAskList(Map map);
 	public int AdminRoomAskTotalpage();
 	public int AdminRoomAskCount();
+	public void StudyRoomAskReturnInsert(StudyRoomAskVO vo);
 }

@@ -22,7 +22,7 @@ public interface StudyRoomAskMapper {
 			+ "filesize,cate,email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num"
 			+ " FROM (SELECT ano,sno,group_id,group_step,state,userId,name,content,filename,"
 			+ "filesize,cate,email,subject,regdate,rownum as num "
-			+ "FROM (SELECT * FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%' ORDER BY ano DESC)) "
+			+ "FROM (SELECT * FROM studyRoom_ASK WHERE sno=#{sno} AND cate LIKE '%'||#{cate}||'%' AND group_step=0 ORDER BY ano DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<StudyRoomAskVO> StudyRoomAskList(Map map);
 	
@@ -61,7 +61,7 @@ public interface StudyRoomAskMapper {
 			+ "filesize,cate,email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num"
 			+ " FROM (SELECT ano,sno,group_id,group_step,state,userId,name,content,filename,"
 			+ "filesize,cate,email,subject,regdate,rownum as num "
-			+ "FROM (SELECT * FROM studyRoom_ASK ORDER BY ano DESC)) "
+			+ "FROM (SELECT * FROM studyRoom_ASK WHERE group_step=0 AND state=0 ORDER BY ano DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<StudyRoomAskVO> AdminRoomAskList(Map map);
 	
@@ -71,8 +71,15 @@ public interface StudyRoomAskMapper {
 	@Select("SELECT COUNT(*) FROM studyRoom_ASK")
 	public int AdminRoomAskCount();
 	
+	@Insert("INSERT INTO studyRoom_ASK(ano,sno,userId,name,content,group_id,group_step,cate,subject) "
+			+ "VALUES((SELECT NVL(MAX(ano)+1,1) FROM studyRoom_ASK),#{sno},"
+			+ "#{userId},'관리자',#{content},"
+			+ "#{group_id},1,"
+			+ ",#{cate},'관리자 답변드립니다')")
+	public void StudyRoomAskReturnInsert(StudyRoomAskVO vo);
 	
-	
+	@Update("UPDATE studyRoom_ASK SET state=1 WHERE ano=#{ano}")
+	public void StudyRoomAskStateUpdate(int ano);
 	
 	
 }

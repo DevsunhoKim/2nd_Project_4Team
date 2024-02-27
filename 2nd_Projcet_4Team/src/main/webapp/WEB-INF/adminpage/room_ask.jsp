@@ -101,10 +101,10 @@
       </div>
       
  
-   <div class="th-layout-main pop" id="ask_detail" v-show="pop">
+   <div class="th-layout-main pop black-bg" id="ask_detail" v-show="pop">
     <!-- [E]hooms-N58 -->
     <!-- [S]hooms-N37 -->
-    <div class="hooms-N37" data-bid="NiLT00VHDB">
+    <div class="hooms-N37" data-bid="NiLT00VHDB" id="popup">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="textset textset-h2">
@@ -126,20 +126,12 @@
               <p class="contents-ask">{{ask_detail.content}}</p>
             </div>
             <div class="contents-group-bottom">
-              <div class="contents-date">
-                <span class="badgeset badgeset-active ask-return">답변</span> 2023.01.01
-              </div>
-              <p class="contents-answer"> 안녕하세요. 회원님 <br> HOOMS 담당자입니다. <br>
-                <br> 웹 페이지 산출물이 나오는 과정은 3명의 전문가들의 각각의 시간을 할애하여 생산하는 부분을 템플릿 하우스를 사용하면 1사람이 <br> 원 클릭과 드래그앤 드랍 방식을 통해 웹 페이지를 10분 만에 생성하고 코드 편집과 코드 산출물 다운로드 기능을 통해 더 자유롭게 개발할 수 있습니다. <br>
-                <br> 더 궁금하신 사항은 아래 전화번호 메일을 통해 연락주시길 바랍니다. <br> 감사합니다. <br>
-                <br> 문의사항 : 02-123-4567 / openfield@openfield.co.kr
-              </p>
+              <textarea cols="110" rows="7" id="returnText"></textarea>
             </div>
           </div>
           <div class="contents-btn">
-            <a class="btnset" :href="'../studyRoom/ask_update.do?ano='+ask_detail.ano">수정하기</a>
-            <a class="btnset" :href="'../studyRoom/ask_delete.do?ano='+ask_detail.ano">삭제하기</a>
-            <a class="btnset" :href="'../studyRoom/room_detail.do?askShow=true&no='+ask_detail.sno">목록으로</a>
+            <a class="btnset" @click="askReturn()">답변하기</a>
+            <a class="btnset" @click="close()">닫기</a>
           </div>
         </div>
       </div>
@@ -211,6 +203,8 @@
 			  }).then(response=>{
 				  console.log(response.data)
 				  this.ask_detail=response.data
+				  this.ano=response.data.ano
+				  this.group_id=response.data.group_id
 				  if (response.data.filename) {
 				        let filenames = response.data.filename.split(',');
 				        this.filename=filenames;
@@ -220,6 +214,22 @@
 				  this.pop=true
 			  })
 			  
+		  },
+		  close(){
+			  this.pop=false
+		  },
+		  askReturn(){
+			  axios.get('../adminpage/ask_return_ok.do',{
+				  params:{
+					  ano:this.ano,
+					  group_id:this.group_id
+				  }
+			  }).then(response=>{
+				  if(response.data==='ok')
+				  {
+					  this.dataRecv();
+				  }
+			  })
 		  }
     	}
     	
