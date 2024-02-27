@@ -9,7 +9,6 @@ public interface MemberService {
     public int joinMember(MemberVO vo); // 회원가입
 	public void memberAuthorityInsert(String userId); // 회원 권한부여
 	public MemberVO login(String userId,String userPwd); // 로그인
-    public int updateMember(MemberVO vo); //회원정보 수정
 	public void lastLoginUpdate(String name); // 마지막 로그인날짜 저장
 	public String sendCode(String email); // 인증번호 저장
 	public String idFind(String email, int code); // 아이디 찾기

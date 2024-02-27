@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>멘토목록</title>
 <link rel="stylesheet" href="../member/css/setting.css">
 <link rel="stylesheet" href="../member/css/plugin.css">
 <link rel="stylesheet" href="../member/css/template.css"> 

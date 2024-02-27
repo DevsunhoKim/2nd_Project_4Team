@@ -1,10 +1,32 @@
 package com.sist.web;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.service.MypageService;
+import com.sist.vo.*;
 
 @RestController
 @RequestMapping("mypage/")
 public class MypageRestController {
+	private MypageService service;
+	private ObjectMapper objectMapper;
 
+    @Autowired
+    public MypageRestController(MypageService service) {
+    	this.service = service;
+    	objectMapper = new ObjectMapper();
+    }
+    
+    @GetMapping(value = "init_vue.do", produces = "text/plain;charset=UTF-8")
+	public String member_init(HttpSession session) throws JsonProcessingException {
+		String userId=(String) session.getAttribute("userId");
+		MemberVO json = service.getMemberByID(userId);
+		return objectMapper.writeValueAsString(json);
+	}
+    
 }

@@ -5,10 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 
-
-  <!-- css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <link rel="stylesheet" href="../css/setting.css">
 <link rel="stylesheet" href="../css/plugin.css">
@@ -16,20 +14,20 @@
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/style.css">
 
-  <link rel="stylesheet" href="../mypage/css/setting.css">
-  <link rel="stylesheet" href="../mypage/css/plugin.css">
-  <link rel="stylesheet" href="../mypage/css/template.css"> 
-  <link rel="stylesheet" href="../mypage/css/style.css">
+<link rel="stylesheet" href="../mypage/css/setting.css">
+<link rel="stylesheet" href="../mypage/css/plugin.css">
+<link rel="stylesheet" href="../mypage/css/template.css"> 
+<link rel="stylesheet" href="../mypage/css/style.css">
 
 <!-- script -->
-<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../js/setting.js"></script>
 <script src="../js/template.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/script.js"></script>
 <style type="text/css">
-.basic-N50 .contents-inner {
-  padding: 8rem 1.6rem;
+ padding: 8rem 1.6rem;
 }
 
 .basic-N50 .contents-container {
@@ -265,7 +263,7 @@
 }
 </style>
 </head>
-<body id="mypage_main">
+<body id="mypageMain">
 
   <tiles:insertAttribute name="header"/>
   
@@ -284,7 +282,6 @@
     </div>
   </div>
 </div>
-<div class="contents-dim"></div>
 </div>
 
 <tiles:insertAttribute name="footer"/>

@@ -47,15 +47,17 @@ public interface MemberMapper {
 	   public MemberVO login(String userId); // 로그인
 
     @Update("UPDATE MEMBER SET " +
-                "USER_NAME=#{user_name}," +
                 "NICKNAME=#{nickname}," +
+                "USERPWD=#{userPwd}," +
                 "GENDER=#{gender}," +
                 "PHONE=#{phone}," +
-                "email=#{email}," +
+                "EMAIL=#{email}," +
                 "BIRTHDAY=#{birthday}," +
-                "ADDRESS=#{address}," +
-                "DETAIL_ADDRESS=#{detail_address} " +
-            "WHERE USER_ID=#{user_id}")
+                "POST=#{post}," +
+                "ADDR=#{addr}," +
+                "DETAIL_ADDR=#{detail_addr}, " + 
+                "HOPE_JOB=#{hope_job} " +
+            "WHERE USERID=#{userId}")
     public int updateMember(MemberVO vo); // 회원정보 수정
 
     @Update("UPDATE MEMBER SET "
@@ -82,8 +84,5 @@ public interface MemberMapper {
     @Update("UPDATE member SET userPwd=#{tempPwd} WHERE userId = #{userId}")
     public void pwdFind(@Param("userId") String userId,@Param("tempPwd") String tempPwd); // 비밀번호 임시비밀번호로 변경
     /*-----------------------*/
-
-
-
 
 }

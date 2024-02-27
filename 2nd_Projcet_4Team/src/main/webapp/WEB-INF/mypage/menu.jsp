@@ -71,17 +71,21 @@
         <div class="contents-filter-body">
           <div class="accordset accordset-plus">
             <div class="accordset-item active">
-              <div class="accordset-header">
-                <button class="accordset-button btn" type="button">회원정보수정</button>
-              </div>
+	            <a href="../mypage/main.do">
+	              <div class="accordset-header">
+	                <button class="accordset-button btn" type="button">회원정보수정</button>
+	              </div>
+	            </a>
               <!-- 멘토컬럼이 1이면 -->
               <div class="accordset-body">
-                <div class="accordset-content">
-                  <div class="checkset">
-                    <span class="checkset-text">멘토정보수정</span>
-                  </div>
-              </div>
-            </div>
+	              <a href="../main/main.do">
+	                <div class="accordset-content">
+	                  <div class="checkset">
+	                    <span class="checkset-text">멘토정보수정</span>
+	                  </div>
+	              	</div>
+	              </a>
+          	  </div>
            </div>
             <div class="accordset-item">
               <div class="accordset-header">
@@ -89,9 +93,11 @@
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <div class="radioset">
-                    <span class="radioset-text">멘토링 예약</span>
-                  </div>
+	                <a href="../main/main.do">
+	                  <div class="radioset">
+	                    <span class="radioset-text">멘토링 예약</span>
+	                  </div>
+	                </a>
                   <div class="radioset">
                     <span class="radioset-text">스터디룸 예약</span>
                   </div>
@@ -140,11 +146,13 @@
                 </div>
               </div>
             </div>
+            <a href="../main/main.do">
             <div class="accordset-item">
               <div class="">
                 <button class="accordset-button btn" type="button">회원탈퇴</button>
               </div>
             </div>
+            </a>
           </div>
         </div>
         <div class="contents-filter-footer">

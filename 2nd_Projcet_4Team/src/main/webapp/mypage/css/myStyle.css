@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+/* 회원 & 멘토 정보수정 */
+.glamping-N47 {
+    padding: 0px 20px;
+    width: 200%;
+}
+  .glamping-N47 .contents-inner {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  .glamping-N47 .contents-top {
+    margin-bottom: 20px;
+  }
+  .glamping-N47 .form-wrap {
+    margin-bottom: 20px;
+  }
+  .glamping-N47 .form-tit {
+    margin-bottom: 10px;
+  }
+  .glamping-N47 .contents-btn-group {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .glamping-N47 .contents-form-group {
+    display: flex;
+    align-items: center; 
+    width: 100%;
+}
+
+  .glamping-N47 .inputset {
+    flex: 1;
+    margin-right: 10px;
+}
+
+  .glamping-N47 .btnset {
+    flex: 0; 
+}
+  .glamping-N47 .contents-mail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.form-wrap-horizontal {
+    display: flex;
+    align-items: center;
+}
+
+.form-wrap-horizontal .form-tit {
+    margin-right: 10px;
+}
+
+.form-wrap-horizontal .inputset {
+    flex: 1;
+}

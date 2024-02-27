@@ -36,11 +36,6 @@ public class MemberServiceIml implements MemberService{
         return dao.getNicknameCount(nickname);
     }
 
-    @Override
-    public int updateMember(MemberVO member) {
-        return dao.updateMember(member);
-    }
-
 	@Override
 	public int joinMember(MemberVO vo) {
 		String enPwd=encoder.encode(vo.getUserPwd());// 비밀번호 암호화
