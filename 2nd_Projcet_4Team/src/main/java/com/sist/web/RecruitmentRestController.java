@@ -90,14 +90,18 @@ public class RecruitmentRestController {
 	// RecruitmentService를 통해 채용 공고 정보와 기업 정보를 가져옴
 		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
-		MemberVO mvo=mService.getMemberByID((String)session.getAttribute("userId"));
-
+		String userId = (String)session.getAttribute("userId");
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
-		map.put("mvo", mvo);
+		map.put("sessionId", userId);
+		map.put("mvo", "NOMVO");
+		if(userId != null) {
+			MemberVO mvo=mService.getMemberByID(userId);
+			map.put("mvo", mvo);
+		}
 		// Map 객체는 Java에서 키-값 쌍을 저장하는 데 사용되는 인터페이스로 Map에 rno와 cno를 담아 JSON 형태로 응답
-
+		
 		ObjectMapper mapper=new ObjectMapper();
 	  String json=mapper.writeValueAsString(map);
 

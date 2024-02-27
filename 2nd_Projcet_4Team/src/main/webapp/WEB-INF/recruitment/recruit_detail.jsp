@@ -172,10 +172,10 @@
         </div>
         <button type="button" id="recruitApplyBtnBottom" class="recruit-btn recruit-apply-btn" @click="apply">지원하기</button>
       </div>
-	    <section id="applyForm" class="th-layout-sub">
+	   <section id="applyForm" class="th-layout-sub" v-if="member_detail !== 'NOMVO'">
 	      <div class="content-container">
 	        <h2>지원하기</h2>
-	        <form>
+	        <form enctype="multipart/form-data">
 	          <!-- <h3>지원 정보</h3> -->
 	          <ul class="apply-info">
 	            <li class="company-info">
@@ -247,7 +247,7 @@ let recruitmentDetailApp=Vue.createApp({
 	},
 	methods:{
 		dataRecv(){
-		  this.principal='<%= session.getAttribute("userId") %>';
+		  <%-- this.sessionId='<%= session.getAttribute("userId") %>'; --%>
 	    // 서버에 GET 요청을 보내고, 서버에서 받은 JSON 데이터를 처리
 	    axios.get('../recruitment/recruit_detail_vue.do', {
 	      // recruit_detail_vue 엔드포인트에 rno과 cno를 파라미터로 넘김
@@ -259,9 +259,12 @@ let recruitmentDetailApp=Vue.createApp({
 	      // 받아온 데이터는 response.data에 담겨 있음
 	      console.log(response.data)
 	      // Vue 인스턴스의 데이터(recruit_detail과 company_detail)를 업데이트
+	      console.log(response.data)
 	      this.recruit_detail=response.data.rvo
 	      this.company_detail=response.data.cvo
 	      this.member_detail=response.data.mvo
+	      this.sessionId=response.data.sessionId
+	      console.log(response.data)
 	      // recruit_detail과 company_detail은 Vue.js의 data 속성에 정의된 객체임, 서버에서 받은 JSON 데이터를 이 객체에 할당함으로써 동적인 UI를 구현
 	      this.addScript();
 	    })
@@ -314,7 +317,7 @@ let recruitmentDetailApp=Vue.createApp({
     // 지원창
     apply() {
       // 사용자의 인증 상태 확인
-      if (this.principal) {
+      if (this.sessionId) {
         // 사용자가 로그인한 경우, '지원하기' 창을 띄우기
         $("#applyForm").show();
       } else {
