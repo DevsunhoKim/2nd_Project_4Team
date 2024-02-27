@@ -1287,7 +1287,9 @@
 	margin: 4rem 0 10rem 0;
 	
 }
-
+#ask_detail .contents-answer{
+	/* width: 50%; */
+}
 /* Badgeset : Badgeset */
 #ask_detail .badgeset { display: flex; align-items: center; justify-content: center; width: 9rem; height: 3.2rem; padding: .6rem; background-color: var(--primary); color: var(--text-color5); text-align: center; }
 #ask_detail .badgeset.badgeset-center { margin: 0 auto; }

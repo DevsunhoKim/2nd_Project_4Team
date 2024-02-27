@@ -100,6 +100,11 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		// TODO Auto-generated method stub
 		sadao.StudyRoomAskfileNoneUpdate(vo);
 	}
+	@Override
+	public StudyRoomAskVO StudyRoomAskReturnData(Map map) {
+		// TODO Auto-generated method stub
+		return sadao.StudyRoomAskReturnData(map);
+	}
 	
 	
 

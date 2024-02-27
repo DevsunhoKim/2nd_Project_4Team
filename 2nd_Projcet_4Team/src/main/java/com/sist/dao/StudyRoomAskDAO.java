@@ -39,7 +39,9 @@ public class StudyRoomAskDAO {
 	public void StudyRoomAskfileNoneUpdate(StudyRoomAskVO vo) {
 		mapper.StudyRoomAskfileNoneUpdate(vo);
 	}
-	
+	public StudyRoomAskVO StudyRoomAskReturnData(Map map) {
+		return mapper.StudyRoomAskReturnData(map);
+	}
 	
 	//adminpage
     public List<StudyRoomAskVO> AdminRoomAskList(Map map){

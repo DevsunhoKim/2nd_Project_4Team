@@ -37,9 +37,9 @@ public interface StudyRoomAskMapper {
 			+ "FROM studyRoom_ASK WHERE ano=#{ano}")
 	public StudyRoomAskVO StudyRoomAskDetail(int ano);
 	
-	@Select("SELECT ano,sno,group_id,group_step,state,userId,name,content,filename," 
-			+"filesize,cate,email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday "
-			+ "FROM studyRoom_ASK WHERE ano=#{ano} AND group_id=#{group_id} AND group_step=#{group_step}")
+	@Select("SELECT ano,sno,group_id,group_step,userId,name,content," 
+			+"email,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday "
+			+ "FROM studyRoom_ASK WHERE group_id=#{group_id} AND group_step=1")
 	public StudyRoomAskVO StudyRoomAskReturnData(Map map);
 	
 	@Delete("DELETE FROM studyRoom_ASK WHERE ano=#{ano}")

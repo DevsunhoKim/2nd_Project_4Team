@@ -170,5 +170,18 @@ public class StudyRoomRestController {
 	   return json;
 	   
    }
+   @GetMapping(value="ask_Return_detail.do", produces = "text/plain;charset=UTF-8")
+   public String ask_Return_detail(int ano,int group_id) throws Exception {
+	   
+	   Map map=new HashMap();
+	   map.put("group_id", group_id);
+	   map.put("ano", ano);
+	   System.out.println(group_id+" "+ano);
+	   StudyRoomAskVO vo=service.StudyRoomAskReturnData(map);
+	   ObjectMapper mapper = new ObjectMapper();
+       String json = mapper.writeValueAsString(vo);
+	   return json;
+	   
+   }
 
 }

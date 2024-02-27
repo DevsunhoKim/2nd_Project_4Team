@@ -59,13 +59,14 @@
               <p class="contents-ask">{{ask_detail.content}}</p>
             </div>
             <div class="contents-group-bottom">
-              <div class="contents-date">
-                <span class="badgeset badgeset-active ask-return">답변</span> 2023.01.01
+              <div v-if="return_detail===null" class="contents-date">
+                <span class="badgeset badgeset-active ask-return">답변대기</span>
               </div>
-              <p class="contents-answer"> 안녕하세요. 회원님 <br> HOOMS 담당자입니다. <br>
-                <br> 웹 페이지 산출물이 나오는 과정은 3명의 전문가들의 각각의 시간을 할애하여 생산하는 부분을 템플릿 하우스를 사용하면 1사람이 <br> 원 클릭과 드래그앤 드랍 방식을 통해 웹 페이지를 10분 만에 생성하고 코드 편집과 코드 산출물 다운로드 기능을 통해 더 자유롭게 개발할 수 있습니다. <br>
-                <br> 더 궁금하신 사항은 아래 전화번호 메일을 통해 연락주시길 바랍니다. <br> 감사합니다. <br>
-                <br> 문의사항 : 02-123-4567 / openfield@openfield.co.kr
+              <div v-if="return_detail!==null" class="contents-date">
+                <span class="badgeset badgeset-active ask-return">답변</span>{{return_detail.dbday}}
+              </div>
+              <p v-if="return_detail!==null" class="contents-answer">
+               {{return_detail.content}}
               </p>
             </div>
           </div>
@@ -84,7 +85,9 @@
 		  return{
 			  ano:${ano},
 		      ask_detail:{},
-		      filename:{}
+		      filename:{},
+		      group_id:0,
+		      return_detail:{}
 		  }
 	  },
 	  mounted(){
@@ -95,9 +98,25 @@
 		  }).then(response=>{
 			  console.log(response.data)
 			  this.ask_detail=response.data
-			  let filenames = response.data.filename.split(',');
-			  this.filename=filenames;
+			  this.group_id=response.data.group_id
+			  if (response.data.filename) {
+			        let filenames = response.data.filename.split(',');
+			        this.filename=filenames;
+			    } else {
+			        this.filename = [];
+			    }
+			  console.log(this.ano)
+			  console.log(this.group_id)
 			  console.log(this.filename)
+			  axios.get('../studyRoom/ask_Return_detail.do',{
+				  params:{
+					  ano:this.ano,
+					  group_id:this.group_id
+				  }
+			  }).then(result=>{
+				  this.return_detail=result.data
+			  })
+			  
 			  
 		  })
 	  }
