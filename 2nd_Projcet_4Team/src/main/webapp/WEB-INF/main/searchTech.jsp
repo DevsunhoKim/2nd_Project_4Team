@@ -281,7 +281,7 @@
           <div class="content-wrapper" style=" display: flex;align-items: center;">
               <img alt="책 아이콘" style="width: 50px; display: inline-block;" src="${pageContext.request.contextPath}/images/search.png">
                <h2 class="textset-tit" style="display: inline-block; margin: 0;">&nbsp;<c:out value="${param.engTech}" /> </h2>
-          	<span class="reserve_tit" style="display: inline-block; align-items: end;">&nbsp;에 대한 검색내역</span>
+          	<span class="reserve_tit" style="display: inline-block; align-items: end; margin-top: 2rem;">&nbsp;에 대한 검색내역</span>
           </div>
           </div>
         <!-- 멘토 리스트 -->
