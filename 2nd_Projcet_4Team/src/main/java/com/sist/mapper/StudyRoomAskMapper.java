@@ -65,17 +65,17 @@ public interface StudyRoomAskMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<StudyRoomAskVO> AdminRoomAskList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/7.0) FROM studyRoom_ASK")
+	@Select("SELECT CEIL(COUNT(*)/7.0) FROM studyRoom_ASK WHERE group_step=0 AND state=0")
 	public int AdminRoomAskTotalpage();
 	
-	@Select("SELECT COUNT(*) FROM studyRoom_ASK")
+	@Select("SELECT COUNT(*) FROM studyRoom_ASK WHERE group_step=0 AND state=0")
 	public int AdminRoomAskCount();
 	
-	@Insert("INSERT INTO studyRoom_ASK(ano,sno,userId,name,content,group_id,group_step,cate,subject) "
+	@Insert("INSERT INTO studyRoom_ASK(ano,sno,userId,name,content,group_id,group_step,cate,subject,email) "
 			+ "VALUES((SELECT NVL(MAX(ano)+1,1) FROM studyRoom_ASK),#{sno},"
 			+ "#{userId},'관리자',#{content},"
 			+ "#{group_id},1,"
-			+ ",#{cate},'관리자 답변드립니다')")
+			+ "#{cate},'관리자 답변드립니다','studyRoom@codev.co.kr')")
 	public void StudyRoomAskReturnInsert(StudyRoomAskVO vo);
 	
 	@Update("UPDATE studyRoom_ASK SET state=1 WHERE ano=#{ano}")

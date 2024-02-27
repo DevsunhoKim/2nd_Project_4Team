@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,12 +65,24 @@ public class AdminpageRestController {
 		return json;
 	}
     @PostMapping(value="ask_return_ok.do",produces="text/plain;charset=UTF-8")
-	public String ask_return_ok(int ano,int group_id) throws Exception
+	public String ask_return_ok(int ano,int group_id,String content,HttpSession session) throws Exception
 	{
-    	StudyRoomAskVO vo=sService.StudyRoomAskDetail(ano);
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(vo);
-		return json;
+		String result="no";
+		try {
+			StudyRoomAskVO vo=sService.StudyRoomAskDetail(ano);
+	    	StudyRoomAskVO revo=new StudyRoomAskVO();
+	    	revo.setAno(ano);
+	    	revo.setSno(vo.getSno());
+	    	revo.setContent(content);
+	    	revo.setCate(vo.getCate());
+	    	revo.setGroup_id(group_id);
+	    	revo.setUserId((String)session.getAttribute("userId"));
+	    	service.StudyRoomAskReturnInsert(revo);
+	    	result="ok";
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
     
 }

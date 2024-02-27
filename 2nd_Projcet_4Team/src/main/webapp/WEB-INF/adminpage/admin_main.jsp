@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="../css/template.css">
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/style.css">
-
 <!-- script -->
 <script src="https://code.jquery.com/jquery.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="../js/setting.js"></script>
 <!-- <script src="../js/plugin.js"></script> -->
@@ -29,6 +29,9 @@
   margin-top: 20rem;
   min-width: 128rem;
 }
+a:focus, a:hover {
+    text-decoration: none !important;
+}
 .row {
   margin: 0px auto;
   width:960px;
@@ -38,14 +41,19 @@
   font-weight: 600;
 }
 #admin_title {
-  border-bottom: 1px solid #a0a0a0;
-  padding-bottom: 3rem;
-  margin-bottom: 7rem;
+  /* border-bottom: 1px solid #a0a0a0; */
+  /* padding-bottom: 3rem; */
+  margin-bottom: 6rem;
 }
 #admin_main .col-sm-3{
   padding-left: 0px;
 }
+#admin_main .content{
+  border-top: 1px solid var(--line-color3);
+  padding-top: 3rem;
+}
 </style>
+
 </head>
 <body id="admin_main">
   <tiles:insertAttribute name="header"/>
@@ -53,10 +61,10 @@
     <div id="admin_title">
       <h2 id="admintitle">관리자 페이지</h2>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
       <tiles:insertAttribute name="menu"/>
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-9 content">
       <tiles:insertAttribute name="content"/>
     </div>
   </div>

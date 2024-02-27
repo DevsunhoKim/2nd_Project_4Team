@@ -19,7 +19,6 @@
   <script src="../studyRoom/js/common.js"></script>
   <script src="../studyRoom/js/script.js"></script>
   
-  
 </head>
 <body style="width: 100%">
   <div class="hooms-N36" data-bid="rxlskcGXa1" id="admin_ask">
@@ -59,7 +58,7 @@
                   <td class="tableset-category tableset-order03">{{ask.cate}}</td>
                   <td class="tableset-tit tableset-order02">
                    
-                    <a class="tableset-ico" :href="ask.userId !== userId ? 'javascript:void(0)' : '../studyRoom/ask_detail.do?ano=' + ask.ano">
+                    <a class="tableset-ico" href="javascript:void(0)">
 						  {{ ask.subject }}
 				    </a>
                     
@@ -126,11 +125,11 @@
               <p class="contents-ask">{{ask_detail.content}}</p>
             </div>
             <div class="contents-group-bottom">
-              <textarea cols="110" rows="7" id="returnText"></textarea>
+              <textarea cols="110" rows="7" id="returnText" v-model="returnText"></textarea>
             </div>
           </div>
           <div class="contents-btn">
-            <a class="btnset" @click="askReturn()">답변하기</a>
+            <a class="btnset" @click="returnOk()">답변하기</a>
             <a class="btnset" @click="close()">닫기</a>
           </div>
         </div>
@@ -150,7 +149,9 @@
     	        totalCount:0,
     	        pop:false,
     	        ask_detail:{},
-    	        filename:{}
+    	        filename:{},
+    	        returnText:'',
+    	        ano:0
     		}
     	},
     	mounted(){
@@ -205,6 +206,7 @@
 				  this.ask_detail=response.data
 				  this.ano=response.data.ano
 				  this.group_id=response.data.group_id
+				  this.ano=response.data.ano
 				  if (response.data.filename) {
 				        let filenames = response.data.filename.split(',');
 				        this.filename=filenames;
@@ -218,15 +220,17 @@
 		  close(){
 			  this.pop=false
 		  },
-		  askReturn(){
-			  axios.get('../adminpage/ask_return_ok.do',{
+		  returnOk(){
+			  axios.post('../adminpage/ask_return_ok.do',null,{
 				  params:{
 					  ano:this.ano,
-					  group_id:this.group_id
+					  group_id:this.group_id,
+					  content:this.returnText
 				  }
 			  }).then(response=>{
 				  if(response.data==='ok')
 				  {
+					  this.pop=false
 					  this.dataRecv();
 				  }
 			  })

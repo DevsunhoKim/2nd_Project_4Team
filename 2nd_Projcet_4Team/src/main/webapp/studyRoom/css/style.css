@@ -919,7 +919,7 @@
  }
  #studyRoom_detail .state1{
  background-color: #6713d2; color: var(--text-color5);
- padding: 0.4rem 3rem;
+ /* padding: 0.4rem 3rem; */
  font-size: 1.4rem;
  }
 #studyRoom_detail .asklist-title{
