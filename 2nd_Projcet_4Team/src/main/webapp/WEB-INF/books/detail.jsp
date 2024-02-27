@@ -168,23 +168,11 @@ textarea {
 
 
 
-/* ID를 사용한 별 평점 스타일 */
-#ratingSection .star, #ratingSection .empty-star {
-  cursor: pointer; /* 마우스 커서를 포인터 모양으로 변경 */
-  font-size: 20px; /* 별 크기 */
-}
 
-#ratingSection .empty-star {
-  color: grey; /* 빈 별의 색상을 회색으로 설정 */
-}
 
-.contents-ico-list {
-  display: inline-block;
-  list-style: none;
-  padding: 0;
-  color: #FFD700; /* 별점의 색상 (금색) */
-  font-size: 16px; /* 별 텍스트의 크기 */
-}
+
+
+
 
 }
   </style>
@@ -223,16 +211,16 @@ textarea {
 
 <!-- 평점과 별 표시, 컴포넌트 없이 -->
 <p class="contents-desc" id="ratingSection">
-  점수: {{ detail_data.avgScore }}
+  평점: 
   <!-- 유효한 숫자인지 확인하고, 평균 점수에 따라 별을 표시 -->
   <template v-if="Number.isFinite(parseFloat(detail_data.avgScore)) && parseFloat(detail_data.avgScore) >= 0">
     <!-- 실제 별 표시 -->
-    <label v-for="(n, index) in Math.min(Math.round(parseFloat(detail_data.avgScore)), 5)" :key="'filled-' + index" :for="'star' + (index + 1)" class="star" id="realStar-{{ index }}">⭐</label>
-    <!-- 빈 별 표시 -->
-    <label v-for="(n, index) in 5 - Math.min(Math.round(parseFloat(detail_data.avgScore)), 5)" :key="'empty-' + index" :for="'star' + (5 - index)" class="empty-star" id="emptyStar-{{ index }}" style="color:grey">⭐</label>
-   
+    <label v-for="(n, index) in Math.min(Math.round(parseFloat(detail_data.avgScore)), 5)" :key="'filled-' + index" class="star" id="realStar-{{ index }}">⭐&nbsp;</label>
+    <!-- 빈 별 표시 부분을 제거 -->
   </template>
+ ( {{ detail_data.avgScore }} )
 </p>
+
 
 
 
@@ -291,23 +279,26 @@ textarea {
         <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.rno">
          
             <div class="cardset-body">
-              <!-- 리뷰 내용 및 저자 정보 -->
-            <div class="contents-info">
-			  <div class="contents-name" style="float: right">
-			    작성자 : {{ review.userId }}
-			    <span class="contents-date">{{ review.dbday }}</span>
-			  </div>
-			  <p>
-			  
-			  <ul class="contents-ico-list">
-			    <li v-for="star in parseInt(review.score)" :key="star" value=★></li>
-			  </ul> <!-- 리뷰 점수에 해당하는 만큼 별 출력 -->
-			</div>
+          <!-- 리뷰 내용 및 저자 정보 -->
+<div class="contents-info">
+  <div class="contents-name" style="float: right">
+    작성자 : {{ review.userId }}
+    <span class="contents-date">{{ review.dbday }}</span>
+  </div>
+  <p>
+  <p>
+  
+</div>
+
+
+
 			            
-			      <ul class="contents-ico-list">
-		 <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.score }" :key="star">⭐</li>
-						</ul>
-              
+			 <ul class="contents-ico-list" :id="'review-stars-' + review.rno" style="float:right">
+    <li v-for="star in (review.score)" :key="star" style="color:gold"> ★</li>
+  </ul>
+  <p>
+  <p>
+  
               <!-- 리뷰 내용 표시 -->
               <div v-if="editReview.rno !== review.rno" >
                 <p class="cardset-desc">{{ review.cont }}</p>
@@ -353,7 +344,7 @@ textarea {
          
     <!-- [S]hooms-N41 -->
 <div class="hooms-N41" data-bid="IYlsL2pcgs">
-    <div class="inputset inputset-lg inputset-label" style="width: 1280px; margin: 0px auto;">
+    <div class="inputset inputset-lg inputset-label" style="width: 1280px;height: 450px; margin: 0px auto;">
         <label style="margin-bottom: 3rem">
             <h6 class="inputset-tit">리뷰 남기기</h6>
           
@@ -377,15 +368,16 @@ textarea {
 </div>
 
 
-            <textarea class="inputset-textarea" v-model="newReview.cont" placeholder="리뷰 내용을 입력해 주세요." required="" name="reviewContent" id="reviewContent"></textarea>
+            <textarea class="inputset-textarea" v-model="newReview.cont" placeholder="리뷰 내용을 입력해 주세요." required="" name="reviewContent" id="reviewContent" ></textarea>
             <div class="inputset-langth">
                 <span class="inputset-count">{{ newReview.cont.length }}</span>
                 <span class="inputset-total">/4000</span>
             </div>
         </label>
+        <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;margin-bottom: 6rem" @click="addReview(no)">작성하기</a>
     </div>
 
-   <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;margin-bottom: 6rem" @click="addReview(no)">작성하기</a>
+   
 </div>
 
 <script>
@@ -460,23 +452,33 @@ let booksDapp = Vue.createApp({
     },
     // 새 리뷰 추가 메소드
     addReview() {
-      axios.post('../books/review_insert_vue.do', null, {
-        params: {
-          no: this.no,
-          userId: this.sessionId, // 현재 로그인한 사용자 ID
-          cont: this.newReview.cont,
-          score: parseInt(this.newReview.score), // 점수를 문자열에서 숫자로 변환
-          cateno:1
-        }
-      }).then(() => {
-        alert("리뷰가 성공적으로 추가되었습니다.");
-        this.fetchBookDetail(); // 리뷰 추가 후 목록 새로고침
-        this.newReview.cont = ''; // 입력 필드 초기화
-        this.newReview.score = 0; // 별점 초기화
-      }).catch(error => {
-        console.error("리뷰 추가 실패:", error);
-      });
-    },
+  // 로그인 상태 확인
+  if (!this.sessionId) {
+    // 로그인 상태가 아니면 알림 창을 표시하고 로그인 페이지로 이동
+    alert("로그인이 필요한 메뉴입니다.");
+    window.location.href = '../member/login.do'; // 로그인 페이지 경로로 이동
+    return; // 메소드 실행 중단
+  }
+
+  // 로그인 상태일 경우 리뷰 추가 로직 수행
+  axios.post('../books/review_insert_vue.do', null, {
+    params: {
+      no: this.no,
+      userId: this.sessionId, // 현재 로그인한 사용자 ID
+      cont: this.newReview.cont,
+      score: parseInt(this.newReview.score), // 점수를 문자열에서 숫자로 변환
+      cateno:1
+    }
+  }).then(() => {
+    alert("리뷰가 성공적으로 추가되었습니다.");
+    this.fetchBookDetail(); // 리뷰 추가 후 목록 새로고침
+    this.newReview.cont = ''; // 입력 필드 초기화
+    this.newReview.score = 0; // 별점 초기화
+  }).catch(error => {
+    console.error("리뷰 추가 실패:", error);
+  });
+},
+
     // 리뷰 수정 메소드
     updateReview() {
       axios.post('../books/review_update_vue.do', null, {

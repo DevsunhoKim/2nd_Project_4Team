@@ -55,7 +55,7 @@
 }
 
 /* hooms-N43 [uKlSO0zbWX] */
-.hooms-N43 .contents-inner { padding: 10rem 2.4rem; }
+.hooms-N43 .contents-inner { padding: 0rem 2.4rem; }
 .hooms-N43 .textset.textset-h2 { margin-bottom: 10rem; text-align: center; }
 .hooms-N43 .textset.textset-h2 .textset-tit+.textset-desc { margin-top: 2.4rem; font-size: var(--fs-h3); line-height: var(--lh-h3); color: var(--text-color1); font-weight: 500; }
 .hooms-N43 .contents-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 1.6rem; }
@@ -72,7 +72,7 @@
 }
 
 /* hooms-N45 [vfLsO0j77a] */
-.hooms-N45 .contents-inner { padding: 10rem 2.4rem; }
+.hooms-N45 .contents-inner { padding: 5rem 2.4rem; }
 .hooms-N45 .textset { margin-top: 0; padding: 0; }
 .hooms-N45 .textset-tit { margin-bottom: 2.4rem; text-align: center; }
 .hooms-N45 .tabset-item { width: 100%; }
@@ -170,6 +170,7 @@
                     </figure >
                     <div class="tableset-group" style="text-align: center">
                       <h5 class="p1">
+                        <br>
                         {{ detail_data.title }}
                         <br>
                         <br>
@@ -180,9 +181,15 @@
                   </td>
                   <td>
                     <strong>단가</strong>
+                    <br>
+                    <br>
+                    <br>
                     {{detail_data.price}} 원
                   </td>
                   <td class="td-border-bottom">
+                  <br>
+                  <br>
+                  <br>
                     <strong>수량</strong>
                    
                <div id="app" class="quantity-control">
@@ -192,6 +199,9 @@
 </div>
                   </td>
                   <td class="tableset-dark">
+                     <br>
+                     <br>
+                     <br>
                     <strong>총 금액</strong>
                     {{ totalPrice.toLocaleString('ko-KR') }} 원
                   </td>

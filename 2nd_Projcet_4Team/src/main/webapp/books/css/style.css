@@ -106,7 +106,7 @@
 .hooms-N41 .contents-ico-list { display: flex; align-items: center; }
 .hooms-N41 .contents-ico-item+.contents-ico-item { margin-left: 0.2rem; }
 .hooms-N41 .contents-name { font-size: var(--fs-p1); font-weight: 400; color: var(--text-color3); }
-.hooms-N41 .contents-date { margin-left: 95.8rem; }
+.hooms-N41 .contents-date { margin-left: 90.8rem; }
 .hooms-N41 .cardset-tit-group { margin-top: 1.6rem; }
 .hooms-N41 .cardset-tit { font-size: var(--fs-h6); line-height: 2.8rem; font-weight: 500; }
 .hooms-N41 .cardset-desc { margin-top: 0.8rem; }

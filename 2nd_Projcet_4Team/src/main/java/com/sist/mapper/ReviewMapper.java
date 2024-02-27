@@ -12,7 +12,7 @@ import com.sist.vo.ReviewVO;
 // 데이터베이스 내 리뷰 작업을 처리하기 위한 매퍼 인터페이스
 public interface ReviewMapper {
 
-    @Select("SELECT r.no, r.rno, r.userId, r.cont, TO_CHAR(r.regdate, 'YYYY-MM-DD HH24:MI:SS') as dbday, cateno " +
+    @Select("SELECT r.no, r.rno, r.userId, r.cont, TO_CHAR(r.regdate, 'YYYY-MM-DD HH24:MI:SS') as dbday, cateno , r.score " +
             "FROM review1 r JOIN member m ON r.userId = m.userId " +
             "WHERE r.no=#{no} AND r.cateno = #{cateno}" +
             "ORDER BY r.rno DESC")
