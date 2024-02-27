@@ -68,7 +68,7 @@ function chat() {
               </li>
               <sec:authorize access="hasRole('ROLE_USER')">
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="javascript:void(0)">
+                <a class="header-gnblink" href="../mypage/main.do">
                   <span>MyPage</span>
                 </a>
               </li>
@@ -102,9 +102,6 @@ function chat() {
             </a>
             </c:if>
             <c:if test="${principal.username!=null }">
-            <!-- <a href="#" class="header-btn btn-user">
-              <img src="../images/icons/ico_user_black.svg" alt="마이페이지 아이콘">
-            </a> -->
             <a href="../member/logout.do" class="header-btn btn-user">
               <img src="../images/icons/free-icon-logout.png" alt="로그아웃 아이콘">
             </a>
