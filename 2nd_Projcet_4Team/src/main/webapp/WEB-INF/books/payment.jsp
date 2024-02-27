@@ -446,7 +446,8 @@ let paymentApp = Vue.createApp({
         const purchaseData = {
         		userId: this.sessionId, // 사용자 세션 ID
                 no: this.detail_data.no, // 책 번호
-                quantity: this.quantity, // 구매 수량
+                quantity: this.quantity,
+                buy_cnt: this.quantity, // 구매 수량
                 totalPrice: this.totalPrice, // 총 가격
                 addr: this.addr, // 사용자가 입력한 주소 정보
                 poster: this.detail_data.poster, // 책 포스터 이미지

@@ -189,13 +189,14 @@ public class BooksRestController {
        }
 
       @PostMapping(value="pay_ok.do", produces = "text/plain;charset=UTF-8")
-      public String addToPurchase(@RequestBody B_CartVO vo, Principal p) {
+      public String addToPurchase(@RequestBody B_CartVO vo, Principal p, BooksVO bvo) {
           try {
               String userId = p.getName(); // 현재 로그인한 사용자의 ID를 가져옴
               vo.setUserId(userId); // B_CartVO 객체에 사용자 ID 설정
-
+              
+              cService.updateBuyCnt(bvo.getNo(), bvo.getBuy_cnt());
               cService.payCartItem(vo); // 서비스를 통해 구매 정보 처리
-
+              
               return "{\"status\":\"success\"}"; // 성공 응답
           } catch(Exception e) {
               e.printStackTrace();

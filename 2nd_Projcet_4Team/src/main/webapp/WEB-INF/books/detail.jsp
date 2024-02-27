@@ -178,7 +178,13 @@ textarea {
   color: grey; /* 빈 별의 색상을 회색으로 설정 */
 }
 
-
+.contents-ico-list {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  color: #FFD700; /* 별점의 색상 (금색) */
+  font-size: 16px; /* 별 텍스트의 크기 */
+}
 
 }
   </style>
@@ -286,15 +292,22 @@ textarea {
          
             <div class="cardset-body">
               <!-- 리뷰 내용 및 저자 정보 -->
-              <div class="contents-info">
-                <div class="contents-name" style="float: right">
-                  {{ review.userId }}
-                  <span class="contents-date">{{ review.dbday }}</span>
-                </div>
-                <ul class="contents-ico-list">
-                  <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.score }" :key="star"></li>
-                </ul>
-              </div>
+            <div class="contents-info">
+			  <div class="contents-name" style="float: right">
+			    작성자 : {{ review.userId }}
+			    <span class="contents-date">{{ review.dbday }}</span>
+			  </div>
+			  <p>
+			  
+			  <ul class="contents-ico-list">
+			    <li v-for="star in parseInt(review.score)" :key="star" value=★></li>
+			  </ul> <!-- 리뷰 점수에 해당하는 만큼 별 출력 -->
+			</div>
+			            
+			      <ul class="contents-ico-list">
+		 <li v-for="star in 5" :class="{ 'ico-item-active': star <= review.score }" :key="star">⭐</li>
+						</ul>
+              
               <!-- 리뷰 내용 표시 -->
               <div v-if="editReview.rno !== review.rno" >
                 <p class="cardset-desc">{{ review.cont }}</p>
