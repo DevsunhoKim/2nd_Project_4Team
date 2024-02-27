@@ -64,11 +64,13 @@ public class MainController {
 		List<MentorVO> mList = service.getMentorBytech(engTech);
 		List<BooksVO> bList = service.getBookstBytech(engTech);
 		List<RecruitVO> rList = service.getRecruitBytech(engTech);
-		String job = mList.get(0).getJob();
-		model.addAttribute("job", job);
 		model.addAttribute("mList",mList);
 		model.addAttribute("bList",bList);
 		model.addAttribute("rList",rList);
+		if(mList != null) {
+			String job = mList.get(0).getJob();
+			model.addAttribute("job", job);
+		}
 		return "main/searchTech";
 	}
 }

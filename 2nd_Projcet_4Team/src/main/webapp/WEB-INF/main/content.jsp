@@ -479,7 +479,6 @@ let techApp = Vue.createApp({
                 this.selectedTech = -1;
             } else {
                 this.selectedTech = index;
-                alert(index);
                 this.selectedTechName = this.tech_list[index];
             }
            location.href = "../main/searchTech.do?engTech="+this.selectedTechName;
