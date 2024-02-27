@@ -16,6 +16,6 @@ import lombok.Data;
 @Data
 public class StudyRoomReserveVO {
 	private int no,sno,amount,price;
-	private String userId,dbday;
+	private String userId,dbday,time,rdate;
 	private Date regdate;
 }

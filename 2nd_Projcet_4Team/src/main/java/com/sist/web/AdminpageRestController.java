@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.dao.StudyRoomAskDAO;
 import com.sist.service.AdminpageService;
+import com.sist.service.MemberService;
 import com.sist.service.StudyRoomService;
+import com.sist.vo.MemberVO;
 import com.sist.vo.StudyRoomAskVO;
 import com.sist.vo.StudyRoomReserveVO;
 
@@ -26,7 +28,8 @@ public class AdminpageRestController {
 	private AdminpageService service;
 	@Autowired
 	private StudyRoomService sService;
-	
+	@Autowired
+	private MemberService memberService;
 	//스터디룸 문의 내역
 	@GetMapping(value="admin_ask_vue.do",produces="text/plain;charset=UTF-8")
 	public String admin_ask(int page) throws Exception
@@ -113,6 +116,19 @@ public class AdminpageRestController {
   		map1.put("totalCount", totalCount);
   		ObjectMapper mapper = new ObjectMapper();
   		String json = mapper.writeValueAsString(map1);
+  		return json;
+  	}
+  	
+  	@GetMapping(value="admin_room_info.do",produces="text/plain;charset=UTF-8")
+  	public String admin_room_info(int no,String userId) throws Exception
+  	{
+  		StudyRoomReserveVO rvo=service.StudyRoomReserveData(no);
+  		MemberVO mvo=memberService.getMemberByID(userId);
+  		Map map=new HashMap();
+  		map.put("rvo", rvo);
+  		map.put("mvo", mvo);
+  		ObjectMapper mapper = new ObjectMapper();
+  		String json = mapper.writeValueAsString(map);
   		return json;
   	}
     

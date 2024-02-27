@@ -108,16 +108,32 @@ public class StudyRoomRestController {
 	   System.out.println(month);
 	   System.out.println(day);
 	   int amount=times.length;
+	   String timesAsString = String.join(",", times);
 	   StudyRoomReserveVO srrvo=new StudyRoomReserveVO();
 	   srrvo.setSno(sno);
 	   srrvo.setAmount(amount);
 	   srrvo.setPrice(price);
 	   srrvo.setUserId(userId);
+	   srrvo.setTime(timesAsString);
+	   String sday = Integer.toString(day);
+	   String smonth = Integer.toString(month);
+	   if(sday.length()==1)
+	   {
+		   sday="0"+sday;
+	   }
+	   if(smonth.length()==1)
+	   {
+		   smonth="0"+smonth;
+	   }
+	   srrvo.setRdate("2024-"+smonth+"-"+sday);
+	   System.out.println(srrvo.getRdate());
+	   System.out.println(srrvo.getTime());
 	   service.studyRoomReserveInsert(srrvo);
 
 	   StudyRoomTimeVO srtvo=new StudyRoomTimeVO();
 	   srtvo.setMonth(month);
 	   srtvo.setDay(day);
+	   srtvo.setSno(sno);
 	   for(String t:times)
 	   {
 		   service.StudyRoomReserveTimeInsert(t);
