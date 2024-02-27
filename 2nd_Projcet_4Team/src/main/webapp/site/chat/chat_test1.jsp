@@ -24,8 +24,6 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
 <script type="text/javascript">
 let websocket;
-let user;
-let userset;
 // 서버연결 
 function connection()
 {
@@ -51,18 +49,18 @@ function onMessage(event)
 	 if(data.substring(0,3)==="my:") // oto , makeroom  ==> 100 200 300...
 	 // msg:[이름] 메세지
 	 {
-		 appendMessage(data.substring(4))
-		 user=data.substring(4,data.lastIndexOf("]"))
-		 console.log(user)
-		 userset='my'
+		 appendMyMessage(data.substring(3))
 	 }
-	 else if(data.substring(0,3)==="no:") // oto , makeroom  ==> 100 200 300...
+	 if(data.substring(0,4)==="you:") // oto , makeroom  ==> 100 200 300...
 		 // msg:[이름] 메세지
-		 {
-			 appendMessage(data.substring(4))
-			 user=data.substring(5,data.lastIndexOf("]"))
-			 userset='no'
-		 }
+     {
+		 appendYouMessage(data.substring(4))
+	 }
+	 if(data.substring(0,4)==="msg:") // oto , makeroom  ==> 100 200 300...
+		 // msg:[이름] 메세지
+     {
+		 appendMsgMessage(data.substring(4))
+	 }
 }
 function disConnection()
 {
@@ -70,7 +68,21 @@ function disConnection()
 }
 // 퇴장처리 => Callback
 // 메세지 전송 => Callback
-function appendMessage(msg)
+function appendMsgMessage(msg)
+{
+	 $('#recvMsg').append("<font color=red>"+msg+"</font><br>")
+	 let ch=$('#chatArea').height()
+	 let m=$('#recvMsg').height()-ch
+	 $('#chatArea').scrollTop(m)
+}
+function appendMyMessage(msg)
+{
+	 $('#recvMsg').append("<font color=blue>"+msg+"</font><br>")
+	 let ch=$('#chatArea').height()
+	 let m=$('#recvMsg').height()-ch
+	 $('#chatArea').scrollTop(m)
+}
+function appendYouMessage(msg)
 {
 	 $('#recvMsg').append(msg+"<br>")
 	 let ch=$('#chatArea').height()

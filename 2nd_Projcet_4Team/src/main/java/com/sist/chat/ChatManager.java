@@ -40,11 +40,11 @@ public class ChatManager {
 		   ChatVO vo1=users.get(session);
 		   if(ss.getId()!=session.getId())
 		   {
-		      ss.getBasicRemote().sendText("msg:[알림 ☞]"+vo.getUserName()+"님이 입장하셨습니다");
+		      ss.getBasicRemote().sendText("msg:[알림 ☞]"+vo.getNickname()+"님이 입장하셨습니다");
 		   }
-		   System.out.println(vo1.getUserName()+":전송 완료!!");
+		   System.out.println(vo1.getNickname()+":전송 완료!!");
 	   }
-	   System.out.println("클라이언트 접속...:"+vo.getUserId()+"--"+vo.getUserName()+" "+vo.getSession());
+	   System.out.println("클라이언트 접속...:"+vo.getUserId()+"--"+vo.getNickname()+" "+vo.getSession());
 	   
    }
    @OnMessage
@@ -56,14 +56,15 @@ public class ChatManager {
 	   {
 		   Session ss=it.next();
 		   ChatVO vo=users.get(session);
-		   if(ss.getId()!=session.getId())
+		   if(session.getId()==ss.getId())
 		   {
-			   ss.getBasicRemote().sendText("no:["+vo.getUserName()+"]"+message);
+		       ss.getBasicRemote().sendText("my:["+vo.getNickname()+"]"+message);
 		   }
-		   else {
-			   ss.getBasicRemote().sendText("my:["+vo.getUserName()+"]"+message);
+		   else
+		   {
+			   ss.getBasicRemote().sendText("you:["+vo.getNickname()+"]"+message);
 		   }
-		   System.out.println(vo.getUserName()+":전송 완료!!");
+		   System.out.println(vo.getNickname()+":전송 완료!!");
 	   }
 	   
    }
@@ -71,21 +72,17 @@ public class ChatManager {
    public void onClose(Session session) throws Exception
    {
 	   Iterator<Session> it=users.keySet().iterator();
-	   // user안에 있는 <Session,ChatVO> 키 집합(set)을 얻어서 순회함
-	   // it에 저장
-	   // hasNext으로 존재여부확인
-	   //next() 메서드로 다음요소 가져오기
 	   while(it.hasNext())
 	   {
 		   Session ss=it.next();
 		   ChatVO vo=users.get(session);
 		   if(ss.getId()!=session.getId())
 		   {
-		     ss.getBasicRemote().sendText("msg:[알림 ☞]"+vo.getUserName()+"님이 퇴장하셨습니다");
+		     ss.getBasicRemote().sendText("msg:[알림 ☞]"+vo.getNickname()+"님이 퇴장하셨습니다");
 		   }
-		     System.out.println(vo.getUserName()+":전송 완료!!");
+		     System.out.println(vo.getNickname()+":전송 완료!!");
 	   }
-	   System.out.println("클라이언트 퇴장:"+users.get(session).getUserName());
+	   System.out.println("클라이언트 퇴장:"+users.get(session).getNickname());
 	   users.remove(session);
 	   
 		/*

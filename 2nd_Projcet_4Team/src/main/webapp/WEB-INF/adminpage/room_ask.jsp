@@ -81,12 +81,12 @@
                   <td class="tableset-mobile">{{ask.ano}}</td>
                   <td class="tableset-category tableset-order03">{{ask.cate}}</td>
                   <td class="tableset-tit tableset-order02">
-                   <div class="asklist-title">
+                   
                     <a class="tableset-ico" :href="ask.userId !== userId ? 'javascript:void(0)' : '../studyRoom/ask_detail.do?ano=' + ask.ano">
-						  <span class="asktitle">{{ ask.subject }}</span>
+						  {{ ask.subject }}
 				    </a>
                     
-                   </div>
+                   
                   </td>
                   <td class="tableset-order05">{{ask.dbday}}</td>
                   <td class="tableset-order04">{{ask.name}}</td>

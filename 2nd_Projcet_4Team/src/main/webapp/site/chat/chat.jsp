@@ -13,7 +13,21 @@
 <link rel="stylesheet" href="../studyRoom/css/common.css">
 <link rel="stylesheet" href="../studyRoom/css/style.css">
 <style type="text/css">
-#chatting .chattitle {
+.nick{
+   font-size: 1.5rem;
+}
+#chatting .msg{
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    /* border: 1px solid #c7c7c7;
+    border-radius: 3rem;
+    width: 19rem;
+    padding: 0.4rem 0 0.4rem 0; */
+}
+
+}
+#chattitle {
    font-size: 2.5rem;
     FONT-WEIGHT: 600;
 }
@@ -44,9 +58,9 @@
     padding-left: 0;
     text-align: right;
     
-    /* display: flex;
+    display: flex;
     align-items: flex-end;
-    justify-content: space-between; */
+    justify-content: space-between;
 }
 #chatting .btnset{
    min-width: 0;
@@ -119,7 +133,7 @@ a {
 .wrap .chat {
     display: flex;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     flex-direction: column;
 }
 
@@ -196,7 +210,7 @@ let userset;
 //서버 연결
 function connection()
 {
-	websocket=new WebSocket("ws://211.238.142.115:8080/web/chat/chat-ws")
+	websocket=new WebSocket("ws://localhost:8080/web/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=OnMessage
@@ -222,39 +236,59 @@ function OnMessage(event)
 	 if(data.substring(0,3)==="my:") // oto , makeroom  ==> 100 200 300...
 		 // msg:[이름] 메세지
 	 {
-			appendMessage(data.substring(data.indexOf("[")))
+		    appendMyMessage(data.substring(data.indexOf("[")))
 			console.log(user)
 	 		userset='my'
 	 }
-	 else if(data.substring(0,3)==="no:") // oto , makeroom  ==> 100 200 300...
-			 // msg:[이름] 메세지
+	 if(data.substring(0,4)==="you:") // oto , makeroom  ==> 100 200 300...
+	 // msg:[이름] 메세지
 	 {
-		    appendMessage(data.substring(data.indexOf("[")))
-			userset='no'
+		    appendYouMessage(data.substring(data.indexOf("[")))
+			userset='you'
+	  }
+	 if(data.substring(0,4)==="msg:") // oto , makeroom  ==> 100 200 300...
+		 // msg:[이름] 메세지
+	 {
+		     appendMsgMessage(data.substring(data.indexOf("[")))
+			 userset='msg'
 	  }
 }
 
 //메세지 띄우기
-function appendMessage(msg)
+function appendMyMessage(msg)
 {
 	let content=msg.substring(msg.lastIndexOf("]")+1)
 	console.log(msg)
 	console.log(content)
 	let name=msg.substring(msg.indexOf("[")+1,msg.lastIndexOf("]"))
-	if(userset=='no')
-	 {
-		 $('#recvMsg').append(
-				 "<div class=\"chat ch1\"><div class=\"namearea\"><p>"+name+"</p></div><div class=\"textbox\">"+content+"</div></div>"
-          )
-	 }
-	 else{
-		 $('#recvMsg').append("<div class=\"chat ch2\"><div class=\"namearea\"><p>"+name+"</p></div><div class=\"textbox\">"+content+"</div></div>")
-	 }
+    $('#recvMsg').append(
+	     "<div class=\"chat ch2\"><div class=\"namearea\"><p>"+name+"</p></div><div class=\"textbox\">"+content+"</div></div>"
+    )
+	let ch=$('#chatArea').height()
+	let m=$('#recvMsg').height()-ch
+	$('#chatArea').scrollTop(m)
+}
+function appendYouMessage(msg)
+{
+	let content=msg.substring(msg.lastIndexOf("]")+1)
+	console.log(msg)
+	console.log(content)
+	let name=msg.substring(msg.indexOf("[")+1,msg.lastIndexOf("]"))
+    $('#recvMsg').append("<div class=\"chat ch1\"><div class=\"namearea\"><p>"+name+"</p></div><div class=\"textbox\">"+content+"</div></div>")
+	let ch=$('#chatArea').height()
+	let m=$('#recvMsg').height()-ch
+	$('#chatArea').scrollTop(m)
+}
+function appendMsgMessage(msg)
+{
+	let Msgcontent=msg.substring(msg.lastIndexOf("]")+1)
+	console.log(msg)
+	console.log(Msgcontent)
+    $('#recvMsg').append("<p class=\"msg\">"+Msgcontent+"</p>")
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
-
 function send(){
 	let nick=$('#name').attr("data-nickname");
 	let name=$('#name').attr("data-name");
@@ -289,13 +323,12 @@ $(function(){
 </head>
 <body>
   <div class="container" id="chatting">
-   <h1 class="text-center chattitle">CODEV LIVE CHAT</h1>
+   <h1 class="text-center" id="chattitle" style="font-size: 2rem;
+    FONT-WEIGHT: 600;margin-bottom: 1rem;">CODEV LIVE CHAT</h1>
    <div class="row">
      <div class="input-Btn into">
           <input type=hidden id="name" size=15 class="input-sm">
-          <!-- <div>
-          <p class="nick">* 가입하실 때 입력한 닉네임으로 입장됩니다.</p>
-          </div> -->
+          <p class="nick">* 가입시 입력한 닉네임으로 입장됩니다.</p>
           <div style="margin-right: 0.4rem;">
           <input type=button class="btnset" id="startBtn" value="입장">
           <input type=button class="btnset" id="endBtn" value="퇴장">
@@ -303,7 +336,6 @@ $(function(){
     </div>
     <div class="wrap" id="chatArea">
       <div id="recvMsg">
-        
       </div>
     </div>
     <div class="input-Btn sendArea">
