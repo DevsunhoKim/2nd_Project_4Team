@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.dao.StudyRoomAskDAO;
 import com.sist.service.AdminpageService;
+import com.sist.service.StudyRoomService;
 import com.sist.vo.StudyRoomAskVO;
 
 @RestController
@@ -18,6 +20,10 @@ import com.sist.vo.StudyRoomAskVO;
 public class AdminpageRestController {
 	@Autowired
 	private AdminpageService service;
+	@Autowired
+	private StudyRoomService sService;
+	
+	//스터디룸 문의 내역
 	@GetMapping(value="admin_ask_vue.do",produces="text/plain;charset=UTF-8")
 	public String admin_ask(int page) throws Exception
 	{
@@ -44,6 +50,15 @@ public class AdminpageRestController {
 		map1.put("totalCount", totalCount);
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(map1);
+		return json;
+	}
+	
+    @GetMapping(value="admin_ask_return.do",produces="text/plain;charset=UTF-8")
+	public String admin_ask_return(int ano) throws Exception
+	{
+    	StudyRoomAskVO vo=sService.StudyRoomAskDetail(ano);
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(vo);
 		return json;
 	}
 }

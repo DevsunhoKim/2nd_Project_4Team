@@ -25,34 +25,11 @@
   <div class="hooms-N36" data-bid="rxlskcGXa1" id="admin_ask">
       <div class="contents-inner">
         <div class="contents-container container-md">
-          <!-- <div class="textset textset-h2">
-            <h2 class="textset-tit">1:1 문의</h2>
-          </div> -->
-         
           <div class="contents-search">
-            
             <div class="askANDsearch">
-             
-             
-             
-             
-            
-              <p class="contents-result"> 전체 <span> {{totalCount}}</span>개 </p>
-              
-              
-              <!-- <div class="inputset inputset-lg">
-                <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="아이콘"></button>
-                <input type="text" class="inputset-input form-control" placeholder="검색어를 입력해주세요." aria-label="내용">
-              </div> -->
-             
-             
-             
-             
+	          <p class="contents-result"> 전체 <span> {{totalCount}}</span>개 </p>
             </div>
             <div class="contents-btn askBtn">
-            <%-- <c:if test="${sessionScope.userId!=null }">
-               <a class="btnset modalset-btn" :href="'../studyRoom/ask.do?no='+detail_list.no">문의하기</a>
-            </c:if> --%>
              </div>
           </div>
           <div class="tableset">
@@ -90,11 +67,8 @@
                   </td>
                   <td class="tableset-order05">{{ask.dbday}}</td>
                   <td class="tableset-order04">{{ask.name}}</td>
-                  <td class="tableset-order01" v-if="ask.state===0">
-                    <div class="badgeset state">답변대기</div>
-                  </td>
-                  <td class="tableset-order01" v-if="ask.state===1">
-                    <div class="badgeset badgeset-active state state1">답변완료</div>
+                  <td class="tableset-order01">
+                    <button class="badgeset state" @click="askReturn(ask.ano)">답변하기</button>
                   </td>
                 </tr>
               </tbody>
@@ -102,14 +76,6 @@
           </div>
           
           <nav class="pagiset pagiset-line">
-            <!-- <a class="btn" @click="prev()">이전</a>
-              {{curpage }} page / {{totalpage }} pages
-             <a class="btn" @click="next()">다음</a> -->
-            <!-- <div class="pagiset-ctrl">
-              <a class="pagiset-link pagiset-first" href="javascript:void(0)">
-                <span class="visually-hidden">처음</span>
-              </a>
-            </div> -->
             <div class="pagiset-ctrl">
               <a v-if="startpage>1" class="pagiset-link pagiset-prev" @click="prev()">
                 <span class="visually-hidden">이전</span>
@@ -133,6 +99,52 @@
           </nav>
         </div>
       </div>
+      
+ 
+   <div class="th-layout-main pop" id="ask_detail" v-show="pop">
+    <!-- [E]hooms-N58 -->
+    <!-- [S]hooms-N37 -->
+    <div class="hooms-N37" data-bid="NiLT00VHDB">
+      <div class="contents-inner">
+        <div class="contents-container container-md">
+          <div class="textset textset-h2">
+            <h2 class="textset-tit">Q&amp;A</h2>
+          </div>
+          <div class="contents-titgroup">
+            <h5 class="contents-tit">
+              <span>{{ask_detail.subject}}</span>
+            </h5>
+            <span class="contents-date">
+              <i>{{ask_detail.name}}</i>&nbsp;{{ask_detail.dbday}}&nbsp;</span>
+          </div>
+          <div class="contents-group">
+            <div class="contents-group-top">        
+              <div class="contents-file" v-if="ask_detail.filename!==null" v-for="file in filename">
+                <span class="contents-file-txt">첨부파일</span>
+                <a class="contents-file-link" :href="'../studyRoom/download.do?fn='+file">{{file}}</a>
+              </div>
+              <p class="contents-ask">{{ask_detail.content}}</p>
+            </div>
+            <div class="contents-group-bottom">
+              <div class="contents-date">
+                <span class="badgeset badgeset-active ask-return">답변</span> 2023.01.01
+              </div>
+              <p class="contents-answer"> 안녕하세요. 회원님 <br> HOOMS 담당자입니다. <br>
+                <br> 웹 페이지 산출물이 나오는 과정은 3명의 전문가들의 각각의 시간을 할애하여 생산하는 부분을 템플릿 하우스를 사용하면 1사람이 <br> 원 클릭과 드래그앤 드랍 방식을 통해 웹 페이지를 10분 만에 생성하고 코드 편집과 코드 산출물 다운로드 기능을 통해 더 자유롭게 개발할 수 있습니다. <br>
+                <br> 더 궁금하신 사항은 아래 전화번호 메일을 통해 연락주시길 바랍니다. <br> 감사합니다. <br>
+                <br> 문의사항 : 02-123-4567 / openfield@openfield.co.kr
+              </p>
+            </div>
+          </div>
+          <div class="contents-btn">
+            <a class="btnset" :href="'../studyRoom/ask_update.do?ano='+ask_detail.ano">수정하기</a>
+            <a class="btnset" :href="'../studyRoom/ask_delete.do?ano='+ask_detail.ano">삭제하기</a>
+            <a class="btnset" :href="'../studyRoom/room_detail.do?askShow=true&no='+ask_detail.sno">목록으로</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     </div>
     <script>
     let AskApp=Vue.createApp({
@@ -143,7 +155,10 @@
     	        endpage:0,
     	        startpage:0,
     	        ask_list:[],
-    	        totalCount:0
+    	        totalCount:0,
+    	        pop:false,
+    	        ask_detail:{},
+    	        filename:{}
     		}
     	},
     	mounted(){
@@ -187,6 +202,24 @@
 		  pageChange(page){
 			  this.curpage=page;
 			  this.dataRecv()
+		  },
+		  askReturn(ano){
+			  axios.get('../adminpage/admin_ask_return.do',{
+				  params:{
+					  ano:ano
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
+				  this.ask_detail=response.data
+				  if (response.data.filename) {
+				        let filenames = response.data.filename.split(',');
+				        this.filename=filenames;
+				    } else {
+				        this.filename = [];
+				    }
+				  this.pop=true
+			  })
+			  
 		  }
     	}
     	
