@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -90,13 +91,13 @@ public class RecruitmentRestController {
 	// RecruitmentService를 통해 채용 공고 정보와 기업 정보를 가져옴
 		RecruitVO rvo=rService.recuitDetailData(rno);
 		CompanyVO cvo=rService.companyDetailData(cno);
-		String userId = (String)session.getAttribute("userId");
+		String userId=(String)session.getAttribute("userId");
 		Map map=new HashMap();
 		map.put("rvo", rvo);
 		map.put("cvo", cvo);
 		map.put("sessionId", userId);
 		map.put("mvo", "NOMVO");
-		if(userId != null) {
+		if(userId!=null) {
 			MemberVO mvo=mService.getMemberByID(userId);
 			map.put("mvo", mvo);
 		}
@@ -116,13 +117,18 @@ public class RecruitmentRestController {
 		CompanyVO cvo=rService.companyDetailData(cno);
 		List<RecruitVO> rList=rService.companyRecruitListData(cno);
 		List<InterviewVO> iList=rService.interviewListData(cno);
-		MemberVO mvo=mService.getMemberByID((String)session.getAttribute("userId"));
+		String userId=(String)session.getAttribute("userId");
 		
 		Map map=new HashMap();
 		map.put("cvo", cvo);
 		map.put("recruit_list", rList);
 		map.put("interview_list", iList);
-		map.put("mvo", mvo);
+		map.put("sessionId", userId);
+		map.put("mvo", "NOMVO");
+		if(userId!=null) {
+			MemberVO mvo=mService.getMemberByID(userId);
+			map.put("mvo", mvo);
+		}
 		// Map 객체는 Java에서 키-값 쌍을 저장하는 데 사용되는 인터페이스로 Map에 rno와 cno를 담아 JSON 형태로 응답
 		
 		ObjectMapper mapper=new ObjectMapper();
@@ -216,18 +222,47 @@ public class RecruitmentRestController {
 //  }
 	
 	// 지원하기
-	@GetMapping(value="apply_insert_vue.do", produces="text/plain;charset=UTF-8")
-  public String apply_insert_vue(ApplyVO vo, HttpSession session) {
-	   String result="no";
-	   try {
-		   vo.setUserId((String)session.getAttribute("userId"));
-		   rService.applyInsert(vo);
-	       result="yes";
-	   } catch(Exception ex) {
-		   result="no";
-	   }
-	   
-	   return result;
+	@PostMapping(value="apply_insert_vue.do", produces="text/plain;charset=UTF-8")
+  public String apply_insert_vue(int cno, String filename, @RequestParam("file") MultipartFile file, HttpSession session, HttpServletRequest request) {
+	  ApplyVO vo=new ApplyVO();
+    vo.setCno(cno);
+    String userId = (String)session.getAttribute("userId");
+    vo.setUserId(userId);
+    vo.setFilename(filename);
+    System.out.println(cno);
+		/* vo.setFilesize(filesize); */
+    String result="";
+    try {
+      // 파일 업로드를 위한 디렉토리 경로 설정
+      String path=request.getSession().getServletContext().getRealPath("/")+"upload\\";
+      path=path.replace("\\", File.separator);// 운영체제의 호환 
+      // Hosting => AWS(리눅스)
+  
+      File dir=new File(path); 
+      // 디렉토리 생성
+      if(!dir.exists()) { // 첨부 파일 존재 확인
+      	dir.mkdir();
+      }
+   
+      // 파일 업로드
+      if (!file.isEmpty()) { // 첨부 파일 존재 확인 후 업로드
+      	String originalFilename=file.getOriginalFilename();
+      	File uploadFile=new File(path+originalFilename);
+      	file.transferTo(uploadFile);
+      }
+  
+      // 파일 정보를 vo에 저장하고 DB에 삽입
+      vo.setFilename(file.getOriginalFilename());
+      vo.setFilesize(String.valueOf(file.getSize()));
+   
+      rService.applyInsert(vo);
+   
+      result="yes";
+   
+    } catch(Exception ex) {
+    	result=ex.getMessage();   
+    }
+    	return result;
   }
 
 	

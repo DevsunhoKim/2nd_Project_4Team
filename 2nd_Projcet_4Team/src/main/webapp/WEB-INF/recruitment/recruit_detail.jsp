@@ -129,7 +129,7 @@
           <div class="company-detail-info">
             <a :href="'company_detail.do?rno='+ rno+'&cno='+ cno" class="company-info">
               <figure class="company-logo">
-                <img class="width-100" :src="company_detail.logo" alt="기업 로고">
+                <img class="width-100" :src="company_detail.logo" :title="company_detail.name">
               </figure>
               <h4 class="company-name">{{company_detail.name}}</h4>
             </a>
@@ -175,7 +175,7 @@
 	   <section id="applyForm" class="th-layout-sub" v-if="member_detail !== 'NOMVO'">
 	      <div class="content-container">
 	        <h2>지원하기</h2>
-	        <form enctype="multipart/form-data">
+	        <form enctype="multipart/form-data" @submit.prevent="submit">
 	          <!-- <h3>지원 정보</h3> -->
 	          <ul class="apply-info">
 	            <li class="company-info">
@@ -206,11 +206,11 @@
 	          </ul>
 	          <div class="apply-file">
 	            <h3>지원서 첨부</h3>
-	            <input type="file" name="file" id="file" class="apply-input">
+	            <input type="file" name="file" id="file" v-model="file" class="apply-input" @change="handleFileChange">
 	            <span class="apply-alert">제출할 지원서 파일을 업로드 해 주세요.</span>
 	          </div>
 	          <div class="apply-btn-wrapper">
-	            <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기" @click="submit(rno)">지원하기</button>
+	            <button type="submit" id="applySubmitBtn" class="apply-btn" value="지원하기" @click="submit()">지원하기</button>
 	            <button type="button" id="applyCancelBtn" class="apply-btn" value="취소">취소</button>
 	          </div>
 	        </form>
@@ -239,7 +239,11 @@ let recruitmentDetailApp=Vue.createApp({
 			member_detail:{}, // 사용자 상세 정보
 			rno:${rno}, // 컨트롤러에서 받아온 파라미터
 			cno:${cno},
-			sessionId:''
+			sessionId:'',
+      userId:'',
+      filename:'',
+      filesize:'',
+      file: null
 		}
 	},
 	mounted(){
@@ -330,22 +334,45 @@ let recruitmentDetailApp=Vue.createApp({
     },
     
     // 지원서 전송
-    submit(rno){
-      axios.post('../recruitment/apply_insert_vue.do', null, {
-        params:{
-          cno: this.cno
-          // 파일 넣을거면 변수 추가
-        }
-      }).then(response=>{
-        if(response.data==='yes') {
-          alert("지원이 완료되었습니다.")
-          location.href="../recruitment/recruit_detail.do";
-        } else {
-          alert("지원 정보 저장을 실패하였습니다.")
-        }
-      })
+    submit(){
+    	// 파일이 첨부되었는지 확인
+    	if(this.file){
+	      // FormData 객체 생성
+	      const formData=new FormData();
+	
+	      // 파일 추가
+	      formData.append('file', this.file);
+	    	
+	      axios.post('../recruitment/apply_insert_vue.do', formData, {
+	        params:{
+	          cno:this.cno,
+	          filename:this.filename,
+	          filesize:this.filesize          
+	          // 파일 넣을거면 변수 추가
+	        },
+	        headers: {
+	          'Content-Type': 'multipart/form-data', // 파일 업로드 시에는 이 헤더를 설정해야 함
+	        },
+	      }).then(response=>{
+	        if(response.data==='yes') {
+	          alert("지원이 완료되었습니다.")
+	          location.href="../mypage/main.do";
+	        } else {
+	          alert("지원 정보 저장을 실패하였습니다.")
+	        }
+	      })
+    	} else {
+    		// 파일이 첨부되지 않은 경우
+    		const alertSpan = document.querySelector('.apply-alert');
+        alertSpan.style.display = 'block';
+    	}
     },
-  
+    
+    handleFileChange(event) {
+      // 선택된 파일을 Vue 데이터에 할당
+      this.file = event.target.files[0];
+    },
+    
     // 지도
     addScript(){
       const script=document.createElement("script")

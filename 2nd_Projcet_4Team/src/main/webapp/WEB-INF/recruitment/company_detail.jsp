@@ -31,7 +31,7 @@
         <div class="company-top">
           <div class="company-info">
             <figure class="company-logo">
-              <img class="width-100" :src="company_detail.logo" alt="기업 로고">
+              <img class="width-100" :src="company_detail.logo" :title="company_detail.name">
             </figure>
             <h2 class="company-name">{{company_detail.name}}</h2>
           </div>
@@ -319,6 +319,15 @@ $(function(){
   $("#interviewCancelBtn").click(function() {
     $("#interviewForm").hide();
   });
+  
+  
+  // 아코디언 헤더 클릭 시 토글 동작
+  $('.accordset-item').click(function() {
+    // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 토글
+    $('.accordset-body').slideToggle();
+    // 헤더에 'active' 클래스를 토글하여 스타일 변경
+    $('.accordset-header, .accordset-body').toggleClass('active');
+  });
 })
 
 let companyDetailApp=Vue.createApp({
@@ -339,16 +348,6 @@ let companyDetailApp=Vue.createApp({
   },
   mounted(){
     this.dataRecv()
-    // 초기에 모든 아코디언 아이템의 내용을 숨김
-    $('.accordset-body').hide();
-
-    // 아코디언 헤더 클릭 시 토글 동작
-    $('.accordset-header').click(function() {
-      // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 토글
-      $(this).next('.accordset-body').slideToggle();
-      // 헤더에 'active' 클래스를 토글하여 스타일 변경
-      $(this).toggleClass('active');
-    });
   },
   methods:{
     dataRecv(){

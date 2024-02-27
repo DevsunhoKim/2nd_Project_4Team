@@ -533,6 +533,7 @@
 .glamping-N40 .accordset-header::after {content: '\e902';}
 .glamping-N40 .accordset-header.active::after {content: '\e901';}
 .glamping-N40 .accordset .accordset-header:hover{background-color: #f9f9f9; transition: all 03.s ease-in-out;}
+.glamping-N40 .accordset.accordset-arrow .accordset-item.active .accordset-header::after { transform: translateY(-50%) rotate(180deg); } 
 .glamping-N40 .accordset-button{padding: 1rem; cursor: pointer;}
 .glamping-N40 .interview-tit{font-weight: 500;}
 .glamping-N40 .interview-tit .interview-date{color: #888; font-size: 1.4rem; font-weight: 400;}
@@ -994,7 +995,7 @@
   color: #7918F2;
 }
 #applyForm .apply-file .apply-alert{
-  display: block;
+  display: none;
   margin-top: 0.5rem;
   color: red;
   font-size: 1.3rem;
