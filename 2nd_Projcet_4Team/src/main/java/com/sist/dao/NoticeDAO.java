@@ -23,4 +23,8 @@ public class NoticeDAO {
 	public int noticeTotalpage() {
 		return mapper.noticeTotalpage();
 	}
+	
+	public NoticeVO noticeDetailData(int no) {
+		return mapper.noticeDetailData(no);
+	}
 }

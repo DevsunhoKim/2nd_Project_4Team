@@ -48,5 +48,11 @@ public class NoticeServiceIml implements NoticeService {
 		
 		return map;
 	}
+
+	@Override
+	public NoticeVO noticeDetailData(int no) {
+		NoticeVO vo = dao.noticeDetailData(no);
+		return vo;
+	}
 	
 }

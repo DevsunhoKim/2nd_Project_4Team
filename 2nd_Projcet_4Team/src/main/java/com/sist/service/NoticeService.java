@@ -8,4 +8,5 @@ import com.sist.vo.NoticeVO;
 public interface NoticeService {
 	public List<NoticeVO> noticeListData(int page);
 	public Map noticeTotalpage(int page);
+	public NoticeVO noticeDetailData(int no);
 }

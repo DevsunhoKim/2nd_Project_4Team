@@ -43,7 +43,7 @@
           <tr v-for="vo in notice_list">
             <td class="tableset-mobile">{{vo.no}}</td>
             <td class="text-left tableset tableset-tit-ellipsis tableset-tit">
-              <a href="javascript:void(0)">
+              <a :href="'../notice/detail.do?no='+vo.no">
                 <span>{{vo.title}}</span>
               </a>
             </td>

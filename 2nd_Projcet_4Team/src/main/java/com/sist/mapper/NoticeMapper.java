@@ -16,4 +16,8 @@ public interface NoticeMapper {
 	
 	@Select("SELECT CEIL(COUNT(*)/7.0) FROM codev_notice")
 	public int noticeTotalpage();
+	
+	@Select("SELECT no, title, TO_CHAR(regdate,'YYYY-MM-DD') as dbDay, cont FROM codev_notice "
+			+ "WHERE no = #{no}")
+	public NoticeVO noticeDetailData(int no);
 }
