@@ -312,3 +312,45 @@
     border-bottom: 1px solid #dddddd;
     padding: 1rem;
 }
+
+.Admin_room_reserve .tableset .tableset-table td a.tableset-ico {
+    padding-right: 0rem;
+}
+.Admin_room_reserve .tableset .tableset-table td.tableset-tit {
+    text-align: center;
+}
+.Admin_room_reserve .tableset .tableset-table > tbody > * > * {
+    color: black;
+    
+}
+
+.Admin_room_reserve .hooms-N37 .contents-tit span::after {
+     background: url() no-repeat center/cover;
+}
+.Admin_room_reserve .hooms-N37 .contents-tit {
+    font-size: 2rem;
+}
+.Admin_room_reserve .hooms-N37 .contents-date {
+    font-size: 2rem;
+}
+
+.Admin_room_reserve .contents-titgroup{
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 1rem;
+}
+
+.Admin_room_reserve .hooms-N37 .textset {
+    border-bottom: 0 !important;
+}
+.Admin_room_reserve #popup{
+	width: 60rem;
+}
+.Admin_room_reserve #popup{
+	left: 470px !important;
+	right: 470px !important;
+	height: 64rem !important;
+}
+.Admin_room_reserve .contents-btn .btnset {
+   
+    max-width: 17rem ;
+}

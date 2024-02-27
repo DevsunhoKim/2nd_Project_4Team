@@ -24,15 +24,15 @@
 <script src="../js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style type="text/css">
-.container{
+#admin_main .container{
   min-height: 70rem;
   margin-top: 20rem;
   min-width: 128rem;
 }
-a:focus, a:hover {
+#admin_main a:focus, a:hover {
     text-decoration: none !important;
 }
-.row {
+#admin_main .row {
   margin: 0px auto;
   width:960px;
 }

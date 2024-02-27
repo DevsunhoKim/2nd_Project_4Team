@@ -17,6 +17,7 @@ import com.sist.dao.StudyRoomAskDAO;
 import com.sist.service.AdminpageService;
 import com.sist.service.StudyRoomService;
 import com.sist.vo.StudyRoomAskVO;
+import com.sist.vo.StudyRoomReserveVO;
 
 @RestController
 @RequestMapping("adminpage/")
@@ -84,5 +85,35 @@ public class AdminpageRestController {
 		}
 		return result;
 	}
+    
+    //스터디룸 예약
+  	@GetMapping(value="admin_room_vue.do",produces="text/plain;charset=UTF-8")
+  	public String admin_room_vue(int page) throws Exception
+  	{
+  		int rowsize=7;
+  		int start=(rowsize*page)-(rowsize-1);
+  		int end=rowsize*page;
+  		final int BLOCK=5;
+  		Map map=new HashMap();
+  		map.put("start", start);
+  		map.put("end", end);
+  		List<StudyRoomReserveVO> list=service.StudyRoomReserveAllList(map);
+  		int totalpage=service.StudyRoomReserveAllTotalpage(map);
+  		int startpage=((page-1)/BLOCK*BLOCK)+1;
+  		int endpage=((page-1)/BLOCK*BLOCK)+BLOCK;
+  		if(endpage>totalpage)
+  			endpage=totalpage;
+  		int totalCount=service.StudyRoomReserveAllTotalCount();
+  		Map map1=new HashMap();
+  		map1.put("curpage", page);
+  		map1.put("endpage", endpage);
+  		map1.put("startpage",startpage);
+  		map1.put("totalpage",totalpage);
+  		map1.put("list", list);
+  		map1.put("totalCount", totalCount);
+  		ObjectMapper mapper = new ObjectMapper();
+  		String json = mapper.writeValueAsString(map1);
+  		return json;
+  	}
     
 }
