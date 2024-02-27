@@ -466,7 +466,7 @@ let techApp = Vue.createApp({
     data() {
         return {
             tech_list: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 
-            	'Nextjs', 'Nodejs', 'C', 'Java', 'Spring', 'Nestjs', 'Kotlin', 
+            	'Nextjs', 'Nodejs', 'Java', 'Spring', 'Nestjs', 'Kotlin', 
             	'Express', 'MySQL', 'MongoDB', 'Python', 'Django', 'php', 'GraphQL', 
             	'Firebase', 'Flutter', 'Swift', 'ReactNative', 'Unity', 'AWS', 
             	'Kubernetes', 'Docker', 'Git', 'Figma', 'Zeplin', 'Jest'] ,
@@ -479,6 +479,7 @@ let techApp = Vue.createApp({
                 this.selectedTech = -1;
             } else {
                 this.selectedTech = index;
+                alert(index);
                 this.selectedTechName = this.tech_list[index];
             }
            location.href = "../main/searchTech.do?engTech="+this.selectedTechName;
