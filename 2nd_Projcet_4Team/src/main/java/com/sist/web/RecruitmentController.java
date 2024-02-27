@@ -21,6 +21,7 @@ public class RecruitmentController {
 	
 	// 메인 목록 출력
 	
+
 	
 	// 목록 출력
 	@GetMapping("recruit_list.do")
