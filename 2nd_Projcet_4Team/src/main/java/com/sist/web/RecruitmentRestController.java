@@ -26,6 +26,7 @@ import com.sist.vo.CompanyVO;
 import com.sist.vo.InterviewVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecruitVO;
+import com.sist.vo.ReviewVO;
 
 // Spring MVC의 @RestController 어노테이션을 사용하여 RESTful API를 제공
 @RestController
@@ -229,7 +230,6 @@ public class RecruitmentRestController {
     String userId = (String)session.getAttribute("userId");
     vo.setUserId(userId);
     vo.setFilename(filename);
-    System.out.println(cno);
 		/* vo.setFilesize(filesize); */
     String result="";
     try {
@@ -264,57 +264,60 @@ public class RecruitmentRestController {
     }
     	return result;
   }
-
+	
+	
+	
+//	public String commonsInterviewData(int cno) throws Exception {
+//    ObjectMapper mapper=new ObjectMapper();
+//    List<InterviewVO> list=rService.interviewListData(cno);
+//    String json=mapper.writeValueAsString(list);
+//    return json;
+//  }
 	
 	// 면접 후기 작성
 	@PostMapping(value="interview_insert_vue.do", produces="text/plain;charset=UTF-8")
-  public String interview_insert_vue(InterviewVO vo, int cno, Principal p) throws Exception {
-		String userId=p.getName();
-		MemberVO mvo=rService.memberInfoData(userId);
-		String userName=mvo.getUserName();
-		mvo.setUserId(userId);
+  public String interview_insert_vue(int cno, @RequestParam String title, @RequestParam String career, @RequestParam String score, @RequestParam String ilevel, @RequestParam String result, @RequestParam String content, HttpSession session) throws Exception {
+		String userId=(String)session.getAttribute("userId"); // 세션에서 사용자 정보 가져오기
 		
-		rService.interviewInsert(vo);
-		
-		List<InterviewVO> list=rService.interviewListData(cno);
-		ObjectMapper mapper=new ObjectMapper();
-		String json=mapper.writeValueAsString(list);
-	   
-		return json;
+		// 면접 후기 데이터를 InterviewVO 객체에 담기
+		InterviewVO vo=new InterviewVO();
+    vo.setCno(cno);
+    vo.setUserId(userId);
+    vo.setTitle(title);
+    vo.setCareer(career);
+    vo.setScore(score);
+    vo.setIlevel(ilevel);
+    vo.setResult(result);
+    vo.setContent(content);
+    
+    rService.interviewInsert(vo);
+    
+    ObjectMapper mapper=new ObjectMapper();
+    List<InterviewVO> list=rService.interviewListData(cno); // 기업의 모든 면접 후기 리스트 가져오기
+    String json=mapper.writeValueAsString(list);
+    return json;
 	}
 	
 	// 면접 후기 수정
 	@PostMapping(value="interview_update_vue.do", produces="text/plain;charset=UTF-8")
-	public String interview_update_vue(InterviewVO vo, int cno, Principal p) throws Exception {
-		String userId=p.getName();
-		MemberVO mvo=rService.memberInfoData(userId);
-		String userName=mvo.getUserName();
-		vo.setUserId(userId);
-		
+	public String interview_update_vue(InterviewVO vo, int cno) throws Exception {
 		rService.interviewUpdate(vo);
 		
-		List<InterviewVO> list=rService.interviewListData(cno);
 		ObjectMapper mapper=new ObjectMapper();
-		String json=mapper.writeValueAsString(list);
-	   
-		return json;
+    List<InterviewVO> list=rService.interviewListData(cno); // 기업의 모든 면접 후기 리스트 가져오기
+    String json=mapper.writeValueAsString(list);
+    return json;
 	}
 	
 	// 면접 후기 삭제
 	@GetMapping(value="interview_delete_vue.do", produces="text/plain;charset=UTF-8")
-	public String interview_delete_vue(int ino, Principal p) throws Exception {
-		String userId=p.getName();
-		MemberVO mvo=rService.memberInfoData(userId);
-		String userName=mvo.getUserName();
-		mvo.setUserId(userId);
-		
+	public String interview_delete_vue(int ino, int cno, String userId) throws Exception {
 		rService.interviewDelete(ino, userId);
 		
-		List<InterviewVO> list=rService.interviewListData(ino);
 		ObjectMapper mapper=new ObjectMapper();
-		String json=mapper.writeValueAsString(list);
-	   
-		return json;
+    List<InterviewVO> list=rService.interviewListData(cno); // 기업의 모든 면접 후기 리스트 가져오기
+    String json=mapper.writeValueAsString(list);
+    return json;
 	}
 	
 }

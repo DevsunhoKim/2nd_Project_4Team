@@ -184,7 +184,7 @@
         <div class="contents-container container-md">
           <div class="contents-top">
             <h3 class="contents-tit">면접 후기</h3>
-            <button type="button" id="interviewInsertBtn" class="interview-btn" value="작성하기" @click="interviewInsert">작성하기</button>
+            <button type="button" id="interviewInsertBtn" class="interview-btn" value="작성하기" @click="interviewInsert" v-if="sessionId">작성하기</button>
             <!-- <p class="contents-text">총 <span class="emph">13</span>건</p> -->
           </div>
           
@@ -252,7 +252,7 @@
               </ul>
               
               <div class="interview-btn-wrapper">
-	              <button type="submit" id="interviewSubmitBtn" class="interview-btn" value="확인" @click="InterviewSubmit(ino)">확인</button>
+	              <button type="submit" id="interviewSubmitBtn" class="interview-btn" value="확인" @click="InterviewSubmit()">확인</button>
 	              <button type="button" id="interviewCancelBtn" class="interview-btn" value="취소">취소</button>
 	            </div>
             </form>
@@ -296,8 +296,8 @@
                   </ul>
                   <p class="interview-content">{{ivo.content}}</p>
                   <div class="interview-detail-btn-wrapper">
-	                  <button type="button" id="interviewUpdateBtn" class="interview-detail-btn" value="수정" @click="update(ino)">수정</button>
-	                  <button type="button" id="interviewDeleteBtn" class="interview-detail-btn" value="삭제" @click="delete(ino)">삭제</button>
+	                  <button type="button" id="interviewUpdateBtn" class="interview-detail-btn" value="수정" @click="update(ivo)">수정</button>
+	                  <button type="button" id="interviewDeleteBtn" class="interview-detail-btn" value="삭제" @click="delete(ivo)">삭제</button>
 	                </div>
                 </div>
               </div>
@@ -347,7 +347,7 @@ let companyDetailApp=Vue.createApp({
     }
   },
   mounted(){
-    this.dataRecv()
+    this.dataRecv();
   },
   methods:{
     dataRecv(){
@@ -360,7 +360,9 @@ let companyDetailApp=Vue.createApp({
         this.company_detail=response.data.cvo
         this.member_detail=response.data.mvo
         this.recruit_list=response.data.recruit_list
-        this.interview_list=response.data.interview_list     
+        this.interview_list=response.data.interview_list
+        this.sessionId=response.data.sessionId
+        console.log(response.data)
       })
       
 	    /* axios.get('../recruitment/recruit_cookie_vue.do').then(response=>{
@@ -384,11 +386,11 @@ let companyDetailApp=Vue.createApp({
       location.href="../recruitment/recruit_insert.do?cno="+this.cno;
     }, */
     
-/*     // 지원창
+    // 면접 후기창
     interviewInsert() {
       // 사용자의 인증 상태 확인
-      if (this.principal) {
-        // 사용자가 로그인한 경우, '지원하기' 창을 띄우기
+      if (this.sessionId) {
+        // 사용자가 로그인한 경우, '면접 후기 작성' 창을 띄우기
         $("#interviewForm").show();
       } else {
         // 사용자가 로그인하지 않은 경우, 로그인 알림 창을 띄우고 확인을 누르면 로그인 페이지로 이동
@@ -397,9 +399,10 @@ let companyDetailApp=Vue.createApp({
           window.location.href = "../member/login.do";
         }
       }
-    }, */
+    },
     
-    InterviewSubmit(ino){
+    // 면접 후기 작성
+    InterviewSubmit(){   
       if(this.title==="") {
         this.$refs.title.focus()
         return
@@ -425,25 +428,22 @@ let companyDetailApp=Vue.createApp({
         return
       }
       axios.post('../recruitment/interview_insert_vue.do', null, {
-        params:{
-        	ino:this.ino,
         	cno:this.cno,
-        	userId: this.sessionId,
           title:this.title,
           career:this.career,
           score:this.score,
           ilevel:this.ilevel,
           result:this.result,
           content:this.content
-        }
       }).then(response=>{
-        this.interview_list=response.data
-        this.title=''
-        this.career=''
-        this.score=''
-        this.ilevel=''
-        this.result=''
-        this.content=''
+          // 응답으로 받은 면접 후기 리스트로 갱신
+	      	this.interview_list=response.data,
+          this.title='',
+          this.career='',
+          this.score='',
+          this.ilevel='',
+          this.result='',
+          this.content=''
       })
     }
   }

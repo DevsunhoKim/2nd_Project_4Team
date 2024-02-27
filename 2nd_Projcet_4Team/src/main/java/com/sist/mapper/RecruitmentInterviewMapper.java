@@ -20,7 +20,7 @@ public interface RecruitmentInterviewMapper {
 	
 	// 면접 후기 작성
 	@Insert("INSERT INTO interview(ino, cno, userId, title, career, score, ilevel, result, content) "
-			+ "VALUES(it_ino_seq.nextval, #{cno}, #{userId}, #{title}, #{career}, #{score}, #{ilevel}, #{result}, #{content}")
+			+ "VALUES(it_ino_seq.nextval, #{cno}, #{userId}, #{title}, #{career}, #{score}, #{ilevel}, #{result}, #{content})")
 	public void interviewInsert(InterviewVO vo);
 	
 	// 면접 후기 수정

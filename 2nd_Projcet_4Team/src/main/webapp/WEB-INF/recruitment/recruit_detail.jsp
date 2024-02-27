@@ -261,7 +261,6 @@ let recruitmentDetailApp=Vue.createApp({
 	      }
 	    }).then(response=>{
 	      // 받아온 데이터는 response.data에 담겨 있음
-	      console.log(response.data)
 	      // Vue 인스턴스의 데이터(recruit_detail과 company_detail)를 업데이트
 	      console.log(response.data)
 	      this.recruit_detail=response.data.rvo
@@ -333,7 +332,7 @@ let recruitmentDetailApp=Vue.createApp({
       }
     },
     
-    // 지원서 전송
+    // 지원서 제출
     submit(){
     	// 파일이 첨부되었는지 확인
     	if(this.file){
