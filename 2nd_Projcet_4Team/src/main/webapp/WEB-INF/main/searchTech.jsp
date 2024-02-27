@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전체검색</title>
   <link rel="stylesheet" href="../css/search/setting.css">
   <link rel="stylesheet" href="../css/search/plugin.css">
   <link rel="stylesheet" href="../css/search/template.css"> 
@@ -285,7 +285,7 @@
           </div>
           </div>
         <!-- 멘토 리스트 -->
-        <c:if test="${mList!=null }">
+        <c:if test="${not empty mList}">
           <div class="contents-group contents-reservation" data-aos="slide-up">
             <h2 class="contents-tit"><b> 멘토링 </b><a href="javascipt:void(0);" class="contents-more">더보기</a>
             </h2>
@@ -313,7 +313,7 @@
         </c:if>
         
         <!-- 책 리스트 -->
-        <c:if test="${bList!=null }">
+        <c:if test="${not empty bList }">
           <div class="contents-group contents-reservation" data-aos="slide-up">
             <h2 class="contents-tit"><b> 도서 </b><a href="javascipt:void(0);" class="contents-more">더보기</a>
             </h2>
@@ -340,7 +340,7 @@
           </c:if>
           
         <!-- 채용공고 리스트 -->
-        <c:if test="${rList!=null }">
+        <c:if test="${not empty rList}">
           <div class="contents-group contents-reservation" data-aos="slide-up">
             <h2 class="contents-tit"><b> 채용공고 </b><a href="javascipt:void(0);" class="contents-more">더보기</a>
             </h2>
