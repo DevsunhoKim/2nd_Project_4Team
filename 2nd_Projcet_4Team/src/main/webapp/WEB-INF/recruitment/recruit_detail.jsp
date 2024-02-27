@@ -333,7 +333,8 @@ let recruitmentDetailApp=Vue.createApp({
     submit(rno){
       axios.post('../recruitment/apply_insert_vue.do', null, {
         params:{
-          member_datail:this.response.data
+          cno: this.cno
+          // 파일 넣을거면 변수 추가
         }
       }).then(response=>{
         if(response.data==='yes') {
