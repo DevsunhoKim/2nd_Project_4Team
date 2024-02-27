@@ -4,58 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-  <link rel="stylesheet" href="../member/css/setting.css">
-  <link rel="stylesheet" href="../member/css/plugin.css">
-  <link rel="stylesheet" href="../member/css/template.css">  
-  <link rel="stylesheet" href="../member/css/style.css">
-  <link rel="stylesheet" href="../css/template.css">
-  <style type="text/css">
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  .glamping-N47 {
-    padding: 60px 20px 20px; /* 위쪽 패딩을 40px로 조정 */
-  }
-  .glamping-N47 .contents-inner {
-    margin: 0 auto;
-    max-width: 800px; /* Adjust max-width as needed */
-  }
-  .glamping-N47 .contents-top {
-    margin-bottom: 20px;
-  }
-  .glamping-N47 .form-wrap {
-    margin-bottom: 20px;
-  }
-  .glamping-N47 .form-tit {
-    margin-bottom: 10px;
-  }
-  .glamping-N47 .contents-btn-group {
-    margin-top: 20px;
-    text-align: center;
-  }
-  .glamping-N47 .contents-form-group {
-    display: flex;
-    align-items: center; 
-    width: 100%;
-}
-
-  .glamping-N47 .inputset {
-    flex: 1;
-    margin-right: 10px;
-}
-
-  .glamping-N47 .btnset {
-    flex: 0; 
-}
-  .glamping-N47 .contents-mail {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-}
-</style>
+<title>회원가입</title>
+<link rel="stylesheet" href="../member/css/setting.css">
+<link rel="stylesheet" href="../member/css/plugin.css">
+<link rel="stylesheet" href="../member/css/template.css">  
+<link rel="stylesheet" href="../member/css/style.css">
+<link rel="stylesheet" href="../css/template.css">
+<link rel="stylesheet" href="../member/css/myStyle.css">
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
