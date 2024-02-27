@@ -67,4 +67,7 @@ public class StudyRoomReserveDAO {
    public int StudyRoomReserveAllTotalCount() {
 	   return mapper.StudyRoomReserveAllTotalCount();
    }
+   public StudyRoomReserveVO StudyRoomReserveData(int no) {
+	   return mapper.StudyRoomReserveData(no);
+   }
 }

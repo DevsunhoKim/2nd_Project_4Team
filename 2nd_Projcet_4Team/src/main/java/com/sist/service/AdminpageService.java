@@ -20,4 +20,5 @@ public interface AdminpageService {
     public int StudyRoomReserveTotalpage(Map map);
     public int StudyRoomReserveTotalCount(Map map);
     public int StudyRoomReserveAllTotalCount();
+    public StudyRoomReserveVO StudyRoomReserveData(int no);
 }

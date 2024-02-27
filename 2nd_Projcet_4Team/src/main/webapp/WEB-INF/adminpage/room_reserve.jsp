@@ -46,9 +46,9 @@
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">룸명</th>
-                  <th scope="col">총시간</th>
+                  <th scope="col">방문일</th>
+                  <th scope="col">이용시간</th>
                   <th scope="col">결제금액</th>
-                  <th scope="col">결제일</th>
                   <th scope="col">회원정보</th>
                 </tr>
               </thead>
@@ -62,13 +62,13 @@
                   <td class="tableset-tit tableset-order02">
                    
                     <a class="tableset-ico" href="javascript:void(0)">
-						  {{ re.amount }}시간
+						  {{ re.rdate }}
 				    </a>
                     
                    
                   </td>
-                  <td class="tableset-order05">{{re.price}}원</td>
-                  <td class="tableset-order04">{{re.dbday}}</td>
+                  <td class="tableset-order05">{{re.amount}}시간</td>
+                  <td class="tableset-order04">{{ formatPrice(re.price) }}원</td>
                   <td class="tableset-order01">
                     <button class="badgeset state" @click="info(re.no,re.userId)">상세보기</button>
                   </td>
@@ -110,15 +110,15 @@
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="textset textset-h2">
-            <h2 class="textset-tit">회원정보</h2>
+            <h2 class="textset-tit">예약 상세</h2>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
                                  
-              <span>회원명</span>
+              <span>예약자명</span>
             </h5>
             <span class="contents-date">
-              <i>{{}}</i>윤새영</span>
+              <i>{{member.userName}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -126,7 +126,7 @@
               <span>전화번호</span>
             </h5>
             <span class="contents-date">
-              <i>{{}}</i>010-1111-1111</span>
+              <i>{{member.phone}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -134,7 +134,7 @@
               <span>이메일</span>
             </h5>
             <span class="contents-date">
-              <i>{{}}</i>you@naver.com</span>
+              <i>{{member.email}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -142,15 +142,31 @@
               <span>예약시간</span>
             </h5>
             <span class="contents-date">
-              <i>{{}}</i>10:00, 11:00, 12:00</span>
+              <i>{{res_detail.time}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
                                  
-              <span>회원명</span>
+              <span>결제일</span>
             </h5>
             <span class="contents-date">
-              <i>{{}}</i>윤새양</span>
+              <i>{{res_detail.dbday}}</i></span>
+          </div>
+          <div class="contents-titgroup">
+            <h5 class="contents-tit">
+                                 
+              <span>결제정보</span>
+            </h5>
+            <span class="contents-date">
+              <i>신용카드</i></span>
+          </div>
+          <div class="contents-titgroup">
+            <h5 class="contents-tit">
+                                 
+              <span>결제금액</span>
+            </h5>
+            <span class="contents-date">
+              <i>{{price}}원</i></span>
           </div>
           <!-- <div class="contents-group">
             <div class="contents-group-top">        
@@ -183,7 +199,10 @@
     	        startpage:0,
     	        totalCount:0,
     	        pop:false,
-    	        res_list:{}
+    	        res_list:{},
+    	        member:{},
+    	        res_detail:{},
+    	        price:''
     		}
     	},
     	mounted(){
@@ -231,15 +250,26 @@
 		  close(){
 			  this.pop=false
 		  },
-		  info(no,id){
-			  this.pop=true
-			  /* axios.get('../adminpage/admin_room_info.do',{
-				  no:no,
-				  userId:id
-			  }).then(response=>{
-				  console.log(response.data)
-			  }) */
-		  }
+		  info(no, id) {
+			    this.pop = true;
+			    axios.get('../adminpage/admin_room_info.do', {
+			        params: {
+			            no: no,
+			            userId: id
+			        }
+			    }).then(response => {
+			        console.log(response.data);
+			        this.member=response.data.mvo
+			        this.res_detail=res_detail=response.data.rvo
+			        this.price=this.formatPrice(response.data.rvo.price)
+			        
+			    });
+			},
+			formatPrice(price) {
+	            // 가격을 적절한 형식으로 변환하여 반환
+	            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        }
+
     	}
     	
     }).mount('.Admin_room_reserve')

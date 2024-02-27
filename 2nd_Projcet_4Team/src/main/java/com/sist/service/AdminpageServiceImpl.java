@@ -86,4 +86,10 @@ public class AdminpageServiceImpl implements AdminpageService{
 		return srDao.StudyRoomReserveAllTotalCount();
 	}
 
+	@Override
+	public StudyRoomReserveVO StudyRoomReserveData(int no) {
+		// TODO Auto-generated method stub
+		return srDao.StudyRoomReserveData(no);
+	}
+
 }

@@ -348,9 +348,14 @@
 .Admin_room_reserve #popup{
 	left: 470px !important;
 	right: 470px !important;
-	height: 64rem !important;
+	height: 73rem !important;
 }
 .Admin_room_reserve .contents-btn .btnset {
    
     max-width: 17rem ;
+}
+.Admin_room_reserve .hooms-N37 .contents-date i {
+    font-style: normal;
+    margin-right: 0.8rem;
+    font-weight: 550;
 }
