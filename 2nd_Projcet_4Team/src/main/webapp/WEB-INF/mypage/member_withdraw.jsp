@@ -46,7 +46,7 @@
   <div class="contents-inner" draggable="true" th-dragitem="true">
     <div class="contents-container" draggable="false">
       <div class="textset" draggable="false">
-        <h2 class="textset-tit" draggable="false">비밀번호 확인</h2>
+        <h2 class="textset-tit" draggable="false">회원탈퇴</h2>
       </div>
       <p class="textset-desc" draggable="false">비밀번호 확인 후 <span style="color: var(--danger)"><b>회원탈퇴</b></span>가 가능합니다.</p>
       <div class="contents-form" draggable="false">
