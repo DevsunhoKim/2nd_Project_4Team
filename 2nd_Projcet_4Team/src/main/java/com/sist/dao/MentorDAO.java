@@ -48,7 +48,15 @@ public class MentorDAO {
 		return mapper.getMentorBytech(cate);
 	}
 	
-	public List<MentorReserveVO> getAllMyMentorRev(String userId){
-		 return mapper.getAllMyMentorRev(userId);
+	public List<MentorReserveVO> getAllMyMentorRev(Map map){
+		 return mapper.getAllMyMentorRev(map);
 	 }
+	
+	public int getMRTotalCount(String userId) {
+		return mapper.getMRTotalCount(userId);
+	}
+	
+	public int getMRTotalPage(String userId) {
+		return mapper.getMRTotalPage(userId);
+	}
 }

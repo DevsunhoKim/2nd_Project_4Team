@@ -17,7 +17,7 @@
   
 </head>
 <body style="width: 100%">
-  <div class="hooms-N36 Admin_room_reserve" data-bid="rxlskcGXa1" id="admin_ask">
+  <div class="hooms-N36 mypageMentorRev" data-bid="rxlskcGXa1" id="admin_ask">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="contents-search">
@@ -42,25 +42,24 @@
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">멘토명</th>
+                  <th scope="col">멘토링명</th>
                   <th scope="col">예약일</th>
-                  <th scope="col">시작시간</th>
-                  <th scope="col">종료시간</th>
                   <th scope="col">결제금액</th>
+                  <th scope="col">승인상태</th>
                   <th scope="col">예약정보</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="re in res_list">
-                  <td class="tableset-mobile">{{re.no}}</td>
-                  <td class="tableset-category tableset-order03">{{re.no}}</td>
+                <tr v-for="vo in mr_list">
+                  <td class="tableset-mobile">{{vo.num}}</td>
+                  <td class="tableset-category tableset-order03">{{vo.mvo.nickname}}</td>
+                  <td class="tableset-order05">{{vo.mtvo.title}}시</td>
                   <td class="tableset-tit tableset-order02">
                     <a class="tableset-ico" href="javascript:void(0)">
-						  {{ re.rdate }}
+						  {{ vo.rdate }}
 				    </a>
                   </td>
-                  <td class="tableset-order05">{{re.amount}}시</td>
-                  <td class="tableset-order05">{{re.amount}}시</td>
-                  <td class="tableset-order04">{{ formatPrice(re.price) }}원</td>
+                  <td class="tableset-order04">{{ formatPrice(vo.totalAmount) }}원</td>
                   <td class="tableset-order01">
                     <button class="badgeset state" @click="info(re.no,re.userId)">상세보기</button>
                   </td>
@@ -88,9 +87,9 @@
       </div>
       
  
-   <div class="th-layout-main pop black-bg" id="ask_detail" v-show="pop">
-    <!-- [E]hooms-N58 -->
-    <!-- [S]hooms-N37 -->
+   <!-- <div class="th-layout-main pop black-bg" v-show="pop">
+    [E]hooms-N58
+    [S]hooms-N37
     <div class="hooms-N37" data-bid="NiLT00VHDB" id="popup">
       <div class="contents-inner">
         <div class="contents-container container-md">
@@ -100,26 +99,26 @@
           <div class="contents-titgroup">
             <h5 class="contents-tit">
                                  
-              <span>예약자명</span>
+              <span>멘토</span>
             </h5>
             <span class="contents-date">
-              <i>{{member.userName}}</i></span>
+              <i>{{vo.mvo.nickname}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
                                  
-              <span>전화번호</span>
+              <span>멘토링명</span>
             </h5>
             <span class="contents-date">
-              <i>{{member.phone}}</i></span>
+              <i>{{vo.mtvo.title}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
                                  
-              <span>이메일</span>
+              <span>직무</span>
             </h5>
             <span class="contents-date">
-              <i>{{member.email}}</i></span>
+              <i>{{vo.mtvo.job}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -127,7 +126,7 @@
               <span>예약시간</span>
             </h5>
             <span class="contents-date">
-              <i>{{res_detail.time}} ~ {{}}</i></span>
+              <i>{{vo.str_time}} ~ {{vo.end_time}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -135,7 +134,7 @@
               <span>결제일</span>
             </h5>
             <span class="contents-date">
-              <i>{{res_detail.dbDay}}</i></span>
+              <i>{{vo.rDate}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -151,7 +150,25 @@
               <span>결제금액</span>
             </h5>
             <span class="contents-date">
-              <i>{{price}}원</i></span>
+              <i>{{vo.totalAmount}}원</i></span>
+          </div>
+          <div class="contents-titgroup">
+            <h5 class="contents-tit">
+                                 
+              <span>승인상태</span>
+            </h5>
+            <span class="contents-date">
+              <i v-if="vo.ok == 0">미승인</i></span>
+              <i v-if="vo.ok == 1">승인</i></span>
+          </div>
+          <div class="contents-titgroup">
+            <h5 class="contents-tit">
+                                 
+              <span>문의사항</span>
+            </h5>
+            <span class="contents-date">
+              <i v-if="vo.inquiry == null">없음</i></span>
+              <i v-if="vo.inquiry !== null">{{vo.inquiry}}</i></span>
           </div>
           <div class="contents-btn">
             <a class="btnset" @click="close()">닫기</a>
@@ -159,10 +176,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
     </div>
     <script>
-    let AskApp=Vue.createApp({
+    let mypageMentorRev=Vue.createApp({
     	data(){
     		return {
     			curpage:1,
@@ -171,9 +188,7 @@
     	        startpage:0,
     	        totalCount:0,
     	        pop:false,
-    	        res_list:{},
-    	        member:{},
-    	        res_detail:{},
+    	        mr_list:[],
     	        price:''
     		}
     	},
@@ -188,7 +203,7 @@
     				}
     			}).then(response=>{
     				console.log(response.data)
-    				this.res_list=response.data.list
+    				this.mr_list=response.data.list
           		    this.curpage=response.data.curpage
           		    this.totalpage=response.data.totalpage
           		    this.startpage=response.data.startpage
@@ -222,28 +237,13 @@
 		  close(){
 			  this.pop=false
 		  },
-		  info(no, id) {
-			    this.pop = true;
-			    axios.get('../adminpage/admin_room_info.do', {
-			        params: {
-			            no: no,
-			            userId: id
-			        }
-			    }).then(response => {
-			        console.log(response.data);
-			        this.member=response.data.mvo
-			        this.res_detail=res_detail=response.data.rvo
-			        this.price=this.formatPrice(response.data.rvo.price)
-			        
-			    });
-			},
 			formatPrice(price) {
 	            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        }
 
     	}
     	
-    }).mount('.Admin_room_reserve')
+    }).mount('.mypageMentorRev')
     </script>
 </body>
 </html>

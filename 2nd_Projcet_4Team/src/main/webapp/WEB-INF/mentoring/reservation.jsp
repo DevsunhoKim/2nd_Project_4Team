@@ -478,8 +478,8 @@ let reserveApp=Vue.createApp({
 						 rDate:this.currentYear+"년 "+this.currentMonth+"월 "+this.currentDay+"일",
 						 totalAmount: this.totalAmount,
 						 inquiry: this.inquiry,
-						 str_time:this.selectedTime[0],
-						 end_time:this.selectedTime[1]
+						 str_time:this.selectedTime[1],
+						 end_time:this.selectedTime[0]
 					 }
 				 }).then(response=>{
 					 if(response.data==='yes')

@@ -64,8 +64,32 @@ public interface MentorMapper {
 	public List<MentorVO> getMentorBytech(String cate); // 검색어(기술연관 직무)에 대한 멘토리스트
     
     @Results({
-		  @Result(column="nickname", property="mvo.nickname"),
-	})
-    @Select("SELECT * FROM mentor_reserve WHERE userId = #{userId}")
-    public List<MentorReserveVO> getAllMyMentorRev(String userId);
+        @Result(column="userId", property="userId"),
+        @Result(column="str_time", property="str_time"),
+        @Result(column="end_time", property="end_time"),
+        @Result(column="nickname", property="mvo.nickname"),
+        @Result(column="job", property="mtvo.job"),
+        @Result(column="title", property="mtvo.title")
+    })
+    @Select("SELECT * FROM ( "
+    		+ "SELECT "
+    		+ "mr.*, "
+    		+ "m.nickname, "
+    		+ "mt.job, "
+    		+ "mt.career, "
+    		+ "mt.img, "
+    		+ "mt.title, "
+    		+ "ROWNUM AS num "
+    		+ "FROM mentor_reserve mr "
+    		+ "JOIN member m ON mr.userId = m.userId "
+    		+ "JOIN mentor mt ON m.userId = mt.userId "
+    		+ "WHERE mr.userId = #{userId}"
+    		+ ") WHERE num BETWEEN #{start} AND #{end}")
+    public List<MentorReserveVO> getAllMyMentorRev(Map map); // 마이페이지 멘토링 내역
+    
+    @Select("SELECT COUNT(*) FROM mentor_reserve WHERE userId = #{userId}")
+    public int getMRTotalCount(String userId); // 마이페이지 멘토링 총 갯수
+    
+    @Select("SELECT CEIL(COUNT(*)/7.0) FROM mentor_reserve WHERE userId = #{userId}")
+    public int getMRTotalPage(String userId); // 마이페이지 멘토링 총페이지
 }

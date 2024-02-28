@@ -4,6 +4,7 @@ import java.util.*;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,50 +47,6 @@ public class MypageRestController {
 		return res;
 	}
     
-    @GetMapping(value = "mentor_MyReserve_vue.do", produces = "text/plain;charset=UTF-8")
-	public String mentor_myReserve(HttpSession session) throws JsonProcessingException {
-		String userId=(String) session.getAttribute("userId");
-		List<MentorReserveVO> json = service.getAllMyMentorRev(userId);
-		return objectMapper.writeValueAsString(json);
-	}
-    
-    @GetMapping(value="myRoom_vue.do",produces="text/plain;charset=UTF-8")
-	public String admin_ask(int page,String userId) throws Exception
-	{
-		int rowsize=7;
-		int start=(rowsize*page)-(rowsize-1);
-		int end=rowsize*page;
-		final int BLOCK=5;
-		Map map=new HashMap();
-		map.put("start", start);
-		map.put("end", end);
-		map.put("userId", userId);
-		List<StudyRoomReserveVO> list=service.myStudyRoomReserveList(map);
-		int totalpage=service.myStudyRoomReserveTotalpage(map);
-		int startpage=((page-1)/BLOCK*BLOCK)+1;
-		int endpage=((page-1)/BLOCK*BLOCK)+BLOCK;
-		if(endpage>totalpage)
-			endpage=totalpage;
-		Map map1=new HashMap();
-		map1.put("curpage", page);
-		map1.put("endpage", endpage);
-		map1.put("startpage",startpage);
-		map1.put("totalpage",totalpage);
-		map1.put("list", list);
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(map1);
-		return json;
-	}
-    
-    	@GetMapping(value="jjim_vue.do",produces="text/plain;charset=UTF-8")
-	public String jjim(int cateno,String userId) throws Exception
-	{
-		
-		List<StudyRoomVO> list=service.studyRoomJjim(userId);
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(list);
-		return json;
-	}
     
     
 }

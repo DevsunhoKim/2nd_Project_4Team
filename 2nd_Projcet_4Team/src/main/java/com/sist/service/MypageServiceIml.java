@@ -1,6 +1,7 @@
 package com.sist.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,18 +19,15 @@ public class MypageServiceIml implements MypageService{
 	private StudyRoomDAO sDao;
 	private RecruitmentDAO rDao;
 	private BooksDAO bDao;
-	private JjimDAO jDao;
-	private StudyRoomReserveDAO srDao;
 	private BCryptPasswordEncoder encoder;
 	
 	@Autowired
-	public MypageServiceIml(MemberDAO mDao, MentorDAO mtDao, RecruitmentDAO rDao, BooksDAO bDao, StudyRoomDAO sDao,StudyRoomReserveDAO srDao,BCryptPasswordEncoder encoder) {
+	public MypageServiceIml(MemberDAO mDao, MentorDAO mtDao, RecruitmentDAO rDao, BooksDAO bDao, StudyRoomDAO sDao,BCryptPasswordEncoder encoder) {
 		this.mDao = mDao;
 		this.mtDao = mtDao;
 		this.sDao = sDao;
 		this.rDao = rDao;
 		this.bDao = bDao;
-		this.srDao =srDao;
 		this.encoder = encoder;
 	}
 	
@@ -82,39 +80,6 @@ public class MypageServiceIml implements MypageService{
 		return res;
 	}
 
-	@Override
-	public List<MentorReserveVO> getAllMyMentorRev(String userId) {
-		return mtDao.getAllMyMentorRev(userId);
-	}
-
-	@Override
-	public List<StudyRoomVO> studyRoomJjim(String userId) {
-		// TODO Auto-generated method stub
-		return jDao.studyRoomJjim(userId);
-	}
-
-	@Override
-	public List<CompanyVO> companyJjim(String userId) {
-		// TODO Auto-generated method stub
-		return jDao.companyJjim(userId);
-	}
-
-	@Override
-	public List<MentorVO> mentorJjim(String userId) {
-		// TODO Auto-generated method stub
-		return jDao.mentorJjim(userId);
-	}
-
-	@Override
-	public List<StudyRoomReserveVO> myStudyRoomReserveList(Map map) {
-		// TODO Auto-generated method stub
-		return srDao.myStudyRoomReserveList(map);
-	}
-
-	@Override
-	public int myStudyRoomReserveTotalpage(Map map) {
-		// TODO Auto-generated method stub
-		return srDao.myStudyRoomReserveTotalpage(map);
-	}
+	
     
 }
