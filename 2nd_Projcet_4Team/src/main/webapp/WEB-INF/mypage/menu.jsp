@@ -151,18 +151,22 @@ width: 100%;
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
+                <a href="../mypage/mentor_jjim.do">
                   <div class="radioset">
                     <span class="radioset-text">멘토</span>
                   </div>
+                 </a>
                   
                   <a href="../mypage/room_jjim.do">
                   <div class="radioset">
                     <span class="radioset-text">스터디룸</span>
                   </div>
                   </a>
+                  <a href="../mypage/company_jjim.do">
                   <div class="radioset">
-                    <span class="radioset-text">채용공고</span>
+                    <span class="radioset-text">관심기업</span>
                   </div>
+                  </a>
                 </div>
               </div>
             </div>

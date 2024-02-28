@@ -11,7 +11,7 @@
 .tableset .tableset-table td a.tableset-ico {
     padding-right: 0;
 }
-.reserve{
+.reserve, .glamping-N7{
 	border-top: 1px solid var(--line-color3);
 }
 #admin_ask .tableset .tableset-table > :not(caption):not(colgroup) > * > * {
@@ -65,7 +65,20 @@
 
 .jjimtitle {
     font-size: 3rem !important;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 .glamping-N7 .textset {
     margin-bottom: 0;
+}
+.jjimname{
+	
+	display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+	
+}
+
+.jjimicon{
+	width: 2.5rem;
 }

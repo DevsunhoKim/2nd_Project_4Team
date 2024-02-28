@@ -54,6 +54,7 @@ public class MypageRestController {
        return objectMapper.writeValueAsString(json);
     }
      
+    @GetMapping(value="myRoom_vue.do",produces="text/plain;charset=UTF-8")
 	public String admin_ask(int page,String userId) throws Exception
 	{
 		int rowsize=7;
@@ -84,10 +85,24 @@ public class MypageRestController {
     	@GetMapping(value="jjim_vue.do",produces="text/plain;charset=UTF-8")
 	public String jjim(int cateno,String userId) throws Exception
 	{
-
-		List<StudyRoomVO> list=service.studyRoomJjim(userId);
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(list);
+    		
+    	ObjectMapper mapper = new ObjectMapper();
+    	String json="";
+		if(cateno==2)
+		{
+			List<StudyRoomVO> list=service.studyRoomJjim(userId);
+			json=mapper.writeValueAsString(list);
+		}
+    	if(cateno==4)
+    	{
+    		List<CompanyVO> list=service.companyJjim(userId);
+    		json=mapper.writeValueAsString(list);
+    	}
+    	if(cateno==1)
+    	{
+    		List<MentorVO> list=service.mentorJjim(userId);
+    		json=mapper.writeValueAsString(list);
+    	}
 		return json;
 	}
     

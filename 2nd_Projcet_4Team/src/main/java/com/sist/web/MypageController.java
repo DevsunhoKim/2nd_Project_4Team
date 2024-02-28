@@ -46,21 +46,28 @@ public class MypageController {
        return "mypage/mentor_reserve";
     }
     
- // 스터디룸 마이페이지
+    // 스터디룸 마이페이지
     @GetMapping("myRoom_reserve.do")
     public String myRoom_reserve(HttpSession session,Model model)
     {
-    	String userId=(String)session.getAttribute("userId");
-    	model.addAttribute("userId", userId);
     	return "mypage/myRoom_reserve";
     }
     @GetMapping("room_jjim.do")
-    public String room_jjim(HttpSession session,Model model)
+    public String room_jjim()
     {
-    	String userId=(String)session.getAttribute("userId");
-    	model.addAttribute("userId", userId);
     	return "mypage/room_jjim";
     }
+    @GetMapping("company_jjim.do")
+    public String company_jjim()
+    {
+    	return "mypage/company_jjim";
+    }
+    @GetMapping("mentor_jjim.do")
+    public String mentor_jjim()
+    {
+    	return "mypage/mentor_jjim";
+    }
+    
     
    
 }
