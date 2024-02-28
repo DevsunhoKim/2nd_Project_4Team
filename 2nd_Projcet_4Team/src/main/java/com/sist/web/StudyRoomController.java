@@ -6,14 +6,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,18 +21,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sist.dao.StudyRoomDAO;
-import com.sist.service.StudyRoomService;
 import com.sist.service.StudyRoomServiceImpl;
 import com.sist.vo.StudyRoomAskVO;
-import com.sist.vo.StudyRoomVO;
 
 @Controller
 @RequestMapping("studyRoom/")
 public class StudyRoomController {
 	@Autowired
 	private StudyRoomServiceImpl service;
-	
+
 	@GetMapping("room_main.do")
 	public String room_main()
 	{
@@ -136,7 +131,7 @@ public class StudyRoomController {
 			   ex.printStackTrace();
 			   result="no";
 		    }
-		   
+
 		   return "redirect:../studyRoom/room_detail.do?askShow=true&no="+vo.getSno();
 	   }
 	   @GetMapping("ask_detail.do")
@@ -154,7 +149,7 @@ public class StudyRoomController {
 			   File file=new File(path+fn);
 			   response.setHeader("Content-Disposition","attachment;filename="+URLEncoder.encode(fn,"UTF-8"));
 			   response.setContentLength((int)file.length());
-			   
+
 			   // 데이터를 읽어서 버퍼에 저장
 			   BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
 			   // 스트림 : 실제의 입력이나 출력이 표현된 데이터의 이상화된 흐름
@@ -173,12 +168,12 @@ public class StudyRoomController {
 			   bis.close();
 			   bos.close();
 		  }catch(Exception e) {}
-		   
+
 	   }
 	   @GetMapping("ask_delete.do")
 	   public String ask_delete(int ano,HttpServletRequest request,HttpServletResponse response)
 	   {
-		  
+
 		   StudyRoomAskVO vo=service.StudyRoomAskDetail(ano);
 		  try {
 			 String path=request.getSession().getServletContext().getRealPath("/")+"upload\\";
@@ -192,14 +187,14 @@ public class StudyRoomController {
 					 file.delete();
 				 }
 			 }
-			 
+
 		  }catch(Exception e) {}
 		  return "redirect:../studyRoom/room_detail.do?askShow=true&no="+vo.getSno();
 	   }
 	   @GetMapping("ask_update.do")
 	   public String ask_update(int ano,Model model)
 	   {
-		  
+
 		   StudyRoomAskVO vo=service.StudyRoomAskDetail(ano);
 		   model.addAttribute("vo", vo);
 		  return "studyRoom/room_ask_update";
@@ -212,8 +207,8 @@ public class StudyRoomController {
 		   System.out.println(vo.getEmail());
 		   System.out.println(vo.getContent());
 		   System.out.println(check);
-		   
-		   if(check==null) 
+
+		   if(check==null)
 		   {
 			   String path=request.getSession().getServletContext().getRealPath("/")+"upload\\";
 			   path=path.replace("\\", File.separator);
@@ -244,7 +239,7 @@ public class StudyRoomController {
 						  File f=new File(path+name);
 						  try {
 							  mf.transferTo(f);
-							  
+
 						  }catch(Exception e) {}
 						  filename+=name+",";
 						  filesize+=f.length()+",";
@@ -262,5 +257,5 @@ public class StudyRoomController {
 		   }
 		  return "redirect:../studyRoom/ask_detail.do?ano="+vo.getAno();
 	   }
-	   
+
 }
