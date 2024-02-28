@@ -48,7 +48,7 @@
       <div class="textset" draggable="false">
         <h2 class="textset-tit" draggable="false">비밀번호 확인</h2>
       </div>
-      <p class="textset-desc" draggable="false">비밀번호 확인 후 정보조회가 가능합니다.</p>
+      <p class="textset-desc" draggable="false">비밀번호 확인 후 <span style="color: var(--danger)"><b>회원탈퇴</b></span>가 가능합니다.</p>
       <div class="contents-form" draggable="false">
         <div class="inputset inputset-round" draggable="false">
           <input type="password" class="inputset-input form-control" ref="pwd" v-model="pwd" required="" draggable="false">
@@ -76,19 +76,20 @@ let memberPwdCkApp=Vue.createApp({
 				  this.$refs.pwd.focus()
 				  return
 			  }
-			  axios.post('../mypage/ckpwd_vue.do',null,{
+			  axios.post('../mypage/member_withdraw_vue.do',null,{
 				  params:{
 					  pwd:this.pwd
 				  }
 			  }).then(response=>{
 				  // NOPWD, YES
-				  if(response.data==='NOPWD'){
+				  if(response.data==='NO'){
 					  alert("비밀번호가 틀립니다.")
 					  this.pwd=''
 					  this.$refs.pwd.focus()
 				  }
 				  else{
-					  location.href='../mypage/main.do'
+					  alert("회원탈퇴가 완료되었습니다.")
+					  location.href='../main/main.do'
 			      }
 			  })
 		  }

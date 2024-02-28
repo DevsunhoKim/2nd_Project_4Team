@@ -106,4 +106,49 @@ public class MemberDAO {
     public String pwdCk(String userId) {
     	return mapper.pwdCk(userId);
     }
+
+    /*------- 회원 탈퇴 --------*/
+	public void deleteSRoomRevById(String userId) {
+		mapper.deleteSRoomRevById(userId);
+	}
+
+	public void deleteSRoomAskById(String userId) {
+		 mapper.deleteSRoomAskById(userId);
+	}
+
+	public void deleteMentorRevById(String userId) {
+		 mapper.deleteMentorRevById(userId);
+	}
+
+	public void deleteMentorById(String userId) {
+		 mapper.deleteMentorById(userId);
+	}
+	
+	public void deleteReview1ById(String userId) {
+		 mapper.deleteReview1ById(userId);
+	}
+
+	public void deleteB_cartById(String userId) {
+		 mapper.deleteB_cartById(userId);
+	}
+
+	public void deleteApplyById(String userId) {
+		 mapper.deleteApplyById(userId);
+	}
+
+	public void deleteInterviewById(String userId) {
+		 mapper.deleteInterviewById(userId);
+	}
+
+	public void deleteCodevJjimById(String userId) {
+		 mapper.deleteCodevJjimById(userId);
+	}
+
+	public void deleteAuthorityById(String userId) {
+		 mapper.deleteAuthorityById(userId);
+	}
+
+	public void deleteMemberById(String userId) {
+		 mapper.deleteMemberById(userId);
+	}
 }

@@ -146,7 +146,7 @@
                 </div>
               </div>
             </div>
-            <a href="../main/main.do">
+            <a href="../mypage/member_withdraw.do">
             <div class="accordset-item">
               <div class="">
                 <button class="accordset-button btn" type="button">회원탈퇴</button>
