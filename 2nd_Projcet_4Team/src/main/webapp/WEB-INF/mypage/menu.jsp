@@ -106,9 +106,11 @@ width: 100%;
 	                    <span class="radioset-text">멘토링 예약</span>
 	                  </div>
 	                </a>
+	              <a href="../mypage/room_jjim.do">
                   <div class="radioset">
                     <span class="radioset-text">스터디룸 예약</span>
                   </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -137,8 +139,8 @@ width: 100%;
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <div class="checkset">
-                    <span class="checkset-text">지원내역</span>
+                  <div class="radioset">
+                    <span class="radioset-text">지원내역</span>
                   </div>
                 </div>
               </div>
@@ -149,14 +151,16 @@ width: 100%;
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <div class="checkset">
-                    <span class="checkset-text">멘토</span>
+                  <div class="radioset">
+                    <span class="radioset-text">멘토</span>
                   </div>
-                  <div class="checkset">
-                    <span class="checkset-text">스터디룸</span>
+                  <a href="../mypage/myRoom_reserve.do">
+                  <div class="radioset">
+                    <span class="radioset-text">스터디룸</span>
                   </div>
-                  <div class="checkset">
-                    <span class="checkset-text">채용공고</span>
+                  </a>
+                  <div class="radioset">
+                    <span class="radioset-text">채용공고</span>
                   </div>
                 </div>
               </div>

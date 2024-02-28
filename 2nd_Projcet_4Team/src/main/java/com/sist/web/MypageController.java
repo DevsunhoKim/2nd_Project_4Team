@@ -38,4 +38,16 @@ public class MypageController {
 	public String mypage_withdraw() {
 		return "mypage/member_withdraw";
 	}
+    
+    // 스터디룸 마이페이지
+    @GetMapping("myRoom_reserve.do")
+    public String myRoom_reserve()
+    {
+    	return "mypage/myRoom_reserve";
+    }
+    @GetMapping("room_jjim.do")
+    public String room_jjim()
+    {
+    	return "mypage/room_jjim";
+    }
 }
