@@ -374,12 +374,16 @@ textarea {
                 <span class="inputset-total">/4000</span>
             </div>
         </label>
-        <a href="javascript:void(0)" class="btnset btnset-lg" style="float: right;margin-bottom: 6rem" @click="addReview(no)">작성하기</a>
+       
     </div>
+    
 
    
 </div>
 
+ <a href="javascript:void(0)" class="btnset btnset-sm" style="margin-bottom: 6rem;margin-left: 136rem" @click="addReview(no)">작성하기</a>
+ </div>
+ 
 <script>
 let booksDapp = Vue.createApp({
   data() {
