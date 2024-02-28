@@ -54,10 +54,12 @@ public class MainController {
 			session.setAttribute("mentor", vo.getMentor());
 			session.setAttribute("authority", vo.getAuthority());
 		}
-
+		
+		List<MentorVO> mentorList = service.topMentor6();
 		List<BooksVO> booksList=bService.mainBooks();
 		List<StudyRoomVO> roomList=sService.studyRoomListData();
 		List<RecruitVO> recruitList=rService.recruitMainData();
+		model.addAttribute("mentorList", mentorList);
 		model.addAttribute("booksList", booksList);
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("recruitList", recruitList);

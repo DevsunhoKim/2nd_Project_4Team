@@ -135,6 +135,9 @@
 .LanguageBar_transparent__1Texo {
     opacity: .3;
 }
+.cardset .cardset-figure + .cardset-body {
+     margin-top: 0rem; 
+}
 </style>
 </head>
 <body>
@@ -230,91 +233,29 @@
                   <div class="swiper-button-prev"></div>
                 </div>
                 <div class="btnset-position">
-                  <a class="btnset btnset-icon btnset-lg icon-right btnset-dark justify-content-between" href="javascript:void(0)">자세히 보기</a>
+                  <a class="btnset btnset-icon btnset-lg icon-right btnset-dark justify-content-between" href="../mentoring/list.do">자세히 보기</a>
                 </div>
               </div>
             </div>
             <div class="right">
               <div class="slide-container">
                 <div class="swiper-wrapper">
+                <c:forEach var="vo" items="${mentorList }" >
                   <div class="swiper-slide">
-                    <a class="link-slide" href="javascript:void(0);">
+                    <a class="link-slide" href="../mentoring/detail.do?mno=${vo.mno }">
                       <div class="cardset cardset-border">
-                        <figure class="cardset-figure">
-                          <img class="cardset-img" src="../images/m-sec3-img-1.jpg" alt="이미지">
-                        </figure>
-                        <div class="cardset-body">
-                          <h4 class="cardset-tit">멘토링1</h4>
-                          <p class="cardset-txt">2000-01-01</p>
-                        </div>
-                      </div>
+					    <figure class="cardset-figure">
+					        <img class="cardset-img" src="${pageContext.request.contextPath}/images/${vo.mainImg }.png" alt="이미지">
+					    </figure>
+					    <div class="cardset-body">
+					        <h4 class="cardset-tit">${vo.mvo.nickname} 멘토</h4>
+					        <div class="cardset-txt" style="color:black;">${vo.job}</div>
+					        <div class="cardset-txt" >${vo.title}</div>
+					    </div>
+					</div>
                     </a>
                   </div>
-                  <div class="swiper-slide">
-                    <a class="link-slide" href="javascript:void(0);">
-                      <div class="cardset cardset-border">
-                        <figure class="cardset-figure">
-                          <img class="cardset-img" src="../images/m-sec3-img-2.jpg" alt="이미지">
-                        </figure>
-                        <div class="cardset-body">
-                          <h4 class="cardset-tit">멘토링2</h4>
-                          <p class="cardset-txt">2000-01-01</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a class="link-slide" href="javascript:void(0);">
-                      <div class="cardset cardset-border">
-                        <figure class="cardset-figure">
-                          <img class="cardset-img" src="../images/m-sec3-img-3.jpg" alt="이미지">
-                        </figure>
-                        <div class="cardset-body">
-                          <h4 class="cardset-tit">멘토링3</h4>
-                          <p class="cardset-txt">2000-01-01</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a class="link-slide" href="javascript:void(0);">
-                      <div class="cardset cardset-border">
-                        <figure class="cardset-figure">
-                          <img class="cardset-img" src="../images/m-sec3-img-1.jpg" alt="이미지">
-                        </figure>
-                        <div class="cardset-body">
-                          <h4 class="cardset-tit">멘토링4</h4>
-                          <p class="cardset-txt">2000-01-01</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a class="link-slide" href="javascript:void(0);">
-                      <div class="cardset cardset-border">
-                        <figure class="cardset-figure">
-                          <img class="cardset-img" src="../images/m-sec3-img-2.jpg" alt="이미지">
-                        </figure>
-                        <div class="cardset-body">
-                          <h4 class="cardset-tit">멘토링5</h4>
-                          <p class="cardset-txt">2000-01-01</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a class="link-slide" href="javascript:void(0);">
-                      <div class="cardset cardset-border">
-                        <figure class="cardset-figure">
-                          <img class="cardset-img" src="../images/m-sec3-img-3.jpg" alt="이미지">
-                        </figure>
-                        <div class="cardset-body">
-                          <h4 class="cardset-tit">멘토링6</h4>
-                          <p class="cardset-txt">2000-01-01</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+                  </c:forEach>
                   
                 </div>
               </div>
@@ -434,8 +375,7 @@ let techApp = Vue.createApp({
         	tech_list: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 
             	'Nextjs', 'Nodejs', 'Java', 'Spring', 'Nestjs', 'Kotlin', 
             	'Express', 'MySQL', 'MongoDB', 'Python', 'Django', 'php', 'GraphQL', 
-            	'Firebase', 'Flutter', 'Swift', 'ReactNative', 'Unity', 'AWS', 
-            	 'Figma', 'Zeplin'] ,
+            	'Firebase', 'Flutter', 'Swift', 'Unity', 'Figma', 'Zeplin'] ,
             selectedTech: -1,
             selectedTechName: ''
         }

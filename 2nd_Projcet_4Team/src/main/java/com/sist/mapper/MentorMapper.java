@@ -37,6 +37,16 @@ public interface MentorMapper {
     @Update("UPDATE member SET mentor = 1 WHERE userId = #{userId}")
 	public void updateMentorById(String userId); // 회원에 멘토컬럼 활성화
     
+    @Results({
+		  @Result(column="nickname", property="mvo.nickname"),
+	})
+	@Select("SELECT m.nickname, ment.* "
+			+ "FROM member m "
+			+ "JOIN mentor ment ON m.userId = ment.userId "
+			+ "ORDER BY rev_cnt DESC "
+			+ "FETCH FIRST 6 ROWS ONLY")
+   public List<MentorVO> topMentor6();
+    
     @Insert("INSERT INTO mentor_reserve VALUES(mr_mno_seq.nextval,#{mno},#{userId},#{rDate},0,#{totalAmount},#{inquiry},SYSDATE,#{str_time},#{end_time})")
     public void insertMentoring(MentorReserveVO vo); // 멘토링 예약
     

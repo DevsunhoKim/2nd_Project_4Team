@@ -20,6 +20,11 @@ public class MainServiceIml implements MainService{
 	}
 
 	@Override
+	public List<MentorVO> topMentor6() {
+		return mDao.topMentor6();
+	}
+	
+	@Override
 	public List<MentorVO> getMentorBytech(String engTech) {
 		TechVO vo = rDao.getTechData(engTech);
 		String cate = vo.getCate();

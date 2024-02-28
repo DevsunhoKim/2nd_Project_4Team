@@ -93,6 +93,24 @@
 .text-with-spacing {
     letter-spacing: 2px;
 }
+
+.btnset {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 18rem;
+    padding: 0 2rem;
+    height: var(--ht-lg);
+    font-size: var(--fs-p3);
+    color: var(--white);
+    background-color: rgb(91, -7, 201);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(163, 24, 242);
+    dius: .6rem;
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
+    transition: .3s;
   </style>
   
   <script src="../mentoring/js/setting.js"></script>
@@ -121,7 +139,7 @@ function reserve() {
     <div class="contents-body">
       <div class="contents-left">
         <div class="imageset">
-          <img class="imageset-img" src="../images/img_basic_mobile_N33_1.png" alt="캠핑장 이미지" data-aos="fade-right">
+          <img class="imageset-img" src="../images/img_basic_N37_1.png" alt="캠핑장 이미지" data-aos="fade-right">
         </div>
         <div class="imageset">
           <img class="imageset-img" src="${pageContext.request.contextPath}/mentoring/images/${vo.img }_.png" alt="캠핑장 이미지" data-aos="fade-left">

@@ -24,6 +24,9 @@ public class MentorDAO {
     	mapper.updateMentorById(vo.getUserId());
     }
     
+    public List<MentorVO> topMentor6() {
+    	return mapper.topMentor6();
+    }
     public List<MentorVO> getMentorListBymap(Map map){
     	return mapper.getMentorListBymap(map);
     }

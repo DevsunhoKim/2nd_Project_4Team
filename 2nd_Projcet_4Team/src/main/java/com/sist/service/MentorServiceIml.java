@@ -23,7 +23,7 @@ public class MentorServiceIml implements MentorService{
 	public void enrollMentor(MentorVO vo) {
     	dao.enrollMentor(vo);
     }
-
+    
 	@Override
 	public List<MentorVO> getMentorListBymap(int page,String selectedVal,String searchWord,String job,String filter,String userId) {
 		int rowSize=8;
@@ -100,4 +100,5 @@ public class MentorServiceIml implements MentorService{
         dao.insertMentoring(vo); 
         dao.increaseRevCnt(mno);
 	}
+
 }
