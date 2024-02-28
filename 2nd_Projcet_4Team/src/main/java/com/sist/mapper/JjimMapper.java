@@ -37,10 +37,10 @@ public interface JjimMapper {
 	@Update("UPDATE mentor SET follower=follower-1 WHERE mno=#{mno}")
 	public void MentorJjimUpdateMinus(int mno);
 	
-	@Update("UPDATE mentor SET like_count=like_count+1 WHERE cno=#{cno}")
+	@Update("UPDATE COMPANY SET like_count=like_count+1 WHERE cno=#{cno}")
 	public void companyJjimUpdate(int cno);
 
-	@Update("UPDATE mentor SET like_count=like_count-1 WHERE cno=#{cno}")
+	@Update("UPDATE COMPANY SET like_count=like_count-1 WHERE cno=#{cno}")
 	public void companyJjimUpdateMinus(int cno);
 	
 	/*

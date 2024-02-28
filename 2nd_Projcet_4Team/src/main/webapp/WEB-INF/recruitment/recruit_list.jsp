@@ -170,7 +170,12 @@
                   <span class="recruit-date">~ {{rvo.end_date}}</span>
                 </div>
               </a>
-              <button type="button" class="recruit-btn recruit-like-btn">
+              <button v-if="rvo.likeState" type="button" class="recruit-btn recruit-like-btn" @click="likeDelete(rvo.cno)">
+                <figure class="recruit-icon">
+                  <img class="width-100" src="https://cdn-icons-png.flaticon.com/128/10925/10925481.png" alt="관심 공고 취소">
+                </figure>
+              </button>
+              <button v-else type="button" class="recruit-btn recruit-like-btn" @click="like(rvo.cno)" @click="like(rvo.cno)">
                 <figure class="recruit-icon">
                   <img class="width-100" src="https://cdn-icons-png.flaticon.com/512/4847/4847183.png" alt="관심 공고 추가">
                 </figure>
@@ -222,6 +227,8 @@ let recruitmentListApp=Vue.createApp({
 			endPage:0, // 페이지네이션 끝
 			sortBy: 'rno',
 			rowSize: 12,
+			cateno:4,
+			userId:'${sessionScope.userId}'
 		}
 	},
 	mounted(){
@@ -330,6 +337,43 @@ let recruitmentListApp=Vue.createApp({
 		pageChange(page){
 			this.curpage=page
 			this.dataRecv()
+		},
+		like(no){
+			if(this.userId==null || this.userId=='')
+      	    {
+      	        alert("로그인 후 가능합니다.");  
+      	        location.href="../member/login.do"
+      	    }
+        	 else{
+        		 axios.get('../jjim/jjim_ok.do',{
+     		    	params:{
+     		    		userId:this.userId,
+     	    			no:no,
+     	    			cateno:this.cateno
+     		    	}
+     		    }).then(response=>{
+     		    	if(response.data>0)
+     		    	{
+     		    		alert('관심기업으로 등록되었습니다.') 
+     		    		this.dataRecv();
+     		    	}
+     		    })
+        	 }
+		},
+		likeDelete(no){
+			axios.get('../jjim/jjim_delete.do',{
+		    	params:{
+		    		userId:this.userId,
+	    			no:no,
+	    			cateno:this.cateno
+		    	}
+		    }).then(response=>{
+		    	if(response.data==0)
+		    	{
+		    		alert('관심기업 등록이 취소되었습니다.')
+		    		this.dataRecv();
+		    	}
+		    })
 		}
 	}
 }).mount('#recruitmentListApp')
