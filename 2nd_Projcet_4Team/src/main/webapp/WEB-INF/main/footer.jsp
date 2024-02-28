@@ -27,7 +27,7 @@
               <span>개인정보처리방침</span>
             </a>
           </li>
-          <li class="footer-menuitem">
+<!--           <li class="footer-menuitem">
             <a href="javascript:void(0)">
               <span>푸터메뉴1</span>
             </a>
@@ -36,7 +36,7 @@
             <a href="javascript:void(0)">
               <span>푸터메뉴2</span>
             </a>
-          </li>
+          </li> -->
         </ul>
         <ul class="footer-snslist">
           <li class="footer-snsitem">

@@ -205,13 +205,15 @@
 .recruitment .company-name{overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all;}
 .recruitment .recruit-info{display: flex; justify-content: space-between; align-items: center; gap: 1rem; width: 70%;}
 .recruitment .recruit-tit{width: 50%; font-weight: 500; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all;}
-.recruitment .recruit-career{width: 25%; font-size: 1.4rem; color: #666; white-space: nowrap;}
-.recruitment .recruit-education{width: 25%; font-size: 1.4rem; color: #666; white-space: nowrap;}
+.recruitment .recruit-career{width: 25%; font-size: 1.4rem; color: #666; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all;}
+.recruitment .recruit-education{width: 25%; font-size: 1.4rem; color: #666; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all;}
 @media (max-width: 1366px) {
  .recruitment .container-md{padding: 0 1.5rem;}
 }
 @media (max-width: 767px){
- .recruitment .recruit-list li a{flex-direction: column; align-items: flex-start;}
+ .recruitment .recruit-list li a{flex-direction: column; align-items: flex-start; gap: 1rem;}
+ .recruitment .company-info{width: 100%;}
+ .recruitment .recruit-info{width: 100%;}
 }
 
 /* basic-N4 [hoLsb2fI8R] */
