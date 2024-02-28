@@ -78,7 +78,7 @@
 	            </a>
               <!-- 멘토컬럼이 1이면 -->
               <div class="accordset-body">
-	              <a href="../main/main.do">
+	              <a href="../mypage/mentor.do">
 	                <div class="accordset-content">
 	                  <div class="checkset">
 	                    <span class="checkset-text">멘토정보수정</span>
@@ -93,7 +93,7 @@
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-	                <a href="../main/main.do">
+	                <a href="../mypage/mentor_reserve.do">
 	                  <div class="radioset">
 	                    <span class="radioset-text">멘토링 예약</span>
 	                  </div>
