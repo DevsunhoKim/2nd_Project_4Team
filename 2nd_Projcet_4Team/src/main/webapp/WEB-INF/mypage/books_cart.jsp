@@ -79,7 +79,6 @@
                         <thead class="thead-light thead-border-top">
                             <tr>
                                 <th scope="col">상품정보</th>
-                                <th scope="col">단가</th>
                                 <th scope="col">수량</th>
                                 <th scope="col">총 금액</th>
                             </tr>
@@ -98,11 +97,12 @@
                                             <br>
                                             <br>
                                             <button @click="processPayment(item.no)" class="btnset btnset-sm" style="float:left;margin-top:50px">구매하기</button>
-
+										    <button @click="deleteCartItem(item.rno)" class="btnset btnset-sm" style="float:left;margin-top:50px">삭제하기</button>
+											
                                         </h5>
                                     </div>
                                 </td>
-                                <td><strong>{{ item.bookPrice }} 원</strong></td>
+                                
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.totalPrice }} 원</td>
                             </tr>
@@ -135,7 +135,21 @@ const cartApp = Vue.createApp({
     	    },
     	    processPayment(no) {
     	        window.location.href = '../books/payment.do?no='+no ; // 동적으로 no 값이 URL에 포함되도록 설정
+    	    },
+    	    deleteCartItem(rno) {
+    	        console.log('삭제하려는 항목의 rno:', rno); // rno 값을 콘솔에 출력
+
+    	        axios.get('books_cart_delete.do?rno='+rno)
+    	            .then(response => {
+    	                alert('장바구니 항목이 삭제되었습니다.');
+    	                this.fetchCartItems(); // 장바구니 목록을 다시 불러옴
+    	            })
+    	            .catch(error => {
+    	                console.error('장바구니 항목 삭제 오류:', error);
+    	                alert('장바구니 항목 삭제 중 오류가 발생했습니다.');
+    	            });
     	    }
+
     },
 }).mount('#cartApp');
 </script>

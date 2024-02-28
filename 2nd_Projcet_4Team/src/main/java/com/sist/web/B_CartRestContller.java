@@ -46,6 +46,7 @@ public class B_CartRestContller {
     public void cart_delete_vue(int rno)
     {
 		bService.deleteCartItem(rno);
+		
     }
 	// 구매
 	
