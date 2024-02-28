@@ -23,5 +23,6 @@ public class MentorVO {
 	private double score_avg;
 	private String userId,job,career,department,img,title,intro,keyword,mainImg;
 	private String[] keywords;
+	private Boolean followstate;
 	private MemberVO mvo = new MemberVO();
 }

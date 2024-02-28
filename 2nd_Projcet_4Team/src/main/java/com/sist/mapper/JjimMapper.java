@@ -30,6 +30,19 @@ public interface JjimMapper {
 	@Update("UPDATE studyRoom SET jjim=jjim-1 WHERE no=#{no}")
 	public void studyRoomJjimUpdateMinus(int no);
 	
+	
+	@Update("UPDATE mentor SET follower=follower+1 WHERE mno=#{mno}")
+	public void MentorJjimUpdate(int mno);
+
+	@Update("UPDATE mentor SET follower=follower-1 WHERE mno=#{mno}")
+	public void MentorJjimUpdateMinus(int mno);
+	
+	@Update("UPDATE COMPANY SET like_count=like_count+1 WHERE cno=#{cno}")
+	public void companyJjimUpdate(int cno);
+
+	@Update("UPDATE COMPANY SET like_count=like_count-1 WHERE cno=#{cno}")
+	public void companyJjimUpdateMinus(int cno);
+	
 	/*
 	 *  SELECT s.no,poster,name
 		FROM studyRoom s,codev_jjim j
@@ -54,7 +67,7 @@ public interface JjimMapper {
 	})
 	@Select("SELECT mno,img,m.nickname "
 			+ "		FROM MENTOR mt,codev_jjim j,MEMBER m "
-			+ "		WHERE mt.MNO=j.no AND j.USERID=m.USERID AND CATENO=1 AND j.userId=#{userId} ORDER BY j.no DESC")
+			+ "		WHERE mt.MNO=j.no AND mt.USERID=m.USERID AND CATENO=1 AND j.userId=#{userId} ORDER BY j.no DESC")
 	public List<MentorVO> mentorJjim(String userId);
 	
 	@Select("SELECT cno,logo,name "

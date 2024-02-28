@@ -63,12 +63,12 @@
 </style>
 </head>
 <body>
-<div id="cartApp"  >
-    <div class="hooms-N43" >
-        <div class="contents-inner" style="margin-top: -17rem" >
-            <div class="contents-container container-md" style="width: 110rem">
+<div id="cartApp">
+    <div class="hooms-N43">
+        <div class="contents-inner" style="margin-top: -17rem">
+            <div class="contents-container container-md" style="width: 100rem">
                 <h2 style="font-size:40px;text-align: center;margin-bottom:45px;font-weight: 600;margin-top:20px">장바구니</h2>
-                <div class="tableset tableset-receipt tableset-text-top" >
+                <div class="tableset tableset-receipt tableset-text-top">
                     <table class="tableset-table table">
                         <colgroup>
                             <col>
@@ -93,31 +93,18 @@
                                     <div class="tableset-group" style="text-align: center">
                                         <h5 class="p1">
                                             <br>
-                                            <a :href="'../books/detail.do?no=' + item.no">
                                             {{ item.title }}
-                                            </a>
                                             <br>
                                             <br>
                                             <br>
-                                            <a :href="'../books/detail.do?no=' + item.no" class="btnset btnset-sm" style="float:left;margin-top:50px">둘러보기</a>
+                                            <button @click="processPayment(item.no)" class="btnset btnset-sm" style="float:left;margin-top:50px">구매하기</button>
 
                                         </h5>
                                     </div>
                                 </td>
-                                <td>
-                                   <strong>{{ (item.price) }} 원</strong>
-
-                                </td>
-                             <td>
-    <div class="number-control">
-        <div class="number-left" data-content="-" @click="decreaseQuantity(item)"></div>
-        <input type="text" class="number-quantity" v-model.number="item.quantity" readonly>
-        <div class="number-right" data-content="+" @click="increaseQuantity(item)"></div>
-    </div>
-</td>
-                                                     <td class="tableset-dark">
-                                    {{ item.totalPrice }} 원
-                                </td>
+                                <td><strong>{{ item.bookPrice }} 원</strong></td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.totalPrice }} 원</td>
                             </tr>
                         </tbody>
                     </table>
@@ -126,7 +113,6 @@
         </div>
     </div>
 </div>
-
 <script>
 const cartApp = Vue.createApp({
     data() {
@@ -138,26 +124,24 @@ const cartApp = Vue.createApp({
         this.fetchCartItems();
     },
     methods: {
-        fetchCartItems() {
-            axios.get('books_cart_list.do')
-                .then(response => {
-                	console.log(response); // 전체 응답을 콘솔에 출력
-                    console.log(response.data); // 응답 데이터만 콘솔에 출력
-                    this.cartItems = response.data.list; // 서버로부터 받은 장바구니 목록을 cartItems에 저장
-                })
-        },
-        increaseQuantity(item) {
-            item.quantity++;
-            // 필요한 경우 서버에 변경사항을 업데이트하는 로직 추가
-        },
-        decreaseQuantity(item) {
-            if (item.quantity > 1) {
-                item.quantity--;
-                // 필요한 경우 서버에 변경사항을 업데이트하는 로직 추가
-            }
-        }
+    	  fetchCartItems() {
+    	        axios.get('books_cart_list.do')
+    	            .then(response => {
+    	                this.cartItems = response.data.list; // 서버로부터 받은 장바구니 목록을 cartItems에 저장
+    	            })
+    	            .catch(error => {
+    	                console.error('장바구니 목록 가져오기 실패:', error);
+    	            });
+    	    },
+    	    processPayment(no) {
+    	        window.location.href = '../books/payment.do?no='+no ; // 동적으로 no 값이 URL에 포함되도록 설정
+    	    }
     },
 }).mount('#cartApp');
 </script>
+
+<!-- HTML 파일의 <head> 태그 내에 추가 -->
+ <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
 </body>
 </html>

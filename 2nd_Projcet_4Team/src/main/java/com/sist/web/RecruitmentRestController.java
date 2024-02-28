@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.service.JjimService;
 import com.sist.service.MemberService;
 import com.sist.service.RecruitmentService;
 import com.sist.vo.ApplyVO;
 import com.sist.vo.CompanyVO;
 import com.sist.vo.InterviewVO;
+import com.sist.vo.JjimVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecruitVO;
 
@@ -35,20 +37,41 @@ public class RecruitmentRestController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private JjimService jService;
 
 	// 채용 공고 목록 출력
 	@GetMapping(value="recruit_list_vue.do", produces="text/plain;charset=UTF-8")
-	public String recruit_list_vue(@RequestParam("page") int page, Model model, @RequestParam("start") String startStr, @RequestParam("end") String endStr, @RequestParam("sortBy") String sortBy) throws Exception {
+	public String recruit_list_vue(@RequestParam("page") int page, Model model, @RequestParam("start") String startStr, @RequestParam("end") String endStr, @RequestParam("sortBy") String sortBy,HttpSession session) throws Exception {
 		int rowSize=12;
 		
 		int start = Integer.parseInt(startStr);
-    int end = Integer.parseInt(endStr);
+        int end = Integer.parseInt(endStr);
     
 		start=(rowSize*page)-(rowSize-1);
 		end=rowSize*page;
-
+		String userId=(String)session.getAttribute("userId");
 		/* List<RecruitVO> list=rService.recruitListData(start, end); */
 		List<RecruitVO> recruit_list=rService.recruitSortListData(start, end, sortBy);
+		for(RecruitVO vo:recruit_list)
+		{
+			JjimVO jvo=new JjimVO();
+			jvo.setCateno(4);
+			jvo.setNo(vo.getCno());
+			if(userId==null)
+				userId="";
+			jvo.setUserId(userId);
+			int count=jService.jjimCount(jvo);
+			if(count>0)
+			{
+				vo.setLikeState(true);
+			}
+			else {
+				vo.setLikeState(false);
+			}
+			
+		}
     model.addAttribute("recruit_list", recruit_list);
 		
 		ObjectMapper mapper=new ObjectMapper();

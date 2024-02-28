@@ -367,3 +367,15 @@
     color: #872ed2;
 }
 
+#followDelete
+{
+	background-color: white;
+	color: #7918F2;
+	border: 1px solid #7918F2;
+}
+#followDelete:hover
+{
+	background-color: #7918F2;
+	color: white;
+	transition: all 0.3s ease-in-out;
+}

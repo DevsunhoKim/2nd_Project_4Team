@@ -1,7 +1,10 @@
 package com.sist.service;
 
 import java.util.List;
-import com.sist.vo.*;
+
+import com.sist.vo.BooksVO;
+import com.sist.vo.MentorVO;
+import com.sist.vo.RecruitVO;
 // MentorDAO, RecruitDAO, BookDAO
 public interface MainService {
 	public List<MentorVO> topMentor6();

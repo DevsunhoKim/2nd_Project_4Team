@@ -31,7 +31,18 @@ public class JjimRestController {
 		vo.setUserId(userId);
 		vo.setCateno(cateno);
 		vo.setNo(no);
-		service.jjimInsert(vo);
+		if(cateno==2)
+		{
+			service.jjimInsert(vo);
+		}
+		else if(cateno==1)
+		{
+			service.MentorjjimInsert(vo);
+		}
+		else if(cateno==4)
+		{
+			service.companyjimInsert(vo);
+		}
 		int count=service.jjimCount(vo);
 		System.out.println(count);
 		return count;
@@ -43,7 +54,18 @@ public class JjimRestController {
 		vo.setUserId(userId);
 		vo.setCateno(cateno);
 		vo.setNo(no);
-		service.jjimDelete(vo);
+		if(cateno==2)
+		{
+			service.jjimDelete(vo);
+		}
+		if(cateno==1)
+		{
+			service.MentorjjimDelete(vo);
+		}
+		if(cateno==4)
+		{
+			service.companyjjimDelete(vo);
+		}
 		int count=service.jjimCount(vo);
 		return count;
 	}

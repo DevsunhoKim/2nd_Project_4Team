@@ -89,11 +89,11 @@
                 <span>1:1 문의</span>
               </a>
             </li>
-            <li class="tabset-item">
+            <!-- <li class="tabset-item">
               <a class="tabset-link" href="javascript:void(0)">
                 <span>REVIEW</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

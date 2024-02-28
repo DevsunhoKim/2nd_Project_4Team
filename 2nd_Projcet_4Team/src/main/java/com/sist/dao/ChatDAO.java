@@ -1,13 +1,15 @@
 package com.sist.dao;
-import java.util.*;
-import java.sql.*;
-import com.sist.vo.*;
-import com.sist.chat.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.sist.vo.ChatVO;
 public class ChatDAO {
   private Connection conn;
   private PreparedStatement ps;
   private final String URL="jdbc:oracle:thin:@211.238.142.113:1521:XE";
-  
+
   public ChatDAO()
   {
 	  try
@@ -47,7 +49,7 @@ public class ChatDAO {
 		  rs.close();
 	  }catch(Exception ex)
 	  {
-		  ex.printStackTrace();  
+		  ex.printStackTrace();
       }
 	  finally
 	  {

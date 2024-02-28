@@ -14,5 +14,5 @@ public interface B_CartService {
 	public B_CartVO pay_ok(int rno);
 	public int findMaxRno();
 	public void updateBuyCnt(int no, int quantity);
-	public List<B_CartVO> findCartItemsByuserId2(String userId);
+	public List<B_CartVO> findCartItemsWithBookPriceByUserId(String userId);
 }

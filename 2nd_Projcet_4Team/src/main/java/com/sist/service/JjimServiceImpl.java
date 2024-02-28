@@ -25,5 +25,25 @@ public class JjimServiceImpl implements JjimService{
 		// TODO Auto-generated method stub
 		dao.jjimDelete(vo);
 	}
+	@Override
+	public void MentorjjimInsert(JjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.MentorjjimInsert(vo);
+	}
+	@Override
+	public void MentorjjimDelete(JjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.MentorjjimDelete(vo);
+	}
+	@Override
+	public void companyjimInsert(JjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.companyjimInsert(vo);
+	}
+	@Override
+	public void companyjjimDelete(JjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.companyjjimDelete(vo);
+	}
 
 }

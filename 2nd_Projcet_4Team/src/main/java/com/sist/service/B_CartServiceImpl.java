@@ -59,14 +59,17 @@ public class B_CartServiceImpl implements B_CartService{
 	@Override
 	public void updateBuyCnt(int no, int quantity) {
 		// TODO Auto-generated method stub
+		dao.updateBuyCnt(no,quantity); 
 		
 	}
 
 	@Override
-	public List<B_CartVO> findCartItemsByuserId2(String userId) {
+	public List<B_CartVO> findCartItemsWithBookPriceByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return dao.findCartItemsByuserId2(userId);
 	}
+
+	
 
 	
 

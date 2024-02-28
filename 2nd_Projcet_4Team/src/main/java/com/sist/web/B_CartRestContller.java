@@ -21,7 +21,7 @@ public class B_CartRestContller {
 	@GetMapping(value="mypage/books_cart_list.do", produces = "application/json;charset=UTF-8")
     public String cart_list_vue(HttpSession session) throws Exception {
         String userId = (String) session.getAttribute("userId");
-        List<B_CartVO> list = bService.findCartItemsByUserId(userId);
+        List<B_CartVO> list = bService.findCartItemsWithBookPriceByUserId(userId);
         Map map = new HashMap();
         map.put("list", list);
         map.put("userId", userId);
@@ -32,14 +32,21 @@ public class B_CartRestContller {
     }
 	// 수정 
 	@PostMapping(value="mypage/books_cart_update.do", produces = "application/json;charset=UTF-8")
-    public String cart_update_vue(HttpSession session) throws Exception {
+    public String cart_update_vue(B_CartVO vo,HttpSession session) throws Exception {
+		 String userId = (String) session.getAttribute("userId");
+		  vo.setUserId(userId);
+		  
+		  bService.updateCartItem(vo);
         
-
-        return "";
+		  return "";
     }
 	
 	// 삭제
-	
+	@GetMapping(value="mypage/books_cart_delete.do", produces = "application/json;charset=UTF-8")
+    public void cart_delete_vue(int rno)
+    {
+		bService.deleteCartItem(rno);
+    }
 	// 구매
 	
 	

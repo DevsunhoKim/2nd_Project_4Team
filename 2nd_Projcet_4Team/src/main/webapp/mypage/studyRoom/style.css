@@ -82,3 +82,30 @@
 .jjimicon{
 	width: 2.5rem;
 }
+.mentorjjim .swiper-slide {
+    width: calc(100% / 5 - 3rem);
+}
+.mentorjjim .cardset .cardset-tit,.companyjjim .cardset .cardset-tit{
+    font-size: 2rem;
+}
+.companyjjim .swiper-slide {
+    width: calc(100% / 7 - 3rem);
+}
+.companyjjim .cardset .cardset-tit,.companyjjim .cardset .cardset-tit{
+    font-size: 1.2rem;
+}
+.companyjjim .cardset-figure {
+    height: 11rem;
+}
+.width-100{
+	filter: invert(17%) sepia(83%) saturate(6431%) hue-rotate(267deg) brightness(92%) contrast(107%);
+	width: 2rem;
+}
+.companyjjim .jjimname {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.roomjjim .jjimicon:hover{
+	filter: invert(17%) sepia(83%) saturate(6431%) hue-rotate(267deg) brightness(92%) contrast(107%);
+}

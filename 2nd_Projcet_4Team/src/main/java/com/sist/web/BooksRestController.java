@@ -84,7 +84,7 @@ public class BooksRestController {
        String userId = (String)session.getAttribute("userId");
 
        ObjectMapper mapper = new ObjectMapper();
-       Map<String, Object> resultMap = new HashMap<>();
+       Map resultMap = new HashMap();
        resultMap.put("bookDetail", vo); // 책의 상세 정보를 Map에 추가
        resultMap.put("reviews", reviews); // 리뷰 목록을 Map에 추가
        resultMap.put("sessionId", userId); // 사용자 ID를 Map에 추가 (로그인하지 않은 경우 null일 수 있음)
@@ -177,7 +177,7 @@ public class BooksRestController {
            // 사용자 ID 등 필요한 추가 정보 처리
            String userId = p.getName();
 
-           Map<String, Object> resultMap = new HashMap<>();
+           Map resultMap = new HashMap();
            resultMap.put("detail_data", vo);
            resultMap.put("sessionId", userId);
            // resultMap.put("sessionId", userId); // 필요한 경우 추가
@@ -194,9 +194,10 @@ public class BooksRestController {
               String userId = p.getName(); // 현재 로그인한 사용자의 ID를 가져옴
               vo.setUserId(userId); // B_CartVO 객체에 사용자 ID 설정
               
-              cService.updateBuyCnt(bvo.getNo(), bvo.getBuy_cnt());
-              cService.payCartItem(vo); // 서비스를 통해 구매 정보 처리
-              
+              cService.updateBuyCnt(vo.getNo(), vo.getQuantity());
+              cService.payCartItem(vo); 
+              System.out.println(vo.getQuantity());
+              System.out.println(vo.getNo());
               return "{\"status\":\"success\"}"; // 성공 응답
           } catch(Exception e) {
               e.printStackTrace();
