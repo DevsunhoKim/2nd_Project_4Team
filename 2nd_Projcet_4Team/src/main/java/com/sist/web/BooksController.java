@@ -1,5 +1,8 @@
 package com.sist.web;
 import java.security.Principal;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,12 +62,23 @@ public class BooksController {
 	    return "books/payment_ok";
 	}
 
+    // 구매목록 출력
+	@GetMapping("mypage/books_paid")
+	public String books_paid_list(Model model,Principal p)
+	{
+		String userId = p.getName();		
+		List<B_CartVO> list= cService.findCartItemsByUserId(userId);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("userId",userId);
+		
+		return "mypage/books_paid";
+	}
 
 
 
-
-	// 메인화면에 출력할 데이터 public List<BooksVO> mainBooks() 구현 main-content.jsp 에 구현
-
+	
+	
 
 }
 

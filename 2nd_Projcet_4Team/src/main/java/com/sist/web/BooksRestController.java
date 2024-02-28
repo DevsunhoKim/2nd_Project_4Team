@@ -203,6 +203,18 @@ public class BooksRestController {
               return "{\"status\":\"error\"}"; // 오류 응답
           }
       }
+      
+      @PostMapping(value="cart_ok.do", produces = "text/plain;charset=UTF-8")
+      public String cart_ok(@RequestBody B_CartVO vo, Principal p, BooksVO bvo) {
+         
+              String userId = p.getName(); // 현재 로그인한 사용자의 ID를 가져옴
+              vo.setUserId(userId); // B_CartVO 객체에 사용자 ID 설정
+              
+              cService.insertCartItem(vo);
+              
+              return ""; // 성공 응답
+          
+      }
 
 
       @GetMapping(value="pay_info_ok.do", produces = "application/json;charset=UTF-8")
