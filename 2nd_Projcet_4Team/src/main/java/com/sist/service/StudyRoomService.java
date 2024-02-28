@@ -25,6 +25,7 @@ public interface StudyRoomService {
 
    public void StudyRoomTimeUpdate(StudyRoomTimeVO vo);
    public StudyRoomAskVO StudyRoomAskReturnData(Map map);
+   public int StudyRoomReserveFindMaxNo(String userId);
    
    //1:1문의
    public void StudyRoomAskInsert(StudyRoomAskVO vo);

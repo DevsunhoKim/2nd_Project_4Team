@@ -1,5 +1,6 @@
 package com.sist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -88,5 +89,38 @@ public interface MemberMapper {
     @Select("SELECT userPwd FROM member WHERE userId=#{userId}")
     public String pwdCk(String userId); // 비밀번호 확인
 
+    /*------ 회원 탈퇴 ------*/
+    @Delete("DELETE FROM studyRoom_reserve WHERE userId = #{userId}")
+    public void deleteSRoomRevById(String userId);
+    
+    @Delete("DELETE FROM studyRoom_ASK WHERE userId = #{userId}")
+	public void deleteSRoomAskById(String userId);
+	
+	@Delete("DELETE FROM mentor_reserve WHERE userId = #{userId}")
+	public void deleteMentorRevById(String userId);
+	
+	@Delete("DELETE FROM mentor WHERE userId = #{userId}")
+	public void deleteMentorById(String userId);
+
+	@Delete("DELETE FROM review1 WHERE userId = #{userId}")
+	public void deleteReview1ById(String userId);
+
+	@Delete("DELETE FROM b_cart WHERE userId = #{userId}")
+	public void deleteB_cartById(String userId);
+
+	@Delete("DELETE FROM apply WHERE userId = #{userId}")
+	public void deleteApplyById(String userId);
+
+	@Delete("DELETE FROM interview WHERE userId = #{userId}")
+	public void deleteInterviewById(String userId);
+	
+	@Delete("DELETE FROM codev_jjim WHERE userId = #{userId}")
+	public void deleteCodevJjimById(String userId);
+
+	@Delete("DELETE FROM authority WHERE userId = #{userId}")
+	public void deleteAuthorityById(String userId);
+
+	@Delete("DELETE FROM member WHERE userId = #{userId}")
+	public void deleteMemberById(String userId);
 
 }

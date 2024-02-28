@@ -31,7 +31,9 @@ public interface StudyRoomReserveMapper {
    @Update("UPDATE studyRoom_time SET ischeck=1 WHERE time=#{time} AND month=#{month} AND day=#{day} AND sno=#{sno}")
    public void StudyRoomTimeUpdate(StudyRoomTimeVO vo);
    
-   
+   @Select("SELECT MAX(no) FROM studyRoom_reserve WHERE userId=#{userId}")
+   public int StudyRoomReserveFindMaxNo(String userId);
+ 
    //관리자 페이지
    @Select("SELECT no,sno,amount,price,userId,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
    		+ "FROM (SELECT no,sno,amount,price,userId,regdate,rownum as num "

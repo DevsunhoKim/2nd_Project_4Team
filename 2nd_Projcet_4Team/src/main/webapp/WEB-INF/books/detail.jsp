@@ -257,7 +257,7 @@ textarea {
 			  <a class="btnset" href="javascript:void(0)" @click="purchase">구매하기</a>
 			</div>
             <div class="contents-btn">
-              <a class="btnset" href="javascript:void(0)">장바구니 담기</a>
+                <a href="javascript:void(0)" class="btnset" @click="addToCart">장바구니 담기</a>
             </div>
           </div>
         </div>
@@ -426,6 +426,38 @@ let booksDapp = Vue.createApp({
         console.error("책 상세 정보 및 리뷰 목록 가져오기 실패:", error);
       });
     },
+    addToCart() {
+        if (!this.sessionId) {
+          alert("로그인이 필요합니다.");
+          return;
+        }
+
+        const cartItem = {
+          userId: this.sessionId, // 로그인한 사용자의 ID
+          no: this.detail_data.no, // 책 번호
+          quantity: this.quantity, // 선택한 수량
+          totalPrice: this.totalPrice, // 계산된 총 가격
+          addr: "기본 주소", // 배송지 주소, 사용자로부터 입력받거나 기본값 사용
+          title: this.detail_data.title, // 책 제목
+          poster: this.detail_data.poster // 책 표지 이미지 URL
+        };
+
+        axios.post('../books/cart_ok.do', cartItem)
+        .then(response => {
+            // 장바구니 담기 성공 메시지
+            const moveToCart = confirm("장바구니에 추가되었습니다. 장바구니 페이지로 이동하시겠습니까?");
+            if (moveToCart) {
+              // '예'를 선택한 경우, 장바구니 페이지로 리다이렉트
+              window.location.href = '../mypage/books_cart.do'; // 장바구니 페이지의 URL로 변경해주세요
+            }
+            // '아니오'를 선택한 경우, 현재 페이지에 머무름
+          })
+          .catch(error => {
+            console.error("장바구니 추가 실패:", error);
+            alert("장바구니 추가에 실패했습니다.");
+          });
+      },
+
     purchase() {
         if (!this.sessionId) {
           alert("로그인이 필요한 메뉴입니다.");

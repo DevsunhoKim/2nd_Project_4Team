@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.MailSender.MailSender;
 import com.sist.service.StudyRoomServiceImpl;
 import com.sist.vo.StudyRoomAskVO;
 import com.sist.vo.StudyRoomReserveVO;
@@ -27,6 +28,8 @@ import com.sist.vo.StudyRoomVO;
 public class StudyRoomRestController {
    @Autowired
    private StudyRoomServiceImpl service;
+   @Autowired
+   private MailSender ms;
 
    @GetMapping(value="list_vue.do",produces = "text/plain;charset=UTF-8")
       public String room_list() throws Exception
@@ -93,10 +96,10 @@ public class StudyRoomRestController {
        return json;
    }
    @PostMapping(value="reserve_ok_vue.do", produces = "text/plain;charset=UTF-8")
-   public String room_reserve_ok(int sno,int price,int month,int day, String[] times,HttpSession session,Principal p)
+   public String room_reserve_ok(int sno,int price,int month,int day, String[] times,HttpSession session,Principal p) throws Exception
    {
 
-	   String userId=p.getName();
+	   String userId=(String)session.getAttribute("userId");
 	   for(String t:times)
 	   {
 		   System.out.println(t);
@@ -140,6 +143,8 @@ public class StudyRoomRestController {
 		   srtvo.setTime(t);
 		   service.StudyRoomTimeUpdate(srtvo);
 	   }
+	   int mailno=service.StudyRoomReserveFindMaxNo(userId);
+	   ms.ReserveMailSend(mailno, userId);
 	   return "OK";
    }
 

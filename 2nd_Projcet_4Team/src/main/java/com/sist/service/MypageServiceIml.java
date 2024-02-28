@@ -1,8 +1,10 @@
 package com.sist.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -46,6 +48,30 @@ public class MypageServiceIml implements MypageService{
 			res = "YES";
 		}else {
 			res = "NOPWD";
+		}
+		return res;
+	}
+	
+	@Transactional
+	@Override
+	public String member_withdraw(String userId,String pwd) {
+		String res = "";
+		String dbPwd = mDao.pwdCk(userId);
+		if(encoder.matches(pwd,dbPwd)) {
+			mDao.deleteSRoomRevById(userId);
+			mDao.deleteSRoomAskById(userId);
+			mDao.deleteMentorRevById(userId);
+			mDao.deleteMentorById(userId);
+			mDao.deleteReview1ById(userId);
+			mDao.deleteB_cartById(userId);
+			mDao.deleteApplyById(userId);
+			mDao.deleteInterviewById(userId);
+			mDao.deleteCodevJjimById(userId);
+			mDao.deleteAuthorityById(userId);
+			mDao.deleteMemberById(userId);
+			res = "YES";
+		}else {
+			res = "NO";
 		}
 		return res;
 	}

@@ -35,4 +35,14 @@ public class MypageRestController {
 		String res = service.pwdCk(userId,pwd);
 		return res;
 	}
+    
+    @PostMapping("member_withdraw_vue.do")
+	public String member_withdraw(HttpSession session,String pwd) {
+    	String userId=(String) session.getAttribute("userId");
+		String res = service.member_withdraw(userId,pwd);
+		if(res == "YES") {
+			session.invalidate();
+		}
+		return res;
+	}
 }

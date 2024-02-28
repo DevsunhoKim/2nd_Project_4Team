@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.MailSender.MailSender;
 import com.sist.dao.StudyRoomAskDAO;
 import com.sist.service.AdminpageService;
 import com.sist.service.MemberService;
@@ -30,6 +31,7 @@ public class AdminpageRestController {
 	private StudyRoomService sService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired MailSender ms;
 	//스터디룸 문의 내역
 	@GetMapping(value="admin_ask_vue.do",produces="text/plain;charset=UTF-8")
 	public String admin_ask(int page) throws Exception
@@ -82,6 +84,7 @@ public class AdminpageRestController {
 	    	revo.setGroup_id(group_id);
 	    	revo.setUserId((String)session.getAttribute("userId"));
 	    	service.StudyRoomAskReturnInsert(revo);
+	    	ms.ASKReturnMailSend(ano);
 	    	result="ok";
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -183,7 +183,7 @@
                 <tr>
                     <td class="text-right" width=60%>
                         <h3 class="text-left" :class="{'d-none':selectedTime.length<2}">총 금액:&nbsp;&nbsp;
-                            <b class="selectedInfo">{{ totalAmount | currency }}</b>원
+                            <b class="selectedInfo">{{ formatPrice(totalAmount) }}</b>원
                         </h3>
                     </td>
                 </tr>
@@ -254,13 +254,6 @@ let reserveApp=Vue.createApp({
 		      /* userId:'${sessionScope.userId}' */
     	}
 	},
-	filters: {
-		// 숫자 형식화 출력
-        currency: function (value) {
-            let num = new Number(value);
-            return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-        }
-    },
 	mounted(){
 		this.init()
 		this.workingHour()
@@ -497,7 +490,9 @@ let reserveApp=Vue.createApp({
 						 alert("예약에 실패했습니다. 다시 시도해주세요.")
 				     }
 				 })  
-			   }
+			   },formatPrice(price) {
+		            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		        }
 		  
 	}
 }).mount("#reserveApp")

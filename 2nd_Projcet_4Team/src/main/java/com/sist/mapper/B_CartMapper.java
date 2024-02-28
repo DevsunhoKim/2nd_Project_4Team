@@ -12,8 +12,8 @@ import com.sist.vo.B_CartVO;
 
 public interface B_CartMapper {
 
-    // 사용자별 장바구니 항목 조회
-    @Select("SELECT * FROM b_cart WHERE userId = #{userId}")
+    // 사용자별 구매완료 항목 조회
+    @Select("SELECT rno,userId,no,quantity,totalPrice,title,poster,TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday FROM b_cart WHERE userId = #{userId} AND status = 'Y' ORDER BY regdate DESC")
     public List<B_CartVO> findCartItemsByuserId(String userId);
 
     // 장바구니 항목 업데이트 (예: 수량 변경)
@@ -22,7 +22,7 @@ public interface B_CartMapper {
 
     // 장바구니 추가 (상태 기본값 'N')
     @Insert("INSERT INTO b_cart(rno, userId, no, quantity, totalPrice, isSale, regdate, status,addr,title,poster) " +
-            "VALUES(b_cart_rno_seq.NEXTVAL, #{userId}, #{no}, #{quantity}, #{totalPrice}, 0 , SYSDATE, 'N',#{addr},#{title},#{poster})")
+            "VALUES(b_cart_rno_seq.NEXTVAL, #{userId}, #{no}, #{quantity}, #{totalPrice}, 0 , SYSDATE, 'N', NULL ,#{title},#{poster})")
     public void insertCartItem(B_CartVO vo);
 
     // 장바구니 항목 삭제

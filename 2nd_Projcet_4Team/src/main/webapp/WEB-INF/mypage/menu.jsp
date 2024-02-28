@@ -86,7 +86,7 @@ width: 100%;
 	            </a>
               <!-- 멘토컬럼이 1이면 -->
               <div class="accordset-body">
-	              <a href="../main/main.do">
+	              <a href="../mypage/mentor.do">
 	                <div class="accordset-content">
 	                  <div class="checkset">
 	                    <span class="checkset-text">멘토정보수정</span>
@@ -101,7 +101,7 @@ width: 100%;
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-	                <a href="../main/main.do">
+	                <a href="../mypage/mentor_reserve.do">
 	                  <div class="radioset">
 	                    <span class="radioset-text">멘토링 예약</span>
 	                  </div>
@@ -161,7 +161,7 @@ width: 100%;
                 </div>
               </div>
             </div>
-            <a href="../main/main.do">
+            <a href="../mypage/member_withdraw.do">
             <div class="accordset-item">
               <div class="">
                 <button class="accordset-button btn" type="button">회원탈퇴</button>
