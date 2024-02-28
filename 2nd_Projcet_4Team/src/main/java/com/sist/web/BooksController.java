@@ -74,6 +74,13 @@ public class BooksController {
 		
 		return "mypage/books_paid";
 	}
+	
+	@GetMapping("mypage/books_cart")
+	public String books_cart_list()
+	{
+		
+		return "mypage/books_cart";
+	}
 
 
 

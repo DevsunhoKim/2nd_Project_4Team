@@ -120,12 +120,12 @@ width: 100%;
                 <div class="accordset-content">
                   <a href="../mypage/books_cart.do">
 	                  <div class="radioset">
-	                    <span class="checkset-text">장바구니</span>
+	                    <span class="radioset-text">장바구니</span>
 	                  </div>
                   </a>
                   <a href="../mypage/books_paid.do">
                     <div class="radioset">
-                      <span class="checkset-text">구매내역</span>
+                      <span class="radioset-text">구매내역</span>
                     </div>
                   </a>
                 </div>
