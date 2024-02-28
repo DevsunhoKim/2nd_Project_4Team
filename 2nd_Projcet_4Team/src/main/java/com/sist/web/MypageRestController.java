@@ -81,6 +81,15 @@ public class MypageRestController {
 		return json;
 	}
     
+    	@GetMapping(value="jjim_vue.do",produces="text/plain;charset=UTF-8")
+	public String jjim(int cateno,String userId) throws Exception
+	{
+		
+		List<StudyRoomVO> list=service.studyRoomJjim(userId);
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(list);
+		return json;
+	}
     
     
 }

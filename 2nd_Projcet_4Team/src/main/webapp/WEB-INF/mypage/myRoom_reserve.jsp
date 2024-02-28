@@ -15,10 +15,6 @@
   <script src="http://code.jquery.com/jquery.js"></script>
   <script src="https://unpkg.com/vue@3"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="../studyRoom/js/setting.js"></script>
-  <script src="../studyRoom/js/template.js"></script>
-  <script src="../studyRoom/js/common.js"></script>
-  <script src="../studyRoom/js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body style="width: 100%">

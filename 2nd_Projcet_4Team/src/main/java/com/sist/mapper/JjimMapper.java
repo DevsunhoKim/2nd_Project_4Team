@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -47,6 +49,9 @@ public interface JjimMapper {
 			+ "WHERE s.NO=j.no AND CATENO=2 AND userId=#{userId} ORDER BY j.no DESC")
 	public List<StudyRoomVO> studyRoomJjim(String userId);
 	
+	@Results({
+		  @Result(column="nickname", property="mvo.nickname")
+	})
 	@Select("SELECT mno,img,m.nickname "
 			+ "		FROM MENTOR mt,codev_jjim j,MEMBER m "
 			+ "		WHERE mt.MNO=j.no AND j.USERID=m.USERID AND CATENO=1 AND j.userId=#{userId} ORDER BY j.no DESC")
