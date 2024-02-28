@@ -49,6 +49,13 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return rDao.recruitFindData(word);
 	}
 	
+	// 채용 공고 정렬
+	@Override
+	public List<RecruitVO> recruitSortListData(int start, int end, String sortBy) {
+		// TODO Auto-generated method stub
+		return rDao.recruitSortListData(start, end, sortBy);
+	}
+	
 	// 채용 공고 상세보기
 	@Override
 	public RecruitVO recuitDetailData(int rno) {
@@ -168,5 +175,4 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		// TODO Auto-generated method stub
 		iDao.interviewDelete(ino, userId);
 	}
-	
 }

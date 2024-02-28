@@ -59,30 +59,33 @@ public interface RecruitmentMapper {
 	  @Result(column="address", property="cvo.address")
 	})
 	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, "
-      + "c.logo, c.name, c.address "
-      + "FROM (SELECT * FROM (SELECT * FROM recruit ORDER BY like_count DESC) WHERE rownum <= 6) r "
-      + "JOIN company c ON r.cno = c.cno "
-      + "ORDER BY like_count DESC")
+			+ "c.logo, c.name, c.address "
+			+ "FROM recruit r "
+			+ "JOIN company c ON r.cno=c.cno "
+			+ "ORDER BY like_count DESC "
+			+ "FETCH FIRST 6 ROWS ONLY")
 	public List<RecruitVO> recruitMainData();
 	
 	// 채용 공고 목록 출력
 	@Results({
-	  @Result(column="logo", property="cvo.logo"),
-	  @Result(column="name", property="cvo.name"),
-	  @Result(column="address", property="cvo.address")
-	})
-	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, "
-			+ "c.logo, c.name, c.address "
-			+ "FROM recruit r "
-			+ "JOIN company c ON r.cno=c.cno "
-			+ "WHERE r.rno BETWEEN #{start} AND #{end} "
-			+ "ORDER BY r.rno DESC")
-	public List<RecruitVO> recruitListData(@Param("start") int start, @Param("end") int end);
+    @Result(column="logo", property="cvo.logo"),
+    @Result(column="name", property="cvo.name"),
+    @Result(column="address", property="cvo.address")
+  })
+  @Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, "
+  	+ "c.logo, c.name, c.address "
+  	+ "FROM recruit r "
+  	+ "JOIN company c ON r.cno=c.cno "
+  	+ "WHERE r.rno BETWEEN #{start} AND #{end} "
+  	+ "ORDER BY r.rno DESC")
+  public List<RecruitVO> recruitListData(@Param("start") int start, @Param("end") int end);
 
+	
 	// 채용 공고 목록 총 페이지 수
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM recruit")
 	public int recruitTotalPage();
 
+	
 	// 채용 공고 검색
 	@Results({
 	  @Result(column="logo", property="cvo.logo"),
@@ -100,8 +103,31 @@ public interface RecruitmentMapper {
 			+ "OR c.address LIKE '%' || #{word} || '%'")
 	public List<RecruitVO> recruitFindData(@Param("word") String word); // 메소드의 파라미터 이름과 SQL 쿼리의 변수 이름을 일치시켜주는 역할
 
+	
 	// 채용 공고 정렬
-
+	@Results({
+    @Result(column="logo", property="cvo.logo"),
+    @Result(column="name", property="cvo.name"),
+    @Result(column="address", property="cvo.address")
+  })
+	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, " +
+      "c.logo, c.name, c.address " +
+      "FROM recruit r " +
+      "JOIN company c ON r.cno=c.cno " +
+      "WHERE r.rno BETWEEN #{start} AND #{end} " +
+      "ORDER BY " +
+      "CASE "
+      + "	WHEN #{sortBy} = 'rno' THEN r.rno "
+      + "	WHEN #{sortBy} = 'like_count' THEN r.like_count "
+      + "	WHEN #{sortBy} = 'end_date' THEN " 
+      + "      CASE WHEN r.end_date = '상시' THEN 99999999 "
+      + "      ELSE TO_NUMBER(TO_DATE(r.end_date, 'YYYY-MM-DD'), '99999999') END "
+      + "	ELSE r.rno " // 기본 정렬은 rno 순서대로\r\n"
+      + "END DESC")
+	public List<RecruitVO> recruitSortListData(@Param("start") int start, @Param("end") int end, @Param("sortBy") String sortBy);
+	
+	
+	
 	// 채용 공고 상세보기 => recurit 테이블에서 각 rno에 해당하는 채용 공고 정보 가져오기
 	@Select("SELECT * FROM recruit WHERE rno=#{rno}")
 	public RecruitVO recuitDetailData(int rno);

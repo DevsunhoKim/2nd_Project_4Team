@@ -1,7 +1,6 @@
 package com.sist.web;
 
 import java.io.File;
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,6 @@ import com.sist.vo.CompanyVO;
 import com.sist.vo.InterviewVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecruitVO;
-import com.sist.vo.ReviewVO;
 
 // Spring MVC의 @RestController 어노테이션을 사용하여 RESTful API를 제공
 @RestController
@@ -40,15 +38,21 @@ public class RecruitmentRestController {
 
 	// 채용 공고 목록 출력
 	@GetMapping(value="recruit_list_vue.do", produces="text/plain;charset=UTF-8")
-	public String recruit_list_vue(int page) throws Exception {
+	public String recruit_list_vue(@RequestParam("page") int page, Model model, @RequestParam("start") String startStr, @RequestParam("end") String endStr, @RequestParam("sortBy") String sortBy) throws Exception {
 		int rowSize=12;
-		int start=(rowSize*page)-(rowSize-1);
-		int end=rowSize*page;
+		
+		int start = Integer.parseInt(startStr);
+    int end = Integer.parseInt(endStr);
+    
+		start=(rowSize*page)-(rowSize-1);
+		end=rowSize*page;
 
-		List<RecruitVO> list=rService.recruitListData(start, end);
+		/* List<RecruitVO> list=rService.recruitListData(start, end); */
+		List<RecruitVO> recruit_list=rService.recruitSortListData(start, end, sortBy);
+    model.addAttribute("recruit_list", recruit_list);
 		
 		ObjectMapper mapper=new ObjectMapper();
-		String json=mapper.writeValueAsString(list);
+		String json=mapper.writeValueAsString(recruit_list);
 
 		return json;
 	}

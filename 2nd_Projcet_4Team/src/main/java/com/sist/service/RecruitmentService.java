@@ -25,6 +25,9 @@ public interface RecruitmentService {
 	
 	// 채용 공고 검색
 	public List<RecruitVO> recruitFindData(String word);
+	
+	// 채용 공고 정렬
+	public List<RecruitVO> recruitSortListData(int start, int end, String sortBy);
 
 	// 채용 공고 상세보기 => RecruitmentDAO의 recuitDetailData 메서드를 호출하여 채용 공고 정보를 가져오기
 	public RecruitVO recuitDetailData(int rno);

@@ -140,14 +140,14 @@
             <div class="tabset tabset-text">
             <ul class="tabset-list">
               <li class="selected tabset-item">
-			            <span class="tabset-link active">최신순</span>
+			            <span class="tabset-link active" @click="changeSort('rno')">최신순</span>
               </li>
               <li class="tabset-item">
-                  <span class="tabset-link">인기순</span>
+                  <span class="tabset-link" @click="changeSort('like_count')">인기순</span>
               </li>
-              <li class="tabset-item">
-                  <span class="tabset-link">마감일순</span>
-              </li>
+              <!-- <li class="tabset-item">
+                  <span class="tabset-link" @click="changeSort('end_date')">마감일순</span>
+              </li> -->
             </ul>
             </div>
           </div>
@@ -218,7 +218,9 @@ let recruitmentListApp=Vue.createApp({
 			curpage:1, // 현재 페이지
 			totalpage:0, // 총 페이지
 			startPage:0, // 페이지네이션 시작
-			endPage:0 // 페이지네이션 끝
+			endPage:0, // 페이지네이션 끝
+			sortBy: 'rno',
+			rowSize: 12,
 		}
 	},
 	mounted(){
@@ -229,10 +231,16 @@ let recruitmentListApp=Vue.createApp({
 	methods:{
 		// 데이터 불러오기
 		dataRecv(){
+			const calculatedStart = (this.rowSize * this.curpage) - (this.rowSize - 1);
+	    const calculatedEnd = this.rowSize * this.curpage;
+			
 			axios.get('../recruitment/recruit_list_vue.do', {
 				params:{
 					word:this.word,
-					page:this.curpage					
+					page:this.curpage,
+					start: calculatedStart,
+          end: calculatedEnd,
+          sortBy: this.sortBy,
 				}
 			}).then(response=>{
 				console.log(response.data)
@@ -284,6 +292,12 @@ let recruitmentListApp=Vue.createApp({
 	      this.endPage = response.data.endPage
 	    })
 		},
+		
+		// 정렬
+		changeSort(sortBy) {
+      this.sortBy=sortBy;
+      this.dataRecv();
+    },
 		
 		// 근무 지역 출력
 		getAddressPart(address) {
