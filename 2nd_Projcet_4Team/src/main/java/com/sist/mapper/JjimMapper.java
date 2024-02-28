@@ -44,7 +44,7 @@ public interface JjimMapper {
 		WHERE c.cno=j.no AND CATENO=4 AND userId='yoon';
 	 */
 	
-	@Select("SELECT no,poster,name "
+	@Select("SELECT s.no,poster,name "
 			+ "FROM studyRoom s,codev_jjim j "
 			+ "WHERE s.NO=j.no AND CATENO=2 AND userId=#{userId} ORDER BY j.no DESC")
 	public List<StudyRoomVO> studyRoomJjim(String userId);

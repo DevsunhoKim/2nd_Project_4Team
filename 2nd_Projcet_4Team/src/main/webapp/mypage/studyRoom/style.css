@@ -1,3 +1,5 @@
+@charset "utf-8"; 
+
 .basic-N50 .contents-body {
     display: flex;
     justify-content: flex-start !important;

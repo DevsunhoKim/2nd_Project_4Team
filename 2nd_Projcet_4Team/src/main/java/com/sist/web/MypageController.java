@@ -1,7 +1,10 @@
 package com.sist.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -38,6 +41,21 @@ public class MypageController {
 	public String mypage_withdraw() {
 		return "mypage/member_withdraw";
 	}
+ // 스터디룸 마이페이지
+    @GetMapping("myRoom_reserve.do")
+    public String myRoom_reserve(HttpSession session,Model model)
+    {
+    	String userId=(String)session.getAttribute("userId");
+    	model.addAttribute("userId", userId);
+    	return "mypage/myRoom_reserve";
+    }
+    @GetMapping("room_jjim.do")
+    public String room_jjim(HttpSession session,Model model)
+    {
+    	String userId=(String)session.getAttribute("userId");
+    	model.addAttribute("userId", userId);
+    	return "mypage/room_jjim";
+    }
     
    
 }
