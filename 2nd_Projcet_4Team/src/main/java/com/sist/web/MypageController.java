@@ -17,6 +17,11 @@ public class MypageController {
     public MypageController(MypageService service) {
     	this.service = service;
     }
+    
+	@GetMapping("member_pwdCheck.do")
+	public String mypage_pwdCheck() {
+		return "mypage/member_pwdCheck";
+	}
 
 	@GetMapping("main.do")
 	public String mypage_main() {

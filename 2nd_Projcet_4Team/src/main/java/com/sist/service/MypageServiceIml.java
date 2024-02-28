@@ -37,6 +37,17 @@ public class MypageServiceIml implements MypageService{
 	public MemberVO getMemberByID(String id) {
 		return mDao.getMemberByID(id);
 	}
-    
+
+	@Override
+	public String pwdCk(String userId,String pwd) {
+		String res = "";
+		String dbPwd = mDao.pwdCk(userId);
+		if(encoder.matches(pwd,dbPwd)) {
+			res = "YES";
+		}else {
+			res = "NOPWD";
+		}
+		return res;
+	}
     
 }

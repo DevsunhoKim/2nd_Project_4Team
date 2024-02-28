@@ -102,4 +102,8 @@ public class MemberDAO {
 		   }
 		return userId;
     }
+    
+    public String pwdCk(String userId) {
+    	return mapper.pwdCk(userId);
+    }
 }

@@ -29,4 +29,10 @@ public class MypageRestController {
 		return objectMapper.writeValueAsString(json);
 	}
     
+    @PostMapping("ckpwd_vue.do")
+	public String member_pwdCk(HttpSession session,String pwd) {
+    	String userId=(String) session.getAttribute("userId");
+		String res = service.pwdCk(userId,pwd);
+		return res;
+	}
 }

@@ -68,7 +68,7 @@ function chat() {
               </li>
               <sec:authorize access="hasRole('ROLE_USER')">
               <li class="header-gnbitem">
-                <a class="header-gnblink" href="../mypage/main.do">
+                <a class="header-gnblink" href="../mypage/member_pwdCheck.do">
                   <span>MyPage</span>
                 </a>
               </li>

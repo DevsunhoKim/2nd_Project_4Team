@@ -31,7 +31,7 @@
 
 </head>
 <body>
-      <div class="contents-right" id="mypageApp">
+      <div class="contents-right" id="mypageMemberApp">
         <div class="contents-sort">
           <p class="contents-sort-total">
             <!-- 총 <span>1010</span>개의 제품이 있습니다. -->
@@ -207,7 +207,7 @@
     </div>
   </div>
 <script>
-let mypageApp = Vue.createApp({
+let mypageMemberApp = Vue.createApp({
     data() {
         return {
             userId: '',
@@ -319,7 +319,7 @@ let mypageApp = Vue.createApp({
             this.selectedJob = job;
         }
     }
-}).mount("#mypageApp");
+}).mount("#mypageMemberApp");
 
 </script>
 </body>

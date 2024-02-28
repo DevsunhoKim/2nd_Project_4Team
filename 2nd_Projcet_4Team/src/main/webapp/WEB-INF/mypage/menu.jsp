@@ -71,7 +71,7 @@
         <div class="contents-filter-body">
           <div class="accordset accordset-plus">
             <div class="accordset-item active">
-	            <a href="../mypage/main.do">
+	            <a href="../mypage/member_pwdCheck.do">
 	              <div class="accordset-header">
 	                <button class="accordset-button btn" type="button">회원정보수정</button>
 	              </div>

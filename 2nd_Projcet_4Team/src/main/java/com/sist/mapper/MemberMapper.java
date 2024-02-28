@@ -84,5 +84,9 @@ public interface MemberMapper {
     @Update("UPDATE member SET userPwd=#{tempPwd} WHERE userId = #{userId}")
     public void pwdFind(@Param("userId") String userId,@Param("tempPwd") String tempPwd); // 비밀번호 임시비밀번호로 변경
     /*-----------------------*/
+    
+    @Select("SELECT userPwd FROM member WHERE userId=#{userId}")
+    public String pwdCk(String userId); // 비밀번호 확인
+
 
 }
