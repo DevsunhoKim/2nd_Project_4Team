@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 /*
- * 
+ *
  *  ano NUMBER,
     sno NUMBER,
     userId VARCHAR2(100),
@@ -28,5 +28,5 @@ public class StudyRoomAskVO {
 	private String userId,name,content,dbday,filename,filesize,cate,email,subject;
 	private Date regdate;
 	private List<MultipartFile> files;
-	
+
 }
