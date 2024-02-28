@@ -53,4 +53,34 @@ public class MypageRestController {
 		return objectMapper.writeValueAsString(json);
 	}
     
+    @GetMapping(value="myRoom_vue.do",produces="text/plain;charset=UTF-8")
+	public String admin_ask(int page,String userId) throws Exception
+	{
+		int rowsize=7;
+		int start=(rowsize*page)-(rowsize-1);
+		int end=rowsize*page;
+		final int BLOCK=5;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("userId", userId);
+		List<StudyRoomReserveVO> list=service.myStudyRoomReserveList(map);
+		int totalpage=service.myStudyRoomReserveTotalpage(map);
+		int startpage=((page-1)/BLOCK*BLOCK)+1;
+		int endpage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		if(endpage>totalpage)
+			endpage=totalpage;
+		Map map1=new HashMap();
+		map1.put("curpage", page);
+		map1.put("endpage", endpage);
+		map1.put("startpage",startpage);
+		map1.put("totalpage",totalpage);
+		map1.put("list", list);
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(map1);
+		return json;
+	}
+    
+    
+    
 }

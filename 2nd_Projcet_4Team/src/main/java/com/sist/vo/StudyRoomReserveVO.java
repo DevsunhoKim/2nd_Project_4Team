@@ -18,4 +18,5 @@ public class StudyRoomReserveVO {
 	private int no,sno,amount,price;
 	private String userId,dbday,time,rdate;
 	private Date regdate;
+	private StudyRoomVO svo=new StudyRoomVO();
 }

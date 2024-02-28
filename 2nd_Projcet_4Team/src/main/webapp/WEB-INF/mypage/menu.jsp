@@ -106,7 +106,7 @@ width: 100%;
 	                    <span class="radioset-text">멘토링 예약</span>
 	                  </div>
 	                </a>
-	              <a href="../mypage/room_jjim.do">
+	              <a href="../mypage/myRoom_reserve.do">
                   <div class="radioset">
                     <span class="radioset-text">스터디룸 예약</span>
                   </div>
@@ -154,7 +154,8 @@ width: 100%;
                   <div class="radioset">
                     <span class="radioset-text">멘토</span>
                   </div>
-                  <a href="../mypage/myRoom_reserve.do">
+                  
+                  <a href="../mypage/room_jjim.do">
                   <div class="radioset">
                     <span class="radioset-text">스터디룸</span>
                   </div>

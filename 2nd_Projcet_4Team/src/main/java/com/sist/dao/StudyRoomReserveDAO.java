@@ -74,4 +74,12 @@ public class StudyRoomReserveDAO {
    public StudyRoomReserveVO StudyRoomReserveData(int no) {
 	   return mapper.StudyRoomReserveData(no);
    }
+   
+   public List<StudyRoomReserveVO> myStudyRoomReserveList(Map map)
+   {
+	   return mapper.myStudyRoomReserveList(map);
+   }
+   public int myStudyRoomReserveTotalpage(Map map) {
+	   return mapper.myStudyRoomReserveTotalpage(map);
+   }
 }
