@@ -395,7 +395,7 @@
         <div class="content-container container-md">
           <div class="textset">
             <h2 class="textset-tit">Recruitment</h2>
-            <p class="textset-desc">추천하는 채용 공고를 확인해 보세요!</p>
+            <p class="textset-desc">추천 채용 공고를 확인해 보세요!</p>
           </div>
           <div class="contents-group">
             <!-- <div class="calendar"> 
@@ -404,7 +404,7 @@
             <ul class="recruit-list">
               <c:forEach var="rcvo" items="${recruitList}">
 	              <li>
-	                <a href="#">
+	                <a href="../recruitment/recruit_detail.do?rno=${rcvo.rno}&cno=${rcvo.cno}">
 	                <div class="company-info">
 	                  <figure class="company-logo">
 	                    <img class="width-100" src="${rcvo.cvo.logo}" title="${rcvo.cvo.name}">
@@ -414,6 +414,7 @@
 	                <div class="recruit-info">
 	                  <h4 class="recruit-tit">${rcvo.title}</h4>
 	                  <span class="recruit-career">${rcvo.career}</span>
+	                  <span class="recruit-education">학력 ${rcvo.education}</span>
 	                </div>
 	                </a>
 	              </li>

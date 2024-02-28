@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../recruitment/css/template.css">
 <link rel="stylesheet" href="../recruitment/css/recruitment.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
 <!-- axios : JavaScript에서 사용되는 HTTP 클라이언트 라이브러리로, 비동기적으로 서버와 통신하며 데이터 입·출력 시 사용 -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -21,8 +23,7 @@
 <script src="../js/script.js"></script>
 <script src="../recruitment/js/template.js"></script>
 <script src="../recruitment/js/script.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
   <section id="recruitmentCompany" class="sub">
@@ -310,24 +311,24 @@
     </div>
   </section>
 <script>
-// 면접 후기 작성 폼 출력/숨김
 $(function(){
+	$(document).ready(function() {
+	  $('.glamping-N40 .accordset-item').click(function() {
+	    // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 찾아서 토글
+	    $(this).find('.accordset-body').slideToggle();
+	    // 클릭한 아코디언 아이템에 'active' 클래스를 토글하여 스타일 변경
+	    $(this).toggleClass('active');
+	  });
+	});
+	
+  // 면접 후기 작성 폼 출력/숨김
   $("#interviewInsertBtn").click(function() {
     $("#interviewForm").show();
   });
   
   $("#interviewCancelBtn").click(function() {
     $("#interviewForm").hide();
-  });
-  
-  
-  // 아코디언 헤더 클릭 시 토글 동작
-  $('.accordset-item').click(function() {
-    // 클릭한 아코디언 아이템의 바로 아래에 있는 .accordset-body를 토글
-    $('.accordset-body').slideToggle();
-    // 헤더에 'active' 클래스를 토글하여 스타일 변경
-    $('.accordset-header, .accordset-body').toggleClass('active');
-  });
+  });  
 })
 
 let companyDetailApp=Vue.createApp({

@@ -268,28 +268,23 @@
   
 } */
 #admin_ask .pop{
-    width: 102%;
-    height: 104%;
+    width: 100%;
+    height: 100%;
     position: fixed;
-    top: -49px;
+    top: 0;
     left: 0;
-    right:0;
-    bottom:0;
     z-index: 999;
     background: rgba(0,0,0,0.5);
 }
 #admin_ask #popup{
     position: fixed;
-    x-index: 4;
-    /* margin-top: 100rem; */
-    top: 44.5px;
-    bottom: 44.5px;
-    left: 206px;
-    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
     display: block;
-    background: #fff;
-    right: 206px;
     height: 70rem;
+    background: #fff;
 }
 
 #ask_detail .contents-inner {
@@ -345,11 +340,11 @@
 .Admin_room_reserve #popup{
 	width: 60rem;
 }
-.Admin_room_reserve #popup{
+/* .Admin_room_reserve #popup{
 	left: 470px !important;
 	right: 470px !important;
 	height: 73rem !important;
-}
+} */
 .Admin_room_reserve .contents-btn .btnset {
    
     max-width: 17rem ;

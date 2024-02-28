@@ -16,7 +16,6 @@
     font-size: 18px;
     cursor: pointer;
 }
-
 .checkset .checkset-text{
     margin: 10px;
     display: inline-block;
@@ -37,6 +36,15 @@
     word-break: keep-all;
     border-radius: 0;
     transition: none;
+}
+.basic-N50 .accordset-item a{
+  width: 100%;
+}
+.basic-N50 .accordset-item.active a{
+  width: 100%;
+}
+.basic-N50 .accordset-header{
+width: 100%;
 }
 </style>
 <script type="text/javascript">
@@ -110,9 +118,16 @@
               </div>
               <div class="accordset-body">
                 <div class="accordset-content">
-                  <div class="checkset">
-                    <span class="checkset-text">구매내역</span>
-                  </div>
+                  <a href="../mypage/books_cart.do">
+	                  <div class="radioset">
+	                    <span class="checkset-text">장바구니</span>
+	                  </div>
+                  </a>
+                  <a href="../mypage/books_paid.do">
+                    <div class="radioset">
+                      <span class="checkset-text">구매내역</span>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

@@ -27,6 +27,10 @@
 .form-tit > span {
     color: var(--danger);
 }
+
+.basic-N50 .contents-right{
+  overflow: visible;
+}
 </style>
 
 </head>

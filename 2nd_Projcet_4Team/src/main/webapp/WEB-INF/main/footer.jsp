@@ -9,7 +9,7 @@
 <body>
   <!-- [S]basic-N4 -->
   <footer class="basic-N4" data-bid="hoLsb2fI8R">
-    <div class="footer-container container-lg">
+    <div class="footer-container container-md">
       <div class="footer-top">
         <h1 class="footer-logo">
           <a href="javascript:void(0)">
