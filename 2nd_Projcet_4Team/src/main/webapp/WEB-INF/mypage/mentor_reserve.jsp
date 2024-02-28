@@ -8,13 +8,28 @@
 <link rel="stylesheet" href="../studyRoom/css/setting.css">
   <link rel="stylesheet" href="../studyRoom/css/plugin.css">
   <link rel="stylesheet" href="../studyRoom/css/style.css">
-  
   <link rel="stylesheet" href="../adminpage/studyRoom/style.css">
-  <script src="../studyRoom/js/setting.js"></script>
-  <script src="../studyRoom/js/template.js"></script>
-  <script src="../studyRoom/js/common.js"></script>
-  <script src="../studyRoom/js/script.js"></script>
   
+<style type="text/css">
+
+
+.mypageMentorRev .hooms-N37 .contents-tit span::after {
+     background: url() no-repeat center/cover;
+}
+
+.mypageMentorRev .hooms-N37 .contents-date i {
+    font-style: normal;
+    margin-right: 0.8rem;
+    font-weight: 550;
+}
+
+.tableset-mobile,
+.tableset-tit {
+    white-space: nowrap; 
+    overflow: hidden; 
+    max-width: 150px; 
+}
+</style>
 </head>
 <body style="width: 100%">
   <div class="hooms-N36 mypageMentorRev" data-bid="rxlskcGXa1" id="admin_ask">
@@ -45,23 +60,33 @@
                   <th scope="col">멘토링명</th>
                   <th scope="col">예약일</th>
                   <th scope="col">결제금액</th>
-                  <th scope="col">승인상태</th>
+                  <th scope="col" style="white-space: nowrap; ">승인상태</th>
                   <th scope="col">예약정보</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="vo in mr_list">
+                <tr v-for="(vo, index) in mr_list" :key="vo.no">
                   <td class="tableset-mobile">{{vo.num}}</td>
-                  <td class="tableset-category tableset-order03">{{vo.mvo.nickname}}</td>
+                   <td class="tableset-tit tableset-order02">
+                    <a class="tableset-ico" href="javascript:void(0)">
+                    {{vo.mvo.nickname}}
+					</a>
+                  </td>
                   <td class="tableset-order05">{{vo.mtvo.title}}시</td>
                   <td class="tableset-tit tableset-order02">
                     <a class="tableset-ico" href="javascript:void(0)">
 						  {{ vo.rdate }}
 				    </a>
                   </td>
-                  <td class="tableset-order04">{{ formatPrice(vo.totalAmount) }}원</td>
-                  <td class="tableset-order01">
-                    <button class="badgeset state" @click="info(re.no,re.userId)">상세보기</button>
+                 <td class="tableset-tit tableset-order02">{{ formatPrice(vo.totalAmount) }}원</td>
+                <td class="tableset-tit tableset-order02">
+                    <i v-if="vo.ok == 0">미승인</i>
+              		<i v-if="vo.ok == 1">승인</i>
+                  </td>
+                  <td class="tableset-tit tableset-order02">
+                    <a class="tableset-ico" href="javascript:void(0)">
+                    <button class="badgeset state" @click="info(index)">상세보기</button>
+					</a>
                   </td>
                 </tr>
               </tbody>
@@ -87,9 +112,7 @@
       </div>
       
  
-   <!-- <div class="th-layout-main pop black-bg" v-show="pop">
-    [E]hooms-N58
-    [S]hooms-N37
+   <div class="th-layout-main pop black-bg mr" id="ask_detail" v-show="pop">
     <div class="hooms-N37" data-bid="NiLT00VHDB" id="popup">
       <div class="contents-inner">
         <div class="contents-container container-md">
@@ -102,7 +125,7 @@
               <span>멘토</span>
             </h5>
             <span class="contents-date">
-              <i>{{vo.mvo.nickname}}</i></span>
+              <i>{{nickname}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -110,7 +133,7 @@
               <span>멘토링명</span>
             </h5>
             <span class="contents-date">
-              <i>{{vo.mtvo.title}}</i></span>
+              <i>{{title}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -118,7 +141,7 @@
               <span>직무</span>
             </h5>
             <span class="contents-date">
-              <i>{{vo.mtvo.job}}</i></span>
+              <i>{{job}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -126,7 +149,7 @@
               <span>예약시간</span>
             </h5>
             <span class="contents-date">
-              <i>{{vo.str_time}} ~ {{vo.end_time}}</i></span>
+              <i>{{str_time}} ~ {{end_time}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -134,7 +157,7 @@
               <span>결제일</span>
             </h5>
             <span class="contents-date">
-              <i>{{vo.rDate}}</i></span>
+              <i>{{rdate}}</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -150,7 +173,7 @@
               <span>결제금액</span>
             </h5>
             <span class="contents-date">
-              <i>{{vo.totalAmount}}원</i></span>
+              <i>{{totalAmount}}원</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -158,8 +181,8 @@
               <span>승인상태</span>
             </h5>
             <span class="contents-date">
-              <i v-if="vo.ok == 0">미승인</i></span>
-              <i v-if="vo.ok == 1">승인</i></span>
+              <i v-if="ok == 0">미승인</i></span>
+              <i v-if="ok == 1">승인</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -167,8 +190,8 @@
               <span>문의사항</span>
             </h5>
             <span class="contents-date">
-              <i v-if="vo.inquiry == null">없음</i></span>
-              <i v-if="vo.inquiry !== null">{{vo.inquiry}}</i></span>
+              <i v-if="inquiry == null">없음</i></span>
+              <i v-if="inquiry !== null">{{inquiry}}</i></span>
           </div>
           <div class="contents-btn">
             <a class="btnset" @click="close()">닫기</a>
@@ -176,74 +199,94 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>   
     </div>
-    <script>
-    let mypageMentorRev=Vue.createApp({
-    	data(){
-    		return {
-    			curpage:1,
-    	        totalpage:0,
-    	        endpage:0,
-    	        startpage:0,
-    	        totalCount:0,
-    	        pop:false,
-    	        mr_list:[],
-    	        price:''
-    		}
-    	},
-    	mounted(){
-    		this.dataRecv();
-    	},
-    	methods:{
-    		dataRecv(){
-    			axios.get('../mypage/mentor_MyReserve_vue.do',{
-    				params:{
-    					page:this.curpage
-    				}
-    			}).then(response=>{
-    				console.log(response.data)
-    				this.mr_list=response.data.list
-          		    this.curpage=response.data.curpage
-          		    this.totalpage=response.data.totalpage
-          		    this.startpage=response.data.startpage
-          		    this.endpage=response.data.endpage
-          		    this.totalCount=response.data.totalCount
-    			})
-    		},
-    		range(start,end){
-			  let arr=[]
-			  let lang=end-start
-			  for(let i=0;i<=lang;i++)
-			  {
-				  arr[i]=start
-				  start++
-			  }
-			  return arr
-			  console.log(i)
-		  },
-		  prev(){
-			  this.curpage=this.startpage-1
-			  this.dataRecv()
-		  },
-		  next(){
-			  this.curpage=this.endpage+1
-			  this.dataRecv()
-		  },
-		  pageChange(page){
-			  this.curpage=page;
-			  this.dataRecv()
-		  },
-		  close(){
-			  this.pop=false
-		  },
-			formatPrice(price) {
-	            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	        }
+<script>
+let mypageMentorRev = Vue.createApp({
+    data() {
+        return {
+            curpage: 1,
+            totalpage: 0,
+            endpage: 0,
+            startpage: 0,
+            totalCount: 0,
+            pop: false,
+            mr_list: [],
+            mr_detail: {},
+            nickname: '',
+            title: '',
+            job: '',
+            str_time: 0,
+            end_time: 0,
+            rDate: '',
+            totalAmount: 0,
+            rdate:'',
+            ok:0,
+            inquiry: ''
+        }
+    },
+    mounted() {
+        this.dataRecv();
+    },
+    methods: {
+        dataRecv() {
+            axios.get('../mypage/mentor_MyReserve_vue.do', {
+                params: {
+                    page: this.curpage
+                }
+            }).then(response => {
+                console.log(response.data)
+                this.mr_list = response.data.list
+                this.curpage = response.data.curpage
+                this.totalpage = response.data.totalpage
+                this.startpage = response.data.startpage
+                this.endpage = response.data.endpage
+                this.totalCount = response.data.totalCount
+            })
+        },
+        range(start, end) {
+            let arr = []
+            let lang = end - start
+            for (let i = 0; i <= lang; i++) {
+                arr[i] = start
+                start++
+            }
+            return arr
+            console.log(i)
+        },
+        prev() {
+            this.curpage = this.startpage - 1
+            this.dataRecv()
+        },
+        next() {
+            this.curpage = this.endpage + 1
+            this.dataRecv()
+        },
+        pageChange(page) {
+            this.curpage = page;
+            this.dataRecv()
+        },
+        close() {
+            this.pop = false
+        },
+        formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+        info(i) {
+            this.pop = true;
+            this.mr_detail = this.mr_list[i]
+            this.nickname = this.mr_detail.mvo.nickname
+            this.title = this.mr_detail.mtvo.title
+            this.job = this.mr_detail.mtvo.job
+            this.str_time = this.mr_detail.str_time
+            this.end_time = this.mr_detail.end_time
+            this.rdate = this.mr_detail.rdate
+            this.totalAmount = this.mr_detail.totalAmount
+            this.inquiry = this.mr_detail.inquiry
+        }
+    }
+}).mount('.mypageMentorRev')
+</script>
 
-    	}
-    	
-    }).mount('.mypageMentorRev')
-    </script>
 </body>
 </html>

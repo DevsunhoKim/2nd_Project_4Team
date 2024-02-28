@@ -85,7 +85,7 @@ width: 100%;
 	              </div>
 	            </a>
               <!-- 멘토컬럼이 1이면 -->
-              <div class="accordset-body">
+<!--               <div class="accordset-body">
 	              <a href="../mypage/mentor.do">
 	                <div class="accordset-content">
 	                  <div class="checkset">
@@ -93,7 +93,7 @@ width: 100%;
 	                  </div>
 	              	</div>
 	              </a>
-          	  </div>
+          	  </div> -->
            </div>
             <div class="accordset-item">
               <div class="accordset-header">
