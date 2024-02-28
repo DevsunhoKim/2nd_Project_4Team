@@ -46,7 +46,14 @@ public class MypageRestController {
 		}
 		return res;
 	}
-    @GetMapping(value="myRoom_vue.do",produces="text/plain;charset=UTF-8")
+    
+    @GetMapping(value = "mentor_MyReserve_vue.do", produces = "text/plain;charset=UTF-8")
+    public String mentor_myReserve(int page,HttpSession session,Model model) throws JsonProcessingException {
+       String userId=(String) session.getAttribute("userId");
+       Map json = service.getAllMyMentorRev(userId,page);
+       return objectMapper.writeValueAsString(json);
+    }
+     
 	public String admin_ask(int page,String userId) throws Exception
 	{
 		int rowsize=7;

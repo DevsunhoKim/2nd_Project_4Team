@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sist.service.MypageService;
 import com.sist.vo.MemberVO;
 
@@ -32,7 +31,7 @@ public class MypageController {
 	}
 
     @PostMapping("update.do")
-	public String member_update(MemberVO vo) throws JsonProcessingException {
+	public String member_update(MemberVO vo) {
 		service.updateMember(vo);
 		return "mypage/member";
 	}
@@ -41,6 +40,12 @@ public class MypageController {
 	public String mypage_withdraw() {
 		return "mypage/member_withdraw";
 	}
+    
+    @GetMapping("mentor_reserve.do")
+    public String mypage_mentor_reserve() {
+       return "mypage/mentor_reserve";
+    }
+    
  // 스터디룸 마이페이지
     @GetMapping("myRoom_reserve.do")
     public String myRoom_reserve(HttpSession session,Model model)

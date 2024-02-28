@@ -10,7 +10,7 @@ public interface MypageService {
 	public int updateMember(MemberVO vo); // 회원정보 수정
 	public String pwdCk(String userId,String pwd); // 비밀번호 확인
 	public String member_withdraw(String userId, String pwd); // 회원탈퇴
-	//public List<MentorReserveVO> getAllMyMentorRev(String userId); // 멘토링 예약정보
+	public Map getAllMyMentorRev(String userId,int page); // 멘토링 예약정보 // 멘토링 예약정보
 
 	//
 	public List<StudyRoomVO> studyRoomJjim(String userId); //스터디룸담기 
@@ -18,6 +18,5 @@ public interface MypageService {
 	public List<MentorVO> mentorJjim(String userId); //멘토팔로우
 	public List<StudyRoomReserveVO> myStudyRoomReserveList(Map map); // 스터디룸 예약 리스트
     public int myStudyRoomReserveTotalpage(Map map); // 스터디룸 총페이지
-	
-	
+    
 }

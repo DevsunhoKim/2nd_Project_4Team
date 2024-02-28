@@ -115,7 +115,38 @@ public class MypageServiceIml implements MypageService{
 		return srDao.myStudyRoomReserveTotalpage(map);
 	}
 
-	
-	
+	@Override
+	   public Map getAllMyMentorRev(String userId,int page) {
+	      int rowSize=5;
+	        int start=(rowSize*page)-(rowSize-1);
+	        int end=rowSize*page;
+	        
+	        Map<String, Object> map=new HashMap<>();
+	        map.put("start", start);
+	        map.put("end", end);
+	        map.put("userId", userId);
+	        List<MentorReserveVO> list = mtDao.getAllMyMentorRev(map);
+	        
+	      int totalpage=mtDao.getMRTotalPage(userId);
+	      
+	      final int BLOCK=5;
+	      int startPage=((page-1)/BLOCK*BLOCK)+1;
+	      int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	      
+	      if(endPage>totalpage) {
+	         endPage=totalpage;
+	      }
+	      
+	      int totalCount = mtDao.getMRTotalCount(userId);
+	      map.clear();
+	      map.put("curpage", page);
+	      map.put("totalpage", totalpage);
+	      map.put("startPage", startPage);
+	      map.put("endPage", endPage);
+	      map.put("list", list);
+	      map.put("totalCount", totalCount);
+	      
+	      return map;
+	   }
     
 }
