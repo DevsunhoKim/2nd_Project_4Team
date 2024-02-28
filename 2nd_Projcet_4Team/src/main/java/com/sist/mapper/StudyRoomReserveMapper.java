@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -68,4 +70,23 @@ public interface StudyRoomReserveMapper {
    @Select("SELECT no,sno,amount,price,userId,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,rdate,time "
    		+ "FROM studyRoom_reserve WHERE no=#{no}")
    public StudyRoomReserveVO StudyRoomReserveData(int no);
+   
+   // 마이페이지
+   @Results({
+		  @Result(column="poster", property="svo.poster"),
+		  @Result(column="name", property="svo.name")
+		})
+   @Select("SELECT no,userId,sno,amount,price,TO_CHAR(regdate,'YYYY-MM-DD'),rdate,time,poster,name,num "
+   		+ "FROM (SELECT no,userId,sno,amount,price,regdate,rdate,time,poster,name,rownum AS num "
+   		+ "FROM (SELECT sr.no,userId,sno,amount,sr.price,regdate,rdate,time,s.poster,s.name "
+   		+ "FROM studyRoom s,studyRoom_reserve sr WHERE sr.sno=s.NO AND userId=#{userId} ORDER BY sr.no DESC)) "
+   		+ "WHERE num BETWEEN #{start} AND #{end}")
+   public List<StudyRoomReserveVO> myStudyRoomReserveList(Map map);
+   
+   @Select("SELECT CEIL(COUNT(*)/7.0) "
+   		+ "FROM studyRoom s,studyRoom_reserve sr "
+   		+ "WHERE sr.sno=s.NO AND userId=#{userId}")
+   public int myStudyRoomReserveTotalpage(Map map);
+   
+   
 }

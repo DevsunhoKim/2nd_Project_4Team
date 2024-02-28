@@ -37,7 +37,7 @@ public interface MentorMapper {
     @Update("UPDATE member SET mentor = 1 WHERE userId = #{userId}")
 	public void updateMentorById(String userId); // 회원에 멘토컬럼 활성화
     
-    @Insert("INSERT INTO mentor_reserve VALUES(mr_mno_seq.nextval,#{mno},#{userId},#{rDate},0,#{totalAmount},#{inquiry},SYSDATE)")
+    @Insert("INSERT INTO mentor_reserve VALUES(mr_mno_seq.nextval,#{mno},#{userId},#{rDate},0,#{totalAmount},#{inquiry},SYSDATE,#{str_time},#{end_time})")
     public void insertMentoring(MentorReserveVO vo); // 멘토링 예약
     
     @Update("UPDATE mentor SET rev_cnt = (SELECT MAX(rev_cnt) + 1 FROM mentor) WHERE mno = #{mno}")
@@ -62,4 +62,10 @@ public interface MentorMapper {
     		+ "FROM member m JOIN mentor ment ON m.userId = ment.userId "
     		+ "WHERE job = #{cate}")
 	public List<MentorVO> getMentorBytech(String cate); // 검색어(기술연관 직무)에 대한 멘토리스트
+    
+    @Results({
+		  @Result(column="nickname", property="mvo.nickname"),
+	})
+    @Select("SELECT * FROM mentor_reserve WHERE userId = #{userId}")
+    public List<MentorReserveVO> getAllMyMentorRev(String userId);
 }

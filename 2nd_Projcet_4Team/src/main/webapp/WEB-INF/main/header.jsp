@@ -10,7 +10,7 @@
 <script type="text/javascript">
 function chat() {
     var width = 832; // 팝업 창의 너비
-    var height = 902; // 팝업 창의 높이
+    var height = 935; // 팝업 창의 높이
     var leftPosition = (window.screen.width - width) / 2;
     var topPosition = (window.screen.height - height) / 2;
 

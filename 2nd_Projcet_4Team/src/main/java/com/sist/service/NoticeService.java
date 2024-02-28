@@ -3,6 +3,8 @@ package com.sist.service;
 import java.util.List;
 import java.util.Map;
 
+import com.sist.vo.MentorReserveVO;
+import com.sist.vo.MentorVO;
 import com.sist.vo.NoticeVO;
 
 public interface NoticeService {

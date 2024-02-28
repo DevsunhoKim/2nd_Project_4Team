@@ -1,0 +1,21 @@
+.basic-N50 .contents-body {
+    display: flex;
+    justify-content: flex-start !important;
+    gap: 4rem;
+}
+#admin_ask{
+	width: 100%;
+}
+.tableset .tableset-table td a.tableset-ico {
+    padding-right: 0;
+}
+.reserve{
+	border-top: 1px solid var(--line-color3);
+}
+#admin_ask .tableset .tableset-table > :not(caption):not(colgroup) > * > * {
+    padding: 1.2rem 2.4rem;
+    font-size: 1.7rem;
+}
+#admin_ask .tableset-order01{
+	color:black;
+}

@@ -50,6 +50,11 @@ public class B_CartDAO {
 	{
 		return mapper.findMaxRno();
 	}
+	
+	public List<B_CartVO> findCartItemsByuserId2(String userId)
+	{
+		return mapper.findCartItemsByuserId2(userId);
+	}
 
 
 

@@ -16,6 +16,10 @@
 .nick{
    font-size: 1.5rem;
 }
+#chatting {
+  margin-bottom: 2rem;
+
+}
 #chatting .msg{
     text-align: center;
     font-size: 1.3rem;
@@ -25,7 +29,6 @@
     width: 19rem;
     padding: 0.4rem 0 0.4rem 0; */
 }
-
 }
 #chattitle {
    font-size: 2.5rem;
@@ -114,6 +117,7 @@
     border-radius: 1rem 1rem 0 0;
     /* overflow: hidden; */
     padding: 1rem 1.5rem;
+    box-shadow: 0 10px 21px rgba(0,0,0,0.19), 0 25px 9px rgba(0,0,0,0.23);
 }
 * {
     padding: 0;

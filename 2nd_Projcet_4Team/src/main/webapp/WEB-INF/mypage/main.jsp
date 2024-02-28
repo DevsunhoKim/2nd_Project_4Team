@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="../mypage/css/style.css">
 
 <!-- script -->
+<script src="http://code.jquery.com/jquery.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../js/setting.js"></script>
@@ -60,7 +61,7 @@
 
 .basic-N50 .contents-body {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 4rem;
 }
 

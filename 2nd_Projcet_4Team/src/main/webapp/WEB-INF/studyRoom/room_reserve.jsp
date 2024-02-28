@@ -390,7 +390,7 @@ $(document).ready(function() {
                 }).then(response=>{
                 	if(response.data=='OK')
                 	{
-                		location.href="../main/main.do"
+                		location.href="../mypage/myRoom_reserve.do"
                 	}
                 }).catch(error => {
                     console.error('Error occurred:', error);

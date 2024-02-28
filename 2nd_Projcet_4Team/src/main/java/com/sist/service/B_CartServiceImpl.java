@@ -62,6 +62,12 @@ public class B_CartServiceImpl implements B_CartService{
 		
 	}
 
+	@Override
+	public List<B_CartVO> findCartItemsByuserId2(String userId) {
+		// TODO Auto-generated method stub
+		return dao.findCartItemsByuserId2(userId);
+	}
+
 	
 
 }
