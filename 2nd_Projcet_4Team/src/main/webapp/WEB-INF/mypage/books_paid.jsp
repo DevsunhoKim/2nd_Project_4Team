@@ -13,53 +13,27 @@
 <link rel="stylesheet" href="../books/css/template.css">
 <link rel="stylesheet" href="../books/css/style.css">
 <link rel="stylesheet" href="../css/template.css">
+<link rel="stylesheet" href="../books/css/setting1.css">
+<link rel="stylesheet" href="../books/css/plugin1.css">
+<link rel="stylesheet" href="../books/css/template1.css">
+<link rel="stylesheet" href="../books/css/style1.css">
+<link rel="stylesheet" href="../css/template1.css">
 <style>
 
-.radioset{
-	margin: 10px
-}
-.radioset .radioset-text {
-    margin: 10px;
-    display: inline-block;
-    margin-left: 0.8rem;
-    font-size: 18px;
-    cursor: pointer;
-}
 
-.checkset .checkset-text{
-    margin: 10px;
-    display: inline-block;
-    margin-left: 0.8rem;
-    font-size: 18px;
-    cursor: pointer;
-}
-.accordset .accordset-button {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    padding: 2rem 6rem 2rem 2.4rem;
-    border: none;
-    font-size: 18.5px;
-    line-height: var(--lh-p3);
-    text-align: left;
-    font-weight: 600;
-    word-break: keep-all;
-    border-radius: 0;
-    transition: none;
-}
 
 </style>
 </head>
 <body>
     <div class="hooms-N43" data-bid="uKlSO0zbWX" >
-      <div class="contents-inner" style="margin-right: 4rem;">
-        <div class="contents-container container-md">
+      <div class="contents-inner" style="margin-right: 4rem;margin-top: -20rem">
+        <div class="contents-container container-md" style="width: 88rem">
           <h2 style="font-size:40px;text-align: center;margin-bottom:45px;font-weight: 600;margin-top:20px">주문 정보</h2>
           <p>사용자 ID: ${userId}</p>
           
           <c:choose>
               <c:when test="${not empty list}">
-                  <div class="tableset tableset-receipt tableset-text-top" style="width:88rem;">
+                  <div class="tableset tableset-receipt tableset-text-top" style="width:90rem;">
                       <table class="tableset-table table">
                           <colgroup>
                               <col>

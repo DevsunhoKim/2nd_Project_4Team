@@ -217,7 +217,7 @@ public class BooksRestController {
       }
 
 
-      @GetMapping(value="pay_info_ok.do", produces = "application/json;charset=UTF-8")
+      @GetMapping(value="pay_info_ok.do", produces = "text/plain;charset=UTF-8")
       public String pay_info_ok() throws Exception {
           // 최대 rno 값을 조회
           int maxRno = cService.findMaxRno();

@@ -15,6 +15,13 @@ public interface B_CartMapper {
     // 사용자별 구매완료 항목 조회
     @Select("SELECT rno,userId,no,quantity,totalPrice,title,poster,TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday FROM b_cart WHERE userId = #{userId} AND status = 'Y' ORDER BY regdate DESC")
     public List<B_CartVO> findCartItemsByuserId(String userId);
+    
+    // 장바구니 목록 출력
+    @Select("SELECT rno, userId, no, quantity, totalPrice, title, poster, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday, " +
+            "CASE WHEN quantity > 0 THEN totalPrice / quantity ELSE 0 END AS price " +
+            "FROM b_cart WHERE userId = #{userId} AND status = 'N' ORDER BY regdate DESC")
+    public List<B_CartVO> findCartItemsByuserId2(String userId);
+
 
     // 장바구니 항목 업데이트 (예: 수량 변경)
     @Update("UPDATE b_cart SET quantity = #{quantity}, totalprice = #{totalPrice} WHERE rno = #{rno}")
