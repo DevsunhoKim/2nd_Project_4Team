@@ -59,11 +59,10 @@ public interface RecruitmentMapper {
 	  @Result(column="address", property="cvo.address")
 	})
 	@Select("SELECT r.rno, r.cno, r.title, r.stack_txt, r.career, r.education, r.end_date, r.like_count, "
-			+ "c.logo, c.name, c.address "
-			+ "FROM recruit r "
-			+ "JOIN company c ON r.cno=c.cno "
-			+ "WHERE r.rno <= 5 "
-			+ "ORDER BY like_count DESC")
+      + "c.logo, c.name, c.address "
+      + "FROM (SELECT * FROM (SELECT * FROM recruit ORDER BY like_count DESC) WHERE rownum <= 6) r "
+      + "JOIN company c ON r.cno = c.cno "
+      + "ORDER BY like_count DESC")
 	public List<RecruitVO> recruitMainData();
 	
 	// 채용 공고 목록 출력
