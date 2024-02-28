@@ -18,6 +18,7 @@
 .opilsol-N19 .col-group .item {position: relative; width: 23.7%; max-height: 25.6rem; margin: 0; padding: 2rem; border: 2px solid #eee; cursor: pointer;}
 .opilsol-N19 .col-group .item:hover{border: 2px solid #7918F2; background-color: #f9f9f9; transition: all 0.3s ease-in-out;}
 
+#recruitmentList .contents-top{display: flex; justify-content: space-between; align-items: center; gep: 2rem;}
 #recruitmentList .filter{
   display: flex;
   justify-content: space-between;

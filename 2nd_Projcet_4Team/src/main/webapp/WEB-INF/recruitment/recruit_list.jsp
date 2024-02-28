@@ -37,9 +37,21 @@
               <input type="text" class="inputset-input form-control" placeholder="검색어를 입력하세요." aria-label="내용" v-model="word" @keyup.enter="search">
             </div>
 
+            <div class="tabset tabset-text">
+            <ul class="tabset-list">
+              <li class="selected tabset-item">
+                  <span class="tabset-link active" @click="changeSort('rno')">최신순</span>
+              </li>
+              <li class="tabset-item">
+                  <span class="tabset-link" @click="changeSort('like_count')">인기순</span>
+              </li>
+              <!-- <li class="tabset-item">
+                  <span class="tabset-link" @click="changeSort('end_date')">마감일순</span>
+              </li> -->
+            </ul>
           </div>
           <div class="filter">
-            <div class="filter-wrapper">
+            <!-- <div class="filter-wrapper">
               <div class="filter-area">
                 <button type="button" id="filterAreaBtn" class="filter-btn">근무 지역</button>
                 <ul id="filterAreaList" class="filter-list">
@@ -136,19 +148,8 @@
                   <li>PHP</li>
                 </ul>
               </div>
-            </div>
-            <div class="tabset tabset-text">
-            <ul class="tabset-list">
-              <li class="selected tabset-item">
-			            <span class="tabset-link active" @click="changeSort('rno')">최신순</span>
-              </li>
-              <li class="tabset-item">
-                  <span class="tabset-link" @click="changeSort('like_count')">인기순</span>
-              </li>
-              <!-- <li class="tabset-item">
-                  <span class="tabset-link" @click="changeSort('end_date')">마감일순</span>
-              </li> -->
-            </ul>
+            </div> -->
+
             </div>
           </div>
 
