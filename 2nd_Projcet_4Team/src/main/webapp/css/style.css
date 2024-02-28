@@ -188,13 +188,13 @@
 /* recruitment */
 .recruitment .contents-group{display: flex; justify-content: space-between; align-items: flex-start; gap: 2.5rem;}
 .recruitment .calendar{width: 100%; max-width: 40rem;}
-.recruitment .recruit-list{width: 100%; max-width: 40rem;}
-.recruitment .recruit-list li{margin-bottom: 0.625rem; padding: 1.5rem; border-radius: 1rem; border: 1px solid #eee;}
-.recruitment .company-info{display: flex; justify-content: flex-start; align-items: center; gap: 0.625rem;}
+.recruitment .recruit-list{width: 100%; max-width: 50%;}
+.recruitment .recruit-list li{margin-bottom: 1rem; padding: 1.5rem; border-radius: 1rem; border: 1px solid #eee;}
+.recruitment .company-info{display: flex; justify-content: flex-start; align-items: center; gap: 1rem;}
 .recruitment .company-logo{max-width: 4.5rem; margin-bottom: 0;}
-.recruitment .recruit-info{display: flex; justify-content: space-between; align-items: center; gap: 0.625rem;}
+.recruitment .recruit-info{display: flex; justify-content: space-between; align-items: center; gap: 1rem;}
 .recruitment .recruit-work{max-width: 80%; color: #666; font-size: 1.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-.recruitment .recruit-career{max-width: 20%; font-size: 1.4rem;}
+.recruitment .recruit-career{max-width: 20%; font-size: 1.4rem; white-space: nowrap;}
 
 /* basic-N4 [hoLsb2fI8R] */
 .basic-N4 { background-color: var(--primary); }

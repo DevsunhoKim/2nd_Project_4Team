@@ -395,64 +395,29 @@
         <div class="content-container container-md">
           <div class="textset">
             <h2 class="textset-tit">Recruitment</h2>
-            <p class="textset-desc">오늘 마감하는 기업의 공고를 확인해 보세요!</p>
+            <p class="textset-desc">추천하는 채용 공고를 확인해 보세요!</p>
           </div>
           <div class="contents-group">
-            <div class="calendar"> 
+            <!-- <div class="calendar"> 
               <table>달력</table>
-            </div>
+            </div> -->
             <ul class="recruit-list">
-              <li>
-                <a href="#" class="company-info">
-                  <figure class="company-logo">
-                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
-                  </figure>
-                  <h5 class="company-name">㈜우아한형제들</h5>
-                </a>
-                <div class="recruit-info">
-                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
-                  <span class="recruit-career">신입·경력</span>
-                </div>
-              </li>
-
-              <li>
-                <a href="#" class="company-info">
-                  <figure class="company-logo">
-                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
-                  </figure>
-                  <h5 class="company-name">㈜우아한형제들</h5>
-                </a>
-                <div class="recruit-info">
-                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
-                  <span class="recruit-career">신입·경력</span>
-                </div>
-              </li>
-
-              <li>
-                <a href="#" class="company-info">
-                  <figure class="company-logo">
-                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
-                  </figure>
-                  <h5 class="company-name">㈜우아한형제들</h5>
-                </a>
-                <div class="recruit-info">
-                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
-                  <span class="recruit-career">신입·경력</span>
-                </div>
-              </li>
-              
-              <li>
-                <a href="#" class="company-info">
-                  <figure class="company-logo">
-                    <img class="width-100" src="../images/company_logo_1.png" alt="기업 로고">
-                  </figure>
-                  <h5 class="company-name">㈜우아한형제들</h5>
-                </a>
-                <div class="recruit-info">
-                  <h4 class="recruit-tit">각 부문별 경력/신입 인재영입</h4>
-                  <span class="recruit-career">신입·경력</span>
-                </div>
-              </li>
+              <c:forEach var="rcvo" items="${recruitList}">
+	              <li>
+	                <a href="#">
+	                <div class="company-info">
+	                  <figure class="company-logo">
+	                    <img class="width-100" src="${rcvo.cvo.logo}" title="${rcvo.cvo.name}">
+	                  </figure>
+	                  <h5 class="company-name">${rcvo.cvo.name}</h5>
+	                </div>
+	                <div class="recruit-info">
+	                  <h4 class="recruit-tit">${rcvo.title}</h4>
+	                  <span class="recruit-career">${rcvo.career}</span>
+	                </div>
+	                </a>
+	              </li>
+              </c:forEach>
             </ul>
           </div>
         </div>

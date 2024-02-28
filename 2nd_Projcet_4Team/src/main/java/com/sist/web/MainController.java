@@ -13,6 +13,7 @@ import com.sist.service.BooksServiceImpl;
 import com.sist.service.MainService;
 import com.sist.service.MemberService;
 import com.sist.service.StudyRoomService;
+import com.sist.service.RecruitmentService;
 import com.sist.vo.*;
 @Controller
 public class MainController {
@@ -20,13 +21,15 @@ public class MainController {
 	private BooksServiceImpl bService;
 	private StudyRoomService sService;
 	private MainService service;
+	private RecruitmentService rService;
 
 	@Autowired
-	public MainController(MemberService mService, BooksServiceImpl bService, StudyRoomService sService,
+	public MainController(MemberService mService, BooksServiceImpl bService, StudyRoomService sService, RecruitmentService rService, 
 							MainService service) {
 		this.mService = mService;
 		this.bService = bService;
 		this.sService = sService;
+		this.rService = rService;
 		this.service = service;
 
 	}
@@ -54,8 +57,10 @@ public class MainController {
 
 		List<BooksVO> booksList=bService.mainBooks();
 		List<StudyRoomVO> roomList=sService.studyRoomListData();
+		List<RecruitVO> recruitList=rService.recruitMainData();
 		model.addAttribute("booksList", booksList);
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("recruitList", recruitList);
 		return "main";
 	}
 	
