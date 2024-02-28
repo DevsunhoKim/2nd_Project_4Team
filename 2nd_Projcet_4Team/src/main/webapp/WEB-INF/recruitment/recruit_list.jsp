@@ -29,6 +29,11 @@
     <div class="opilsol-N19" data-bid="ZbLsbkw4hY">
       <div class="content-container" id="recruitmentListApp">
         <div class="container-md">
+          <div class="textset">
+            <h2 class="textset-tit">CODEV 채용 공고</h2>
+            <!-- <p class="textset-desc">CODEV가 소개하는 채용 공고를 만나보세요.</p> -->
+          </div>
+        
           <div class="contents-top">
 
             <!-- [S]glamping-N40 -->

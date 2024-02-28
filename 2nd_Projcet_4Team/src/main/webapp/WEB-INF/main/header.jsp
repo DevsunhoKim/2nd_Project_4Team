@@ -93,16 +93,16 @@ function chat() {
             </button>
             <c:if test="${principal.username!=null }">
             <button onclick="chat()" class="header-btn btn-user">
-              <img src="../images/icons/icon-chat1.png" alt="채팅 아이콘">
+              <img class="icon-img" src="../images/icons/icon_chat.png" alt="채팅 아이콘">
             </button>
             </c:if>
             <c:if test="${principal.username==null }">
-            <a href="../member/login.do" class="header-btn btn-user">
-              <img src="../images/icons/loginout.png" alt="로그인 아이콘">
+            <a href="../member/login.do" class="header-btn btn-user icon">
+              <img src="../images/icons/icon_login.png" alt="로그인 아이콘">
             </a>
             </c:if>
             <c:if test="${principal.username!=null }">
-            <a href="../member/logout.do" class="header-btn btn-user">
+            <a href="../member/logout.do" class="header-btn btn-user icon">
               <img src="../images/icons/free-icon-logout.png" alt="로그아웃 아이콘">
             </a>
             </c:if>
@@ -110,7 +110,7 @@ function chat() {
               <img src="../images/icons/ico_cart_black.svg" alt="쇼핑백 아이콘">
               <span class="badgeset-text">1</span>
             </button>
-            <button class="header-btn btn-allmenu">
+            <!-- <button class="header-btn btn-allmenu">
               <img src="../images/icons/ico_menu2_black.svg" alt="PC메뉴 아이콘">
             </button>
             <button class="header-btn btn-momenu">
@@ -118,7 +118,7 @@ function chat() {
             </button>
             <button class="header-btn btn-close">
               <img src="../images/icons/ico_close_black.svg" alt="닫기 아이콘">
-            </button>
+            </button> -->
           </div>
         </div>
       </div>

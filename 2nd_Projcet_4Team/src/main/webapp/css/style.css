@@ -27,11 +27,13 @@
 .basic-N3 .header-right { display: flex; }
 .basic-N3 .header-btn { width: 3.2rem; height: 3.2rem; background: none; border: none; }
 .basic-N3 .header-btn img { width: 100%; height: 100%; object-fit: cover; vertical-align: top; }
-.basic-N3 .header-utils { display: flex; }
+.basic-N3 .header-utils { display: flex; justify-content: center; align-items: center}
 .basic-N3 .header-utils .header-btn+.header-btn { margin-left: 1.2rem; }
 .basic-N3 .header-utils .btn-close { display: none; position: relative; z-index: 200; }
 .basic-N3 .header-utils .btn-momenu { display: none; }
 .basic-N3 .header-dim { display: none; position: fixed; top: 0; left: 0; z-index: 10; width: 100%; height: 100%; background-color: rgba(17, 17, 17, 0.7); }
+.basic-N3 .header-right .icon{width: 2.8rem; height: 2.8rem}
+.basic-N3 .header-right .icon-img{margin-top: 2px}
 @media (max-width: 1366px) {
  .basic-N3 .header-container{padding: 2rem 1.5rem}
 }
