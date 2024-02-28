@@ -47,4 +47,8 @@ public class MentorDAO {
 	public List<MentorVO> getMentorBytech(String cate){
 		return mapper.getMentorBytech(cate);
 	}
+	
+	public List<MentorReserveVO> getAllMyMentorRev(String userId){
+		 return mapper.getAllMyMentorRev(userId);
+	 }
 }

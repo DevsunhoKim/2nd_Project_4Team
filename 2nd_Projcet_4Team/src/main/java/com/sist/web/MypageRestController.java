@@ -45,4 +45,12 @@ public class MypageRestController {
 		}
 		return res;
 	}
+    
+    @GetMapping(value = "mentor_MyReserve_vue.do", produces = "text/plain;charset=UTF-8")
+	public String mentor_myReserve(HttpSession session) throws JsonProcessingException {
+		String userId=(String) session.getAttribute("userId");
+		List<MentorReserveVO> json = service.getAllMyMentorRev(userId);
+		return objectMapper.writeValueAsString(json);
+	}
+    
 }

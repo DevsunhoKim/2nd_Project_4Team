@@ -251,7 +251,6 @@ let reserveApp=Vue.createApp({
 	          availableHours: [],
 	          inquiry:'',
 	          totalAmount: 0
-		      /* userId:'${sessionScope.userId}' */
     	}
 	},
 	mounted(){
@@ -407,7 +406,7 @@ let reserveApp=Vue.createApp({
                   for(let i = start ; i <= end ;i++){
                       this.availableHours[i] = 1;
                   }
-              } else if (len === 2) {
+             	 } else if (len === 2) {
                   this.selectedTime = [];
                   this.selectedTime.push(time);
 
@@ -432,7 +431,7 @@ let reserveApp=Vue.createApp({
               }
           },
           reserveNow() {
-			    let Times=this.selectedTimes;
+			    /* let Times=this.selectedTime; */
 		        let ck = document.getElementById('checkset-a-1-1');
 		        if(this.selectedTime.length==0){
 		        	alert('예약시간을 선택해주세요.');
@@ -478,7 +477,9 @@ let reserveApp=Vue.createApp({
 						 mno:this.mno,
 						 rDate:this.currentYear+"년 "+this.currentMonth+"월 "+this.currentDay+"일",
 						 totalAmount: this.totalAmount,
-						 inquiry: this.inquiry
+						 inquiry: this.inquiry,
+						 str_time:this.selectedTime[0],
+						 end_time:this.selectedTime[1]
 					 }
 				 }).then(response=>{
 					 if(response.data==='yes')

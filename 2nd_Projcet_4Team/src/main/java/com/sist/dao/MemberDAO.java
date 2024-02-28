@@ -1,11 +1,14 @@
 package com.sist.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.MemberMapper;
 import com.sist.vo.MemberVO;
+import com.sist.vo.MentorVO;
 
 @Repository
 public class MemberDAO {

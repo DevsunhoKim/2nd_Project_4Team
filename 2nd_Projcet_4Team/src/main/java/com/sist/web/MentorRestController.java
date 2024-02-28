@@ -37,9 +37,9 @@ public class MentorRestController {
 	}
 
 	@PostMapping(value="reservation_vue.do",produces = "text/plain;charset=UTF-8")
-	 public String mentor_reservation_vue(int mno, String rDate, int totalAmount, String inquiry,HttpSession session) {
+	 public String mentor_reservation_vue(int mno, String rDate, int totalAmount, String inquiry,int str_time, int end_time,HttpSession session) {
 		String userId=(String) session.getAttribute("userId");
-		service.insertMentoring(mno, rDate, totalAmount, inquiry, userId);
+		service.insertMentoring(mno, rDate, totalAmount, inquiry, str_time, end_time,userId);
 		return "yes";
 	  }
 }

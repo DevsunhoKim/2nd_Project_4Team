@@ -88,13 +88,15 @@ public class MentorServiceIml implements MentorService{
 	
 	@Transactional
 	@Override
-	public void insertMentoring(int mno, String rDate, int totalAmount, String inquiry, String userId) {
+	public void insertMentoring(int mno, String rDate, int totalAmount, String inquiry, String userId, int str_time,int end_time) {
 		MentorReserveVO vo=new MentorReserveVO();
         vo.setMno(mno);
 		vo.setRDate(rDate);
 		vo.setTotalAmount(totalAmount);
 		vo.setInquiry(inquiry);
 		vo.setUserId(userId);
+		vo.setStr_time(str_time);
+		vo.setEnd_time(end_time);
         dao.insertMentoring(vo); 
         dao.increaseRevCnt(mno);
 	}
