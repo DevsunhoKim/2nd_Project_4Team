@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../mypage/studyRoom/style.css">
 </head>
 <body>
-      <div class="glamping-N7" data-bid="LGLSReTjoE" id="jjim">
+      <div class="glamping-N7 roomjjim" data-bid="LGLSReTjoE" id="jjim">
       <div class="contents-inner">
         <div class="contents-container container-md">
           <div class="textset">
@@ -18,7 +18,7 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide" v-for="jj in jjimList">
                 <div class="contents-slide-group container-md">
-                  <a href="javascript:void(0);" class="cardset">
+                  <a :href="'../studyRoom/room_detail.do?no='+jj.no+'&infoShow=true'" class="cardset">
                     <figure class="cardset-figure">
                       <img class="cardset-img" :src="jj.poster" alt="이미지">
                     </figure>

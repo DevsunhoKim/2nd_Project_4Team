@@ -48,11 +48,16 @@ public class StudyRoomController {
 		{
 			userId=p.getName();
 		}
-		if(infoShow==null)
+		if(infoShow==null && askShow==null)
+		{
+			infoShow=true;
+			askShow=false;
+		}
+		else if(infoShow==null)
 		{
 			infoShow=false;
 		}
-		if(askShow==null)
+		else if(askShow==null)
 		{
 			askShow=false;
 		}

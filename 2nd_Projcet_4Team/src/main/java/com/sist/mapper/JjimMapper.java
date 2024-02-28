@@ -67,7 +67,7 @@ public interface JjimMapper {
 	})
 	@Select("SELECT mno,img,m.nickname "
 			+ "		FROM MENTOR mt,codev_jjim j,MEMBER m "
-			+ "		WHERE mt.MNO=j.no AND j.USERID=m.USERID AND CATENO=1 AND j.userId=#{userId} ORDER BY j.no DESC")
+			+ "		WHERE mt.MNO=j.no AND mt.USERID=m.USERID AND CATENO=1 AND j.userId=#{userId} ORDER BY j.no DESC")
 	public List<MentorVO> mentorJjim(String userId);
 	
 	@Select("SELECT cno,logo,name "

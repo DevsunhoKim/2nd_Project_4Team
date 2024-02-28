@@ -390,6 +390,7 @@ $(document).ready(function() {
                 }).then(response=>{
                 	if(response.data=='OK')
                 	{
+                		alert("예약이 완료되었습니다.")
                 		location.href="../mypage/myRoom_reserve.do"
                 	}
                 }).catch(error => {
