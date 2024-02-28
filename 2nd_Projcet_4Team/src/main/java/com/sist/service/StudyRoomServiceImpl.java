@@ -105,6 +105,11 @@ public class StudyRoomServiceImpl implements StudyRoomService{
 		// TODO Auto-generated method stub
 		return sadao.StudyRoomAskReturnData(map);
 	}
+	@Override
+	public int StudyRoomReserveFindMaxNo(String userId) {
+		// TODO Auto-generated method stub
+		return srdao.StudyRoomReserveFindMaxNo(userId);
+	}
 	
 	
 

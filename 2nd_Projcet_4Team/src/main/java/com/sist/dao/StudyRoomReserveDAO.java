@@ -35,6 +35,10 @@ public class StudyRoomReserveDAO {
    public void StudyRoomTimeUpdate(StudyRoomTimeVO vo) {
 		mapper.StudyRoomTimeUpdate(vo);
    }
+   public int StudyRoomReserveFindMaxNo(String userId)
+   {
+	   return mapper.StudyRoomReserveFindMaxNo(userId);
+   }
    
    //관리자 페이지
    public List<StudyRoomReserveVO> StudyRoomReserveAllList(Map map)
