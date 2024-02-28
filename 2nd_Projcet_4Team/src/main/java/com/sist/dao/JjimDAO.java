@@ -3,6 +3,7 @@ package com.sist.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -45,4 +46,24 @@ public class JjimDAO {
 	{
 		return mapper.mentorJjim(userId);
 	}
+	
+	//멘토 찜하기
+	public void MentorjjimInsert(JjimVO vo) {
+		mapper.jjimInsert(vo);
+		mapper.MentorJjimUpdate(vo.getNo());
+	}
+	public void MentorjjimDelete(JjimVO vo) {
+		mapper.jjimDelete(vo);
+		mapper.MentorJjimUpdateMinus(vo.getNo());
+	}
+	// 관심기업 찜하기
+	public void companyjimInsert(JjimVO vo) {
+		mapper.jjimInsert(vo);
+		mapper.companyJjimUpdate(vo.getNo());
+	}
+	public void companyjjimDelete(JjimVO vo) {
+		mapper.jjimDelete(vo);
+		mapper.companyJjimUpdateMinus(vo.getNo());
+	}
+
 }

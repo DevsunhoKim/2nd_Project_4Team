@@ -30,6 +30,19 @@ public interface JjimMapper {
 	@Update("UPDATE studyRoom SET jjim=jjim-1 WHERE no=#{no}")
 	public void studyRoomJjimUpdateMinus(int no);
 	
+	
+	@Update("UPDATE mentor SET follower=follower+1 WHERE mno=#{mno}")
+	public void MentorJjimUpdate(int mno);
+
+	@Update("UPDATE mentor SET follower=follower-1 WHERE mno=#{mno}")
+	public void MentorJjimUpdateMinus(int mno);
+	
+	@Update("UPDATE mentor SET like_count=like_count+1 WHERE cno=#{cno}")
+	public void companyJjimUpdate(int cno);
+
+	@Update("UPDATE mentor SET like_count=like_count-1 WHERE cno=#{cno}")
+	public void companyJjimUpdateMinus(int cno);
+	
 	/*
 	 *  SELECT s.no,poster,name
 		FROM studyRoom s,codev_jjim j

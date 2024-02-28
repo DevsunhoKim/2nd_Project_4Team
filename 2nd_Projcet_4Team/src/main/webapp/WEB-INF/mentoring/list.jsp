@@ -132,7 +132,9 @@
 		      	<li v-for="kwd in vo.keywords.slice(1, 8)">{{kwd}}</li>
 		      </ul>
 		    </a>
-		    <button type="button" class="cardset-btn" value="팔로우">팔로우하기</button>
+		    
+		    <button type="button" class="cardset-btn" value="팔로우" v-if="vo.followstate" id="followDelete" @click="followDelete(vo.mno)">팔로우 취소</button>
+		    <button type="button" class="cardset-btn" value="팔로우" v-else @click="follow(vo.mno)">팔로우 하기</button>
 		</div>
 		
 	  </div>
@@ -183,7 +185,9 @@ let mentorListApp = Vue.createApp({
             totalpage: 0,
             startPage: 0,
             endPage: 0,
-            page_list: {}
+            page_list: {},
+            cateno:1,
+            userId:'${sessionScope.userId}'
         };
     },
     mounted() {
@@ -257,6 +261,44 @@ let mentorListApp = Vue.createApp({
         applyFilter(filter) {
             this.filter = filter;
             this.setupSearch()
+        },
+        follow(no){
+        	 if(this.userId==null || this.userId=='')
+      	    {
+      	        alert("로그인 후 팔로우가 가능합니다.");  
+      	        location.href="../member/login.do"
+      	    }
+        	 else{
+        		 axios.get('../jjim/jjim_ok.do',{
+     		    	params:{
+     		    		userId:this.userId,
+     	    			no:no,
+     	    			cateno:this.cateno
+     		    	}
+     		    }).then(response=>{
+     		    	if(response.data>0)
+     		    	{
+     		    		alert('팔로우가 완료되었습니다.') 
+     		    		this.setupSearch();
+     		    	}
+     		    })
+        	 }
+        	
+        },
+        followDelete(no){
+        	axios.get('../jjim/jjim_delete.do',{
+		    	params:{
+		    		userId:this.userId,
+	    			no:no,
+	    			cateno:this.cateno
+		    	}
+		    }).then(response=>{
+		    	if(response.data==0)
+		    	{
+		    		alert('팔로우가 취소되었습니다.')
+		    		this.setupSearch();
+		    	}
+		    })
         }
     }
 }).mount("#mentorList");

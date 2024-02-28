@@ -6,17 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sist.dao.JjimDAO;
 import com.sist.dao.MentorDAO;
+import com.sist.vo.JjimVO;
 import com.sist.vo.MentorReserveVO;
 import com.sist.vo.MentorVO;
 
 @Service
 public class MentorServiceIml implements MentorService{
 	private MentorDAO dao;
+	private JjimDAO jdao;
 
     @Autowired
-    MentorServiceIml(MentorDAO dao){
+    MentorServiceIml(MentorDAO dao,JjimDAO jdao){
         this.dao = dao;
+        this.jdao =jdao;
     }
 
     @Override
@@ -45,6 +49,25 @@ public class MentorServiceIml implements MentorService{
 				String[] kList = kwd.split("#");
 				vo.setKeywords(kList);
 			}
+			JjimVO jvo=new JjimVO();
+			jvo.setCateno(1);
+			jvo.setNo(vo.getMno());
+			if(userId==null)
+			{
+				jvo.setUserId("");
+			}
+			else {
+				jvo.setUserId(userId);
+			}
+		    int jjim=jdao.jjimCount(jvo);
+		    if(jjim>0)
+		    {
+		    	vo.setFollowstate(true);
+		    }
+		    else {
+		    	vo.setFollowstate(false);
+		    }
+			
 		}
 		return list;
 	}
