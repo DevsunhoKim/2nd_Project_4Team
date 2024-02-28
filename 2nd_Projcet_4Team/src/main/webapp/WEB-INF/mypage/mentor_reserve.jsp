@@ -149,7 +149,7 @@
               <span>예약시간</span>
             </h5>
             <span class="contents-date">
-              <i>{{str_time}} ~ {{end_time}}</i></span>
+              <i>{{str_time}}시 ~ {{end_time}}시</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
