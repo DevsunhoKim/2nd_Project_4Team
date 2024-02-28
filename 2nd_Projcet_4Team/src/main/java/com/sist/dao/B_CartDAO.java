@@ -53,9 +53,13 @@ public class B_CartDAO {
 	
 	public List<B_CartVO> findCartItemsByuserId2(String userId)
 	{
-		return mapper.findCartItemsByuserId2(userId);
+		return mapper.findCartItemsWithBookPriceByUserId(userId);
 	}
-
+	
+	public void updateBuyCnt(int no, int quantity)
+	{
+		mapper.updateBuyCnt(no, quantity);
+	}
 
 
 }

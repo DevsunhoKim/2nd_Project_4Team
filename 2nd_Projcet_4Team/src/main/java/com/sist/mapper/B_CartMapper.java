@@ -16,11 +16,14 @@ public interface B_CartMapper {
     @Select("SELECT rno,userId,no,quantity,totalPrice,title,poster,TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday FROM b_cart WHERE userId = #{userId} AND status = 'Y' ORDER BY regdate DESC")
     public List<B_CartVO> findCartItemsByuserId(String userId);
     
-    // 장바구니 목록 출력
-    @Select("SELECT rno, userId, no, quantity, totalPrice, title, poster, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') AS dbday, " +
-            "CASE WHEN quantity > 0 THEN totalPrice / quantity ELSE 0 END AS price " +
-            "FROM b_cart WHERE userId = #{userId} AND status = 'N' ORDER BY regdate DESC")
-    public List<B_CartVO> findCartItemsByuserId2(String userId);
+    // 장바구니 목록출력
+    @Select("SELECT bc.rno, bc.userId, bc.no, bc.quantity, bc.totalPrice, bc.title, bc.poster, " +
+            "TO_CHAR(bc.regdate, 'YYYY-MM-DD HH24:MI') AS dbday, b.price AS bookPrice " +
+            "FROM b_cart bc " +
+            "JOIN books b ON bc.no = b.no " +
+            "WHERE bc.userId = #{userId} AND bc.status = 'N' " +
+            "ORDER BY bc.regdate DESC")
+    public List<B_CartVO> findCartItemsWithBookPriceByUserId(String userId);
 
 
     // 장바구니 항목 업데이트 (예: 수량 변경)
