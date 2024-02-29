@@ -101,21 +101,33 @@
             </table>
           </div>
           
-          <nav class="pagiset pagiset-line">
-            <div class="pagiset-ctrl">
-              <a v-if="startpage>1" class="pagiset-link pagiset-prev" @click="prev()">
-                <span class="visually-hidden">이전</span>
-              </a>
-            </div>
-            <div class="pagiset-list">
-              <a v-for="i in range(startpage,endpage)" :class="i==curpage?'pagiset-link active-fill':'pagiset-link'" @click="pageChange(i)">{{i}}</a>
-            </div>
-            <div class="pagiset-ctrl">
-              <a v-if="endpage<totalpage" class="pagiset-link pagiset-next" @click="next()">
-                <span class="visually-hidden">다음</span>
-              </a>
-            </div>
-          </nav>
+          <nav class="pagiset pagiset-line" style="margin-bottom: 3rem">
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-first" @click="pageChange(1)">
+              <span class="visually-hidden">처음</span>
+            </a>
+          </div>
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-prev" v-if="curpage > 1" @click="pageChange(curpage - 1)">
+              <span class="visually-hidden">이전</span>
+            </a>
+          </div>
+          <div class="pagiset-list">
+            <a class="pagiset-link" :class="{'active-fill': curpage === i}" v-for="i in range(startPage, endPage)" :key="i" @click="pageChange(i)">
+              {{ i }}
+            </a>
+          </div>
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-next" v-if="curpage < totalpage" @click="pageChange(curpage + 1)">
+              <span class="visually-hidden">다음</span>
+            </a>
+          </div>
+          <div class="pagiset-ctrl">
+            <a class="pagiset-link pagiset-last" @click="pageChange(totalpage)">
+              <span class="visually-hidden">마지막</span>
+            </a>
+          </div>
+        </nav>
         </div>
       </div>
       
@@ -181,7 +193,7 @@
               <span>결제금액</span>
             </h5>
             <span class="contents-date">
-              <i>{{totalAmount}}원</i></span>
+              <i>{{formatPrice(totalAmount)}}원</i></span>
           </div>
           <div class="contents-titgroup">
             <h5 class="contents-tit">
@@ -215,8 +227,8 @@ let mypageMentorRev = Vue.createApp({
         return {
             curpage: 1,
             totalpage: 0,
-            endpage: 0,
-            startpage: 0,
+            endPage: 0,
+            startPage: 0,
             totalCount: 0,
             pop: false,
             mr_list: [],
@@ -247,32 +259,38 @@ let mypageMentorRev = Vue.createApp({
                 this.mr_list = response.data.list
                 this.curpage = response.data.curpage
                 this.totalpage = response.data.totalpage
-                this.startpage = response.data.startpage
-                this.endpage = response.data.endpage
+                this.startPage = response.data.startPage
+                this.endPage = response.data.endPage
                 this.totalCount = response.data.totalCount
             })
         },
         range(start, end) {
-            let arr = []
-            let lang = end - start
-            for (let i = 0; i <= lang; i++) {
-                arr[i] = start
-                start++
+            let arr = [];
+            for (let i = start; i <= end; i++) {
+              arr.push(i);
             }
-            return arr
-            console.log(i)
+            return arr;
         },
         prev() {
-            this.curpage = this.startpage - 1
-            this.dataRecv()
+            if (this.curpage === 1) {
+                return;
+            }
+            this.curpage = this.startPage - 1;
+            this.dataRecv();
         },
         next() {
-            this.curpage = this.endpage + 1
-            this.dataRecv()
+            if (this.curpage === this.totalpage) {
+                return;
+            }
+            this.curpage = this.endPage + 1;
+            this.setupSearch();this.dataRecv();
         },
         pageChange(page) {
+            if (page === this.curpage) {
+                return;
+            }
             this.curpage = page;
-            this.dataRecv()
+            this.dataRecv();
         },
         close() {
             this.pop = false
@@ -292,6 +310,7 @@ let mypageMentorRev = Vue.createApp({
             this.totalAmount = this.mr_detail.totalAmount
             this.inquiry = this.mr_detail.inquiry
         }
+        
     }
 }).mount('.mypageMentorRev')
 </script>
