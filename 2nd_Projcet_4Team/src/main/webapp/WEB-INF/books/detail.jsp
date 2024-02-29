@@ -17,6 +17,7 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <style>
   @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+  
   .hooms-N40 .contents-thumbnail img { width: 70%; height: 120%; object-fit: cover; }
   #cont
   {
@@ -26,7 +27,6 @@
   
 
 fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
 
 /****** Style Star Rating Widget *****/
 

@@ -103,7 +103,7 @@
 
   .hooms-N31 .cardset-desc {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     line-height: var(--lh-p2);
     text-overflow: ellipsis;
@@ -215,11 +215,14 @@
     }
   }
   
-  a.cardset:hover {
-  border: 2px solid #C0C0C0; 
-  border-radius: 5px;
-}
-  
+  a.cardset:hover .cardset-img{
+	  border: 2px solid #ddd;
+	  border-radius: 1rem;
+	}
+  .cardset-img{
+    border-radius: 1rem;
+    overflow: hidden;
+  }
 
   @media (max-width: 768px) {
     .hooms-N31 .cardset .cardset-figure {
