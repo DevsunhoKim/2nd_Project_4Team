@@ -12,7 +12,15 @@
   
 <style type="text/css">
 
-
+.mypageMentorRev#admin_ask #popup {
+  height: auto;
+}
+.mypageMentorRev #ask_detail .hooms-N37 .contents-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
 .mypageMentorRev .hooms-N37 .contents-tit span::after {
      background: url() no-repeat center/cover;
 }

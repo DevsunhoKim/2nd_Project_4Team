@@ -378,7 +378,7 @@ let recruitmentDetailApp=Vue.createApp({
         
       /*global kakao*/
       script.onload=()=>kakao.maps.load(this.initMap)
-      script.src="http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=74c8ca8100e4e559f7de6e3bf17641b2&libraries=services"
+      script.src="http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=666e34535b94b665d2f33b3ee94a689a&libraries=services"
       document.head.appendChild(script)
     },
     initMap(){
@@ -390,7 +390,7 @@ let recruitmentDetailApp=Vue.createApp({
           };  
 
         // 지도를 생성합니다    
-        var map = new kakao.maps.Map(mapContainer, mapOption); 
+        var map = new kakao.maps.Map(mapContainer, mapOption);  
 
         // 주소-좌표 변환 객체를 생성합니다
         var geocoder = new kakao.maps.services.Geocoder();

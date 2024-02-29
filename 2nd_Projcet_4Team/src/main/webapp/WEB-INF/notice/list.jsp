@@ -16,6 +16,9 @@
 .campland-N12 {
     padding: 100px 20px 70px; 
 }
+.campland-N12 .pagiset{
+margin-top : 4rem;
+}
 </style>
 </head>
 <body>

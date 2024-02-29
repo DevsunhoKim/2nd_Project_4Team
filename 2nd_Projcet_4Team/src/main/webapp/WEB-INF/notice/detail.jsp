@@ -39,7 +39,7 @@
 
 .campland-N13 .contents-link {
   margin-top: 4rem;
-  text-align: right;
+  text-align: center;
 }
 
 @media (max-width: 992px) {
@@ -61,7 +61,7 @@
     width: 100%;
     max-width: 1280px;
     text-align: right;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
 }
 .inputset-round{
 border: 1px solid;
@@ -91,18 +91,11 @@ text-align: left !important;
   <div class="contents-container container-md">
     <div class="textset textset-sub">
       <h2 class="textset-tit">${vo.title }</h2>
-
       <p class="textset-desc">관리자 <span>${vo.dbDay}</span>
       <!-- </p><button class="btnset btnset-round" type="button" th-hoverbox="true">VIEW ALL STORY</button> -->
-
-
     </div>
     <div class="contents-body">
-      <p class="contents-text">
-        ${vo.cont}
-    </div>
-    <div class="contents-link">
-      <a href="../notice/list.do" class="btnset btnset-round btnset-line btnset-black">목록으로</a>
+      <p class="contents-text">${vo.cont}</p>
     </div>
   </div>
 </div>
@@ -112,10 +105,13 @@ text-align: left !important;
       <span></span>댓글
     </h6>
     <div class="inputset inputset-round">
-    <em class="comment_inbox_name">김연수</em>
+      <em class="comment_inbox_name">김연수</em>
       <textarea class="inputset-textarea form-control" placeholder="댓글을 입력하세요" rows="3"></textarea>
     </div>
-      <button class="btnset btnset-round" type="button">등록</button>
+    <div class="contents-link">
+      <button class="btnset btnset-round" type="button">댓글 등록</button>
+      <a href="../notice/list.do" class="btnset btnset-round btnset-line btnset-black">목록으로</a>
+    </div>
 </div> 
 
 <!-- <div class="CommentBox">
