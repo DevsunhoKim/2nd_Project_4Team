@@ -214,7 +214,7 @@ let userset;
 //서버 연결
 function connection()
 {
-	websocket=new WebSocket("ws://211.238.142.115:8080/web/chat/chat-ws")
+	websocket=new WebSocket("ws://43.200.169.222:8080/web/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=OnMessage
