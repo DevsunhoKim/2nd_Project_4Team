@@ -44,6 +44,15 @@
     box-shadow: none;
     
 }
+.accordset.accordset-plus .accordset-item.active .accordset-header::after {
+    content: none;
+}
+.accordset.accordset-plus .accordset-header::after {
+    content: none;
+}
+#admin_ask .state:hover{
+   background-color: #6713d2;
+}
 </style>
 <script type="text/javascript">
 (function() {
@@ -77,23 +86,27 @@
         <div class="contents-filter-body">
           <div class="accordset accordset-plus">
             <div class="accordset-item active">
+             <a href="../adminpage/room_ask.do">
               <div class="accordset-header">
-                <button class="accordset-button btn" type="button">회원정보수정</button>
+                <button class="accordset-button btn" type="button">1:1문의</button>
               </div>
+             </a>
               <!-- 멘토컬럼이 1이면 -->
-              <div class="accordset-body">
+              <!-- <div class="accordset-body">
                 <div class="accordset-content">
                   <div class="checkset">
                     <span class="checkset-text">멘토정보수정</span>
                   </div>
               </div>
-            </div>
+            </div> -->
            </div>
             <div class="accordset-item">
+             <a href="../adminpage/room_reserve.do">
               <div class="accordset-header">
-                <button class="accordset-button btn" type="button">예약내역</button>
+                <button class="accordset-button btn" type="button">스터디룸 예약</button>
               </div>
-              <div class="accordset-body">
+             </a>
+              <!-- <div class="accordset-body">
                 <div class="accordset-content">
                   <div class="radioset">
                     <span class="radioset-text">멘토링 예약</span>
@@ -104,59 +117,12 @@
                   </div>
                   </a>
                 </div>
-              </div>
+              </div> -->
             </div>
-            <div class="accordset-item">
-              <div class="accordset-header">
-                <button class="accordset-button btn" type="button">1:1문의</button>
-              </div>
-              <div class="accordset-body">
-               
-                <div class="accordset-content">
-                 <a href="../adminpage/room_ask.do">
-                  <div class="checkset">
-                    <span class="checkset-text">문의 내역</span>
-                  </div>
-                  </a>
-                </div>
-               
-              </div>
-            </div>
-            <div class="accordset-item">
-              <div class="accordset-header">
-                <button class="accordset-button btn" type="button">채용공고</button>
-              </div>
-              <div class="accordset-body">
-                <div class="accordset-content">
-                  <div class="checkset">
-                    <span class="checkset-text">지원내역</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordset-item">
-              <div class="accordset-header">
-                <button class="accordset-button btn" type="button">관심목록</button>
-              </div>
-              <div class="accordset-body">
-                <div class="accordset-content">
-                  <div class="checkset">
-                    <span class="checkset-text">멘토</span>
-                  </div>
-                  <div class="checkset">
-                    <span class="checkset-text">스터디룸</span>
-                  </div>
-                  <div class="checkset">
-                    <span class="checkset-text">채용공고</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordset-item">
-              <div class="">
-                <button class="accordset-button btn" type="button">회원탈퇴</button>
-              </div>
-            </div>
+
+
+
+
           </div>
         </div>
 <!--         <div class="contents-filter-footer">

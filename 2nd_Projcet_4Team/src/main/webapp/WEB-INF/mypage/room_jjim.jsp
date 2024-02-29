@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../mypage/studyRoom/style.css">
+<style type="text/css">
+.mypagetop{
+	margin-top: 10rem;
+}
+</style>
 </head>
 <body>
       <div class="glamping-N7 roomjjim" data-bid="LGLSReTjoE" id="jjim">

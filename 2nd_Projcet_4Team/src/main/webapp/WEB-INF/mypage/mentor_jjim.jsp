@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../mypage/studyRoom/style.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style type="text/css">
+.mypagetop{
+	margin-top: 10rem;
+}
+</style>
 </head>
 <body>
       <div class="glamping-N7 mentorjjim" data-bid="LGLSReTjoE" id="jjim">
