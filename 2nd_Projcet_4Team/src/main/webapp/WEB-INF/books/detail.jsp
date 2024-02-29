@@ -274,14 +274,19 @@ textarea {
    <!-- [S]hooms-N41 수정된 부분 -->
 <div class="hooms-N41" data-bid="IYlsL2pcgs" style="margin-bottom: 6rem">
   <div class="contents-inner">
+  
     <div class="contents-container container-md">
+    
       <div class="contents-group">
+      <h2 style="font-size: 25px;margin-bottom: 25px;">리뷰 내역</h2>
+      
         <div class="contents-cardlist contents-cardlist-active" v-for="review in reviews" :key="review.rno">
          
             <div class="cardset-body">
           <!-- 리뷰 내용 및 저자 정보 -->
 <div class="contents-info">
-  <div class="contents-name" style="float: right">
+  <div class="contents-name" style="float: right;margin-top:25px">
+    
     작성자 : {{ review.userId }}
     <span class="contents-date">{{ review.dbday }}</span>
   </div>
