@@ -484,7 +484,7 @@ let reserveApp=Vue.createApp({
 				 }).then(response=>{
 					 if(response.data==='yes')
 				     {
-						 location.href="../main/main.do" 
+						 location.href="../mypage/mentor_reserve.do" 
 				     }
 					 else
 				     {
