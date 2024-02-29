@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../studyRoom/css/setting.css">
   <link rel="stylesheet" href="../studyRoom/css/plugin.css">
-<!--   <link rel="stylesheet" href="../studyRoom/css/template.css"> -->
+  <!--   <link rel="stylesheet" href="../studyRoom/css/template.css"> -->
+  <link rel="stylesheet" href="../css/commons.css">
   <link rel="stylesheet" href="../studyRoom/css/style.css">
-  <!-- <link rel="stylesheet" href="../css/template.css"> -->
+  
   <link rel="stylesheet" href="../adminpage/studyRoom/style.css">
   <link rel="stylesheet" href="../mypage/studyRoom/style.css">
   <script src="http://code.jquery.com/jquery.js"></script>

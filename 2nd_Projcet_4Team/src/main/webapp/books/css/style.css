@@ -3,6 +3,7 @@
 /* hooms-N31 [tJlSL2O6p9] */
 .hooms-N31 .contents-inner { padding: 10rem 2.4rem; }
 .hooms-N31 .textset { margin-top: 0; margin-bottom: 4rem; }
+.hooms-N31 .textset.textset-h2 .textset-tit{font-size: 4rem !important; font: inherit; font-weight: 600;}
 .hooms-N31 .tabset.tabset-brick { margin-bottom: 4rem; }
 .hooms-N31 .contents-search { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
 .hooms-N31 .inputset { width: 40.3rem; }

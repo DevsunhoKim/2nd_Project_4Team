@@ -293,10 +293,11 @@
 /* List */
 /* glamping-N9 [MlLSD4d7Fl] */
 .glamping-N9 { overflow: hidden; }
-.glamping-N9 .contents-inner { padding: 8rem 2.4rem; }
+.glamping-N9 .contents-inner { padding: 10rem 2.4rem 0 2.4rem; }
 .glamping-N9 .contents-container { position: relative; overflow: hidden; }
-.glamping-N9 .contents-top{position: relative;display: flex; justify-content: space-between; align-items: flex-end;}
-.glamping-N9 .textset {width:100%; margin-bottom: 0;}
+.glamping-N9 .contents-top{position: relative; display: flex; justify-content: space-between; align-items: flex-end; margin: 2rem 0}
+.glamping-N9 .textset {display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 0;}
+.glamping-N9 .textset .textset-tit{font-size: 4rem;}
 .glamping-N9 .textset-tit+.textset-desc {margin-top: 1rem;}
 .glamping-N9 .inputset {display: flex; justify-content: center; align-items: center; width: 100%;}
 .glamping-N9 .inputset-input {width: 70%;}
@@ -304,7 +305,8 @@
 .glamping-N9 .inputset.inputset-lg .inputset-input{height: 4rem;}
 .glamping-N9 .selectset {width: 30%; margin-right: 10px;}
 .glamping-N9 .selectset.selectset-lg .btn{height: 4rem; font-size: 1.4rem; font-weight: 500;}
-.glamping-N9 .tabset-text {display: flex; justify-content: right; margin: 2rem 0;}
+.glamping-N9 .tabset-text {display: flex; justify-content: right; margin: 0;}
+.glamping-N9 .tabset.tabset-brick{margin: 2rem 0;}
 .glamping-N9 .cardset-wrapper{position: relative; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; gap: 2rem;}
 .glamping-N9 .swiper-slide { width: 40rem; margin-right: 4rem; }
  .glamping-N9 .cardset {
@@ -345,13 +347,13 @@
 }
 
 /* 사용자 정의 */
-#mentorList .contents-top a{
-    position: absolute;
+#mentorList .textset a{
+/*     position: absolute;
     top: 0;
-    right: 0;
+    right: 0; */
     display: block;
-    margin: 0 auto;
-    padding: 1rem;
+    /* margin: 0 auto; */
+    padding: 1rem 2rem;
     border-radius: 1rem;
     border: none;
     background-color: #7918F2;

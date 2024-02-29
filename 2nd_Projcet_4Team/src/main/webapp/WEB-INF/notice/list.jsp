@@ -14,10 +14,13 @@
 <link rel="stylesheet" href="../css/template.css">
 <style type="text/css">
 .campland-N12 {
-    padding: 100px 20px 70px; 
+    padding: 12rem 2.4rem 0 2.4rem; 
 }
 .campland-N12 .pagiset{
 margin-top : 4rem;
+}
+.campland-N12 .textset.textset-sub .textset-tit{
+  font-size: 4rem;
 }
 </style>
 </head>
@@ -56,7 +59,7 @@ margin-top : 4rem;
       </table>
     </div>
     
-        <nav class="pagiset pagiset-line" style="margin-bottom: 3rem">
+        <nav class="pagiset pagiset-line" style="margin-bottom: 4rem">
           <div class="pagiset-ctrl">
             <a class="pagiset-link pagiset-first" @click="pageChange(1)">
               <span class="visually-hidden">처음</span>

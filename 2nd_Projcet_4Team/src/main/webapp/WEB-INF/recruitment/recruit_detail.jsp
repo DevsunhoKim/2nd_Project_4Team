@@ -355,7 +355,7 @@ let recruitmentDetailApp=Vue.createApp({
 	      }).then(response=>{
 	        if(response.data==='yes') {
 	          alert("지원이 완료되었습니다.")
-	          location.href="../mypage/main.do";
+	          location.href="../main/main.do";
 	        } else {
 	          alert("지원 정보 저장을 실패하였습니다.")
 	        }

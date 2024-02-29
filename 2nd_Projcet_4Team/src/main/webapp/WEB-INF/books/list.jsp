@@ -19,7 +19,7 @@
   /* BEGIN: Add your custom styles here */
 
   .hooms-N31 .contents-inner {
-    padding: 10rem 2.4rem;
+    padding: 12rem 2.4rem 0 2.4rem;
   }
 
   .hooms-N31 .textset {
@@ -62,7 +62,7 @@
 
   .hooms-N31 .cardset {
     width: calc(25% - 1rem);
-    height: 400px;
+    height: 360px;
     padding: 2rem;
     margin: 0.5rem 0.5rem 12rem 0.5rem;
     box-sizing: border-box;
@@ -103,7 +103,7 @@
 
   .hooms-N31 .cardset-desc {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     line-height: var(--lh-p2);
     text-overflow: ellipsis;
@@ -136,7 +136,7 @@
   }
 
   .hooms-N31 .pagiset {
-    margin-top: 6rem;
+    margin-top: 4rem;
   }
 
   @media (max-width: 992px) {
@@ -238,28 +238,9 @@
         <div class="contents-inner">
           <div class="contents-container container-md">
             <div class="textset textset-h2">
-              <h2 class="textset-tit" style="font: inherit;font-size:25px;font-weight: 500;">CODEV Books</h2>
+              <h2 class="textset-tit">CODEV Books</h2>
             </div>
-            <div class="tabset tabset-brick">
-              <ul class="tabset-list tabset-sm tabset-fill">
-                <li class="tabset-item">
-					  <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('bestSeller')">
-					    <span>많이 구매한</span>
-					  </a>
-					</li>
-					<li class="tabset-item">
-					  <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('highRating')">
-					    <span>평점이 높은</span>
-					  </a>
-					</li>
-					<li class="tabset-item">
-					  <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('recent')">
-					    <span>최근 출간 순</span>
-					  </a>
-					</li>
-				  </ul>
-				  
-            </div>
+            
             <div class="contents-search">
               <p class="contents-result">
                 전체<span> 1,000</span>개
@@ -269,6 +250,28 @@
                 <button class="inputset-icon icon-right icon-search btn" type="button" aria-label="검색" @click="searchBooks"></button>
               </div>
             </div>
+            
+            <div class="tabset tabset-brick">
+              <ul class="tabset-list tabset-sm tabset-fill">
+                <li class="tabset-item">
+		            <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('bestSeller')">
+		              <span>많이 구매한</span>
+		            </a>
+		          </li>
+		          <li class="tabset-item">
+		            <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('highRating')">
+		              <span>평점이 높은</span>
+		            </a>
+		          </li>
+		          <li class="tabset-item">
+		            <a class="tabset-link" href="javascript:void(0)" @click="applyFilter('recent')">
+		              <span>최근 출간 순</span>
+		            </a>
+		          </li>
+		          </ul>
+          
+            </div>
+            
             <div class="contents-group">
               <div class="contents-cardlist contents-cardlist-active">
                 <a :href="'../books/detail.do?no='+vo.no" class="cardset" v-for="vo in books_list">
@@ -290,7 +293,7 @@
             </div>
           </div>
         </div>
-        <nav class="pagiset pagiset-line" style="margin-bottom: 3rem">
+        <nav class="pagiset pagiset-line" style="margin-bottom: 4rem">
           <div class="pagiset-ctrl">
             <!-- 처음 페이지로 이동 -->
             <a class="pagiset-link pagiset-first" href="javascript:void(0)" @click="pageChange(1)">
