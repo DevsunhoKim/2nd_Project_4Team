@@ -15,11 +15,8 @@
 <style type="text/css">
 .campland-N13 {
     padding: 100px 20px 70px; 
+     overflow: hidden;
 }
-.campland-N13 {
-  overflow: hidden;
-}
-
 .campland-N13 .textset-tit+.textset-desc span {
   display: inline-block;
   margin-left: 0.8rem;
