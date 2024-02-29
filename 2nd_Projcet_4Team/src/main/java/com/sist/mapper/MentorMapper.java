@@ -82,19 +82,20 @@ public interface MentorMapper {
         @Result(column="title", property="mtvo.title")
     })
     @Select("SELECT * FROM ( "
-    		+ "SELECT "
-    		+ "mr.*, "
-    		+ "m.nickname, "
-    		+ "mt.job, "
-    		+ "mt.career, "
-    		+ "mt.img, "
-    		+ "mt.title, "
-    		+ "ROWNUM AS num "
-    		+ "FROM mentor_reserve mr "
-    		+ "JOIN member m ON mr.userId = m.userId "
-    		+ "JOIN mentor mt ON m.userId = mt.userId "
-    		+ "WHERE mr.userId = #{userId}"
-    		+ ") WHERE num BETWEEN #{start} AND #{end}")
+            + "SELECT "
+            + "mr.*, "
+            + "m.nickname, "
+            + "mt.job, "
+            + "mt.career, "
+            + "mt.img, "
+            + "mt.title, "
+            + "ROWNUM AS num "
+            + "FROM mentor_reserve mr "
+            + "JOIN mentor mno ON mr.mno = mno.mno "
+            + "JOIN member m ON mno.userId = m.userId "
+            + "JOIN mentor mt ON m.userId = mt.userId "
+            + "WHERE mr.userId = #{userId}"
+            + ") WHERE num BETWEEN #{start} AND #{end}")
     public List<MentorReserveVO> getAllMyMentorRev(Map map); // 마이페이지 멘토링 내역
     
     @Select("SELECT COUNT(*) FROM mentor_reserve WHERE userId = #{userId}")
