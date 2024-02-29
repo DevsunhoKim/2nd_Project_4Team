@@ -99,12 +99,12 @@ width: 100%;
           	  </div> -->
            </div>
             <div class="accordset-item">
-             <a href="../mypage/myRoom_reserve.do">
-              <div class="accordset-header roomReserve">
-                <button class="accordset-button btn" type="button">스터디룸 예약</button>
+             
+              <div class="accordset-header">
+                <button class="accordset-button btn" type="button">예약목록</button>
               </div>
-             </a>
-              <!-- <div class="accordset-body">
+             
+              <div class="accordset-body">
                 <div class="accordset-content">
 	                <a href="../mypage/mentor_reserve.do">
 	                  <div class="radioset">
@@ -117,7 +117,7 @@ width: 100%;
                   </div>
                   </a>
                 </div>
-              </div> -->
+              </div>
             </div>
             <div class="accordset-item">
               <div class="accordset-header">
