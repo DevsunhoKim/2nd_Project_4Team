@@ -36,6 +36,10 @@
     justify-content: space-between;
    
 }
+.contents-inner{
+margin-top: 5rem;
+}
+
 </style>
 </head>
 <body>
