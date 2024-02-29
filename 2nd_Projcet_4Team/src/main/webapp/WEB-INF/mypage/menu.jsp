@@ -46,6 +46,9 @@
 .basic-N50 .accordset-header{
 width: 100%;
 }
+.accordset.accordset-plus .roomReserve::after {
+    content: none !important;
+}
 </style>
 <script type="text/javascript">
 (function() {
@@ -96,10 +99,12 @@ width: 100%;
           	  </div> -->
            </div>
             <div class="accordset-item">
-              <div class="accordset-header">
-                <button class="accordset-button btn" type="button">예약내역</button>
+             <a href="../mypage/myRoom_reserve.do">
+              <div class="accordset-header roomReserve">
+                <button class="accordset-button btn" type="button">스터디룸 예약</button>
               </div>
-              <div class="accordset-body">
+             </a>
+              <!-- <div class="accordset-body">
                 <div class="accordset-content">
 	                <a href="../mypage/mentor_reserve.do">
 	                  <div class="radioset">
@@ -112,7 +117,7 @@ width: 100%;
                   </div>
                   </a>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="accordset-item">
               <div class="accordset-header">
@@ -133,7 +138,7 @@ width: 100%;
                 </div>
               </div>
             </div>
-            <div class="accordset-item">
+<!--             <div class="accordset-item">
               <div class="accordset-header">
                 <button class="accordset-button btn" type="button">채용공고</button>
               </div>
@@ -144,7 +149,7 @@ width: 100%;
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="accordset-item">
               <div class="accordset-header">
                 <button class="accordset-button btn" type="button">관심목록</button>

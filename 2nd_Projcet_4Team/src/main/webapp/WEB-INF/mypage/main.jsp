@@ -269,7 +269,7 @@
   <tiles:insertAttribute name="header"/>
   
 <div class="basic-N50" data-bid="PhLt40FYJq">
-<div class="contents-inner">
+<div class="contents-inner mypagetop">
   <div class="contents-container container-md">
     <div class="textset">
       <h2 class="textset-tit">마이페이지</h2>
